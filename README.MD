@@ -4,9 +4,9 @@ _enter your definition of done here for Sprint Zero (30th Jan)_
 
 # Group's Roles and Responsibilities
 
-_tabulate the roles and responsibilities that each group member agrees to here. e.g._
+Below are the allocations of roles per person for Group 9:
 
-| Roles                    | Tyler   | Mantas  | Lukas   | Aurimas   | Kareeem   |
+| Roles                    | Tyler   | Mantas  | Lukas   | Aurimas   | Kareem   |
 | ------------------------ | ---------- | ---------- | ---------- | ---------- | ---------- |
 | Software Developer       | x          | x          | x          | x          |            |
 | Automated Test Writer    |            |            |            | x          | x          |
