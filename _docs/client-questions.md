@@ -1,6 +1,6 @@
 ## Group 9 - Client Questions
 
-_Showing sketches to briefly detail features and functionality._
+_Showing sketches to briefly detail features and functionality._  
 _Showing written user stories._
 
 **Questions**
@@ -11,8 +11,8 @@ _Showing written user stories._
 4. What would the default notification time for inactivity be?
 5. What order would you like to see these user stories implemented? 
 6. Which functional feature would you expect to take the longest to implement? 
-7. Would you like this to be a compatible with multiple devices, (Computer/Mobile).
-8. What order would you like these to developed in? eg. Computer > Mobile, Mobile > Computer. 
+7. Would you like this to be compatible with multiple devices? example: Computer and Mobile(Smart phone).
+8. What order would you like these to be developed in? example: Computer > Mobile or Mobile > Computer. 
 
 
 
