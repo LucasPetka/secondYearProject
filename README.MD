@@ -1,12 +1,12 @@
 # Group's Definition of Done
 
--Code
--Unit Testing
--CI Passing
--Manual Testing
--Integration Testing
--Integration Tests running on CI
--Coding standards checked
+-Code                                                                                               
+-Unit Testing                                                             
+-CI Passing                                                                               
+-Manual Testing                                                                                   
+-Integration Testing                                                                                   
+-Integration Tests running on CI                                                                               
+-Coding standards checked                                                                              
 
 # Group's Roles and Responsibilities
 
