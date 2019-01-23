@@ -1,6 +1,12 @@
 # Group's Definition of Done
 
-_enter your definition of done here for Sprint Zero (30th Jan)_
+-Code
+-Unit Testing
+-CI Passing
+-Manual Testing
+-Integration Testing
+-Integration Tests running on CI
+-Coding standards checked
 
 # Group's Roles and Responsibilities
 
