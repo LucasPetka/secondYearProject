@@ -53,10 +53,10 @@ dependencies {
 	// Bootstrap
 	compile("org.webjars:bootstrap:3.3.7")
 	// persistence
-	//compile("javax.xml.bind:jaxb-api:2.3.0") // https://stackoverflow.com/a/48987120
-	//compile("org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}")
-	//runtime("mysql:mysql-connector-java")
-	//testCompile("com.h2database:h2")
+	compile("javax.xml.bind:jaxb-api:2.3.0") // https://stackoverflow.com/a/48987120
+	compile("org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}")
+	runtime("mysql:mysql-connector-java")
+	testCompile("com.h2database:h2")
 	// security
 	//compile("org.springframework.boot:spring-boot-starter-security:${springBootVersion}")
 	
