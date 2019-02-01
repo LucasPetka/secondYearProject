@@ -15,7 +15,7 @@
 
 <div class="mx-auto w-25 p-3" style=" background-color:#c5c5c5;  " ;  align="center">
 
-<h1 class="display-4">Add Website</h1>
+<h1 style="font-size:4vw;" class="display-4">Add Website</h1>
 <hr>
 
 <br>
