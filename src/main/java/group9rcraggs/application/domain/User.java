@@ -5,13 +5,12 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
+
 
 /**
  * TODO Put here a description of what this class does.
@@ -35,7 +34,7 @@ public class User {
 	@Transient
 	String password2;
 	
-	@OneToMany(mappedBy="owner",cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="owner", cascade=CascadeType.ALL)
 	private List<Website> websites = new ArrayList<Website>();
 
 	public List<Website> getWebsites() {

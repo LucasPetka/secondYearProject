@@ -14,7 +14,7 @@ public class Page {
 	@GeneratedValue(strategy = GenerationType.TABLE)
 	private int id;
 	
-	@ManyToOne(optional=false,cascade=CascadeType.REMOVE)
+	@ManyToOne(optional=false, cascade=CascadeType.REMOVE)
 	private Website website;
 	
 	@Column(nullable=false)
@@ -26,7 +26,7 @@ public class Page {
 	private boolean tracking;
 
 	
-	public Page(String name,String url,String last_Updated,String frequency) {
+	public Page(String name, String url, String last_Updated, String frequency) {
 
 		
 		this.name=name;

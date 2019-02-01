@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE module PUBLIC
+        "-//Puppy Crawl//DTD Check Configuration 1.3//EN"
+        "http://www.puppycrawl.com/dtds/configuration_1_3.dtd">
+
+<module name="Checker">
+    <module name="TreeWalker">
+
+
+      <module name="AvoidStarImport"/>
+      <module name="UnusedImports" />
+
+    
+        <!-- Checks methods aren't more than 400 char long -->
+       
+
+          <module name="MethodLength">
+              <property name="tokens" value="METHOD_DEF" />
+              <property name="max" value="400" />
+              <property name="countEmpty" value="false" />
+              <property name="severity" value="warning" />
+          </module>
+
+        <!-- Checks if a line is too long. -->
+          <module name="LineLength">
+            
+              <property name="max" value="110" />
+              <property name="severity" value="error" />
+
+            <!--
+              The default ignore pattern exempts the following elements:
+                - import statements
+                - long URLs inside comments
+            -->
+
+              <property name="ignorePattern" value="${com.puppycrawl.tools.checkstyle.checks.sizes.LineLength.ignorePattern}"
+                default="^(package .*;\s*)|(import .*;\s*)|( *\* *https?://.*)$" />
+          </module>
+
+        
+          <module name="WhitespaceAfter">
+            <!-- Checks that commas and semicolons are followed by
+                 whitespace.
+            -->
+              <property name="tokens" value="COMMA, SEMI" />
+              <property name="severity" value="error" />
+          </module>
+
+          <module name="ParenPad">
+            <!-- Checks that there is no whitespace before close parens or after
+                 open parens.
+            -->
+              <property name="severity" value="error" />
+          </module>
+
+        <!-- No System.out -->
+          <module name="Regexp">
+              <property name="format" value="System\.out\.println" />
+              <property name="illegalPattern" value="true" />
+          </module>
+    </module>
+</module>
