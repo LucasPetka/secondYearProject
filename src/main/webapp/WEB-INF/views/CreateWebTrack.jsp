@@ -19,7 +19,7 @@
 <hr>
 
 <br>
-<form:form method="POST" modelAttribute="website" action="/websiteList">
+<form:form method="POST" modelAttribute="website" action="/addWebsite">
 <div class="form-group">
 <table>
 	<tr>
