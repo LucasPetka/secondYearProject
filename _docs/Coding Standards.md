@@ -4,7 +4,7 @@
 
 -- Methods cannot be more than 400 characters long
 
--- Lines cannot be more than 110 characters long (unless they contain a URL or are an import statement)
+-- Lines cannot be more than 150 characters long (unless they contain a URL or are an import statement)
 
 -- Commas(,) and semicolons(;) must be followed by a space
 

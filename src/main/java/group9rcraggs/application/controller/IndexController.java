@@ -33,7 +33,7 @@ public class IndexController {
 			return "index";
 		} else {
 		
-			return "redirect:/list";
+			return "webList";
 		}
 	}
     
