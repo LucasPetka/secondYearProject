@@ -41,53 +41,53 @@ public class Website {
 	
 	//Getters
 	
-	public int get_id() {
+	public int getId() {
 		return this.id;
 	}
 	
-	public String get_Name() {
+	public String getName() {
 		return this.name;
 	}
 	
-	public String get_url() {
+	public String getUrl() {
 		return this.url;
 	}
 	
-	public boolean get_tracking() {
+	public boolean getTracking() {
 		return this.tracking;
 	}
 	
 	//Setters
 	
-		public void set_id(int id) {
+		public void setId(int id) {
 			this.id = id;
 		}
 		
-		public void set_name(String name) {
+		public void setName(String name) {
 			this.name = name;
 		}
 		
-		public void set_url(String url) {
+		public void setUrl(String url) {
 			this.url = url;
 		}
 		
-		public void set_boolean(boolean tracking) {
+		public void setTracking(boolean tracking) {
 			this.tracking = tracking;
 		}
 	
 	
 	
-	public List<Page> get_Pages() {
+	public List<Page> getPages() {
 		return this.pages;
 }
 	
 	
-	public void add_Page(Page page) {
+	public void addPage(Page page) {
 		this.pages.add(page);
 	}
 	
-	public void del_Page(int id) {
-		pages.removeIf(p -> p.get_id() == id);
+	public void deletePage(int id) {
+		pages.removeIf(p -> p.getId() == id);
 	}
 	
 }

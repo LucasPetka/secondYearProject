@@ -20,18 +20,18 @@ public class Page {
 	@Column(nullable=false)
 	private String name;
 	private String url;
-	private String last_Updated;
+	private String lastUpdated;
 	private String frequency;
 	
 	private boolean tracking;
 
 	
-	public Page(String name, String url, String last_Updated, String frequency) {
+	public Page(String name, String url, String lastUpdated, String frequency) {
 
 		
 		this.name=name;
 		this.url=url;
-		this.last_Updated=last_Updated;
+		this.lastUpdated=lastUpdated;
 		this.frequency=frequency;
     	tracking = false;
 	}
@@ -42,54 +42,54 @@ public class Page {
 	
 	//Getters
 	
-	public int get_id() {
+	public int getId() {
 		return this.id;
 	}
 	
-	public String get_Name() {
+	public String getName() {
 		return this.name;
 	}
 	
-	public String get_url() {
+	public String getUrl() {
 		return this.url;
 	}
 	
-	public String get_last_Updated() {
-		return this.last_Updated;
+	public String getLastUpdated() {
+		return this.lastUpdated;
 	}
 	
-	public String get_frequency() {
+	public String getFrequency() {
 		return this.frequency;
 	}
 	
-	public boolean get_tracking() {
+	public boolean getTracking() {
 		return this.tracking;
 	}
 	
 	
 	//Setters
 	
-	public void set_id(int id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	
-	public void set_name(String name) {
+	public void setName(String name) {
 		this.name = name;
 	}
 	
-	public void set_url(String url) {
+	public void setUrl(String url) {
 		this.url = url;
 	}
 	
-	public void set_last_Updated(String last_Updated) {
-		this.last_Updated = last_Updated;
+	public void setLastUpdated(String lastUpdated) {
+		this.lastUpdated = lastUpdated;
 	}
 	
-	public void set_frequency(String frequency) {
+	public void setFrequency(String frequency) {
 		this.frequency = frequency;
 	}
 	
-	public void set_boolean(boolean tracking) {
+	public void setTracking(boolean tracking) {
 		this.tracking = tracking;
 	}
 	

@@ -19,23 +19,30 @@
 <hr>
 
 <br>
-<form:form method="POST" modelAttribute="todo" action="/create">
-  <div class="form-group">
-    <form:label path="web_name" for="formGroupExampleInput">Website Name</label>
-    <form:input path="web_name" type="text" class="form-control" id="formGroupExampleInput" placeholder="Name">
-  </div>
-  <div class="form-group">
-    <form:label path="web_url" for="formGroupExampleInput2">Website URL</label>
-    <form:input path="web_url" type="text" class="form-control" id="formGroupExampleInput2" placeholder="URL">
-  </div>
-</form:form>
+<form:form method="POST" modelAttribute="website" action="/websiteList">
+<div class="form-group">
+<table>
+	<tr>
+		<td><form:label path="name" for="formGroupExampleInput">Website Name</form:label></td>
+        <td><form:input path="name" type="text" class="form-control" id="formGroupExampleInput" placeholder="Name"/></td>
+    </tr>
+    <tr>
 
-<input type="submit" value="Add" name="add" class="btn btn-primary"/>
-<input type="submit" value="Cancel" name="cancel" class="btn btn-primary"/>
+		<td><form:label path="url" for="formGroupExampleInput2">Website URL</form:label></td>
+        <td><form:input path="url" type="text" class="form-control" id="formGroupExampleInput2" placeholder="URL"/></td>
+                
+    </tr>
+    <tr>            
+		<td> <input type="submit" value="Add" name="add" class="btn btn-primary"/></td>
+        <td> <input type="submit" value="Cancel" name="cancel" class="btn btn-primary"/></td>
+               
+    </tr>
+                
+</table>
 </div>
-
-
-
+</div>
+</form:form>
+        
 
 
 </body>

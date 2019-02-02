@@ -68,7 +68,7 @@ color:#212529;
 </div>
 
 <div class="mx-auto w-10 p-2" style=" background-color:#212529; "  align="left">
-<a class="btn btn-primary btn_or" href="/addweb" role="button">Add new website</a>
+<a class="btn btn-primary btn_or" href="/addWebsite" role="button">Add new website</a>
 </div>
 
 </div>

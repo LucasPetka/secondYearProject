@@ -46,7 +46,7 @@ public class User {
 	}
 	
 	public void delWebsite(int id) {
-		websites.removeIf(w -> w.get_id() == id);
+		websites.removeIf(w -> w.getId() == id);
 	}
 
 	public String getLogin() {
