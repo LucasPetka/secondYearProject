@@ -34,8 +34,14 @@ public class User {
 	@Transient
 	String password2;
 	
-	@OneToMany(mappedBy="owner", cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="owner", cascade=CascadeType.ALL, orphanRemoval = true)
 	private List<Website> websites = new ArrayList<Website>();
+	
+	//Default constructor just whilst login form hasn't been created
+	public User() {
+		this.login=("");
+		this.password=("");
+	}
 
 	public List<Website> getWebsites() {
 		return websites;

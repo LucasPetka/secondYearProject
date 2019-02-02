@@ -51,15 +51,15 @@ color:#212529;
 
 	<c:forEach items="${websites}" var="website">
 	<tr>
-		<td><c:out value="${website.count}"/></td>
+		<td><c:out value="${website.id}"/></td>
 		<td><c:out value="${website.name}"/></td>
-		<td><c:out value="${website.link}"/></td>
-		<td><c:out value="${website.active_pages}"/></td>
+		<td><c:out value="${website.url}"/></td>
+		<td><c:out value="${website.tracking}"/></td>
 		
-		<td>
+	<!--	<td>
 		<a class="btn btn-primary" href="/view_pages?id=${website.id}" role="button"> Check pages </a> 
 		<a class="btn btn-primary" href="/delete?id=${website.id}" role="button"> Delete website tracking </a>
-		</td>
+		</td> -->
 	</tr>
 	</c:forEach>
     
