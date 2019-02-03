@@ -71,7 +71,6 @@ public class IndexController {
 			websites.add(w);
 		}
     	
-    
 		if (websites.isEmpty()) {
 			return "EmptyWebList";
 		} else {
