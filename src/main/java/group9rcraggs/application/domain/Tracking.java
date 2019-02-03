@@ -15,9 +15,7 @@ public class Tracking {
 	
 	public static void main(String[]args) {
 		
-	   	String sourceCode = getSourceCode("https://www.gov.uk","gov4.html");
-//	      String hashedSourceCode =(getSha256(sourceCode));
-//	      System.out.println(hashedSourceCode);
+	   	String sourceCode = getSourceCode("https://www.gov.uk", "gov4.html");
 	}
 	
 	
@@ -73,5 +71,29 @@ public class Tracking {
 		 }
 		
 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+	//	 diff <(sed '/<a class="mkdf-video-banner-link" href="https:\/\/youtu.be\/VZ2VQoFX_8Y" 
+	//	 data-rel="prettyPhoto\[864487452\]">/d;/123<head>/d' index.html.1) 
+	//	 <(sed '/<a class="mkdf-video-banner-link" href="https:\/\/youtu.be\/VZ2VQoFX_8Y" data-rel="prettyPhoto\[272514594\]">
+		 ///d;/321<head>/d' index.html.2)
+		 
+		 
+		 
+		 
+		 
 
 }
