@@ -43,9 +43,49 @@ public class User {
 		this.password=("");
 	}
 
+	
+	///* Getters *///
+	public int getId() {
+		return id;
+	}
+	
 	public List<Website> getWebsites() {
 		return websites;
 	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public String getPassword2() {
+		return password2;
+	}
+	
+	public String getLogin() {
+		return login;
+	}
+
+	///* Setters *///
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+
+	public void setPassword2(String password2) {
+		this.password2 = password2;
+	}
+	
+
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	///* Other methods *///
+
 	
 	public void addWebsite(Website website) {
 		this.websites.add(website);
@@ -54,39 +94,6 @@ public class User {
 	public void delWebsite(int id) {
 		websites.removeIf(w -> w.getId() == id);
 	}
-
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public String getPassword2() {
-		return password2;
-	}
-
-	public void setPassword2(String password2) {
-		this.password2 = password2;
-	}
-	
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-}
-
 	
 	
 

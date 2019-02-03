@@ -40,7 +40,7 @@ public class Page {
 		
 	}
 	
-	//Getters
+	///* Getters *///
 	
 	public int getId() {
 		return this.id;
@@ -67,7 +67,7 @@ public class Page {
 	}
 	
 	
-	//Setters
+	///* Setters *///
 	
 	public void setId(int id) {
 		this.id = id;
@@ -92,10 +92,6 @@ public class Page {
 	public void setTracking(boolean tracking) {
 		this.tracking = tracking;
 	}
-	
-	
-	
-	
 	
 
 }

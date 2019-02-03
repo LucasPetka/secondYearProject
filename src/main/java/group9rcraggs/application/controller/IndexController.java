@@ -71,9 +71,9 @@ public class IndexController {
 			websites.add(w);
 		}
     	
-    	//Need an empty website view - index is temporary
+    
 		if (websites.isEmpty()) {
-			return "index";
+			return "EmptyWebList";
 		} else {
 			model.addAttribute("websites", websites);
 		}

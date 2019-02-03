@@ -39,12 +39,7 @@ public class Website {
 
 }
 	
-	
-
-
-
-	
-	//Getters
+	///* Getters *///
 	
 	public User getOwner() {
 		return owner;
@@ -70,7 +65,7 @@ public class Website {
 		return this.tracking;
 	}
 	
-	//Setters
+	///* Setters *///
 	
 	public void setOwner(User owner) {
 		this.owner = owner;
@@ -80,29 +75,30 @@ public class Website {
 		this.activePages = activePages;
 	}
 	
-		public void setId(int id) {
-			this.id = id;
-		}
+	public void setId(int id) {
+		this.id = id;
+	}
 		
-		public void setName(String name) {
-			this.name = name;
-		}
+	public void setName(String name) {
+		this.name = name;
+	}
 		
-		public void setUrl(String url) {
-			this.url = url;
-		}
+	public void setUrl(String url) {
+		this.url = url;
+	}
 		
-		public void setTracking(boolean tracking) {
-			this.tracking = tracking;
-		}
-	
-	
-	
+	public void setTracking(boolean tracking) {
+		this.tracking = tracking;
+	}
+
 	public List<Page> getPages() {
 		return this.pages;
 }
 	
 	
+	///* Other methods *///
+	
+
 	public void addPage(Page page) {
 		this.pages.add(page);
 	}
