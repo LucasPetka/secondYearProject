@@ -42,8 +42,9 @@ color:#212529;
     <tr>
       <th scope="col">#</th>
       <th scope="col">Website name</th>
-      <th scope="col">Link</th>
+      <th scope="col">URL</th>
       <th scope="col">Active pages</th>
+      <th scope="col">Tracking</th>
 	  <th scope="col"></th>
     </tr>
   </thead>
@@ -54,6 +55,7 @@ color:#212529;
 		<td><c:out value="${website.id}"/></td>
 		<td><c:out value="${website.name}"/></td>
 		<td><c:out value="${website.url}"/></td>
+		<td><c:out value="${website.activePages}"/></td>
 		<td><c:out value="${website.tracking}"/></td>
 		
 	<!--	<td>

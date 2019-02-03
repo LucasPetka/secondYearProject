@@ -31,24 +31,28 @@ public class Website {
 	private String url;
 	
 	private boolean tracking;
+	private int activePages;
 	
 	
-
 	public Website() {
 		pages = new ArrayList<>();
 
 }
 	
 	
+
+
+
+	
+	//Getters
+	
 	public User getOwner() {
 		return owner;
 	}
-
-	public void setOwner(User owner) {
-		this.owner = owner;
-	}
 	
-	//Getters
+	public int getActivePages() {
+		return this.activePages;
+	}
 	
 	public int getId() {
 		return this.id;
@@ -67,6 +71,14 @@ public class Website {
 	}
 	
 	//Setters
+	
+	public void setOwner(User owner) {
+		this.owner = owner;
+	}
+	
+	public void setActivePages(int activePages) {
+		this.activePages = activePages;
+	}
 	
 		public void setId(int id) {
 			this.id = id;

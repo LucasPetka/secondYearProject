@@ -2,6 +2,7 @@ package group9rcraggs.application.controller;
 
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -60,34 +61,28 @@ public class IndexController {
 	}
     
     
-    //This method doesn't work yet - trying to display all websites in websiteList
-    @RequestMapping(value = "test")
+    @RequestMapping(value = "websiteList")
     public String testing(Model model, Principal principal) {
-    	
     	
     	User user = userRepo.findById(1);
     	
+    	List<Website> websites = new ArrayList<>();
+    	for (Website w : websiteRepo.findAll()) {
+			websites.add(w);
+		}
     	
-    	List<Website> websites = user.getWebsites();
+    	//Need an empty website view - index is temporary
 		if (websites.isEmpty()) {
-			
+			return "index";
 		} else {
 			model.addAttribute("websites", websites);
 		}
-		
-		return "websiteList";
+		return "WebList";
     }
-    
-    
     
     @RequestMapping(value = "addWebsite", params = "cancel", method = RequestMethod.POST)
 	public String cancelNewWebsite() {
 		return "redirect:/websiteList";
 	}
     
-    
-    @RequestMapping(value = "websiteList")
-    public String test() {
-    	return "WebList";
-    }
 }
