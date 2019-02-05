@@ -1,6 +1,7 @@
 package group9rcraggs.application.domain;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import javax.persistence.CascadeType;
@@ -25,13 +26,13 @@ public class Page {
 	@Column(nullable=false)
 	private String name;
 	private String url;
-	private Instant lastUpdated;
+	private String lastUpdated;
 	private String frequency;
 	private String fileName;
 	private boolean tracking;
 	private String linesIgnored;
 	
-	public Page(String name, String url, Instant lastUpdated, String frequency, String fileName, String linesIgnored) {
+	public Page(String name, String url, String lastUpdated, String frequency, String fileName, String linesIgnored) {
 
 		
 		this.name=name;
@@ -48,7 +49,7 @@ public class Page {
 		Tracking track = new Tracking();
 		track.sourceCodeToFile(ssl + "://" + url, url+"_0");
 		try {
-			Thread.sleep(5000);
+			Thread.sleep(70000);
 		} catch (InterruptedException e) {
 			
 			e.printStackTrace();
@@ -57,7 +58,9 @@ public class Page {
 		this.name="Test";
 		this.url=url;
 		this.owner = website;
-		this.lastUpdated=Instant.now();
+ 	   DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+ 	   LocalDateTime now = LocalDateTime.now();  
+		this.lastUpdated=dtf.format(now);
 		this.frequency="30";
 		this.fileName=url+"_0";
 		this.linesIgnored="";
@@ -90,7 +93,7 @@ public class Page {
 		return this.url;
 	}
 	
-	public Instant getLastUpdated() {
+	public String getLastUpdated() {
 		return this.lastUpdated;
 	}
 	
@@ -128,7 +131,7 @@ public class Page {
 		this.url = url;
 	}
 	
-	public void setLastUpdated(Instant lastUpdated) {
+	public void setLastUpdated(String lastUpdated) {
 		this.lastUpdated = lastUpdated;
 	}
 	

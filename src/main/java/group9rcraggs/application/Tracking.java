@@ -26,7 +26,6 @@ String sourceCode="";
 
 
           /* Open connection */
-       //   Process p = Runtime.getRuntime().exec("curl https://www.google.com > googl");
           HttpURLConnection con = (HttpURLConnection) data.openConnection(); 
           /* Read webpage content */
           BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
