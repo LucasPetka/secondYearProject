@@ -21,13 +21,9 @@ import group9rcraggs.application.repository.UserRepository;
 import group9rcraggs.application.repository.WebsiteRepository;
 
 
-
 @Controller
 @RequestMapping("/")
 public class IndexController {
-	
-
-	
 	
 	@Autowired
 	WebsiteRepository websiteRepo;
@@ -50,7 +46,6 @@ public class IndexController {
 			return "index";
 		} else {
 			
-			//Manually insert a user with id 1  e.g in phpmyadmin (can't do it properly until we create a login page)
 			User user = userRepo.findById(1);
 					w.setOwner(user);
 					user.addWebsite(w);
