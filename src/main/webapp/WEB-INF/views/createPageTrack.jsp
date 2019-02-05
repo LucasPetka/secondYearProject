@@ -27,14 +27,15 @@
     <td><form:label path="url" for="formGroupExampleInput1">Page URL</form:label></td>
     <td><form:input path="url" type="text" class="form-control" id="formGroupExampleInput1" placeholder="URL"/></td>
    </tr>
+   <tr>
     <td><form:label path="frequency" for="formGroupExampleInput1">Refresh every</form:label></td>
-    <td><form:select path="frequency" class="form-control" id="exampleFormControlSelect1"></td>
+    <td><form:select path="frequency" class="form-control" id="exampleFormControlSelect1">
 	<form:option value="2"> 2 min </form:option>
     <form:option value="5"> 5 min </form:option>
     <form:option value="15"> 15 min </form:option>
     <form:option value="60">60 min </form:option>
     <form:option value="3"> 3 hours</form:option>
-    </form:select>
+    </form:select></td>
     </tr>
     <tr>
     		<td> <input type="submit" value="Add" name="add" class="btn btn-primary"/></td>
