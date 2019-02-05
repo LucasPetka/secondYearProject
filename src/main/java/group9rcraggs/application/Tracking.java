@@ -14,19 +14,11 @@ import java.util.ArrayList;
 
 public class Tracking {
 
-public static void main(String[]args) {
-  sourceCodeToFile("URL", "fileName");
-    
-    ArrayList<Integer> arrayOfLines = compareFiles("Gen3", "Gen4");
-
-    compareFilesIgnoreLines("Gen3", "Gen5", arrayOfLines);
-   
-}
 
  
 ///*Gets source code from a given url*///
  
-public static String sourceCodeToFile(String url, String fileName) {
+public String sourceCodeToFile(String url, String fileName) {
 String sourceCode="";
       String inputLine;
       try {
@@ -68,7 +60,7 @@ if (string1.equals(string2)) return true;
 return false;
  
 }
-public static ArrayList<Integer> compareFiles(String filename1, String filename2) {
+public ArrayList<Integer> compareFiles(String filename1, String filename2) {
  
 ArrayList<Integer> array = new ArrayList();
  
@@ -98,7 +90,7 @@ return array;
  
  
  
-public static boolean compareFilesIgnoreLines(String filename1, String filename2, ArrayList<Integer> array) {
+public boolean compareFilesIgnoreLines(String filename1, String filename2, ArrayList<Integer> array) {
  
 
 try {

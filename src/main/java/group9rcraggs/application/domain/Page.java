@@ -44,6 +44,7 @@ public class Page {
 	}
 	
 	public Page(String ssl, String url,Website website) {
+		
 		Tracking track = new Tracking();
 		track.sourceCodeToFile(ssl + "://" + url, url+"_0");
 		try {
@@ -54,8 +55,8 @@ public class Page {
 		}
 		track.sourceCodeToFile(ssl + "://" + url, url+"_1");
 		this.name="Test";
-		this.website=website;
 		this.url=url;
+		this.owner = website;
 		this.lastUpdated=Instant.now();
 		this.frequency="30";
 		this.fileName=url+"_0";
@@ -117,9 +118,6 @@ public class Page {
 	
 	public void setId(int id) {
 		this.id = id;
-	}
-	public void setWebsite(Website web) {
-		this.website=web;
 	}
 	
 	public void setName(String name) {
