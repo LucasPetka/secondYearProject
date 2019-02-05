@@ -42,7 +42,7 @@ public class Application implements CommandLineRunner  {
 		w.setUrl("https://genesistechsys.com");
 		adminUser.addWebsite(w);
 		websiteRepo.save(w);
-		Page p = new Page("https","www.genesistechsys.com",w);
+		Page p = new Page("https", "www.genesistechsys.com", w);
 		p.setTracking(true);
 		pageRepo.save(p);
 	}

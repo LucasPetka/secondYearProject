@@ -43,7 +43,7 @@ public class Page {
     	this.tracking = false;
 	}
 	
-	public Page(String ssl, String url,Website website) {
+	public Page(String ssl, String url, Website website) {
 		
 		Tracking track = new Tracking();
 		track.sourceCodeToFile(ssl + "://" + url, url+"_0");
