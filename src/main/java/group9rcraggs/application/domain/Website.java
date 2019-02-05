@@ -19,7 +19,7 @@ public class Website {
 	@GeneratedValue(strategy=GenerationType.TABLE)
 	private int id;
 	
-	@OneToMany(mappedBy="website", cascade=CascadeType.ALL, orphanRemoval= true)
+	@OneToMany(mappedBy="owner", cascade=CascadeType.ALL, orphanRemoval= true)
 	public List<Page> pages;
 
 	@ManyToOne(optional=false, cascade=CascadeType.PERSIST)

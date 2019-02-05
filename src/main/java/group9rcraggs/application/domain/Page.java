@@ -15,7 +15,7 @@ public class Page {
 	private int id;
 	
 	@ManyToOne(optional=false, cascade=CascadeType.REMOVE)
-	private Website website;
+	private Website owner;
 	
 	@Column(nullable=false)
 	private String name;
@@ -44,6 +44,11 @@ public class Page {
 	
 	///* Getters *///
 	
+	
+	public Website getOwner() {
+		return owner;
+	}
+
 	public int getId() {
 		return this.id;
 	}
@@ -78,6 +83,10 @@ public class Page {
 	
 	
 	///* Setters *///
+	
+	public void setOwner(Website owner) {
+		this.owner = owner;
+	}
 	
 	public void setId(int id) {
 		this.id = id;

@@ -58,10 +58,10 @@ color:#212529;
 		<td><c:out value="${website.activePages}"/></td>
 		<td><c:out value="${website.tracking}"/></td>
 		
-	<!--	<td>
-		<a class="btn btn-primary" href="/view_pages?id=${website.id}" role="button"> Check pages </a> 
-		<a class="btn btn-primary" href="/delete?id=${website.id}" role="button"> Delete website tracking </a>
-		</td> -->
+	<	<td>
+		<a class="btn btn-primary" href="/pageList?id=${website.id}" role="button"> Check pages </a> 
+		<a class="btn btn-primary" href="/deleteWebsite?id=${website.id}" role="button"> Delete website tracking </a>
+		</td>
 	</tr>
 	</c:forEach>
     
