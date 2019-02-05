@@ -14,6 +14,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import group9rcraggs.application.domain.User;
 import group9rcraggs.application.domain.Website;
@@ -78,5 +79,27 @@ public class IndexController {
 	public String cancelNewWebsite() {
 		return "redirect:/websiteList";
 	}
+    
+    
+    
+    @RequestMapping(value = "deleteWebsite", params = "id", method = RequestMethod.GET)
+	public String deleteWebsite(@RequestParam("id") int id, Principal principal) {
+		Website w = websiteRepo.findById(id);	
+		User user = userRepo.findById(1);
+		user.deleteWebsite(id);
+//		if (w != null) {
+//			// deleting the website will fail a foreign key constraint
+//			User user = userRepo.findByLogin(principal.getName());
+//			for (Website w2 : user.getWebsites()) {
+//				if(w2.getId() == id) {
+//					user.deleteWebsite(id);
+//				}
+//			}
+//			// delete website as orphan
+			userRepo.save(user);
+		
+		return "redirect:/websiteList";
+}
+    
     
 }
