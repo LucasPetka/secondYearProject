@@ -22,18 +22,20 @@ public class Page {
 	private String url;
 	private String lastUpdated;
 	private String frequency;
-	
+	private String fileName;
 	private boolean tracking;
-
+	private String linesIgnored;
 	
-	public Page(String name, String url, String lastUpdated, String frequency) {
+	public Page(String name, String url, String lastUpdated, String frequency,String fileName,String linesIgnored) {
 
 		
 		this.name=name;
 		this.url=url;
 		this.lastUpdated=lastUpdated;
 		this.frequency=frequency;
-    	tracking = false;
+		this.fileName=fileName;
+		this.linesIgnored=linesIgnored;
+    	this.tracking = false;
 	}
 	
 	public Page() {
@@ -50,6 +52,7 @@ public class Page {
 		return this.name;
 	}
 	
+	
 	public String getUrl() {
 		return this.url;
 	}
@@ -64,6 +67,13 @@ public class Page {
 	
 	public boolean getTracking() {
 		return this.tracking;
+	}
+	
+	public String getLinesIgnored() {
+		return this.linesIgnored;
+	}
+	public String getFileName() {
+		return this.fileName;
 	}
 	
 	
@@ -91,6 +101,12 @@ public class Page {
 	
 	public void setTracking(boolean tracking) {
 		this.tracking = tracking;
+	}
+	public void setLinesIgnored(String linesIgnored) {
+		this.linesIgnored=linesIgnored;
+	}
+	public void setFileName(String fileName) {
+		this.fileName=fileName;
 	}
 	
 
