@@ -26,7 +26,7 @@ public class Page {
 	private boolean tracking;
 	private String linesIgnored;
 	
-	public Page(String name, String url, String lastUpdated, String frequency,String fileName,String linesIgnored) {
+	public Page(String name, String url, String lastUpdated, String frequency, String fileName, String linesIgnored) {
 
 		
 		this.name=name;
