@@ -26,16 +26,15 @@ public class ScheduledTasks {
 	Page ww = new Page();
 	String ignore="";
 	
-    @Scheduled(fixedRate = 5000)
+    @Scheduled(fixedDelay = 5000)
     public void reportCurrentTime() {
     	
     
     	 track.sourceCodeToFile("https://idomu.ax.lt", "idomu.ax.lt_1");
          
-         ww = pageRepo.findById(3);
-         ignore = ww.getLinesIgnored();
-
- 			ignore = ww.getLinesIgnored();
+            if(pageRepo.existsById(3)) {
+            	ww = pageRepo.findById(3);
+            ignore = ww.getLinesIgnored();
  		    ignore = ignore.substring(1);
  		    ignore = ignore.substring(0, ignore.length()-1);
  		    // The string you want to be an integer array.
@@ -53,5 +52,6 @@ public class ScheduledTasks {
          	ww.setLastUpdated(dtf.format(now));
          	pageRepo.save(ww);
          }
+            }
 }
 }
