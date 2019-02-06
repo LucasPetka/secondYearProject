@@ -30,6 +30,7 @@ public class Page {
 	private String frequency;
 	private String fileName;
 	private boolean tracking;
+	@Column(length=1000)
 	private String linesIgnored;
 	
 	public Page(String name, String url, String lastUpdated, String frequency, String fileName, String linesIgnored) {
