@@ -1,5 +1,9 @@
 package group9rcraggs.application.domain;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import group9rcraggs.application.Tracking;
+
 @Entity(name="pages")
 public class Page {
 	@Id
@@ -15,33 +21,66 @@ public class Page {
 	private int id;
 	
 	@ManyToOne(optional=false, cascade=CascadeType.REMOVE)
-	private Website website;
+	private Website owner;
 	
 	@Column(nullable=false)
 	private String name;
 	private String url;
 	private String lastUpdated;
 	private String frequency;
-	
+	private String fileName;
 	private boolean tracking;
-
+	@Column(length=1000)
+	private String linesIgnored;
 	
-	public Page(String name, String url, String lastUpdated, String frequency) {
+	public Page(String name, String url, String lastUpdated, String frequency, String fileName, String linesIgnored) {
 
 		
 		this.name=name;
 		this.url=url;
 		this.lastUpdated=lastUpdated;
 		this.frequency=frequency;
-    	tracking = false;
+		this.fileName=fileName;
+		this.linesIgnored=linesIgnored;
+    	this.tracking = false;
 	}
 	
+	public Page(String ssl, String url, Website website) {
+		
+		Tracking track = new Tracking();
+		track.sourceCodeToFile(ssl + "://" + url, url+"_0");
+		try {
+			Thread.sleep(70000);
+		} catch (InterruptedException e) {
+			
+			e.printStackTrace();
+		}
+		track.sourceCodeToFile(ssl + "://" + url, url+"_1");
+		this.name="Test";
+		this.url=url;
+		this.owner = website;
+ 	   DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+ 	   LocalDateTime now = LocalDateTime.now();  
+		this.lastUpdated=dtf.format(now);
+		this.frequency="30";
+		this.fileName=url+"_0";
+		this.linesIgnored="";
+    	this.tracking = false;
+    	ArrayList<Integer> linesToBeIgnored = new ArrayList();
+		linesToBeIgnored = track.compareFiles(url+"_0", url+"_1");
+		this.linesIgnored=linesToBeIgnored.toString();
+	}
 	public Page() {
 		
 	}
 	
 	///* Getters *///
 	
+	
+	public Website getOwner() {
+		return owner;
+	}
+
 	public int getId() {
 		return this.id;
 	}
@@ -49,6 +88,7 @@ public class Page {
 	public String getName() {
 		return this.name;
 	}
+	
 	
 	public String getUrl() {
 		return this.url;
@@ -66,8 +106,19 @@ public class Page {
 		return this.tracking;
 	}
 	
+	public String getLinesIgnored() {
+		return this.linesIgnored;
+	}
+	public String getFileName() {
+		return this.fileName;
+	}
+	
 	
 	///* Setters *///
+	
+	public void setOwner(Website owner) {
+		this.owner = owner;
+	}
 	
 	public void setId(int id) {
 		this.id = id;
@@ -91,6 +142,12 @@ public class Page {
 	
 	public void setTracking(boolean tracking) {
 		this.tracking = tracking;
+	}
+	public void setLinesIgnored(String linesIgnored) {
+		this.linesIgnored=linesIgnored;
+	}
+	public void setFileName(String fileName) {
+		this.fileName=fileName;
 	}
 	
 

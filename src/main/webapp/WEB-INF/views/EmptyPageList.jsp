@@ -44,29 +44,12 @@ margin:5px;
     <tr>
       <th scope="col">#</th>
 	  <th scope="row">Name</th>
-      <th scope="col">Url</th>
-      <th scope="col">Last Updated</th>
+      <th scope="col">Link</th>
+      <th scope="col">Last Change</th>
 	  <th scope="col">Checking every</th>
 	  <th scope="col"></th>
     </tr>
   </thead>
-  <tbody>
-    <c:forEach items="${pages}" var="page">
-	<tr>
-		<td><c:out value="${page.id}"/></td>
-		<td><c:out value="${page.name}"/></td>
-		<td><c:out value="${page.url}"/></td>
-		<td><c:out value="${page.lastUpdated}"/></td>
-		<td><c:out value="${page.frequency}"/></td>
-		
-		<td>
-		<a class="btn btn-primary" href="/view_changes?id=${page.id}" role="button"> Check changes </a> 
-		<a class="btn btn-danger" href="/delete_page?id=${page.id}" role="button"> <i class="fas fa-trash-alt"></i> </a>
-		</td>
-	</tr>
-	</c:forEach>
-	
-  </tbody>
 </table>
 </div>
 

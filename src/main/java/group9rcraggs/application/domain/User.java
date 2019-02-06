@@ -91,7 +91,7 @@ public class User {
 		this.websites.add(website);
 	}
 	
-	public void delWebsite(int id) {
+	public void deleteWebsite(int id) {
 		websites.removeIf(w -> w.getId() == id);
 	}
 	
