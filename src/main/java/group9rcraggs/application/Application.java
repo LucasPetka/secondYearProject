@@ -42,22 +42,30 @@ public class Application implements CommandLineRunner  {
 	
 	@Override
 	public void run(String... args) throws Exception {
-		// create demo user
+		
+		///* Create demo user for testing*///
 
 		User adminUser = new User();
 		adminUser.setLogin("admin");
 		adminUser.setPassword("password");
+		///* Saves to database *///
 		userRepo.save(adminUser);
 
 
-		// create demo website for demo user
+		///* Create demo website for user for testing*///
+		
 		Website w = new Website();
 		w.setName("Demo Website idomu");
 		w.setUrl("https://idomu.ax.lt");
 		adminUser.addWebsite(w);
+		///* Saves to database *///
 		websiteRepo.save(w);
+
+		///* Create demo page for website for testing*///
+		
 		Page p = new Page("https", "idomu.ax.lt", w);
 		p.setTracking(true);
+		///* Saves to database *///
 		pageRepo.save(p);
 
 		

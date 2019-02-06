@@ -30,8 +30,44 @@ public class PageController {
 	PageRepository pageRepo;
 	
 
+	///* Returns view createPageTrack *///
+	 @RequestMapping(value = "addPage", method = RequestMethod.GET)
+	    public String createPage(Model model) {
+			model.addAttribute("page", new Page());
+			return "createPageTrack";
+
+	}
+	 
+	  ///* Adds page to database when add is clicked and calls addPage *///
+	    @RequestMapping(value = "addPage", params = "add", method = RequestMethod.POST)
+		public String addNewPage(@Valid @ModelAttribute("page") Page p, BindingResult result, Model model, Principal principal) {
+			
+			if (result.hasErrors()) {
+				return "index";
+			} else {
+				Website website = websiteRepo.findById(2);
+						p.setOwner(website);
+						website.addPage(p);
+				pageRepo.save(p);
+				
+				return "redirect:/pageList";
+			}
+		}
+	    
+		
+	    ///* When cancel is clicked calls addPage - nothing added/deleted to database *///
+	    @RequestMapping(value = "addPage", params = "cancel", method = RequestMethod.POST)
+		public String cancelNewPage() {
+			return "redirect:/pageList";
+		}
+	    
+	    
+	 
+	    ///* Returns list of pages *///
     @RequestMapping(value = "pageList")
     public String testing2(Model model, Principal principal) {
+    	
+ 
     	
     	//@RequestParam("id") int id, 
     	List<Page> pages = new ArrayList<>();
@@ -49,37 +85,8 @@ public class PageController {
 		return "PagesList";
     }
     
-	
-	 @RequestMapping(value = "addPage", method = RequestMethod.GET)
-	    public String createPage(Model model) {
-			model.addAttribute("page", new Page());
-			return "createPageTrack";
 
-	}
-	    
-	    @RequestMapping(value = "addPage", params = "add", method = RequestMethod.POST)
-		public String addNewPage(@Valid @ModelAttribute("page") Page p, BindingResult result, Model model, Principal principal) {
-			
-			if (result.hasErrors()) {
-				return "index";
-			} else {
-				Website website = websiteRepo.findById(2);
-						p.setOwner(website);
-						website.addPage(p);
-				pageRepo.save(p);
-				
-				return "redirect:/pageList";
-			}
-		}
-	    
-		
-
-	    @RequestMapping(value = "addPage", params = "cancel", method = RequestMethod.POST)
-		public String cancelNewPage() {
-			return "redirect:/pageList";
-		}
-	    
-	    
+	 
 	    
 
 }

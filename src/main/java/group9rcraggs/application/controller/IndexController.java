@@ -32,14 +32,14 @@ public class IndexController {
 	@Autowired
 	UserRepository userRepo;
 
-	
+	///* Returns view CreateWebTrack *///
     @RequestMapping(value = "addWebsite", method = RequestMethod.GET)
     public String create(Model model) {
 		model.addAttribute("website", new Website());
 		return "CreateWebTrack";
 
 }
-    
+  ///* Adds website to database when add is clicked and calls addWebsite *///
     @RequestMapping(value = "addWebsite", params = "add", method = RequestMethod.POST)
 	public String addNewWebsite(@Valid @ModelAttribute("website") Website w, BindingResult result, Model model, Principal principal) {
 		
@@ -56,7 +56,13 @@ public class IndexController {
 		}
 	}
     
+    ///* When cancel is clicked calls addWebsite - nothing added/deleted to database *///
+    @RequestMapping(value = "addWebsite", params = "cancel", method = RequestMethod.POST)
+	public String cancelNewWebsite() {
+		return "redirect:/websiteList";
+	}
     
+  ///* Returns list of websites *///
     @RequestMapping(value = "websiteList")
     public String testing(Model model, Principal principal) {
     	
@@ -74,34 +80,11 @@ public class IndexController {
 		}
 		return "WebList";
     }
-    
-    @RequestMapping(value = "addWebsite", params = "cancel", method = RequestMethod.POST)
-	public String cancelNewWebsite() {
-		return "redirect:/websiteList";
-	}
+
     
     
-    
-//    @RequestMapping(value = "deleteWebsite", params = "id", method = RequestMethod.GET)
-//	public String deleteWebsite(@RequestParam("id") int id, Principal principal) {
-//		Website w = websiteRepo.findById(id);	
-//		User user = userRepo.findById(1);
-//		user.deleteWebsite(id);
-////		if (w != null) {
-////			// deleting the website will fail a foreign key constraint
-////			User user = userRepo.findByLogin(principal.getName());
-////			for (Website w2 : user.getWebsites()) {
-////				if(w2.getId() == id) {
-////					user.deleteWebsite(id);
-////				}
-////			}
-////			// delete website as orphan
-//			userRepo.save(user);
-//		
-//		return "redirect:/websiteList";
-//}
-    
-    
+  
+  ///* Deletes website from database*///
     @RequestMapping(value = "deleteWebsite", params = "id", method = RequestMethod.GET)
 	public String deleteWebsite(@RequestParam("id") int id, Principal principal) {
 		Website w = websiteRepo.findById(id);	
