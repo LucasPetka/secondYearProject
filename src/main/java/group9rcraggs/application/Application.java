@@ -33,10 +33,6 @@ public class Application implements CommandLineRunner  {
 	
 	@Override
 	public void run(String... args) throws Exception {
-		User adminUser = new User();
-		adminUser.setLogin("admin");
-		adminUser.setPassword("password");
-		userRepo.save(adminUser);
 		
 		///* Create demo user for testing*///
 
