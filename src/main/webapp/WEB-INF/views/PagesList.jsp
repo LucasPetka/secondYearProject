@@ -61,7 +61,7 @@ margin:5px;
 		
 		<td>
 		<a class="btn btn-primary" href="/view_changes?id=${page.id}" role="button"> Check changes </a> 
-		<a class="btn btn-danger" href="/delete_page?id=${page.id}" role="button"> <i class="fas fa-trash-alt"></i> </a>
+		<a class="btn btn-danger" href="/deletePage?id=${page.id}" role="button"> <i class="fas fa-trash-alt"></i> </a>
 		</td>
 	</tr>
 	</c:forEach>
