@@ -29,7 +29,7 @@ String sourceCode="";
           HttpURLConnection con = (HttpURLConnection) data.openConnection(); 
         ///* Read webpage content *///
           BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-          FileOutputStream output = new FileOutputStream(fileName);
+          FileOutputStream output = new FileOutputStream("pageDB/"+fileName);
           PrintWriter printer = new PrintWriter(output);
         ///* Reads line by line and concats to String sourceCode *///
          
@@ -119,5 +119,16 @@ return array;
 return true;
  
 }
+	public String linkToFileFormat(String str) {
+		String pageLink="";
+		pageLink = str.replaceAll("/", "%%");
+		return pageLink;
+	}
+	public String fileFormatToLink(String str) {
+		String pageLink="";
+		pageLink = str.replaceAll("%%", "/");
+		return pageLink;
+	}
+	
 
 }

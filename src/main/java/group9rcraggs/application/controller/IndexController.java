@@ -32,6 +32,16 @@ public class IndexController {
 	@Autowired
 	UserRepository userRepo;
 
+///* Returns view Index *///
+	@RequestMapping("/")
+	public String main_page() {
+		return "index";
+	}
+	@RequestMapping(value = "login_register", method = RequestMethod.GET)
+	public String log_reg() {
+		return "log_reg";
+	}
+
 	///* Returns view CreateWebTrack *///
     @RequestMapping(value = "addWebsite", method = RequestMethod.GET)
     public String create(Model model) {
@@ -88,18 +98,7 @@ public class IndexController {
     @RequestMapping(value = "deleteWebsite", params = "id", method = RequestMethod.GET)
 	public String deleteWebsite(@RequestParam("id") int id, Principal principal) {
 		Website w = websiteRepo.findById(id);	
-		User user = userRepo.findById(1);
-		user.deleteWebsite(id);
-//		if (w != null) {
-//			// deleting the website will fail a foreign key constraint
-//			User user = userRepo.findByLogin(principal.getName());
-//			for (Website w2 : user.getWebsites()) {
-//				if(w2.getId() == id) {
-//					user.deleteWebsite(id);
-//				}
-//			}
-//			// delete website as orphan
-			userRepo.save(user);
+		websiteRepo.delete(w);
 		
 		return "redirect:/websiteList";
 }

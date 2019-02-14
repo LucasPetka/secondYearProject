@@ -16,7 +16,7 @@
 <hr>
 <br>
   
-<form:form method="POST" modelAttribute="page" action="/addPage">
+<form:form method="POST" modelAttribute="page" action="/addPage?id=${websiteId}">
   <div class="form-group">
   
     <form:label path="name" for="formGroupExampleInput1">Page Name</form:label>

@@ -6,7 +6,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
-import group9rcraggs.application.domain.Page;
 import group9rcraggs.application.domain.User;
 import group9rcraggs.application.domain.Website;
 
@@ -54,10 +53,10 @@ public class Application implements CommandLineRunner  {
 
 		///* Create demo page for website for testing*///
 		
-		Page p = new Page("https", "idomu.ax.lt", w);
-		p.setTracking(true);
+		//Page p = new Page("https", "idomu.ax.lt", w);
+		//p.setTracking(true);
 		///* Saves to database *///
-		pageRepo.save(p);		
+		//pageRepo.save(p);		
 
 		
 	}

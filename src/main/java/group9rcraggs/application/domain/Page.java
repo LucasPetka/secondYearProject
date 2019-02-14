@@ -1,10 +1,7 @@
 package group9rcraggs.application.domain;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 
-import javax.persistence.CascadeType;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-import group9rcraggs.application.Tracking;
+
 
 @Entity(name="pages")
 public class Page {
@@ -20,7 +17,7 @@ public class Page {
 	@GeneratedValue(strategy = GenerationType.TABLE)
 	private int id;
 	
-	@ManyToOne(optional=false, cascade=CascadeType.REMOVE)
+	@ManyToOne(optional=false)
 	private Website owner;
 	
 	@Column(nullable=false)
@@ -32,6 +29,7 @@ public class Page {
 	private boolean tracking;
 	@Column(length=1000)
 	private String linesIgnored;
+	private boolean checked;
 	
 	public Page(String name, String url, String lastUpdated, String frequency, String fileName, String linesIgnored) {
 
@@ -45,7 +43,7 @@ public class Page {
     	this.tracking = false;
 	}
 	
-	public Page(String ssl, String url, Website website) {
+	/*public Page(String ssl, String url, Website website) {
 		
 		Tracking track = new Tracking();
 		track.sourceCodeToFile(ssl + "://" + url, url+"_0");
@@ -67,9 +65,10 @@ public class Page {
 		this.linesIgnored="";
     	this.tracking = false;
     	ArrayList<Integer> linesToBeIgnored = new ArrayList();
-		linesToBeIgnored = track.compareFiles(url+"_0", url+"_1");
+		linesToBeIgnored = track.compareFiles("pageDB/"+url+"_0", "pageDB/"+url+"_1");
 		this.linesIgnored=linesToBeIgnored.toString();
-	}
+		this.checked=true;
+	}*/
 	public Page() {
 		
 	}
@@ -78,7 +77,10 @@ public class Page {
 	
 	
 	public Website getOwner() {
-		return owner;
+		return this.owner;
+	}
+	public boolean getChecked() {
+		return this.checked;
 	}
 
 	public int getId() {
@@ -118,6 +120,9 @@ public class Page {
 	
 	public void setOwner(Website owner) {
 		this.owner = owner;
+	}
+	public void setChecked(boolean checked) {
+		this.checked = checked;
 	}
 	
 	public void setId(int id) {
