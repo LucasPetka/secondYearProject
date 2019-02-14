@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import group9rcraggs.application.domain.Page;
-import group9rcraggs.application.domain.User;
 import group9rcraggs.application.domain.Website;
 import group9rcraggs.application.repository.PageRepository;
 import group9rcraggs.application.repository.WebsiteRepository;

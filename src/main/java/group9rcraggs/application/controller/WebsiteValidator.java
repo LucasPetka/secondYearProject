@@ -17,9 +17,7 @@ public class WebsiteValidator implements Validator {
 	public void validate(Object target, Errors errors) {
 		Website w = (Website) target;
 
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "", "Field cannot be empty.");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "url", "", "Field cannot be empty.");
-		
+		//Rejects any website URL that doesn't begin with http:// or https://
 		if(!w.getUrl().matches("(http://|https://).*")) {
 			errors.rejectValue("url", "", "URL must begin with http:// or https://");
 		}
