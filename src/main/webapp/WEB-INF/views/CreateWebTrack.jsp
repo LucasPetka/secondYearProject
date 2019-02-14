@@ -21,27 +21,20 @@
 <br>
 <form:form method="POST" modelAttribute="website" action="/addWebsite">
 <div class="form-group">
-<table>
-	<tr>
-		<td><form:label path="name" for="formGroupExampleInput">Website Name</form:label></td>
-        <td><form:input path="name" type="text" class="form-control" id="formGroupExampleInput" placeholder="Name"/></td>
-    </tr>
-    <tr>
+<form:label path="name" for="formGroupExampleInput">Website Name</form:label>
 
-		<td><form:label path="url" for="formGroupExampleInput2">Website URL</form:label></td>
-        <td><form:input path="url" type="text" class="form-control" id="formGroupExampleInput2" placeholder="URL"/></td>
-                
-    </tr>
-    <tr>            
-		<td> <input type="submit" value="Add" name="add" class="btn btn-primary"/></td>
-        <td> <input type="submit" value="Cancel" name="cancel" class="btn btn-primary"/></td>
-               
-    </tr>
-                
-</table>
-</div>
+        <form:input path="name" type="text" class="form-control" id="formGroupExampleInput" placeholder="Name"/>
+        <form:errors path="name"/>
+        
+		<form:label path="url" for="formGroupExampleInput2">Website URL</form:label>
+        <form:input path="url" type="text" class="form-control" id="formGroupExampleInput2" placeholder="URL"/>
+        <form:errors path="url"/>
+                    
+		<input type="submit" value="Add" name="add" class="btn btn-primary"/>
+        <input type="submit" value="Cancel" name="cancel" class="btn btn-primary"/>
 </div>
 </form:form>
+</div>
         
 
 

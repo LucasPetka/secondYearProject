@@ -21,10 +21,11 @@
   
     <form:label path="name" for="formGroupExampleInput1">Page Name</form:label>
     <form:input path="name" type="text" class="form-control" id="formGroupExampleInput1" placeholder="Name"/>
-  
+    <form:errors path="name"/>
+    
     <form:label path="url" for="formGroupExampleInput1">Page URL</form:label>
     <form:input path="url" type="text" class="form-control" id="formGroupExampleInput1" placeholder="URL"/>
- 
+    <form:errors path="url"/>
  
    <form:label path="frequency" for="formGroupExampleInput1">Refresh every</form:label>
     <form:select path="frequency" class="form-control" id="exampleFormControlSelect1">
@@ -34,7 +35,7 @@
     <form:option value="60">60 min </form:option>
     <form:option value="3"> 3 hours</form:option>
     </form:select>
-    
+    <form:errors path="frequency"/>
     <br>
     
     		<input type="submit" value="Add" name="add" class="btn btn-primary"/>

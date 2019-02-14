@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -32,6 +34,7 @@ public class IndexController {
 	@Autowired
 	UserRepository userRepo;
 
+
 ///* Returns view Index *///
 	@RequestMapping("/")
 	public String main_page() {
@@ -41,6 +44,12 @@ public class IndexController {
 	public String log_reg() {
 		return "log_reg";
 	}
+
+	@InitBinder
+	protected void initBinder(WebDataBinder binder) {
+		binder.addValidators(new WebsiteValidator());
+	}
+	
 
 	///* Returns view CreateWebTrack *///
     @RequestMapping(value = "addWebsite", method = RequestMethod.GET)
@@ -54,7 +63,7 @@ public class IndexController {
 	public String addNewWebsite(@Valid @ModelAttribute("website") Website w, BindingResult result, Model model, Principal principal) {
 		
 		if (result.hasErrors()) {
-			return "index";
+			return "CreateWebTrack";
 		} else {
 			
 			User user = userRepo.findById(1);
