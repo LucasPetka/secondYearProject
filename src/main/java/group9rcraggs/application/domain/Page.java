@@ -31,6 +31,8 @@ public class Page {
 	private String linesIgnored;
 	private boolean checked;
 	
+	private String ownerUrl;
+	
 	public Page(String name, String url, String lastUpdated, String frequency, String fileName, String linesIgnored) {
 
 		
@@ -116,6 +118,15 @@ public class Page {
 		return this.fileName;
 	}
 	
+	public String getUrlWithParent() {
+		return this.getOwner().getUrl() + '/' + this.getUrl();
+	}
+	
+	//Used to validate website Url + page Url
+	public String getOwnerUrl() {
+		return ownerUrl;
+	}
+	
 	
 	///* Setters *///
 	
@@ -156,8 +167,11 @@ public class Page {
 		this.fileName=fileName;
 	}
 	
-	public String getUrlWithParent() {
-		return this.getOwner().getUrl() + '/' + this.getUrl();
+	//Used to validate website Url + page Url 
+	//This is set automatically inside createPageTrack.jsp
+
+	public void setOwnerUrl(String ownerUrl) {
+		this.ownerUrl = ownerUrl;
 	}
 
 }

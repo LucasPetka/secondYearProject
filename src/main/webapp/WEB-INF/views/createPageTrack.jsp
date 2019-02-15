@@ -33,6 +33,8 @@
 	</tr>
 	<tr>
 	<td>
+	<!-- This field is used to pass the website owner Url into validation to check the complete url -->
+	<form:input path="ownerUrl" type="hidden" value="${websiteUrl}/"/>
     <form:label path="url" type="text" class="form-control" id="formGroupExampleInput1">${websiteUrl}/</form:label>
     <form:input path="url" type="text" class="form-control" id="formGroupExampleInput1" placeholder="Url"/>
     <form:errors path="url"/>

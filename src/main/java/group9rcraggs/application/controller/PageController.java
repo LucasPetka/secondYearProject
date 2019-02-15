@@ -64,9 +64,9 @@ public class PageController {
 				return "createPageTrack";
 			} else {
 				Tracking track = new Tracking();
-				
 				p.setOwner(website);
 				p.setUrl(p.getUrlWithParent());
+				
 				p.setFileName(track.linkToFileFormat(p.getUrl())+"_0");
 				p.setLinesIgnored("[]");
 				p.setLastUpdated("Checking/Not Yet Tracked");

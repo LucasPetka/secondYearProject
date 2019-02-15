@@ -6,7 +6,7 @@ import org.springframework.validation.Validator;
 
 import group9rcraggs.application.domain.Page;
 
-	public class PageValidator implements Validator {
+	public class PageValidator extends Validation implements Validator {
 
 		public boolean supports(Class<?> clazz) {
 			return Page.class.equals(clazz);
@@ -21,7 +21,9 @@ import group9rcraggs.application.domain.Page;
 			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "url", "", "Field cannot be empty.");
 
 	
-			
+			if(httpStatus(p.getOwnerUrl() + p.getUrl()) != 200) {
+				errors.rejectValue("url", "", "Invalid URL");
+			}
 
 		}
 

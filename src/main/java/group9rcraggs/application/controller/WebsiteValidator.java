@@ -1,5 +1,6 @@
 package group9rcraggs.application.controller;
 
+
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
@@ -7,7 +8,7 @@ import org.springframework.validation.Validator;
 import group9rcraggs.application.domain.Website;
 
 
-public class WebsiteValidator implements Validator {
+public class WebsiteValidator extends Validation implements Validator {
 
 	public boolean supports(Class<?> clazz) {
 		return Website.class.equals(clazz);
@@ -21,11 +22,12 @@ public class WebsiteValidator implements Validator {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "", "Field cannot be empty.");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "url", "", "Field cannot be empty.");
 		
-		//Rejects any website URL that doesn't begin with http:// or https://
-		if(!w.getUrl().matches("(http://|https://).*")) {
-			errors.rejectValue("url", "", "URL must begin with http:// or https://");
+		if(httpStatus(w.getUrl()) != 200) {
+			errors.rejectValue("url", "", "Invalid URL");
 		}
 
 	}
+	
+
 
 }
