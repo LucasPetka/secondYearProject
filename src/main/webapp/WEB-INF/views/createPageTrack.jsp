@@ -34,7 +34,7 @@
 	<tr>
 	<td>
     <form:label path="url" type="text" class="form-control" id="formGroupExampleInput1">${websiteUrl}/</form:label>
-    <form:input path="url" type="text" class="form-control" id="formGroupExampleInput1"/>
+    <form:input path="url" type="text" class="form-control" id="formGroupExampleInput1" placeholder="Url"/>
     <form:errors path="url"/>
  </td>
  </tr>
