@@ -44,6 +44,8 @@ public class PageController {
 	///* Returns view createPageTrack *///
 	 @RequestMapping(value = "addPage", method = RequestMethod.GET)
 	public String createPage(@RequestParam(name="id") int id, Model model) {
+		 Website website = webRepo.findById(id);
+		 model.addAttribute("websiteUrl", website.getUrl());
 		 model.addAttribute("websiteId", id);
 			model.addAttribute("page", new Page());
 			return "createPageTrack";
@@ -52,21 +54,24 @@ public class PageController {
 	 
 	  ///* Adds page to database when add is clicked and calls addPage *///
 	    @RequestMapping(value = "addPage", params = "add", method = RequestMethod.POST)
-		public String addNewPage(@RequestParam(name="id") int id, @Valid @ModelAttribute("page") Page p2, 
+		public String addNewPage(@RequestParam(name="id") int id, @Valid @ModelAttribute("page") Page p, 
 				BindingResult result, Model model, Principal principal) {
 			
+	    	Website website = webRepo.findById(id);
 			if (result.hasErrors()) {
+			    model.addAttribute("websiteUrl", website.getUrl());
 				model.addAttribute("websiteId", id);
 				return "createPageTrack";
 			} else {
 				Tracking track = new Tracking();
-				Website website = webRepo.findById(id);
-				p2.setOwner(website);
-				p2.setFileName(track.linkToFileFormat(p2.getUrl())+"_0");
-				p2.setLinesIgnored("[]");
-				p2.setLastUpdated("Checking/Not Yet Tracked");
-				p2.setTracking(true);
-				pageRepo.save(p2);
+				
+				p.setOwner(website);
+				p.setUrl(p.getUrlWithParent());
+				p.setFileName(track.linkToFileFormat(p.getUrl())+"_0");
+				p.setLinesIgnored("[]");
+				p.setLastUpdated("Checking/Not Yet Tracked");
+				p.setTracking(true);
+				pageRepo.save(p);
 				
 				return "redirect:/pageList?id="+website.getId();
 			}

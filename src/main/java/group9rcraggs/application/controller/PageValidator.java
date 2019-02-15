@@ -20,10 +20,8 @@ import group9rcraggs.application.domain.Page;
 			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "", "Field cannot be empty.");
 			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "url", "", "Field cannot be empty.");
 
-			//Rejects any page URL that doesn't begin with http:// or https://
-			if(!p.getUrl().matches("(http://|https://).*")) {
-				errors.rejectValue("url", "", "URL must begin with http:// or https://");
-			}
+	
+			
 
 		}
 

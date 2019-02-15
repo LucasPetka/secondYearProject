@@ -41,6 +41,7 @@ public class Page {
 		this.fileName=fileName;
 		this.linesIgnored=linesIgnored;
     	this.tracking = false;
+    	
 	}
 	
 	/*public Page(String ssl, String url, Website website) {
@@ -155,5 +156,8 @@ public class Page {
 		this.fileName=fileName;
 	}
 	
+	public String getUrlWithParent() {
+		return this.getOwner().getUrl() + '/' + this.getUrl();
+	}
 
 }
