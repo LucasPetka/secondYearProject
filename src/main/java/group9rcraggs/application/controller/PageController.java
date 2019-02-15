@@ -67,15 +67,16 @@ public class PageController {
 				p2.setTracking(true);
 				pageRepo.save(p2);
 				
-				return "redirect:/pageList?id="+website.getId()+"";
+				return "redirect:/pageList?id="+website.getId();
 			}
 		}
 	    
 		
 	    ///* When cancel is clicked calls addPage - nothing added/deleted to database *///
 	    @RequestMapping(value = "addPage", params = "cancel", method = RequestMethod.POST)
-		public String cancelNewPage() {
-			return "redirect:/pageList";
+		public String cancelNewPage(@RequestParam(name="id") int id) {
+	    	Website website = webRepo.findById(id);
+			return "redirect:/pageList?id="+website.getId();
 		}
 	    
 	    @RequestMapping(value = "removePage")
