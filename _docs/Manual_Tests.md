@@ -21,8 +21,8 @@ Add a page url          Press Cancel button with url ""                    				 
 Add a page url          Press Cancel button with url "test"               				  Returns to Page List                          Pass
 Add a page url          Press Cancel button with url "A3294fm.2/"        				  Returns to Page List                          Pass
 Add a page url          Press Cancel button with url "<script>alert(document.cookie);</script>"           Returns to Page List                          Pass
-Add a page url		Press Add button with url  "<script>alert(document.cookie);</script>"             Displays validation error on screen           Fail : (No XSS) but no validation for invalid URL
+Add a page url		Press Add button with url  "<script>alert(document.cookie);</script>"             Displays validation error on screen           (FIXED) Fail : (No XSS) but no validation for invalid URL
 Add a page url          Press Add button with url  ""                                                     Displays validation error on screen           Pass
 Add a page url          Press Add button with url  "/"                                                    Adds page and returns to Page List            Pass 
-Add a page url          Press Add button with url  ":::fwekrm324r3/////23f/"                              Displays validation error on screen           Fail: No validation for invalid URL (Need to check page status is 200)
+Add a page url          Press Add button with url  ":::fwekrm324r3/////23f/"                              Displays validation error on screen           (FIXED) Fail: No validation for invalid URL (Need to check page status is 200)
      
