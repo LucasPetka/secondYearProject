@@ -20,8 +20,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import group9rcraggs.application.Tracking;
 import group9rcraggs.application.domain.Page;
+import group9rcraggs.application.domain.User;
 import group9rcraggs.application.domain.Website;
 import group9rcraggs.application.repository.PageRepository;
+import group9rcraggs.application.repository.UserRepository;
 import group9rcraggs.application.repository.WebsiteRepository;
 
 
@@ -34,6 +36,9 @@ public class PageController {
 	
 	@Autowired
 	PageRepository pageRepo;
+	
+	@Autowired
+	UserRepository userRepo;
 	
 	@InitBinder
 	protected void initBinder(WebDataBinder binder) {
@@ -56,8 +61,11 @@ public class PageController {
 	    @RequestMapping(value = "addPage", params = "add", method = RequestMethod.POST)
 		public String addNewPage(@RequestParam(name="id") int id, @Valid @ModelAttribute("page") Page p, 
 				BindingResult result, Model model, Principal principal) {
-			
+	    	
+	    	
 	    	Website website = webRepo.findById(id);
+
+	    	
 			if (result.hasErrors()) {
 			    model.addAttribute("websiteUrl", website.getUrl());
 				model.addAttribute("websiteId", id);
@@ -98,7 +106,10 @@ public class PageController {
     @RequestMapping(value = "pageList")
     public String GetPageList(@RequestParam("id") int id, Model model, Principal principal) {
     	model.addAttribute("websiteId", id);
-    	
+    	User user = userRepo.findByLogin(principal.getName());
+    	if(!(id == user.getId())) {
+    		return "redirect:/websiteList";
+    	}
     	List<Page> pages = new ArrayList<>();
     	String websitename = webRepo.findById(id).getName();
     	model.addAttribute("websitename", websitename);

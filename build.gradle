@@ -72,7 +72,7 @@ dependencies {
 	runtime("mysql:mysql-connector-java")
 	testCompile("com.h2database:h2")
 	// security
-	//compile("org.springframework.boot:spring-boot-starter-security:${springBootVersion}")
+	compile("org.springframework.boot:spring-boot-starter-security:${springBootVersion}")
 	
 	// Spring
 	testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")

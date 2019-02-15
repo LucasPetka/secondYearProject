@@ -6,8 +6,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import group9rcraggs.application.domain.Role;
 import group9rcraggs.application.domain.User;
-import group9rcraggs.application.domain.Website;
 
 
 
@@ -25,38 +27,45 @@ public class Application implements CommandLineRunner  {
 	private group9rcraggs.application.repository.UserRepository userRepo;
 	
 	@Autowired 
-	private group9rcraggs.application.repository.WebsiteRepository websiteRepo;
-	
-	@Autowired 
-	private group9rcraggs.application.repository.PageRepository pageRepo;
+	private group9rcraggs.application.repository.RoleRepository roleRepo;
 	
 	@Override
 	public void run(String... args) throws Exception {
 		
+		//Create admin and user roles
+		
+		Role adminr = new Role();
+		adminr.setId(0);
+		adminr.setRole("ADMIN");
+		roleRepo.save(adminr);
+		
+		Role userr = new Role();
+		userr.setId(1);
+		userr.setRole("USER");
+		roleRepo.save(userr);
+		
+		//end of roles
+		
 		///* Create demo user for testing*///
-
+		BCryptPasswordEncoder pe = new  BCryptPasswordEncoder();
 		User adminUser = new User();
-		adminUser.setLogin("admin");
-		adminUser.setPassword("password");
+		adminUser.setRole(adminr);
+		adminUser.setLogin("admin@gmail.com");
+		adminUser.setPassword(pe.encode("password"));
 		///* Saves to database *///
 		userRepo.save(adminUser);
-
+		
+		User adminUse = new User();
+		adminUse.setRole(adminr);
+		adminUse.setLogin("admin2@gmail.com");
+		adminUse.setPassword(pe.encode("password"));
+		///* Saves to database *///
+		userRepo.save(adminUse);
 
 		///* Create demo website for user for testing*///
 		
-		Website w = new Website();
-		w.setName("Demo Website idomu");
-		w.setUrl("https://idomu.ax.lt");
-		adminUser.addWebsite(w);
-		///* Saves to database *///
-		websiteRepo.save(w);
 
-		///* Create demo page for website for testing*///
-		
-		//Page p = new Page("https", "idomu.ax.lt", w);
-		//p.setTracking(true);
-		///* Saves to database *///
-		//pageRepo.save(p);		
+	
 
 		
 	}

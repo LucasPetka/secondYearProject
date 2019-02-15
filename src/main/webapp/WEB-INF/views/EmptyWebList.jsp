@@ -29,7 +29,7 @@
   <ul class="navbar-nav px-3">
 	<li class="nav-item text-nowrap">
 		<a class="mr-4 text-light">Signed in, as John</a>
-      <button type="button" class="btn btn-sm btn-primary">Sign out</button>
+      <a href="/logout" class="btn btn-sm btn-primary">Sign out</a>
     </li>
   </ul>
 </nav>

@@ -40,10 +40,7 @@ public class IndexController {
 	public String main_page() {
 		return "index";
 	}
-	@RequestMapping(value = "login_register", method = RequestMethod.GET)
-	public String log_reg() {
-		return "log_reg";
-	}
+
 
 	@InitBinder
 	protected void initBinder(WebDataBinder binder) {
@@ -66,7 +63,7 @@ public class IndexController {
 			return "CreateWebTrack";
 		} else {
 			
-			User user = userRepo.findById(1);
+			User user = userRepo.findByLogin(principal.getName());
 					w.setOwner(user);
 					user.addWebsite(w);
 			websiteRepo.save(w);
@@ -83,13 +80,15 @@ public class IndexController {
     
   ///* Returns list of websites *///
     @RequestMapping(value = "websiteList")
-    public String testing(Model model, Principal principal) {
+    public String websiteListPage(Model model, Principal principal) {
     	
-    	User user = userRepo.findById(1);
+    	User user = userRepo.findByLogin(principal.getName());
     	
     	List<Website> websites = new ArrayList<>();
     	for (Website w : websiteRepo.findAll()) {
+    		if(w.getOwner().equals(user)) {
 			websites.add(w);
+    		}
 		}
     	
 		if (websites.isEmpty()) {
