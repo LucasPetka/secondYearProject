@@ -56,6 +56,7 @@ public class PageController {
 				BindingResult result, Model model, Principal principal) {
 			
 			if (result.hasErrors()) {
+				model.addAttribute("websiteId", id);
 				return "createPageTrack";
 			} else {
 				Tracking track = new Tracking();
