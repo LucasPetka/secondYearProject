@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 
+
 @Entity(name="websites")
 public class Website {
 	@Id
@@ -33,9 +34,17 @@ public class Website {
 	private boolean tracking;
 	private int activePages;
 	
+//	@Autowired
+//	PageRepository pageRepo;
 	
 	public Website() {
 		pages = new ArrayList<>();
+		Page p = new Page();
+		p.setName("Home");
+		p.setTracking(false);
+		p.setOwner(this);
+		pages.add(p);
+		
 
 }
 	

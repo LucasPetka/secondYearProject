@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import group9rcraggs.application.Tracking;
+import group9rcraggs.application.domain.Page;
 import group9rcraggs.application.domain.User;
 import group9rcraggs.application.domain.Website;
 import group9rcraggs.application.repository.UserRepository;
@@ -64,6 +66,19 @@ public class IndexController {
 		} else {
 			
 			User user = userRepo.findByLogin(principal.getName());
+			
+			//Removes extra '/' at the end of URL
+				w.setUrl(removeSlashes(w.getUrl()));
+			//Gets auto added page and sets url to website url (Home page)
+			for(Page p : w.getPages()) {
+				Tracking track = new Tracking();
+				p.setUrl(w.getUrl() + '/');
+				p.setFileName(track.linkToFileFormat(p.getUrl())+"_0");
+				p.setLinesIgnored("[]");
+				p.setLastUpdated("Not Yet Tracked");
+				p.setFrequency("0");
+				break;
+			}
 					w.setOwner(user);
 					user.addWebsite(w);
 			websiteRepo.save(w);
@@ -110,6 +125,20 @@ public class IndexController {
 		
 		return "redirect:/websiteList";
 }
+    
+    
+    //Removes any excess '/' from end of URL
+private String removeSlashes(String s) {
+        
+    	for(int i=s.length(); i >=  0; i--) {
+    		
+    		if(s.endsWith("/")) {
+    			s = s.substring(0, s.length()-1);
+    		}
+    	}
+    	return s;
+    	
+    }
     
     
 }

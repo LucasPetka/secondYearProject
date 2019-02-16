@@ -65,6 +65,8 @@ public class PageController {
 	    	
 	    	Website website = webRepo.findById(id);
 
+	    	 //Removes any excess '/' from end of URL
+	    	p.setUrl(removeSlashes(p.getUrl()));
 	    	
 			if (result.hasErrors()) {
 			    model.addAttribute("websiteUrl", website.getUrl());
@@ -73,6 +75,8 @@ public class PageController {
 			} else {
 				Tracking track = new Tracking();
 				p.setOwner(website);
+				
+				//Sets url to parent URL + page URL 
 				p.setUrl(p.getUrlWithParent());
 				
 				p.setFileName(track.linkToFileFormat(p.getUrl())+"_0");
@@ -105,11 +109,18 @@ public class PageController {
 	    ///* Returns list of pages *///
     @RequestMapping(value = "pageList")
     public String GetPageList(@RequestParam("id") int id, Model model, Principal principal) {
+    	
     	model.addAttribute("websiteId", id);
+    	
+    	//Gets current users Id who is logged in
     	User user = userRepo.findByLogin(principal.getName());
-    	if(!(id == user.getId())) {
+    	
+    	//Checks if website id belongs to list of current users websites
+    	if(user.getWebsites().stream().filter(x -> x.getId() == id)
+    								  .count() == 0) {
     		return "redirect:/websiteList";
     	}
+
     	List<Page> pages = new ArrayList<>();
     	String websitename = webRepo.findById(id).getName();
     	model.addAttribute("websitename", websitename);
@@ -117,11 +128,7 @@ public class PageController {
     		if (p.getOwner().getId() == id){
 			pages.add(p);
     		}
-
-		
     	}
-
-    	
 		if (pages.isEmpty()) {
 			return "EmptyPageList";
 		} else {
@@ -150,6 +157,18 @@ public class PageController {
 		return "redirect:/pageList";
 }
 
+    //Removes any excess '/' from end of URL
+    private String removeSlashes(String s) {
+            
+        	for(int i=s.length(); i >=  0; i--) {
+        		
+        		if(s.endsWith("/")) {
+        			s = s.substring(0, s.length()-1);
+        		}
+        	}
+        	return s;
+        	
+        }
 	 
 	    
 
