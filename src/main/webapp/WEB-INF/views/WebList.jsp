@@ -101,24 +101,28 @@
 		});
 		</script>
 	  
-	  <div id="upload_on">
+	  	  <div id="upload_on">
 			<div class="col-md-2 mb-3">
 				<button class="btn btn-success" id="add_on" type="submit"><i class="fas fa-plus"></i> Add Web</button>
 			</div>
 	  </div>
-	  
-	  <div id="upload">
-		<form>
+	  <c:if test="${badlink == true}">
+	<div class="alert alert-danger">
+		Website Does not exist or link does not contain http(s)://
+		<script>$(document).ready(function(){$("#upload_on" ).hide();
+		$("#upload").toggle(0);});</script>
+	</div>
+</c:if>
+	 <div id="upload">
+		<form  method="POST" modelAttribute="website" action="/addWebsite">
 			  <div class="row justify-content-center">
 			  <div class="col-md-4 mb-3">
 			  <div class="input-group">
 				<div class="input-group-prepend">
 				  <span class="input-group-text" id="inputGroupPrepend">Website Name</span>
 				</div>
-				<input type="text" class="form-control" id="validationCustomUsername" placeholder="Name" aria-describedby="inputGroupPrepend" required>
-				<div class="invalid-feedback">
-				  Please input web-name.
-				</div>
+			<input type="text" id="validationCustomUsername" class="form-control" name="name" placeholder="My blog" aria-describedby="inputGroupPrepend" required/>	
+			<form:errors path="name"/>
 			  </div>
 			</div>
 			
@@ -127,15 +131,17 @@
 				<div class="input-group-prepend">
 				  <span class="input-group-text" id="inputGroupPrepend">Website URL</span>
 				</div>
-				<input type="text" class="form-control" id="validationCustomUsername" placeholder="URL" aria-describedby="inputGroupPrepend" required>
-				<div class="invalid-feedback">
-				  Please input web-URL.
-				</div>
+				
+				<input type="text" id="validationCustomUsername" class="form-control" name="url" placeholder="https://www.example.com" aria-describedby="inputGroupPrepend" required/>	
+				<form:errors path="url"/>
 			  </div>
 			</div>
+					<input type="hidden"                        
+			name="${_csrf.parameterName}"
+			value="${_csrf.token}"/>
 			
 			<div class="col-md-2 mb-3">
-			<button class="btn btn-success" type="submit">Add website</button>
+			<input type="submit" value="Add" name="add" class="btn btn-success"/>
 			</div>
 			
 			<div class="col-md-2 mb-3">
@@ -181,6 +187,5 @@
   </div>
 
 </div>
-<a class="btn btn-primary btn_or" href="/addWebsite" role="button">Add new website</a>
 </body>
 </html>

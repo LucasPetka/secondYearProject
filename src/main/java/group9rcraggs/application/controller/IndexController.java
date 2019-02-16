@@ -62,7 +62,22 @@ public class IndexController {
 	public String addNewWebsite(@Valid @ModelAttribute("website") Website w, BindingResult result, Model model, Principal principal) {
 		
 		if (result.hasErrors()) {
-			return "CreateWebTrack";
+			model.addAttribute("badlink", true);
+	    	User user = userRepo.findByLogin(principal.getName());
+	    	model.addAttribute("logemail", principal.getName());
+	    	List<Website> websites = new ArrayList<>();
+	    	for (Website ww : websiteRepo.findAll()) {
+	    		if(w.getOwner().equals(user)) {
+				websites.add(ww);
+	    		}
+			}
+	    	
+			if (websites.isEmpty()) {
+				return "EmptyWebList";
+			} else {
+				model.addAttribute("websites", websites);
+			}
+			return "WebList";
 		} else {
 			
 			User user = userRepo.findByLogin(principal.getName());
@@ -98,7 +113,7 @@ public class IndexController {
     public String websiteListPage(Model model, Principal principal) {
     	
     	User user = userRepo.findByLogin(principal.getName());
-    	
+    	model.addAttribute("logemail", principal.getName());
     	List<Website> websites = new ArrayList<>();
     	for (Website w : websiteRepo.findAll()) {
     		if(w.getOwner().equals(user)) {
