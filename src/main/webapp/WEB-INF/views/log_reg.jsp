@@ -39,18 +39,23 @@
 	<h1>NetNag</h1>
 	</center>
 <div class="container mx-auto log-reg">
+
+<p>
+<c:if test="${error == true}">
+	<div class="alert alert-danger">
+		<a class="error">Invalid login or password.</a>
+	</div>
+	</c:if>
+<c:if test="${logout == true}">
+	<div class="alert alert-danger">
+		<a class="logout">You have been logged out.</a>
+	</div>
+</c:if>
+</p>
+
 	<button type="button" id="register" class="btn btn-outline-secondary float-right ml-2">Register</button>
 	<button type="button" id="login" class="btn btn-outline-primary float-right ml-2">Log in</button>
 	
-	
-	<p>
-<c:if test="${error == true}">
-	<b class="error">Invalid login or password.</b>
-</c:if>
-<c:if test="${logout == true}">
-	<b class="logout">You have been logged out.</b>
-</c:if>
-</p>
 	<br>
 	<img class="mb-4" src="/img/logo.png" alt="" width="72" height="72">
 			
@@ -59,16 +64,18 @@
 			  
 			<h1 class="h3 mb-3 font-weight-normal">Log in</h1>
 				<c:url value="/login" var="loginUrl"/>
-	<form action="${loginUrl}" method="post">       
+				
+	<form action="${loginUrl}" method="post">   
+	    
 		<c:if test="${param.error != null}">        
-			<p>
+			<div class="alert alert-danger">
 				Invalid username and password.
-			</p>
+			</div>
 		</c:if>
 		<c:if test="${param.logout != null}">       
-			<p>
+			<div class="alert alert-danger">
 				You have been logged out.
-			</p>
+			</div>
 		</c:if>
 		<p>
 			<label for="username" class="sr-only">Email</label>
