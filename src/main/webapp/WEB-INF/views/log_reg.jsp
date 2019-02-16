@@ -52,7 +52,7 @@
 </c:if>
 </p>
 	<br>
-	<img class="mb-4" src="logo.png" alt="" width="72" height="72">
+	<img class="mb-4" src="/img/logo.png" alt="" width="72" height="72">
 			
 			<div id="log">
 			
