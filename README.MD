@@ -13,7 +13,7 @@ Below are the allocations of roles per person for Group 9:
 | Roles                    | Tyler   | Mantas  | Lukas   | Kareem   |
 | ------------------------ | ---------- | ---------- | ---------- | ---------- |
 | Software Developer       | x          | x          | x          |            |
-| Automated Test Writer    |            |            |            | x          |
+| Automated Test Writer    |            |            | x          | x          |
 | Build Engineer           |            | x          |            |            |
 | Manual Tester            | x          |            | x          |            |
 | Coding Standards Fixer   | x          |            |            |            |
