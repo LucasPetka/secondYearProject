@@ -8,6 +8,7 @@ Add a website           Press Add button with name "site" URL "erwge"      				 
 
 Delete a website        Press Delete button on website                     				  			Website is deleted from list and database     Pass
 
+
 Add a page name         Press Cancel button with name ""                   				  			Returns to Page List                          Pass
 Add a page name         Press Cancel button with name "test"               				  			Returns to Page List                          Pass
 Add a page name         Press Cancel button with name "A3294fm.2/"        				  			Returns to Page List                          Pass
@@ -17,6 +18,7 @@ Add a page name         Press Add button with name ""                           
 Add a page name         Press Add button with name "/"                                                    			Adds page and returns to Page List            Pass 
 Add a page name         Press Add button with name ":::fwekrm324r3/////23f/"                              			Displays validation error on screen           Pass
 
+
 Add a page url          Press Cancel button with url ""                    				  			Returns to Page List                          Pass
 Add a page url          Press Cancel button with url "test"               				  			Returns to Page List                          Pass
 Add a page url          Press Cancel button with url "A3294fm.2/"        				  			Returns to Page List                          Pass
@@ -25,6 +27,22 @@ Add a page url		Press Add button with url  "<script>alert(document.cookie);</scr
 Add a page url          Press Add button with url  ""                                                     			Displays validation error on screen           Pass
 Add a page url          Press Add button with url  "/"                                                    			Adds page and returns to Page List            Pass 
 Add a page url          Press Add button with url  ":::fwekrm324r3/////23f/"                              			Displays validation error on screen           (FIXED) Fail: No validation for invalid URL (Need to check page status is 200)
+
+
+Sign up                 Press Register button with email ""                                                                    Displays validation error on screen            Pass
+Sign up                 Press Register button with email "testtefc3"                                                           Displays validation error on screen            Pass
+Sign up                 Press Register button with email "test@test.com" and non matching passwords                            Displays validation error on screen            Pass
+Sign up                 Press Register button with email "test@test.com" and matching passwords                                Adds user & Returns to Login page              Pass
+Sign up                 Press Register button with email "test@test.com" after already signing                                 Displays validation error on screen            Pass
+Sign up                 Press Register button with email "test2@test.com" and password1 "test" password2 ""                    Displays validation error on screen            Pass
+Sign up                 Press Register button with email "test2@test.com" and password1 "" password2 "test"                    Displays validation error on screen            Pass
+Sign up                 Press Register button with email "test2@test.com" and password1 "" password2 ""                        Displays validation error on screen            Pass
+Sign up                 Press Register button with email "test2@test.com" and password1 " " password2 " "                      Displays validation error on screen            Fail : Password is accepted even though it is 1 digit long
+Sign up                 Press Register button with email "test2@test.com" and PW "<script>alert(document.cookie);</script>"    Adds user & Returns to Login page - No XSS     Pass
+Sign up                 Press Register button with email "<script>alert(document.cookie);</script>" and PW "123"               Displays validation error on screen - No XSS   Pass
+Sign up                 Log out and press register button with taken email                                                     Displays validation error on screen            Pass
+Sign up                 Press Register button with email "test@test.com" and matching passwords in incognito window            Adds user & Returns to Login page              Pass               
+Sign up                 Press Register button with email "test@test.com" and non matching passwords in incognito window        Displays validation error on screen            Pass
 
 
 Login			Press Login button with email "test" & password "test     		          			Displays validation error on screen	      Pass
