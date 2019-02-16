@@ -51,6 +51,25 @@
 		<a class="logout">You have been logged out.</a>
 	</div>
 </c:if>
+<c:if test="${register == true}">
+	<div class="alert alert-success">
+		You have successfully registered, please check your email address for confirmation.(you can login now)
+	</div>
+</c:if>
+<c:if test="${exists == true}">
+	<div class="alert alert-danger">
+		User with this email already exists
+		<script>		$(document).ready(function(){	$("#reg").slideDown(0);
+		$("#log").slideUp(0);});</script>
+	</div>
+</c:if>
+<c:if test="${nomatch == true}">
+	<div class="alert alert-danger">
+		Passwords dont match
+		<script>		$(document).ready(function(){	$("#reg").slideDown(0);
+		$("#log").slideUp(0);});</script>
+	</div>
+</c:if>
 </p>
 
 	<button type="button" id="register" class="btn btn-outline-secondary float-right ml-2">Register</button>
@@ -96,20 +115,28 @@
 			</div>
 			
 			<div id="reg">
-			<form class="form-signin">
-			  
-			  <h1 class="h3 mb-3 font-weight-normal">Register</h1>
-			  <label for="r_inputEmail" class="sr-only">Email address</label>
-			  <input type="email" id="r_inputEmail" class="form-control mb-2" placeholder="Email address" required autofocus>
-			  <label for="r_inputPassword" class="sr-only">Password</label>
-			  <input type="password" id="r_inputPassword" class="form-control mb-2" placeholder="Password" required>
-			  <label for="r_repeatPassword" class="sr-only">Repeat Password</label>
-			  <input type="password" id="r_repeatPassword" class="form-control mb-2" placeholder="Repeat Password" required>
-			  <br>
-			  
-			  <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
-			  <p class="mt-5 mb-3 text-muted">&copy; NetNag 2019</p>
-			</form>
+			<h1 class="h3 mb-3 font-weight-normal">Register</h1>
+			<c:url value="/register" var="regUrl"/>
+				<form action="${regUrl}" modelAttribute="user" method="post">   
+		<p>
+			<label for="username" class="sr-only">Email</label>
+			<input type="email" id="username" class="form-control mb-2" name="login" placeholder="Email" required/>	
+			
+		</p>
+		<p>
+			<label for="password" class="sr-only">Password</label>
+			<input type="password" id="password" name="password" class="form-control mb-2" placeholder="Password" required/>	
+		</p>
+		<p>
+			<label for="password2" class="sr-only">Repeat password</label>
+			<input type="password" id="password" name="password2" class="form-control mb-2" placeholder="Repeat password" required/>	
+		</p>
+		<input type="hidden"                        
+			name="${_csrf.parameterName}"
+			value="${_csrf.token}"/>
+		<button class="btn btn-lg btn-primary btn-block" type="submit" class="btn">Register</button>
+		<p class="mt-5 mb-3 text-muted">&copy; NetNag 2019</p>
+	</form>	
 			</div>
 			
 	</div>
