@@ -23,7 +23,7 @@ public class Website {
 	@OneToMany(mappedBy="owner", cascade=CascadeType.ALL, orphanRemoval= true)
 	public List<Page> pages;
 
-	@ManyToOne(optional=true, cascade=CascadeType.PERSIST)
+	@ManyToOne(optional=false)
 	private User owner;
 	
 	
