@@ -33,6 +33,12 @@ public class User {
 	@Column(unique = true, nullable = false)
 	String password;
 	
+	@Column(nullable = false)
+	String firstName;
+	
+	@Column(nullable = false)
+	String lastName;
+	
 	@Transient
 	String password2;
 	
@@ -45,8 +51,10 @@ public class User {
 	
 	//Default constructor just whilst login form hasn't been created
 	public User() {
-		this.login=("");
-		this.password=("");
+		this.login="";
+		this.password="";
+		this.firstName="";
+		this.lastName="";
 	}
 
 	
@@ -70,8 +78,25 @@ public class User {
 	public String getLogin() {
 		return login;
 	}
+	
+	public String getLastName() {
+		return lastName;
+	}
+	
+	public String getFirstName() {
+		return firstName;
+	}
 
 	///* Setters *///
+	
+	public void setLastName(String lastName) {
+		this.lastName=lastName;
+	}
+	
+	public void setfirstName(String firstName) {
+		this.firstName=firstName;
+	}
+	
 	public void setLogin(String login) {
 		this.login = login;
 	}

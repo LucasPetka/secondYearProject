@@ -61,7 +61,7 @@ public class PageController {
 	    @RequestMapping(value = "addPage", params = "add", method = RequestMethod.POST)
 		public String addNewPage(@RequestParam(name="id") int id, @Valid @ModelAttribute("page") Page p, 
 				BindingResult result, Model model, Principal principal) {
-	    	
+	    	model.addAttribute("logfirstName", userRepo.findByLogin(principal.getName()).getFirstName());
 	    	
 	    	Website website = webRepo.findById(id);
 
@@ -109,7 +109,7 @@ public class PageController {
 	    ///* Returns list of pages *///
     @RequestMapping(value = "pageList")
     public String GetPageList(@RequestParam("id") int id, Model model, Principal principal) {
-    	
+    	model.addAttribute("logfirstName", userRepo.findByLogin(principal.getName()).getFirstName());
     	model.addAttribute("websiteId", id);
     	
     	//Gets current users Id who is logged in

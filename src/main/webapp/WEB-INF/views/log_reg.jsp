@@ -124,6 +124,16 @@
 			
 		</p>
 		<p>
+			<label for="name" class="sr-only">First Name</label>
+			<input type="text" id="firstName" class="form-control mb-2" name="firstName" placeholder="Joe" required/>	
+			
+		</p>
+		<p>
+			<label for="firstName" class="sr-only">Last Name</label>
+			<input type="text" id="lastName" class="form-control mb-2" name="lastName" placeholder="Bloggs" required/>	
+			
+		</p>
+		<p>
 			<label for="password" class="sr-only">Password</label>
 			<input type="password" id="password" name="password" class="form-control mb-2" placeholder="Password" required/>	
 		</p>

@@ -60,11 +60,11 @@ public class IndexController {
   ///* Adds website to database when add is clicked and calls addWebsite *///
     @RequestMapping(value = "addWebsite", params = "add", method = RequestMethod.POST)
 	public String addNewWebsite(@Valid @ModelAttribute("website") Website w, BindingResult result, Model model, Principal principal) {
-		
+    	model.addAttribute("logfirstName", userRepo.findByLogin(principal.getName()).getFirstName());
 		if (result.hasErrors()) {
 			model.addAttribute("badlink", true);
 	    	User user = userRepo.findByLogin(principal.getName());
-	    	model.addAttribute("logemail", principal.getName());
+	    	
 	    	List<Website> websites = new ArrayList<>();
 	    	for (Website ww : websiteRepo.findAll()) {
 	    		if(w.getOwner().equals(user)) {
@@ -111,9 +111,8 @@ public class IndexController {
   ///* Returns list of websites *///
     @RequestMapping(value = "websiteList")
     public String websiteListPage(Model model, Principal principal) {
-    	
+    	model.addAttribute("logfirstName", userRepo.findByLogin(principal.getName()).getFirstName());
     	User user = userRepo.findByLogin(principal.getName());
-    	model.addAttribute("logemail", principal.getName());
     	List<Website> websites = new ArrayList<>();
     	for (Website w : websiteRepo.findAll()) {
     		if(w.getOwner().equals(user)) {

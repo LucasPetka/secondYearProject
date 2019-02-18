@@ -22,7 +22,7 @@
   <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">NetNag</a>
   <ul class="navbar-nav px-3">
 	<li class="nav-item text-nowrap">
-		<a class="mr-4 text-light">Signed in, as John</a>
+		<a class="mr-4 text-light">Signed in as ${logfirstName}</a>
       <a href="/logout" class="btn btn-sm btn-primary">Sign out</a>
     </li>
   </ul>
@@ -60,14 +60,11 @@
 
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Dashboard</h1>
+        <h1 class="h2">${logfirstName}'s Dashboard</h1>
       </div>
 
       <div id="container m-4 w-100">
 	  Statistics and other things to sum up about pages
-	  <br>
-	  <br>
-	  <br>
 	  <br>
 	  <br>
 	  <br>

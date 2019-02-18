@@ -29,7 +29,10 @@ public class AuthenticationController {
 	private group9rcraggs.application.repository.RoleRepository roleRepo;
 	
 	@RequestMapping(value = "login_register", method = RequestMethod.GET)
-	public String log_reg() {
+	public String log_reg(Principal principal) {
+		if(principal !=null) {
+			return "redirect:/websiteList";
+		}
 		return "log_reg";
 	}
 
