@@ -99,7 +99,7 @@
 	  
 	  <div id="upload_on">
 			<div class="col-md-2 mb-3">
-				<button class="btn btn-success" id="add_on" type="submit"><i class="fas fa-plus"></i> Add Web</button>
+				<button class="btn btn-success" id="add_on" type="submit"><i class="fas fa-plus"></i> Add Website</button>
 			</div>
 	  </div>
 	  <c:if test="${badlink == true}">
