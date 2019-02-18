@@ -28,8 +28,8 @@
   </ul>
 </nav>
 
-<div class="container-fluid mt-5">
-  <div class="row">
+<div class="container-fluid mt-5 h-100">
+  <div class="row h-100">
     <nav class="col-md-2 d-none d-md-block bg-light sidebar">
       <div class="sidebar-sticky">
 	  
