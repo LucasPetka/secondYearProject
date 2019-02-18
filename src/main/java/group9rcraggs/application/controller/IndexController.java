@@ -50,13 +50,14 @@ public class IndexController {
 	}
 	
 
-	///* Returns view CreateWebTrack *///
-    @RequestMapping(value = "addWebsite", method = RequestMethod.GET)
-    public String create(Model model) {
-		model.addAttribute("website", new Website());
-		return "CreateWebTrack";
-
-}
+//	///* Returns view CreateWebTrack *///
+//    @RequestMapping(value = "addWebsite", method = RequestMethod.GET)
+//    public String create(Model model) {
+//		model.addAttribute("website", new Website());
+//		return "CreateWebTrack";
+//
+//}
+    
   ///* Adds website to database when add is clicked and calls addWebsite *///
     @RequestMapping(value = "addWebsite", params = "add", method = RequestMethod.POST)
 	public String addNewWebsite(@Valid @ModelAttribute("website") Website w, BindingResult result, Model model, Principal principal) {
@@ -82,12 +83,12 @@ public class IndexController {
 			
 			User user = userRepo.findByLogin(principal.getName());
 			
-			//Removes extra '/' at the end of URL
-				w.setUrl(removeSlashes(w.getUrl()));
+			//Removes extra '/' at the end of URL and adds one 
+				w.setUrl(removeSlashes(w.getUrl()) + '/');
 			//Gets auto added page and sets url to website url (Home page)
 			for(Page p : w.getPages()) {
 				Tracking track = new Tracking();
-				p.setUrl(w.getUrl() + '/');
+				p.setUrl(w.getUrl());
 				p.setFileName(track.linkToFileFormat(p.getUrl())+"_0");
 				p.setLinesIgnored("[]");
 				p.setLastUpdated("Not Yet Tracked");

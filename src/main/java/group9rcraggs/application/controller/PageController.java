@@ -46,32 +46,39 @@ public class PageController {
 	}
 	
 
-	///* Returns view createPageTrack *///
-	 @RequestMapping(value = "addPage", method = RequestMethod.GET)
-	public String createPage(@RequestParam(name="id") int id, Model model) {
-		 Website website = webRepo.findById(id);
-		 model.addAttribute("websiteUrl", website.getUrl());
-		 model.addAttribute("websiteId", id);
-			model.addAttribute("page", new Page());
-			return "createPageTrack";
-
-	}
+//	///* Returns view createPageTrack *///
+//	 @RequestMapping(value = "addPage", method = RequestMethod.GET)
+//	public String createPage(@RequestParam(name="id") int id, Model model) {
+//		 Website website = webRepo.findById(id);
+//		 model.addAttribute("websiteUrl", website.getUrl());
+//		 model.addAttribute("websiteId", id);
+//			model.addAttribute("page", new Page());
+//			return "createPageTrack";
+//
+//	}
 	 
 	  ///* Adds page to database when add is clicked and calls addPage *///
 	    @RequestMapping(value = "addPage", params = "add", method = RequestMethod.POST)
 		public String addNewPage(@RequestParam(name="id") int id, @Valid @ModelAttribute("page") Page p, 
 				BindingResult result, Model model, Principal principal) {
 	    	model.addAttribute("logfirstName", userRepo.findByLogin(principal.getName()).getFirstName());
-	    	
 	    	Website website = webRepo.findById(id);
 
 	    	 //Removes any excess '/' from end of URL
 	    	p.setUrl(removeSlashes(p.getUrl()));
 	    	
 			if (result.hasErrors()) {
-			    model.addAttribute("websiteUrl", website.getUrl());
 				model.addAttribute("websiteId", id);
-				return "createPageTrack";
+				model.addAttribute("websiteUrl", webRepo.findById(id).getUrl());
+				model.addAttribute("badlink", true);
+				
+				if(website.getPages().isEmpty()) {
+					return "EmptyPageList";
+				} else {
+					
+					model.addAttribute("pages", website.getPages());
+					return "PageList";
+				}
 			} else {
 				Tracking track = new Tracking();
 				p.setOwner(website);
@@ -88,6 +95,7 @@ public class PageController {
 				return "redirect:/pageList?id="+website.getId();
 			}
 		}
+
 	    
 		
 	    ///* When cancel is clicked calls addPage - nothing added/deleted to database *///
@@ -112,6 +120,8 @@ public class PageController {
     	model.addAttribute("logfirstName", userRepo.findByLogin(principal.getName()).getFirstName());
     	model.addAttribute("websiteId", id);
     	
+    	//Here the website url is added to controller to display before the page name input
+    	model.addAttribute("websiteUrl", webRepo.findById(id).getUrl());
     	//Gets current users Id who is logged in
     	User user = userRepo.findByLogin(principal.getName());
     	
