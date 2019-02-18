@@ -122,7 +122,6 @@ public class Tests extends Specification {
 	//=========================WEBSITE=======================
 	//=======================================================
 	
-	
 	def "Website store" () {
 		given:
 			userRepo.deleteAll()
@@ -131,24 +130,26 @@ public class Tests extends Specification {
 			User u = new User();
 			u.setLogin("asd")
 			u.setPassword("asd")
+			u.addWebsite(o)
 			o.setOwner(u)
+			userRepo.save(u)
 			websiteRepo.save(o)
 		expect:
 			assertThat(websiteRepo.findAll(), Matchers.hasSize(1));
 	}
 	
-//	def "Website fail no user" () {
-//		given:
-//			userRepo.deleteAll()
-//			websiteRepo.deleteAll()
-//			Website o = new Website()
-//		when:
-//			websiteRepo.save(o)
-//		then:
-//			thrown(DataIntegrityViolationException)
-//	}
-//	
-//	
+	def "Website fail no user" () {
+		given:
+			userRepo.deleteAll()
+			websiteRepo.deleteAll()
+			Website o = new Website()
+		when:
+			websiteRepo.save(o)
+		then:
+			thrown(Exception)
+	}
+	
+	
 //	def "Website user cascade user" () {
 //		given:
 //			userRepo.deleteAll()
@@ -163,23 +164,25 @@ public class Tests extends Specification {
 //		then:
 //			assertThat(userRepo.findByLogin("asd"), equalTo(u))
 //	}
-//	
-//	
-//	def "Website user cascade user deletion" () {
-//		given:
-//			userRepo.deleteAll()
-//			websiteRepo.deleteAll()
-//			Website o = new Website()
-//			User u = new User();
-//			u.setLogin("asd")
-//			u.setPassword("asd")
-//			o.setOwner(u)
-//			websiteRepo.save(o)
-//		when:
-//			userRepo.delete(u)
-//		then:
-//			assertThat(websiteRepo.findAll(), Matchers.hasSize(0));
-//	}
+	
+	
+	def "Website user cascade user deletion" () {
+			given:
+				userRepo.deleteAll()
+				websiteRepo.deleteAll()
+				Website o = new Website()
+				User u = new User();
+				u.setLogin("asd")
+				u.setPassword("asd")
+				u.addWebsite(o)
+				o.setOwner(u)
+				userRepo.save(u)
+				websiteRepo.save(o)
+			when:
+				userRepo.delete(u)
+			then:
+				assertThat(websiteRepo.findAll(), Matchers.hasSize(0));
+		}
 	
 	
 	def "Website owner stays for Website deletion" () {
@@ -190,14 +193,16 @@ public class Tests extends Specification {
 			User u = new User();
 			u.setLogin("asd")
 			u.setPassword("asd")
+			u.addWebsite(o)
 			o.setOwner(u)
+			userRepo.save(u)
 			websiteRepo.save(o)
 		when:
 			websiteRepo.delete(o)
 		then:
 			assertThat(userRepo.findAll(), Matchers.hasSize(1));
 	}
-	
+
 	
 //	def "two users can track same Website" () {
 //		given:
@@ -288,7 +293,6 @@ public class Tests extends Specification {
 //		and:
 //			assertThat(websiteRepo.findByOwner(u), Matchers.hasSize(1));
 //	}
-	
 
 	//=======================================================
 	//=======================================================
