@@ -97,31 +97,37 @@
 				<button class="btn btn-success" id="add_on" type="submit"><i class="fas fa-plus"></i> Add Page</button>
 			</div>
 	  </div>
-	  
+	  <c:if test="${badlink == true}">
+	<div class="alert alert-danger">
+		Website Does not exist
+		<script>$(document).ready(function(){$("#upload_on" ).hide();
+		$("#upload").toggle(0);});</script>
+	</div>
+</c:if>
+
 	  <div id="upload">
-		<form>
-			  <div class="row">
+		<form  method="POST" modelAttribute="page" action=/addPage?id=${websiteId}>
+			  <div class="row justify-content-center">
 			  <div class="col-md-3 mb-3">
 			  <div class="input-group">
 				<div class="input-group-prepend">
-				  <span class="input-group-text" id="inputGroupPrepend">Website Name</span>
+				  <span class="input-group-text" id="inputGroupPrepend">Page Name</span>
 				</div>
-				<input type="text" class="form-control" id="validationCustomUsername" placeholder="Name" aria-describedby="inputGroupPrepend" required>
-				<div class="invalid-feedback">
-				  Please input web-name.
-				</div>
+				<input type="text" class="form-control" id="validationCustomUsername" name="name" placeholder="Name" aria-describedby="inputGroupPrepend" required/>
+				<form:errors path="name"/>
 			  </div>
 			</div>
-			
+				<!-- This field is used to pass the website owner Url into validation to check the complete url -->
+	       <input type="hidden" name="ownerUrl" value="${websiteUrl}"/> 
 			<div class="col-md-3 mb-3">
 			  <div class="input-group">
 				<div class="input-group-prepend">
-				  <span class="input-group-text" id="inputGroupPrepend">Website URL</span>
+				  <span class="input-group-text" id="inputGroupPrepend">${websiteUrl}</span>
 				</div>
-				<input type="text" class="form-control" id="validationCustomUsername" placeholder="URL" aria-describedby="inputGroupPrepend" required>
-				<div class="invalid-feedback">
-				  Please input web-URL.
-				</div>
+				
+				<input type="text" class="form-control" id="validationCustomUsername" name="url" placeholder="URL" aria-describedby="inputGroupPrepend" required/>
+				<label value="${websiteUrl}"></label>
+				<form:errors path="url"/>
 			  </div>
 			</div>
 			
@@ -130,20 +136,24 @@
 			  <div class="input-group-prepend">
 				<label class="input-group-text" for="inputGroupSelect01">Refresh every</label>
 			  </div>
-			  <select class="custom-select" id="inputGroupSelect01">
-				<option selected>Choose...</option>
+			  <select class="custom-select" id="inputGroupSelect01" name="frequency" required/>
 				<option value="2"> 2 min </option>
 				<option value="5"> 5 min </option>
 				<option value="15"> 15 min </option>
 				<option value="60">60 min </option>
 				<option value="3"> 3 hours</option>
 			  </select>
+			      <form:errors path="frequency"/>
 			</div>
 			</div>
+			
+			<input type="hidden"                        
+			name="${_csrf.parameterName}"
+			value="${_csrf.token}"/>
 			
 			
 			<div class="col-md-2 mb-3">
-			<button class="btn btn-success" type="submit">Add website</button>
+			<input type="submit" value="Add" name="add" class="btn btn-success"/>
 			</div>
 			
 			<div class="col-md-1 mb-1">
