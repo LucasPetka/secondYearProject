@@ -2,11 +2,11 @@ package group9rcraggs.application
 
 import static org.junit.Assert.*
 
+import group9rcraggs.application.*;
+import group9rcraggs.application.domain.*;
 import group9rcraggs.application.repository.PageRepository;
 import group9rcraggs.application.repository.UserRepository;
 import group9rcraggs.application.repository.WebsiteRepository;
-import group9rcraggs.application.*;
-import group9rcraggs.application.domain.*;
 
 
 import org.hamcrest.Matchers
@@ -268,6 +268,16 @@ public class Tests extends Specification {
 		and:
 			assertThat(websiteRepo.findByOwner(u), Matchers.hasSize(1));
 	}
+	
+	def "Pagelist is null" () {
+		given:
+			organizerRepo.deleteAll()
+			Page t = new Page()
+		when:
+			organizerRepo.save(t)
+		then:
+			thrown(DataIntegrityViolationException)
+	}
 
 	//=======================================================
 	//=======================================================
@@ -292,6 +302,41 @@ public class Tests extends Specification {
 		and:  "I should see the view CreateTodo"
 			result.andExpect(view().name("log_reg"))
 	}
+	
+	def "Check if login access denied and return NoPremission view"() {
+		given: "the context of the controller is setup"
+			this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build()
+		when: "I perform an HTTP GET /access-denied"
+			result = this.mockMvc.perform(get("/access-denied"))
+		then: "the status of the HTTP response should be Ok (200)"
+			result.andExpect(status().is(200))
+		and:  "I should see the view WebList"
+			result.andExpect(view().name("NoPermission"))
+	}
+	
+	def "Check if login threw error and return log_reg view"() {
+		given: "the context of the controller is setup"
+			this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build()
+		when: "I perform an HTTP GET /access-denied"
+			result = this.mockMvc.perform(get("/error-login"))
+		then: "the status of the HTTP response should be Ok (200)"
+			result.andExpect(status().is(200))
+		and:  "I should see the view WebList"
+			result.andExpect(view().name("log_reg"))
+	}
+	
+	def "Check if success login redirects Weblist view"() {
+		given: "the context of the controller is setup"
+			this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build()
+		when: "I perform an HTTP GET /success-login"
+			result = this.mockMvc.perform(get("/success-login"))
+		then: "the status of the HTTP response should be Ok (302)"
+			result.andExpect(status().is(302))
+		and:  "I should see the view WebList"
+			result.andExpect(redirectedUrl("/websiteList"))
+	}
+	
+	
 	
 	
 	
