@@ -134,22 +134,27 @@
 			
 		</p>
 		<p>
-			<label for="name" class="sr-only">First Name</label>
-			<input type="text" id="firstName" class="form-control mb-2" name="firstName" placeholder="Joe" required/>	
+		
+			<div class="input-group">
+			<input type="text" id="firstName" class="form-control mb-2" name="firstName" placeholder="Name" required/>	
 			
-		</p>
-		<p>
-			<label for="firstName" class="sr-only">Last Name</label>
-			<input type="text" id="lastName" class="form-control mb-2" name="lastName" placeholder="Bloggs" required/>	
 			
+			<input type="text" id="lastName" class="form-control mb-2" name="lastName" placeholder="Surname" required/>	
+			</div>
 		</p>
+		
+		
+		
+		
+		
+		
 		<p>
 			<label for="password" class="sr-only">Password</label>
-			<input type="password" id="password" name="password" class="form-control mb-2" placeholder="Password" required/>	
+			<input type="password" id="password" name="password" class="form-control mb-2" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" onchange="form.password2.pattern = RegExp.escape(this.value);" required/>	
 		</p>
 		<p>
 			<label for="password2" class="sr-only">Repeat password</label>
-			<input type="password" id="password" name="password2" class="form-control mb-2" placeholder="Repeat password" required/>	
+			<input type="password" id="password" name="password2" class="form-control mb-2" placeholder="Repeat password"  required/>	
 		</p>
 		<input type="hidden"                        
 			name="${_csrf.parameterName}"
