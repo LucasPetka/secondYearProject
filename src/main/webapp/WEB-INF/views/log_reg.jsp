@@ -43,7 +43,7 @@
 <p>
 <c:if test="${error == true}">
 	<div class="alert alert-danger">
-		<a class="error">Invalid login or password.</a>
+		<a class="error">Invalid Email and/or password or your email is not verified</a>
 	</div>
 	</c:if>
 <c:if test="${logout == true}">
@@ -53,7 +53,17 @@
 </c:if>
 <c:if test="${register == true}">
 	<div class="alert alert-success">
-		You have successfully registered, please check your email address for confirmation.(you can login now)
+		You have successfully registered, please check your email address for confirmation.
+	</div>
+</c:if>
+<c:if test="${successreg == true}">
+	<div class="alert alert-success">
+		You have successfully verified your account, you can log in now.
+	</div>
+</c:if>
+<c:if test="${wronguser == true}">
+	<div class="alert alert-danger">
+		Wrong token
 	</div>
 </c:if>
 <c:if test="${exists == true}">
