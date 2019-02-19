@@ -42,6 +42,9 @@ public class User {
 	@Transient
 	String password2;
 	
+    @Column
+    private boolean enabled;
+	
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Role role;
@@ -55,6 +58,7 @@ public class User {
 		this.password="";
 		this.firstName="";
 		this.lastName="";
+		this.enabled=false;
 	}
 
 	
@@ -86,8 +90,14 @@ public class User {
 	public String getFirstName() {
 		return firstName;
 	}
+	public boolean getEnabled() {
+		return enabled;
+	}
 
 	///* Setters *///
+	public void setEnabled(boolean enabled) {
+		this.enabled=enabled;
+	}
 	
 	public void setLastName(String lastName) {
 		this.lastName=lastName;

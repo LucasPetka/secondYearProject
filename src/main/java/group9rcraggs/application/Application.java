@@ -52,6 +52,7 @@ public class Application implements CommandLineRunner  {
 		adminUser.setRole(adminr);
 		adminUser.setLogin("admin@gmail.com");
 		adminUser.setPassword(pe.encode("password"));
+		adminUser.setEnabled(true);
 		///* Saves to database *///
 		userRepo.save(adminUser);
 		

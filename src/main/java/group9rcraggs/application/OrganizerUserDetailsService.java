@@ -37,7 +37,7 @@ public class OrganizerUserDetailsService implements UserDetailsService {
 		return new User(
 				domainUser.getLogin(), 
 				domainUser.getPassword(), 
-				enabled, 
+				domainUser.getEnabled(), 
 				accountNonExpired, 
 				credentialsNonExpired, 
 				accountNonLocked,
