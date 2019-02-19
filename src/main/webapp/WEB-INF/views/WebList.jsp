@@ -175,7 +175,7 @@
 					
 					<td>
 					<a class="btn main_b" href="/pageList?id=${website.id}" role="button"> Check pages </a> 
-			        <a class="btn btn-dark" href="/editWebsite?id=${websiteId}" role="button"> <i class="fas fa-wrench"></i> </a>
+			        <a class="btn btn-dark" href="/editWebsite?id=${website.id}" role="button"> <i class="fas fa-wrench"></i> </a>
 					<a class="btn btn-danger" href="/deleteWebsite?id=${website.id}" role="button"> <i class="fas fa-trash-alt"></i> </a>
 					</td>
 				</tr>
