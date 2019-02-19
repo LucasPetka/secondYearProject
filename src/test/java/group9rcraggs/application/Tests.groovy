@@ -150,22 +150,6 @@ public class Tests extends Specification {
 	}
 	
 	
-//	def "Website user cascade user" () {
-//		given:
-//			userRepo.deleteAll()
-//			websiteRepo.deleteAll()
-//			Website o = new Website()
-//			User u = new User();
-//			u.setLogin("asd")
-//			u.setPassword("asd")
-//			o.setOwner(u)
-//		when:
-//			websiteRepo.save(o)
-//		then:
-//			assertThat(userRepo.findByLogin("asd"), equalTo(u))
-//	}
-	
-	
 	def "Website user cascade user deletion" () {
 			given:
 				userRepo.deleteAll()
@@ -204,27 +188,27 @@ public class Tests extends Specification {
 	}
 
 	
-//	def "two users can track same Website" () {
-//		given:
-//			userRepo.deleteAll()
-//			websiteRepo.deleteAll()
-//			Website o = new Website()
-//			User u = new User();
-//			u.setLogin("asd")
-//			u.setPassword("asd")
-//			u.getWebsites().add(o);
-//			o.setOwner(u)
-//			userRepo.save(u)
-//			u = new User();
-//			u.setLogin("2134")
-//			u.setPassword("3243")
-//			u.getWebsites().add(o);
-//			o.setOwner(u)
-//		when:
-//			userRepo.save(u)
-//		then:
-//			noExceptionThrown()
-//	}
+	def "two users can track same Website" () {
+		given:
+			userRepo.deleteAll()
+			websiteRepo.deleteAll()
+			Website o = new Website()
+			User u = new User();
+			u.setLogin("asd")
+			u.setPassword("asd")
+			u.getWebsites().add(o);
+			o.setOwner(u)
+			userRepo.save(u)
+			u = new User();
+			u.setLogin("2134")
+			u.setPassword("3243")
+			u.getWebsites().add(o);
+			o.setOwner(u)
+		when:
+			userRepo.save(u)
+		then:
+			noExceptionThrown()
+	}
 	
 	
 	//=======================================================
@@ -236,63 +220,54 @@ public class Tests extends Specification {
 	//=========================PAGES=========================
 	//=======================================================
 	
-//	def "Website owner cascade persist page" () {
-//		given:
-//			userRepo.deleteAll()
-//			organizerRepo.deleteAll()
-//			websiteRepo.deleteAll()
-//			Website o = new Website()
-//			User u = new User();
-//			u.setLogin("asd")
-//			u.setPassword("asd")
-//			o.setOwner(u)
-//			Page t = new Page()
-//			t.setName("amsdl")
-//		when:
-//			websiteRepo.save(o)
-//		then:
-//			assertThat(organizerRepo.findByName("amsdl"), equalTo(t))
-//	}
-//	
-//	def "Website owner cascade delete pages" () {
-//		given:
-//			userRepo.deleteAll()
-//			organizerRepo.deleteAll()
-//			websiteRepo.deleteAll()
-//			Website o = new Website()
-//			User u = new User();
-//			u.setLogin("asd")
-//			u.setPassword("asd")
-//			o.setOwner(u)
-//			Page t = new Page()
-//			t.setName("amsdl")
-//			websiteRepo.save(o)
-//		when:
-//			websiteRepo.delete(o);
-//		then:
-//			assertThat(websiteRepo.findAll(), Matchers.empty());
-//	}
-//	
-//	def "Website owner deleting Page" () {
-//		given:
-//			userRepo.deleteAll()
-//			organizerRepo.deleteAll()
-//			websiteRepo.deleteAll()
-//			Website o = new Website()
-//			User u = new User();
-//			u.setLogin("asd")
-//			u.setPassword("asd")
-//			o.setOwner(u)
-//			Page t = new Page()
-//			t.setName("amsdl")
-//			websiteRepo.save(o)
-//		when:
-//			organizerRepo.delete(t);
-//		then:
-//			assertThat(organizerRepo.findAll(), Matchers.empty());
-//		and:
-//			assertThat(websiteRepo.findByOwner(u), Matchers.hasSize(1));
-//	}
+	
+	
+	
+	
+	def "Website owner add page to website" () {
+		given:
+			userRepo.deleteAll()
+			organizerRepo.deleteAll()
+			websiteRepo.deleteAll()
+			Website o = new Website()
+			User u = new User();
+			u.setLogin("asd")
+			u.setPassword("asd")
+			userRepo.save(u)
+			o.setOwner(u)
+			websiteRepo.save(o)
+			Page t = new Page()
+			t.setName("amsdl")
+			t.setOwner(o)
+		when:
+			organizerRepo.save(t)
+		then:
+			assertThat(organizerRepo.findByName("amsdl"), equalTo(t))
+	}
+	
+	def "Website owner deleting Page" () {
+		given:
+			userRepo.deleteAll()
+			organizerRepo.deleteAll()
+			websiteRepo.deleteAll()
+			Website o = new Website()
+			User u = new User();
+			u.setLogin("asd")
+			u.setPassword("asd")
+			userRepo.save(u)
+			o.setOwner(u)
+			websiteRepo.save(o)
+			Page t = new Page()
+			t.setName("amsdl")
+			t.setOwner(o)
+			organizerRepo.save(t);
+		when:
+			organizerRepo.delete(t);
+		then:
+			assertThat(organizerRepo.findAll(), Matchers.empty());
+		and:
+			assertThat(websiteRepo.findByOwner(u), Matchers.hasSize(1));
+	}
 
 	//=======================================================
 	//=======================================================
