@@ -34,10 +34,10 @@ Sign up                 Press Register button with email "testtefc3"            
 Sign up                 Press Register button with email "test@test.com" and non matching passwords                            Displays validation error on screen            Pass
 Sign up                 Press Register button with email "test@test.com" and matching passwords                                Adds user & Returns to Login page              Pass
 Sign up                 Press Register button with email "test@test.com" after already signing                                 Displays validation error on screen            Pass
-Sign up                 Press Register button with email "test2@test.com" and password1 "test" password2 ""                    Displays validation error on screen            Pass
-Sign up                 Press Register button with email "test2@test.com" and password1 "" password2 "test"                    Displays validation error on screen            Pass
-Sign up                 Press Register button with email "test2@test.com" and password1 "" password2 ""                        Displays validation error on screen            Pass
-Sign up                 Press Register button with email "test2@test.com" and password1 " " password2 " "                      Displays validation error on screen            Fail : Password is accepted even though it is 1 digit long
+Sign up                 Press Register button with email "test2@test.com" and Password1* "test" Password2* ""                    Displays validation error on screen            Pass
+Sign up                 Press Register button with email "test2@test.com" and Password1* "" Password2* "test"                    Displays validation error on screen            Pass
+Sign up                 Press Register button with email "test2@test.com" and Password1* "" Password2* ""                        Displays validation error on screen            Pass
+Sign up                 Press Register button with email "test2@test.com" and Password1* " " Password2* " "                      Displays validation error on screen    (FIXED) Fail : Password is accepted even though it is 1 digit long
 Sign up                 Press Register button with email "test2@test.com" and PW "<script>alert(document.cookie);</script>"    Adds user & Returns to Login page - No XSS     Pass
 Sign up                 Press Register button with email "<script>alert(document.cookie);</script>" and PW "123"               Displays validation error on screen - No XSS   Pass
 Sign up                 Log out and press register button with taken email                                                     Displays validation error on screen            Pass
