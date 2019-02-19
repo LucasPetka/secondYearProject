@@ -68,7 +68,7 @@ public class IndexController {
 	    	
 	    	List<Website> websites = new ArrayList<>();
 	    	for (Website ww : websiteRepo.findAll()) {
-	    		if(w.getOwner().equals(user)) {
+	    		if(ww.getOwner().equals(user)) {
 				websites.add(ww);
 	    		}
 			}
