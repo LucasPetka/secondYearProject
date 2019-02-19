@@ -113,7 +113,7 @@
 				<div class="input-group-prepend">
 				  <span class="input-group-text" id="inputGroupPrepend">Page Name</span>
 				</div>
-				<input type="text" class="form-control" id="validationCustomUsername" name="name" placeholder="Name" aria-describedby="inputGroupPrepend" required/>
+				<input type="text" class="form-control" id="validationCustomUsername" name="name" placeholder="Contact Page" aria-describedby="inputGroupPrepend" required/>
 				<form:errors path="name"/>
 			  </div>
 			</div>
@@ -125,7 +125,7 @@
 				  <span class="input-group-text" id="inputGroupPrepend">${websiteUrl}</span>
 				</div>
 				
-				<input type="text" class="form-control" id="validationCustomUsername" name="url" placeholder="URL" aria-describedby="inputGroupPrepend" required/>
+				<input type="text" class="form-control" id="validationCustomUsername" name="url" placeholder="contact" aria-describedby="inputGroupPrepend" required/>
 				<label value="${websiteUrl}"></label>
 				<form:errors path="url"/>
 			  </div>
@@ -134,7 +134,7 @@
 			<div class="col-md-3 mb-3">
 			<div class="input-group">
 			  <div class="input-group-prepend">
-				<label class="input-group-text" for="inputGroupSelect01">Refresh every</label>
+				<label class="input-group-text" for="inputGroupSelect01">Check every</label>
 			  </div>
 			  <select class="custom-select" id="inputGroupSelect01" name="frequency" required/>
 				<option value="2"> 2 min </option>
