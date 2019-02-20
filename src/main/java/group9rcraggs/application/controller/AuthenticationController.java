@@ -37,7 +37,11 @@ public class AuthenticationController {
 	
 	@RequestMapping(value = "login_register", method = RequestMethod.GET)
 	public String log_reg(Principal principal) {
-		if(principal !=null) {
+		String name = null;
+		try {
+		name = principal.getName();
+		}catch(Exception e) {}
+		if(name != null) {
 			return "redirect:/websiteList";
 		}
 		return "log_reg";
