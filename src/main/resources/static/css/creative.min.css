@@ -53,3 +53,14 @@
 .sidebar{
 	background-color:#EFEFEF;
 }
+
+#webs{
+	display: none;
+	background-color:#efefef;
+}
+
+.side_w{
+	list-style:none;
+	background-color:white;
+}
+

@@ -48,11 +48,23 @@
               Profile 
             </a>
           </li>
-          <li class="nav-item side_link">
+          <li id="open_webs" class="nav-item side_link">
             <a class="nav-link" href="/websiteList">
               <span data-feather="file"></span>
               My websites
             </a>
+            
+            	<div id="webs">
+					<ul class="side_w">
+						<c:forEach items="${websites}" var="website">
+						<li class="nav-item side_link"><a class="nav-link" href="/pageList?id=${website.id}"><c:out value="${website.name}"/></a></li>
+						</c:forEach>
+					</ul>
+				</div>
+            
+            
+            
+            
           </li>
           <li class="nav-item side_link">
             <a class="nav-link" href="#">
@@ -96,6 +108,11 @@
 			$("#upload_on" ).toggle( "slide" );
 			$("#upload").hide();
 			});	
+			
+			$("#open_webs").hover(function(){
+			$("#webs").slideToggle("slow");
+			});
+
 		});
 		</script>
 	  
