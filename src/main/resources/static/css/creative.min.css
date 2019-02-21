@@ -64,3 +64,41 @@
 	background-color:white;
 }
 
+
+
+#pages{
+	background-color:#dadada;
+}
+
+#pages table{
+	width:95%;
+
+}
+
+#pages tr{
+	background-color:white;
+	
+}
+
+tr.detail {
+  display: none;
+  width: 100%;
+  background-color:#dadada;
+}
+tr.detail div {
+  display: none;
+}
+.showmore:hover {
+  cursor: pointer;
+}
+
+#emails_l
+{
+	display: none;
+}
+
+#email_card
+{
+	display: none;
+}
+

@@ -12,9 +12,11 @@
 
     <!-- Bootstrap core CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-<link href="/css/creative.min.css" rel="stylesheet">
+<link href="css/creative.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//code.jquery.com/jquery-1.12.4.js"></script>
+<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
   </head>
   <body>
@@ -37,7 +39,7 @@
 	  
         <ul class="nav flex-column">
           <li class="nav-item side_link">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="/profile">
               <span data-feather="home"></span>
               Profile 
             </a>
@@ -101,7 +103,7 @@
 			});	
 			
 			$("#open_webs").hover(function(){
-			$("#webs").slideToggle("slow");
+			$("#webs").finish().slideToggle();
 			});
 		});
 		</script>

@@ -50,6 +50,8 @@ public class Application implements CommandLineRunner  {
 		BCryptPasswordEncoder pe = new  BCryptPasswordEncoder();
 		User adminUser = new User();
 		adminUser.setRole(adminr);
+		adminUser.setfirstName("John");
+		adminUser.setLastName("Balden");
 		adminUser.setLogin("admin@gmail.com");
 		adminUser.setPassword(pe.encode("password"));
 		adminUser.setEnabled(true);

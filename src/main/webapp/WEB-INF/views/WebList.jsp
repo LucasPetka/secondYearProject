@@ -43,7 +43,7 @@
 	  
         <ul class="nav flex-column">
           <li class="nav-item side_link">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="/profile">
               <span data-feather="home"></span>
               Profile 
             </a>
@@ -110,7 +110,7 @@
 			});	
 			
 			$("#open_webs").hover(function(){
-			$("#webs").slideToggle("slow");
+			$("#webs").finish().slideToggle();
 			});
 
 		});

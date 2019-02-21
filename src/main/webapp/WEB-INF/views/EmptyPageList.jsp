@@ -37,13 +37,13 @@
 	  
         <ul class="nav flex-column">
           <li class="nav-item side_link">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="/profile">
               <span data-feather="home"></span>
               Profile 
             </a>
           </li>
           <li class="nav-item side_link">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="/websiteList">
               <span data-feather="file"></span>
               My websites
             </a>

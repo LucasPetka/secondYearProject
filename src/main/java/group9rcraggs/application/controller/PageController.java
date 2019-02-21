@@ -130,6 +130,23 @@ public class PageController {
     								  .count() == 0) {
     		return "redirect:/websiteList";
     	}
+    	
+    	
+    	
+    	List<Website> websites = new ArrayList<>();
+    	for (Website w : webRepo.findAll()) {
+    		if(w.getOwner().equals(user)) {
+			websites.add(w);
+    		}
+		}
+    	
+		if (websites.isEmpty()) {
+			return "EmptyWebList";
+		} else {
+			model.addAttribute("websites", websites);
+		}
+    	
+    	
 
     	List<Page> pages = new ArrayList<>();
     	String websitename = webRepo.findById(id).getName();
