@@ -82,130 +82,118 @@
       </div>
 
       <div class="card w-75">
-                                <div class="card-header">
-                                    <h4 class="card-title">Edit Profile</h4>
-                                </div>
-                                <div class="card-body">
-                                    <form  method="POST" modelAttribute="user" action="/updateUser">
-									
-										<div class="row">
-                                            <div class="col-md-12">
-                                               <p class="lead float-right"> Tokens in your wallet: <b>15</b> <i class="fas fa-coins ml-2"></i></p>   
-                                            </div>
-                                        </div>
-									
-									
-                                        <div class="row">
-                                            <div class="col-md-6 pr-1">
-                                                <div class="form-group">
-                                                    <label>First Name</label>
-                                                    <input type="text" class="form-control" placeholder="Company" value="Mike">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 pl-1">
-                                                <div class="form-group">
-                                                    <label>Last Name</label>
-                                                    <input type="text" class="form-control" placeholder="Last Name" value="Andrew">
-                                                </div>
-                                            </div>
-                                        </div>
-										
-										<div class="row">
-                                            <div class="col-md-12 ">
-                                                <div class="form-group">
-                                                    <label for="exampleInputEmail1">Email address</label>
-                                                    <input type="email" class="form-control" placeholder="Email">
-                                                </div>
-												
-                                            </div>
-                                        </div>
-                                        
-                                     
-                                        <button type="submit" class="btn btn-xs btn-primary pull-right">Update Profile</button>
-										<a href="/changePassword" class="btn btn-xs btn-outline-primary" role="button" aria-pressed="true">Change Password</a>
-										
-                                        <div class="clearfix"></div>
-                                    </form>
-									
-									<div class="row mt-4">
-										<div class="col-md-9 p-0">
-											<button type="button" id="email_on" class="btn btn-link float-left">Choose the e-mails to which you want to get information about Websites updates</button>
-										</div>
-									</div>
-									
-									
-									
-									<div id="emails_l">
-									
-									<div class="input-group">
-										Choose how much e-mails you want to add:
-										<br>
-									<div class="col-md-3">	
-									<select class="custom-select" id="ft_nr" name="ft_nr" onchange="ft_count()" >
-										<option selected disabled>Choose:</option>
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-										<option value="4">4</option>
-										<option value="5">5</option>
-										<option value="6">6</option>
-									</select>
-									</div>
-									</div>
+           <div class="card-header">
+               <h4 class="card-title">Edit Profile</h4>
+           </div>
+           
+           <div class="card-body">
+           
+           <form  method="POST" modelAttribute="user" action="/updateUser">
 
-									<div class="row mt-2">
-										<div class="col-md-7 mx-auto">
-											<div id="email_card" class="card pb-3">
-											  <div class="card-body">
-												<p id="fotoss">
-												</p>
-											  </div>
-											</div>
-										</div>
-									</div>
+				<div class="row">
+	                <div class="col-md-12">
+	                   <p class="lead float-right"> Tokens in your wallet: <b>15</b> <i class="fas fa-coins ml-2"></i></p>   
+	                </div>
+	            </div>
+	
+	
+	            <div class="row">
+	             	<div class="col-md-6 pr-1">
+		                 <div class="form-group">
+		                     <label>First Name</label>
+		                     <input type="text" class="form-control" placeholder="Company" value="Mike">
+		                 </div>
+	            	</div>
+	            	
+	                <div class="col-md-6 pl-1">
+	                    <div class="form-group">
+	                        <label>Last Name</label>
+	                        <input type="text" class="form-control" placeholder="Last Name" value="Andrew">
+	                    </div>
+	                </div>
+	             </div>
+	
+	 			 <div class="row">
+	                 <div class="col-md-12 ">
+	                     <div class="form-group">
+	                         <label for="exampleInputEmail1">Email address</label>
+	                         <input type="email" class="form-control" placeholder="Email">
+	                     </div>
+	
+	                 </div>
+	             </div>
+	                               
+	                            
+			    <button type="submit" class="btn btn-xs btn-primary pull-right">Update Profile</button>
+				<a href="/changePassword" class="btn btn-xs btn-outline-primary" role="button" aria-pressed="true">Change Password</a>
+				<div class="clearfix"></div>
+				
+          </form>
 
-									</div>
-									
+		<div class="row mt-4">
+			<div class="col-md-9 p-0">
+				<button type="button" id="email_on" class="btn btn-link float-left">Choose the e-mails to which you want to get information about Websites updates</button>
+			</div>
+		</div>
 
-									<script>
-									function ft_count(){
-										var count =	document.getElementById("ft_nr").value;
-										document.getElementById("fotoss").innerHTML = "";
-										document.getElementById('email_card').style.display = 'block';
-										
-										
-										
-										for(i=1; i<=count; i++){
-											var kint = "image" + i;
-											document.getElementById("fotoss").innerHTML = document.getElementById("fotoss").innerHTML + "<div class='row'> <div class='col-md-12'> <div class='input-group mb-1'> <div class='input-group-prepend'> <span class='input-group-text' id='basic-addon1'> Email "+ i +" </span> </div> <input type='text' class='form-control' id='"+kint+"' name='"+kint+"' placeholder='E-mail' aria-label='E-mail' aria-describedby='basic-addon1'>  </div> </div> </div>"
-										}
-										document.getElementById("fotoss").innerHTML = document.getElementById("fotoss").innerHTML + " <button type='submit' class='btn btn-xs btn-primary float-right p-2'>Upload E-mails</button>";
-									}
-									
-									$(document).ready(function(){
-											$("#email_on").click(function(){
-											$("#emails_l").slideToggle("slow");
-											});
-										});
-										
-										$("#open_webs").hover(function(){
-										$("#webs").finish().slideToggle();
-										});
+		<div id="emails_l">
+		
+		<div class="input-group">
+			Choose how much e-mails you want to add:
+			<br>
+		<div class="col-md-3">	
+		<select class="custom-select" id="ft_nr" name="ft_nr" onchange="ft_count()" >
+			<option selected disabled>Choose:</option>
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+		</select>
+		</div>
+		</div>
+		
+		<div class="row mt-2">
+			<div class="col-md-7 mx-auto">
+				<div id="email_card" class="card pb-3">
+				  <div class="card-body">
+					<p id="fotoss">
+					</p>
+				  </div>
+				</div>
+			</div>
+		</div>
+		
+		</div>
 
-									
-									</script>
-									
-									
-									
-									
-									
-									
-									
-									
-                                </div>
-                            </div>
-							
-							
+
+		<script>
+		function ft_count(){
+			var count =	document.getElementById("ft_nr").value;
+			document.getElementById("fotoss").innerHTML = "";
+			document.getElementById('email_card').style.display = 'block';
+			
+			for(i=1; i<=count; i++){
+				var kint = "image" + i;
+				document.getElementById("fotoss").innerHTML = document.getElementById("fotoss").innerHTML + "<div class='row'> <div class='col-md-12'> <div class='input-group mb-1'> <div class='input-group-prepend'> <span class='input-group-text' id='basic-addon1'> Email "+ i +" </span> </div> <input type='text' class='form-control' id='"+kint+"' name='"+kint+"' placeholder='E-mail' aria-label='E-mail' aria-describedby='basic-addon1'>  </div> </div> </div>"
+				}
+				document.getElementById("fotoss").innerHTML = document.getElementById("fotoss").innerHTML + " <button type='submit' class='btn btn-xs btn-primary float-right p-2'>Upload E-mails</button>";
+			}
+		
+			$(document).ready(function(){
+				$("#email_on").click(function(){
+				$("#emails_l").slideToggle("slow");
+				});
+			});
+			
+			$("#open_webs").hover(function(){
+			$("#webs").finish().slideToggle();
+			});
+		</script>
+		
+         </div>
+       </div>				
     </main>
   </div>
 
