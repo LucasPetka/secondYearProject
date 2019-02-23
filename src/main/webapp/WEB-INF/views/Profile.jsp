@@ -95,14 +95,14 @@
 	             	<div class="col-md-6 pr-1">
 		                 <div class="form-group">
 		                     <label>First Name</label>
-		                     <input type="text" class="form-control" placeholder="Company" value="Mike">
+		                     <input type="text" name="fname" class="form-control" placeholder="First Name" value="${logfirstName}">
 		                 </div>
 	            	</div>
 	            	
 	                <div class="col-md-6 pl-1">
 	                    <div class="form-group">
 	                        <label>Last Name</label>
-	                        <input type="text" class="form-control" placeholder="Last Name" value="Andrew">
+	                        <input type="text" name="lname" class="form-control" placeholder="Last Name" value="${loglastName}">
 	                    </div>
 	                </div>
 	             </div>
@@ -111,7 +111,7 @@
 	                 <div class="col-md-12 ">
 	                     <div class="form-group">
 	                         <label for="exampleInputEmail1">Email address</label>
-	                         <input type="email" class="form-control" placeholder="Email">
+	                         <input type="email" name="email" class="form-control" placeholder="Email" value="${loglogin}">
 	                     </div>
 	
 	                 </div>
