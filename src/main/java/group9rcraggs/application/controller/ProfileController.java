@@ -5,17 +5,23 @@ import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.validation.Valid;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+<<<<<<< HEAD
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+=======
 
+>>>>>>> ddff6e937bded3e6fcc0f1cd86bc69436b9cd2cf
+import org.springframework.web.bind.annotation.RequestMapping;
+
+<<<<<<< HEAD
+=======
+
+>>>>>>> ddff6e937bded3e6fcc0f1cd86bc69436b9cd2cf
 import group9rcraggs.application.domain.User;
 import group9rcraggs.application.domain.Website;
 import group9rcraggs.application.repository.UserRepository;
@@ -57,6 +63,7 @@ public class ProfileController {
 //		}
 		return "Profile";
     }
+<<<<<<< HEAD
 	
 	@RequestMapping(value = "updateUser", method = RequestMethod.POST)
 	public String profile_update(@ModelAttribute("user") User user, Model model, Principal principal) {
@@ -116,5 +123,8 @@ public class ProfileController {
 
 
     
+=======
+  
+>>>>>>> ddff6e937bded3e6fcc0f1cd86bc69436b9cd2cf
     
 }
