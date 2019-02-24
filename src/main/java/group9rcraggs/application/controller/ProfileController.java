@@ -2,8 +2,7 @@ package group9rcraggs.application.controller;
 
 
 import java.security.Principal;
-import java.util.ArrayList;
-import java.util.List;
+
 
 import javax.validation.Valid;
 
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import group9rcraggs.application.domain.User;
-import group9rcraggs.application.domain.Website;
 import group9rcraggs.application.repository.UserRepository;
 import group9rcraggs.application.repository.WebsiteRepository;
 
@@ -96,11 +94,9 @@ public class ProfileController {
 			userRepo.save(user);
 			
 		} else {
-		    System.out.println("");
+		    System.out.println("wrong");
 		}
-		
-		
-		
+
 		return "redirect:/changePassword";
     }
 	
