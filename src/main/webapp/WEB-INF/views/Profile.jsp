@@ -82,7 +82,7 @@
            
            <div class="card-body">
            
-           <form  method="POST" modelAttribute="user" action="/updateUser">
+           <form method="POST" modelAttribute="user" action="/updateUser">
 
 				<div class="row">
 	                <div class="col-md-12">
@@ -95,28 +95,21 @@
 	             	<div class="col-md-6 pr-1">
 		                 <div class="form-group">
 		                     <label>First Name</label>
-		                     <input type="text" class="form-control" placeholder="Company" value="Mike">
+		                     <input type="text" name="firstName" class="form-control" placeholder="First Name" value="${logfirstName}">
 		                 </div>
 	            	</div>
 	            	
 	                <div class="col-md-6 pl-1">
 	                    <div class="form-group">
 	                        <label>Last Name</label>
-	                        <input type="text" class="form-control" placeholder="Last Name" value="Andrew">
+	                        <input type="text" name="lastName" class="form-control" placeholder="Last Name" value="${loglastName}">
 	                    </div>
 	                </div>
 	             </div>
 	
-	 			 <div class="row">
-	                 <div class="col-md-12 ">
-	                     <div class="form-group">
-	                         <label for="exampleInputEmail1">Email address</label>
-	                         <input type="email" class="form-control" placeholder="Email">
-	                     </div>
-	
-	                 </div>
-	             </div>
-	                               
+	        <input type="hidden"                        
+			name="${_csrf.parameterName}"
+			value="${_csrf.token}"/>
 	                            
 			    <button type="submit" class="btn btn-xs btn-primary pull-right">Update Profile</button>
 				<a href="/changePassword" class="btn btn-xs btn-outline-primary" role="button" aria-pressed="true">Change Password</a>

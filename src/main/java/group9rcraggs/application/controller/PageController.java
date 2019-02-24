@@ -167,7 +167,7 @@ public class PageController {
     ///* Deletes page from database*///
     @RequestMapping(value = "deletePage", params = "id", method = RequestMethod.GET)
 	public String deleteWebsite(@RequestParam("id") int id, Principal principal) {
-		Page p = pageRepo.findById(id);	
+		//Page p = pageRepo.findById(id);	
 		Website website = webRepo.findById(2);
 		website.deletePage(id);
 //		if (p != null) {
