@@ -56,3 +56,11 @@ Login			Visit /WebsiteList without logging in									Displays validation error 
 Login                   Press Login button with signed up email and password in incognito browser         			Returns to Website List                       Pass
 Login			Press Login button with email "<script>alert(document.cookie);</script>" & PW "a" 			Displays validation error on screen-No XSS    Pass
 Login		        Press Login button with email "test@gmail.com" & PW "<script>alert(document.cookie);</script>"          Displays validation error on screen-No XSS    Pass
+
+View page last updated  Change html code of tracked page 5 minutes after tracking the page                                      Updates time and adds to database and display Pass
+View page last updated  Leave website unmodified for 24 hours                                                                   No changes to database or display             Pass
+View page last updated  Leave website unmodified for 72 hours                                                                   No changes to database or display             Pass
+View page last updated  Leave website unmodified for 1 week                                                                     No changes to database or display             Pass
+View page last updated  Change html code of tracked page 1 week after tracking the page                                         Updates time and adds to database and display Pass
+View page last updated  Change html code every hour for 5 hours                                                                 Each time new time is added to DB and display Pass
+View page last updated  Change html code of tracked page 5 minutes after tracking page in a different country (Lithuania)       Updates time and adds to database and display Pass
