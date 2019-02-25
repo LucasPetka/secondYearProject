@@ -93,8 +93,6 @@ public class ProfileController {
 			user.setPassword(passwordEncoder.encode(newPassword));
 			userRepo.save(user);
 			
-		} else {
-		    System.out.println("");
 		}
 		
 		
