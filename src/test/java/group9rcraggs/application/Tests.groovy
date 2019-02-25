@@ -129,9 +129,61 @@ public class Tests extends Specification {
 }
 	
 
-	
-
 		//* A User can name a page *// -- END
+
+
+		//* A User can add a url to a page *// -- START
+
+		def "add url to a page"() {
+	
+			given: "a new page"
+		Page p = new Page();
+			when: "A url is set"
+		p.setName("test");
+			then: "The page has this url"
+		p.getName().equals("test");
+		}
+
+		def "Page url is null" () {
+	
+			given:"A new page with no url"
+				Page p = new Page();
+				p.setName(null);
+			when: "Page is added to database"
+				pageRepo.save(p)
+			then:
+				thrown(DataIntegrityViolationException)
+		}
+
+
+
+		def "Page without url is added to database" () {
+			given: "User, website and page created without page url"
+				userRepo.deleteAll()
+				pageRepo.deleteAll()
+				websiteRepo.deleteAll()
+				Website o = new Website()
+				User u = new User();
+				u.setLogin("asd")
+				u.setPassword("asd")
+				userRepo.save(u)
+				o.setOwner(u)
+				websiteRepo.save(o)
+				Page t = new Page()
+				t.setUrl(null)
+				t.setOwner(o)
+			when:
+				pageRepo.save(t)
+			then:
+				thrown(DataIntegrityViolationException)
+		}
+
+
+		//* A User can add a url to a page *// -- END
+
+
+
+
 
 	
 //	
@@ -300,17 +352,6 @@ public class Tests extends Specification {
 //	
 //	
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-
 //	}
 //	
 //	def "Website owner deleting Page" () {
@@ -350,9 +391,8 @@ public class Tests extends Specification {
 //	//=======================================================
 //	//=======================================================
 //	//=======================================================
-//	
-//	
-//	
+		
+		
 //	
 //	//=======================================================
 //	//=====================NAVIGATION========================
