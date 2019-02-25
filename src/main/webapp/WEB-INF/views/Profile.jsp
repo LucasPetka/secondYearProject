@@ -82,11 +82,7 @@
            
            <div class="card-body">
            
-<<<<<<< HEAD
            <form method="POST" modelAttribute="user" action="/updateUser">
-=======
-           <form  method="POST" modelAttribute="user" action="/updateUser">
->>>>>>> ddff6e937bded3e6fcc0f1cd86bc69436b9cd2cf
 
 				<div class="row">
 	                <div class="col-md-12">
@@ -99,42 +95,21 @@
 	             	<div class="col-md-6 pr-1">
 		                 <div class="form-group">
 		                     <label>First Name</label>
-<<<<<<< HEAD
 		                     <input type="text" name="firstName" class="form-control" placeholder="First Name" value="${logfirstName}">
-=======
-		                     <input type="text" name="fname" class="form-control" placeholder="First Name" value="${logfirstName}">
->>>>>>> ddff6e937bded3e6fcc0f1cd86bc69436b9cd2cf
 		                 </div>
 	            	</div>
 	            	
 	                <div class="col-md-6 pl-1">
 	                    <div class="form-group">
 	                        <label>Last Name</label>
-<<<<<<< HEAD
 	                        <input type="text" name="lastName" class="form-control" placeholder="Last Name" value="${loglastName}">
-=======
-	                        <input type="text" name="lname" class="form-control" placeholder="Last Name" value="${loglastName}">
->>>>>>> ddff6e937bded3e6fcc0f1cd86bc69436b9cd2cf
 	                    </div>
 	                </div>
 	             </div>
 	
-<<<<<<< HEAD
 	        <input type="hidden"                        
 			name="${_csrf.parameterName}"
 			value="${_csrf.token}"/>
-=======
-	 			 <div class="row">
-	                 <div class="col-md-12 ">
-	                     <div class="form-group">
-	                         <label for="exampleInputEmail1">Email address</label>
-	                         <input type="email" name="email" class="form-control" placeholder="Email" value="${loglogin}">
-	                     </div>
-	
-	                 </div>
-	             </div>
-	                               
->>>>>>> ddff6e937bded3e6fcc0f1cd86bc69436b9cd2cf
 	                            
 			    <button type="submit" class="btn btn-xs btn-primary pull-right">Update Profile</button>
 				<a href="/changePassword" class="btn btn-xs btn-outline-primary" role="button" aria-pressed="true">Change Password</a>

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import group9rcraggs.application.domain.User;
+
 import group9rcraggs.application.repository.UserRepository;
 import group9rcraggs.application.repository.WebsiteRepository;
 
@@ -93,8 +94,12 @@ public class ProfileController {
 			user.setPassword(passwordEncoder.encode(newPassword));
 			userRepo.save(user);
 			
-		} 
-
+		} else {
+		    System.out.println("");
+		}
+		
+		
+		
 		return "redirect:/changePassword";
     }
 	
@@ -105,5 +110,10 @@ public class ProfileController {
 		return "PassChange";
     }
 
+
+
+
+
+    
     
 }
