@@ -182,69 +182,107 @@ public class Tests extends Specification {
 		//* A User can add a url to a page *// -- END
 
 
-
-
-
+	//=======================================================
+	//===============A User can sign up======================
+	//=======================================================
 	
-//	
-//	
-//	//=======================================================
-//	//==========================USER=========================
-//	//=======================================================
-//	
-//	def "user repo empty" () {
-//		given: "empty user repository"
-//			userRepo.deleteAll()
-//		expect: "empty user repository"
-//			assertThat(userRepo.findAll(), Matchers.hasSize(0));
-//			
-//	}
-//	
-//	
-//	def "user store" () {
-//		given:
-//			userRepo.deleteAll()
-//			User u = new User();
-//			u.setLogin("asd")
-//			u.setPassword("asd")
-//			userRepo.save(u)
-//		expect:
-//			assertThat(userRepo.findAll(), Matchers.hasSize(1));
-//	}
-//	
-//	def "user fail password is null" () {
-//		given:
-//			userRepo.deleteAll()
-//			User u = new User();
-//			u.setLogin("asd")
-//			u.setPassword(null)
-//		when:
-//			userRepo.save(u)
-//		then:
-//			thrown(DataIntegrityViolationException)
-//	}
-//	
-//	def "user fail login not unique" () {
-//		given:
-//			userRepo.deleteAll()
-//			User u = new User();
-//			u.setLogin("asd")
-//			u.setPassword("p1")
-//			userRepo.save(u)
-//			u = new User();
-//			u.setLogin("asd")
-//			u.setPassword("p435435")
-//		when:
-//			userRepo.save(u)
-//		then:
-//			thrown(DataIntegrityViolationException)
-//	}
-//	
-//	//=======================================================
-//	//=======================================================
-//	//=======================================================
-//	
-//	
+	def "user repo empty" () {
+		given: "empty user repository"
+			userRepo.deleteAll()
+		expect: "empty user repository"
+			assertThat(userRepo.findAll(), Matchers.hasSize(0));
+			
+	}
+	
+	def "user store" () {
+		given:
+			userRepo.deleteAll()
+			User u = new User();
+			u.setLogin("asd")
+			u.setPassword("asd")
+			userRepo.save(u)
+		expect:
+			assertThat(userRepo.findAll(), Matchers.hasSize(1));
+	}
+	
+	def "user fail password is null" () {
+		given:
+			userRepo.deleteAll()
+			User u = new User();
+			u.setLogin("asd")
+			u.setPassword(null)
+		when:
+			userRepo.save(u)
+		then:
+			thrown(DataIntegrityViolationException)
+	}
+	
+	def "user fail login not unique" () {
+		given:
+			userRepo.deleteAll()
+			User u = new User();
+			u.setLogin("asd")
+			u.setPassword("p1")
+			userRepo.save(u)
+			u = new User();
+			u.setLogin("asd")
+			u.setPassword("p435435")
+		when:
+			userRepo.save(u)
+		then:
+			thrown(DataIntegrityViolationException)
+	}
+	
+	def "Login register view from Index page button"() {
+		given: "the context of the controller is setup"
+			this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build()
+		when: "I perform a HTTP get /login_register"
+			result = this.mockMvc.perform(get("/login_register"))
+		then: "the status of the HTTP response should be Ok (200)"
+			result.andExpect(status().is(200))
+		and:  "I should see the view CreateTodo"
+			result.andExpect(view().name("log_reg"))
+	}
+	
+	def "Check if login access denied and return NoPremission view"() {
+		given: "the context of the controller is setup"
+			this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build()
+		when: "I perform an HTTP GET /access-denied"
+			result = this.mockMvc.perform(get("/access-denied"))
+		then: "the status of the HTTP response should be Ok (200)"
+			result.andExpect(status().is(200))
+		and:  "I should see the view WebList"
+			result.andExpect(view().name("NoPermission"))
+	}
+	
+	def "Check if login threw error and return log_reg view"() {
+		given: "the context of the controller is setup"
+			this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build()
+		when: "I perform an HTTP GET /access-denied"
+			result = this.mockMvc.perform(get("/error-login"))
+		then: "the status of the HTTP response should be Ok (200)"
+			result.andExpect(status().is(200))
+		and:  "I should see the view WebList"
+			result.andExpect(view().name("log_reg"))
+	}
+	
+	def "Check if success login redirects Weblist view"() {
+		given: "the context of the controller is setup"
+			this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build()
+		when: "I perform an HTTP GET /success-login"
+			result = this.mockMvc.perform(get("/success-login"))
+		then: "the status of the HTTP response should be Ok (302)"
+			result.andExpect(status().is(302))
+		and:  "I should see the view WebList"
+			result.andExpect(redirectedUrl("/websiteList"))
+	}
+	
+
+	//=======================================================
+	//========================END===========================
+	//=======================================================
+	
+	
 //	//=======================================================
 //	//=========================WEBSITE=======================
 //	//=======================================================
@@ -393,66 +431,8 @@ public class Tests extends Specification {
 //	//=======================================================
 		
 		
-//	
-//	//=======================================================
-//	//=====================NAVIGATION========================
-//	//=======================================================
-//	
-//	
-//	
-//	def "Login register view from Index page button"() {
-//		given: "the context of the controller is setup"
-//			this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build()
-//		when: "I perform a HTTP get /login_register"
-//			result = this.mockMvc.perform(get("/login_register"))
-//		then: "the status of the HTTP response should be Ok (200)"
-//			result.andExpect(status().is(200))
-//		and:  "I should see the view CreateTodo"
-//			result.andExpect(view().name("log_reg"))
-//	}
-//	
-//	def "Check if login access denied and return NoPremission view"() {
-//		given: "the context of the controller is setup"
-//			this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build()
-//		when: "I perform an HTTP GET /access-denied"
-//			result = this.mockMvc.perform(get("/access-denied"))
-//		then: "the status of the HTTP response should be Ok (200)"
-//			result.andExpect(status().is(200))
-//		and:  "I should see the view WebList"
-//			result.andExpect(view().name("NoPermission"))
-//	}
-//	
-//	def "Check if login threw error and return log_reg view"() {
-//		given: "the context of the controller is setup"
-//			this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build()
-//		when: "I perform an HTTP GET /access-denied"
-//			result = this.mockMvc.perform(get("/error-login"))
-//		then: "the status of the HTTP response should be Ok (200)"
-//			result.andExpect(status().is(200))
-//		and:  "I should see the view WebList"
-//			result.andExpect(view().name("log_reg"))
-//	}
-//	
-//	def "Check if success login redirects Weblist view"() {
-//		given: "the context of the controller is setup"
-//			this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build()
-//		when: "I perform an HTTP GET /success-login"
-//			result = this.mockMvc.perform(get("/success-login"))
-//		then: "the status of the HTTP response should be Ok (302)"
-//			result.andExpect(status().is(302))
-//		and:  "I should see the view WebList"
-//			result.andExpect(redirectedUrl("/websiteList"))
-//	}
-//	
-//	
-//	
-//	
-//	
-//	
-//	
-//	//=======================================================
-//	//=======================================================
-//	//=======================================================
-//	
-//	
+	
+	
+	
+	
 }
