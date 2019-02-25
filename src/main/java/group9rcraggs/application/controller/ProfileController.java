@@ -40,7 +40,6 @@ public class ProfileController {
 		model.addAttribute("loglogin", userRepo.findByLogin(principal.getName()).getLogin());
 		model.addAttribute("logfirstName", userRepo.findByLogin(principal.getName()).getFirstName());
     	
-		
 //		User user = userRepo.findByLogin(principal.getName());
 //    	List<Website> websites = new ArrayList<>();
 //    	for (Website w : websiteRepo.findAll()) {
