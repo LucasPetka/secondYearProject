@@ -240,33 +240,44 @@ public class Tests extends Specification {
 			result = this.mockMvc.perform(get("/login_register"))
 		then: "the status of the HTTP response should be Ok (200)"
 			result.andExpect(status().is(200))
-		and:  "I should see the view CreateTodo"
+		and:  "I should see the view log_reg"
 			result.andExpect(view().name("log_reg"))
 	}
 	
-	def "Check if login access denied and return NoPremission view"() {
+	
+
+	//=======================================================
+	//========================END===========================
+	//=======================================================
+	
+	
+	//=======================================================
+	//===============A User can log in=======================
+	//=======================================================
+	
+	def "View NoPermission displayed when login rejected"() {
 		given: "the context of the controller is setup"
 			this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build()
 		when: "I perform an HTTP GET /access-denied"
 			result = this.mockMvc.perform(get("/access-denied"))
 		then: "the status of the HTTP response should be Ok (200)"
 			result.andExpect(status().is(200))
-		and:  "I should see the view WebList"
+		and:  "I should see the view NoPermission"
 			result.andExpect(view().name("NoPermission"))
 	}
 	
-	def "Check if login threw error and return log_reg view"() {
+	def "Error thrown when visiting error-login"() {
 		given: "the context of the controller is setup"
 			this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build()
 		when: "I perform an HTTP GET /access-denied"
 			result = this.mockMvc.perform(get("/error-login"))
 		then: "the status of the HTTP response should be Ok (200)"
 			result.andExpect(status().is(200))
-		and:  "I should see the view WebList"
+		and:  "I should see the view log_reg"
 			result.andExpect(view().name("log_reg"))
 	}
 	
-	def "Check if success login redirects Weblist view"() {
+	def "Successful login shows webList view"() {
 		given: "the context of the controller is setup"
 			this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build()
 		when: "I perform an HTTP GET /success-login"
@@ -277,7 +288,8 @@ public class Tests extends Specification {
 			result.andExpect(redirectedUrl("/websiteList"))
 	}
 	
-
+	
+	
 	//=======================================================
 	//========================END===========================
 	//=======================================================
