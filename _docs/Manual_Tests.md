@@ -71,4 +71,4 @@ Change password         Press update password with correct old password and new 
 Change password         Press update password with correct old password and new passwords "password"                            Error is shown - password not changed         Pass
 Change password         Press update password with correct old password and new passwords "Password"                            Error is shown - Password not changed         Pass
 Change password         Press update password with correct old password and new passwords "Password1"                           Password is changed and page refreshed        Pass
-Change password         Press update password with correct old password and new passwords match criteria and 100000 digits long Error is shown - Password not changed         Fail (Password is changed)
+Change password         Press update password with correct old password and new passwords match criteria and 100000 digits long Error is shown - Password not changed         (FIXED) Fail (Password is changed)
