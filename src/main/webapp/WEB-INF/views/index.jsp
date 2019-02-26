@@ -46,9 +46,6 @@
             <a class="nav-link js-scroll-trigger" href="#services">Services</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
           </li>
 		  <li class="nav-item">
@@ -68,7 +65,9 @@
           <hr class="divider my-4">
         </div>
         <div class="col-lg-8 align-self-baseline">
-          <p class="text-white-75 font-weight-light mb-5">You're a business owner trying to increase your web presence?<br>A website owner wanting to monitor your site? <br> NetNag is the solution for you!</p>
+          <p class="text-white-75 font-weight-light mb-5">Keep your websites updated, Increase your web presence, <br>Make your business a success! </p>
+		  <br>
+		  <br>
           <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Find Out More</a>
         </div>
       </div>

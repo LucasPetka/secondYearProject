@@ -344,6 +344,61 @@ public class Tests extends Specification {
 	
 	
 	//=======================================================
+	//======A user can see when a page was last updated======
+	//=======================================================
+	
+	
+	
+	def "Page is with last updated is added to datbase" () {
+		given: "User, website and page created"
+			userRepo.deleteAll()
+			pageRepo.deleteAll()
+			websiteRepo.deleteAll()
+			Website o = new Website()
+			User u = new User();
+			u.setLogin("asd")
+			u.setPassword("asd")
+			userRepo.save(u)
+			o.setOwner(u)
+			websiteRepo.save(o)
+			Page t = new Page()
+			t.setLastUpdated("1");
+			t.setOwner(o)
+		when:
+			pageRepo.save(t)
+		then:
+			thrown(DataIntegrityViolationException)
+	}
+	
+	def "Get last updated" () {
+		given: "User, website and page created with last updated '1'"
+			userRepo.deleteAll()
+			pageRepo.deleteAll()
+			websiteRepo.deleteAll()
+			Website o = new Website()
+			User u = new User();
+			u.setLogin("asd")
+			u.setPassword("asd")
+			userRepo.save(u)
+			o.setOwner(u)
+			websiteRepo.save(o)
+			Page t = new Page()
+			t.setLastUpdated("1");
+			t.setOwner(o)
+		expect:
+			assertTrue(t.getLastUpdated().equals("1"));
+	}
+
+	
+	
+	
+	//=======================================================
+	//========================END============================
+	//=======================================================
+	
+	
+	
+	//=======================================================
 	//=========================EXTRAS=======================
 	//=======================================================
 	
