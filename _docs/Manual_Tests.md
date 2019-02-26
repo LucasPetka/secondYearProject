@@ -64,3 +64,11 @@ View page last updated  Leave website unmodified for 1 week                     
 View page last updated  Change html code of tracked page 1 week after tracking the page                                         Updates time and adds to database and display Pass
 View page last updated  Change html code every hour for 5 hours                                                                 Each time new time is added to DB and display Pass
 View page last updated  Change html code of tracked page 5 minutes after tracking page in a different country (Lithuania)       Updates time and adds to database and display Pass
+
+Change password         Press update password with incorrect old password                                                       Error is shown - password not changed         Pass        
+Change password         Press update password with correct old password and non-matching new passwords                          Error is shown - password not changed         Pass
+Change password         Press update password with correct old password and new passwords "passwor"                             Error is shown - password not changed         Pass
+Change password         Press update password with correct old password and new passwords "password"                            Error is shown - password not changed         Pass
+Change password         Press update password with correct old password and new passwords "Password"                            Error is shown - Password not changed         Pass
+Change password         Press update password with correct old password and new passwords "Password1"                           Password is changed and page refreshed        Pass
+Change password         Press update password with correct old password and new passwords match criteria and 100000 digits long Error is shown - Password not changed         Fail (Password is changed)
