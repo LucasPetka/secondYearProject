@@ -291,160 +291,136 @@ public class Tests extends Specification {
 	
 	
 	//=======================================================
-	//========================END===========================
+	//========================END============================
+	//=======================================================
+	
+	//=======================================================
+	//===============A User can change password==============
 	//=======================================================
 	
 	
-//	//=======================================================
-//	//=========================WEBSITE=======================
-//	//=======================================================
-//	
-//	def "Website store" () {
-//		given:
-//			userRepo.deleteAll()
-//			websiteRepo.deleteAll()
-//			Website o = new Website()
-//			User u = new User();
-//			u.setLogin("asd")
-//			u.setPassword("asd")
-//			u.addWebsite(o)
-//			o.setOwner(u)
-//			userRepo.save(u)
-//			websiteRepo.save(o)
-//		expect:
-//			assertThat(websiteRepo.findAll(), Matchers.hasSize(1));
-//	}
-//	
-//	def "Website fail no user" () {
-//		given:
-//			userRepo.deleteAll()
-//			websiteRepo.deleteAll()
-//			Website o = new Website()
-//		when:
-//			websiteRepo.save(o)
-//		then:
-//			thrown(Exception)
-//	}
-//	
-//	
-//	def "Website user cascade user deletion" () {
-//			given:
-//				userRepo.deleteAll()
-//				websiteRepo.deleteAll()
-//				Website o = new Website()
-//				User u = new User();
-//				u.setLogin("asd")
-//				u.setPassword("asd")
-//				u.addWebsite(o)
-//				o.setOwner(u)
-//				userRepo.save(u)
-//				websiteRepo.save(o)
-//			when:
-//				userRepo.delete(u)
-//			then:
-//				assertThat(websiteRepo.findAll(), Matchers.hasSize(0));
-//		}
-//	
-//	
-//	def "Website owner stays for Website deletion" () {
-//		given:
-//			userRepo.deleteAll()
-//			websiteRepo.deleteAll()
-//			Website o = new Website()
-//			User u = new User();
-//			u.setLogin("asd")
-//			u.setPassword("asd")
-//			u.addWebsite(o)
-//			o.setOwner(u)
-//			userRepo.save(u)
-//			websiteRepo.save(o)
-//		when:
-//			websiteRepo.delete(o)
-//		then:
-//			assertThat(userRepo.findAll(), Matchers.hasSize(1));
-//	}
-//
-//	
-//	def "two users can track same Website" () {
-//		given:
-//			userRepo.deleteAll()
-//			websiteRepo.deleteAll()
-//			Website o = new Website()
-//			User u = new User();
-//			u.setLogin("asd")
-//			u.setPassword("asd")
-//			u.getWebsites().add(o);
-//			o.setOwner(u)
-//			userRepo.save(u)
-//			u = new User();
-//			u.setLogin("2134")
-//			u.setPassword("3243")
-//			u.getWebsites().add(o);
-//			o.setOwner(u)
-//		when:
-//			userRepo.save(u)
-//		then:
-//			noExceptionThrown()
-//	}
-//	
-//	
-//	//=======================================================
-//	//=======================================================
-//	//=======================================================
-//	
-//	
-//	//=======================================================
-//	//=========================PAGES=========================
-//	//=======================================================
-//	
-//	
-//	
-//	
-//	
+	def "User changes password" () {
+		given: "A user with password"
+			userRepo.deleteAll()
+			User u = new User();
+			u.setLogin("asd")
+			u.setPassword("asd")
+			userRepo.save(u)
+		when: "password is changed"
+			u.setPassword("asd1")
+		then: "User has new password"
+			u.getPassword().equals("asd1");
+	}
+	
+	def "User changes password to null" () {
+		given: "A user with password"
+			userRepo.deleteAll()
+			User u = new User();
+			u.setLogin("asd")
+			u.setPassword("asd")
+			userRepo.save(u)
+		when: "password is changed to null"
+			u.setPassword(null)
+			userRepo.save(u);
+		then: "Error is thrown"
+			thrown(DataIntegrityViolationException)
+	}
+	
+	def "User tries to access post /changed through url"() {
+		given: "the context of the controller is setup"
+			this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build()
+		when: "I perform an POST GET /changed"
+			result = this.mockMvc.perform(get("/changed"))
+		then: "the status of the HTTP response should be Bad (405)"
+			result.andExpect(status().is(405))
+	}
+	
+	
 
-//	}
-//	
-//	def "Website owner deleting Page" () {
-//		given:
-//			userRepo.deleteAll()
-//			organizerRepo.deleteAll()
-//			websiteRepo.deleteAll()
-//			Website o = new Website()
-//			User u = new User();
-//			u.setLogin("asd")
-//			u.setPassword("asd")
-//			userRepo.save(u)
-//			o.setOwner(u)
-//			websiteRepo.save(o)
-//			Page t = new Page()
-//			t.setName("amsdl")
-//			t.setOwner(o)
-//			organizerRepo.save(t);
-//		when:
-//			organizerRepo.delete(t);
-//		then:
-//			assertThat(organizerRepo.findAll(), Matchers.empty());
-//		and:
-//			assertThat(websiteRepo.findByOwner(u), Matchers.hasSize(1));
-//	}
-//	
-//	def "Pagelist is null" () {
-//		given:
-//			organizerRepo.deleteAll()
-//			Page t = new Page()
-//		when:
-//			organizerRepo.save(t)
-//		then:
-//			thrown(DataIntegrityViolationException)
-//	}
-//
-//	//=======================================================
-//	//=======================================================
-//	//=======================================================
-		
-		
+	
+	//=======================================================
+	//========================END============================
+	//=======================================================
 	
 	
+	//=======================================================
+	//=========================EXTRAS=======================
+	//=======================================================
+	
+	def "Website store" () {
+		given:
+			userRepo.deleteAll()
+			websiteRepo.deleteAll()
+			Website o = new Website()
+			User u = new User();
+			u.setLogin("asd")
+			u.setPassword("asd")
+			u.addWebsite(o)
+			o.setOwner(u)
+			userRepo.save(u)
+			websiteRepo.save(o)
+		expect:
+			assertThat(websiteRepo.findAll(), Matchers.hasSize(1));
+	}
+	
+	def "Website fail no user" () {
+		given:
+			userRepo.deleteAll()
+			websiteRepo.deleteAll()
+			Website o = new Website()
+		when:
+			websiteRepo.save(o)
+		then:
+			thrown(Exception)
+	}
 	
 	
+	def "Website user cascade user deletion" () {
+			given:
+				userRepo.deleteAll()
+				websiteRepo.deleteAll()
+				Website o = new Website()
+				User u = new User();
+				u.setLogin("asd")
+				u.setPassword("asd")
+				u.addWebsite(o)
+				o.setOwner(u)
+				userRepo.save(u)
+				websiteRepo.save(o)
+			when:
+				userRepo.delete(u)
+			then:
+				assertThat(websiteRepo.findAll(), Matchers.hasSize(0));
+		}
+	
+	
+	def "Website owner stays for Website deletion" () {
+		given:
+			userRepo.deleteAll()
+			websiteRepo.deleteAll()
+			Website o = new Website()
+			User u = new User();
+			u.setLogin("asd")
+			u.setPassword("asd")
+			u.addWebsite(o)
+			o.setOwner(u)
+			userRepo.save(u)
+			websiteRepo.save(o)
+		when:
+			websiteRepo.delete(o)
+		then:
+			assertThat(userRepo.findAll(), Matchers.hasSize(1));
+	}
+
+	
+	def "Pagelist is null" () {
+		given:
+			pageRepo.deleteAll()
+			Page t = new Page()
+		when:
+			pageRepo.save(t)
+		then:
+			thrown(DataIntegrityViolationException)
+	}
+
 }
