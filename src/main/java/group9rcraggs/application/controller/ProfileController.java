@@ -7,6 +7,7 @@ import java.security.Principal;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
 
 import group9rcraggs.application.domain.User;
 
@@ -76,29 +78,33 @@ public class ProfileController {
 	@RequestMapping(value = "changed", method = RequestMethod.POST)
 	public String changed(@Valid @ModelAttribute("user") User user, 
 			Model model, Principal principal, 
-			@RequestParam("new_pass") String newPassword,
+			@RequestParam("password") String newPassword,
 			@RequestParam("old_pass") String oldPassword) {
 		
 		model.addAttribute("loglastName", userRepo.findByLogin(principal.getName()).getLastName());
 		model.addAttribute("loglogin", userRepo.findByLogin(principal.getName()).getLogin());
 		model.addAttribute("logfirstName", userRepo.findByLogin(principal.getName()).getFirstName());
 
-		user = userRepo.findByLogin(principal.getName());
+		User userr = userRepo.findByLogin(principal.getName());
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
 		String existingPassword = oldPassword;
-		String dbPassword       = user.getPassword();
+		String dbPassword       = userr.getPassword();
 
 		if (passwordEncoder.matches(existingPassword, dbPassword)) {
-			user.setPassword(passwordEncoder.encode(newPassword));
-			userRepo.save(user);
+			userr.setPassword(passwordEncoder.encode(newPassword));
+			userRepo.save(userr);
 			
 		}
-		
-		
-		
+		else {
+			model.addAttribute("error", true);
+			return "PassChange";
+		}
+
 		return "redirect:/changePassword";
     }
+	
+	
 	
 	@RequestMapping("/changePassword")
 	public String changedPass(Model model, Principal principal) {

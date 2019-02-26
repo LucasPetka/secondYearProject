@@ -84,20 +84,37 @@
 				<div class="row">
 					<div class="col-sm-4 mx-auto">
 					
+					<c:if test="${error == true}">
+					<div class="alert alert-danger">
+						<a class="error">Wrong old password, try again</a>
+					</div>
+					</c:if>
+					
+					
 						 <form  method="POST" modelAttribute="user" action="/changed">
 						 
 						<label>Current Password</label>
 						<div class="form-group pass_show"> 
-							<input name="old_pass" type="password" value="" class="form-control" placeholder="Current Password"> 
+							<input id="oldpass" name="old_pass" type="password" value="" class="form-control" placeholder="Current Password" required> 
 						</div> 
 						   <label>New Password</label>
 						<div class="form-group pass_show"> 
-							<input name="new_pass" type="password" value="" class="form-control" placeholder="New Password"> 
+							<input id="pass" name="password" type="password" value="" class="form-control" placeholder="New Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" onchange="form.password2.pattern = RegExp.escape(this.value);" required> 
 						</div> 
 						   <label>Confirm Password</label>
 						<div class="form-group pass_show"> 
-							<input name="conf_pass" type="password" value="" class="form-control" placeholder="Confirm Password"> 
+							<input id="passConfirm" name="conf_pass" type="password" value="" class="form-control" placeholder="Confirm Password" oninput="check(this)" required> 
 						</div> 
+						
+						
+						<div id="alert" class="alert alert-danger" style="display:none;">
+							Password Must be Matching.
+						</div>
+						
+						
+						<input type="hidden"                        
+						name="${_csrf.parameterName}"
+						value="${_csrf.token}"/>
 						
 						<button type="submit" class="btn btn-xs btn-primary float-right">Update Password</button>
 						</form>
@@ -106,6 +123,19 @@
 			</div>
 		</div>
     </div>
+    
+    
+    <script language='javascript' type='text/javascript'>
+    function check(input) {
+        if (input.value != document.getElementById('pass').value) {
+        	$("#alert").slideDown("slow");
+        } else {
+            // input is valid -- reset the error message
+        	$("#alert").slideUp("slow");
+        }
+    }
+	</script>	
+	
 	
     </main>
   </div>
