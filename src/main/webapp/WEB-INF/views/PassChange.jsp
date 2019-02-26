@@ -95,15 +95,15 @@
 						 
 						<label>Current Password</label>
 						<div class="form-group pass_show"> 
-							<input id="oldpass" name="old_pass" type="password" value="" class="form-control" placeholder="Current Password" required> 
+							<input id="oldpass" name="old_pass" type="password" value="" class="form-control" placeholder="Current Password" maxlength="40" required> 
 						</div> 
 						   <label>New Password</label>
 						<div class="form-group pass_show"> 
-							<input id="pass" name="password" type="password" value="" class="form-control" placeholder="New Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" onchange="form.password2.pattern = RegExp.escape(this.value);" required> 
+							<input id="pass" name="password" type="password" value="" class="form-control" placeholder="New Password" maxlength="40" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" onchange="form.password2.pattern = RegExp.escape(this.value);" required> 
 						</div> 
 						   <label>Confirm Password</label>
 						<div class="form-group pass_show"> 
-							<input id="passConfirm" name="conf_pass" type="password" value="" class="form-control" placeholder="Confirm Password" oninput="check(this)" required> 
+							<input id="passConfirm" name="conf_pass" type="password" value="" class="form-control" placeholder="Confirm Password" maxlength="40" oninput="check(this)" required> 
 						</div> 
 						
 						
