@@ -39,6 +39,9 @@ public class User {
 	@Column(nullable = false)
 	String lastName;
 	
+	@Column(nullable = false)
+	Integer tokens;
+	
 	@Transient
 	String password2;
 	
@@ -58,6 +61,7 @@ public class User {
 		this.password="";
 		this.firstName="";
 		this.lastName="";
+		this.tokens=0;
 		this.enabled=false;
 	}
 
@@ -93,8 +97,15 @@ public class User {
 	public boolean getEnabled() {
 		return enabled;
 	}
+	public Integer getTokens() {
+		return this.tokens;
+	}
 
 	///* Setters *///
+	public void setTokens(Integer tokens) {
+		this.tokens=tokens;
+	}
+	
 	public void setEnabled(boolean enabled) {
 		this.enabled=enabled;
 	}

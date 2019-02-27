@@ -86,7 +86,7 @@
 
 				<div class="row">
 	                <div class="col-md-12">
-	                   <p class="lead float-right"> Tokens in your wallet: <b>15</b> <i class="fas fa-coins ml-2"></i></p>   
+	                   <p class="lead float-right"> Tokens in your wallet: <b>${tokens}</b> <i class="fas fa-coins ml-2"></i></p>   
 	                </div>
 	            </div>
 	

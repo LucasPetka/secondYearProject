@@ -41,7 +41,8 @@ public class ProfileController {
 		model.addAttribute("loglastName", userRepo.findByLogin(principal.getName()).getLastName());
 		model.addAttribute("loglogin", userRepo.findByLogin(principal.getName()).getLogin());
 		model.addAttribute("logfirstName", userRepo.findByLogin(principal.getName()).getFirstName());
-    	
+    	model.addAttribute("websites", userRepo.findByLogin(principal.getName()).getWebsites());
+    	model.addAttribute("tokens", userRepo.findByLogin(principal.getName()).getTokens());
 //		User user = userRepo.findByLogin(principal.getName());
 //    	List<Website> websites = new ArrayList<>();
 //    	for (Website w : websiteRepo.findAll()) {
@@ -109,6 +110,7 @@ public class ProfileController {
 	@RequestMapping("/changePassword")
 	public String changedPass(Model model, Principal principal) {
 		model.addAttribute("logfirstName", userRepo.findByLogin(principal.getName()).getFirstName());
+    	model.addAttribute("websites", userRepo.findByLogin(principal.getName()).getWebsites());
 		
 		return "PassChange";
     }

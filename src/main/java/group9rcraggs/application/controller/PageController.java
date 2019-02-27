@@ -119,7 +119,7 @@ public class PageController {
     public String GetPageList(@RequestParam("id") int id, Model model, Principal principal) {
     	model.addAttribute("logfirstName", userRepo.findByLogin(principal.getName()).getFirstName());
     	model.addAttribute("websiteId", id);
-    	
+    	model.addAttribute("websites", userRepo.findByLogin(principal.getName()).getWebsites());
     	//Here the website url is added to controller to display before the page name input
     	model.addAttribute("websiteUrl", webRepo.findById(id).getUrl());
     	//Gets current users Id who is logged in

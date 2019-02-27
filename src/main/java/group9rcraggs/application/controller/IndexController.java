@@ -91,11 +91,13 @@ public class IndexController {
 				p.setUrl(w.getUrl());
 				p.setFileName(track.linkToFileFormat(p.getUrl())+"_0");
 				p.setLinesIgnored("[]");
-				p.setLastUpdated("Not Yet Tracked");
+				p.setLastUpdated("Not Yet Tracked/Changed");
+				p.setTracking(true);
 				p.setFrequency("0");
 				break;
 			}
 					w.setOwner(user);
+					w.setTracking(true);
 					user.addWebsite(w);
 			websiteRepo.save(w);
 			
