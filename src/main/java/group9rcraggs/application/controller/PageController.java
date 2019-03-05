@@ -184,7 +184,7 @@ public class PageController {
     	page = pageRepo.findById(id);
     	model.addAttribute("websiteId", websiteid);
     	model.addAttribute("page", page);
-    	model.addAttribute("emails",emailName);
+    	model.addAttribute("emails", emailName);
 
     	return "createPageTrack";
     }
@@ -196,7 +196,6 @@ public class PageController {
     @RequestMapping(value = "editPageClicked", method = RequestMethod.POST)
     public String editWebsiteClicked(@ModelAttribute("page") Page p, Principal principal, BindingResult result, Model model
     		, @RequestParam(name="id") int id, @RequestParam(name="websiteid") int websiteid) {
-    	model.addAttribute("emails","hi");
     	//Errors need fixing
     	if (result.hasErrors()) {
     		return "createPageTrack";
