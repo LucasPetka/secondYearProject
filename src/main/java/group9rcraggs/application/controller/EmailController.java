@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import group9rcraggs.application.domain.Email;
 import group9rcraggs.application.domain.User;
-import group9rcraggs.application.domain.Website;
 import group9rcraggs.application.repository.EmailRepository;
 import group9rcraggs.application.repository.UserRepository;
 
