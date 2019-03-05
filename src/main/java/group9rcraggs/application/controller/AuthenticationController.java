@@ -88,7 +88,7 @@ public class AuthenticationController {
 			userRepo.save(user);
 			verificationRepo.save(verify);
 			emailService.sendEmail(user.getLogin(), 
-					"Hello, you have created account in NetNag, please follow  this https://localhost:8091/regis"
+					"Hello, you have created account in NetNag, please follow  this https://localhost:8090/regis"
 					+ "trationConfirm?token="+token+""
 							+ " link to finish your registration", 
 					"NetNag Email Verification");

@@ -95,8 +95,8 @@ window.onclick = function(event) {
             
             	<div id="webs">
 					<ul class="side_w">
-						<c:forEach items="${emails}" var="emails">
-					<!--	<li class="nav-item side_link"><a class="nav-link" href="/pageList?id=${website.id}"><c:out value="${website.name}"/></a></li>-->
+						<c:forEach items="${websites}" var="website">
+						<li class="nav-item side_link"><a class="nav-link" href="/pageList?id=${website.id}"><c:out value="${website.name}"/></a></li>
 						</c:forEach>
 					</ul>
 				</div>

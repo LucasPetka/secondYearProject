@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 import group9rcraggs.application.Tracking;
+import group9rcraggs.application.domain.Email;
 import group9rcraggs.application.domain.Page;
 import group9rcraggs.application.domain.User;
 import group9rcraggs.application.domain.Website;
@@ -173,10 +174,17 @@ public class PageController {
 		 Principal principal, BindingResult result, Model model) {
     	
     	User user = userRepo.findByLogin(principal.getName());
+    	List<Email> emails= user.getEmails();
+    	List<String> emailName = new ArrayList<String>();
+    	//Converts email object list into list of email strings
+    	for(Email email : emails) {
+    		emailName.add(email.getAddress());
+    	}
 
     	page = pageRepo.findById(id);
     	model.addAttribute("websiteId", websiteid);
     	model.addAttribute("page", page);
+    	model.addAttribute("emails",emailName);
 
     	return "createPageTrack";
     }
@@ -188,7 +196,7 @@ public class PageController {
     @RequestMapping(value = "editPageClicked", method = RequestMethod.POST)
     public String editWebsiteClicked(@ModelAttribute("page") Page p, Principal principal, BindingResult result, Model model
     		, @RequestParam(name="id") int id, @RequestParam(name="websiteid") int websiteid) {
-    	
+    	model.addAttribute("emails","hi");
     	//Errors need fixing
     	if (result.hasErrors()) {
     		return "createPageTrack";

@@ -21,10 +21,13 @@
 <br>
 <form  method="POST" modelAttribute="website" action="/editWebsiteClicked?id=${website.id}">
 <div class="form-group">
-<label path="name" for="formGroupExampleInput">Website Name</label>
-
+		<label path="name" for="formGroupExampleInput">Website Name</label>
         <input name="name" type="text" class="form-control" id="formGroupExampleInput" placeholder="Name"/>
         <errors name="name"/>
+        
+        <label path="email" for="formGroupExampleInput">Email Address to be Nagged</label>
+        <input name="email" type="text" class="form-control" id="formGroupExampleInput" placeholder="drop down box.. of emails............"/>
+        <errors name="email"/>
        
                     
 		<input type="submit" value="Add" name="add" class="btn btn-primary"/>

@@ -50,6 +50,9 @@ public class EmailController {
 		return "EmailList";
     }
 	
+	
+	//Error detection needs implementing
+	
 	///* Adds website to database when add is clicked and calls addWebsite *///
     @RequestMapping(value = "addEmail", params = "add", method = RequestMethod.POST)
 	public String addNewWebsite(@Valid @ModelAttribute("email") Email e, BindingResult result, Model model, Principal principal) {

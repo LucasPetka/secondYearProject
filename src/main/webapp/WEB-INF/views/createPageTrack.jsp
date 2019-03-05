@@ -28,17 +28,14 @@
   </tr>
  <tr>
  <td>
-   <form:label path="frequency" for="formGroupExampleInput1">Refresh every</form:label>
+   <form:label path="email" for="formGroupExampleInput1">Email to be nagged</form:label>
    </td>
    </tr>
    <tr>
    <td>
     <form:select path="frequency" class="form-control" id="exampleFormControlSelect1">
-	<form:option value="2"> 2 min </form:option>
-    <form:option value="5"> 5 min </form:option>
-    <form:option value="15"> 15 min </form:option>
-    <form:option value="60">60 min </form:option>
-    <form:option value="3"> 3 hours</form:option>
+    <form:options items="${emails}"/>	 
+	
     </form:select>
     <form:errors path="frequency"/>
 	<td>

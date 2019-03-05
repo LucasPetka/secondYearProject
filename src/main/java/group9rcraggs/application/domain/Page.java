@@ -31,6 +31,9 @@ public class Page {
 	private String linesIgnored;
 	private boolean checked;
 	
+	@Column(nullable=true)
+	private String email;
+	
 	private String ownerUrl;
 	
 	public Page(String name, String url, String lastUpdated, String frequency, String fileName, String linesIgnored) {
@@ -46,32 +49,6 @@ public class Page {
     	
 	}
 	
-	/*public Page(String ssl, String url, Website website) {
-		
-		Tracking track = new Tracking();
-		track.sourceCodeToFile(ssl + "://" + url, url+"_0");
-		try {
-			Thread.sleep(70000);
-		} catch (InterruptedException e) {
-			
-			e.printStackTrace();
-		}
-		track.sourceCodeToFile(ssl + "://" + url, url+"_1");
-		this.name="Test";
-		this.url=url;
-		this.owner = website;
- 	   DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
- 	   LocalDateTime now = LocalDateTime.now();  
-		this.lastUpdated=dtf.format(now);
-		this.frequency="30";
-		this.fileName=url+"_0";
-		this.linesIgnored="";
-    	this.tracking = false;
-    	ArrayList<Integer> linesToBeIgnored = new ArrayList();
-		linesToBeIgnored = track.compareFiles("pageDB/"+url+"_0", "pageDB/"+url+"_1");
-		this.linesIgnored=linesToBeIgnored.toString();
-		this.checked=true;
-	}*/
 	public Page() {
 		
 	}
@@ -82,6 +59,11 @@ public class Page {
 	public Website getOwner() {
 		return this.owner;
 	}
+	
+	public String getEmail() {
+		return this.email;
+	}
+	
 	public boolean getChecked() {
 		return this.checked;
 	}
@@ -93,8 +75,7 @@ public class Page {
 	public String getName() {
 		return this.name;
 	}
-	
-	
+
 	public String getUrl() {
 		return this.url;
 	}
@@ -133,6 +114,11 @@ public class Page {
 	public void setOwner(Website owner) {
 		this.owner = owner;
 	}
+	
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
 	public void setChecked(boolean checked) {
 		this.checked = checked;
 	}
