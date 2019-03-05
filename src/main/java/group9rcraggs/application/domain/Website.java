@@ -25,8 +25,6 @@ public class Website {
 
 	@ManyToOne(optional=false)
 	private User owner;
-	
-	
 
 	private String name;
 	

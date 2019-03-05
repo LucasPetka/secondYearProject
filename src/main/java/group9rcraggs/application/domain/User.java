@@ -55,6 +55,9 @@ public class User {
 	@OneToMany(mappedBy="owner", cascade=CascadeType.ALL, orphanRemoval = true)
 	private List<Website> websites = new ArrayList<Website>();
 	
+	@OneToMany(mappedBy="owner", cascade=CascadeType.ALL, orphanRemoval = true)
+	private List<Email> emails = new ArrayList<Email>();
+	
 	//Default constructor just whilst login form hasn't been created
 	public User() {
 		this.login="";
@@ -68,34 +71,38 @@ public class User {
 	
 	///* Getters *///
 	public int getId() {
-		return id;
+		return this.id;
 	}
 	
 	public List<Website> getWebsites() {
-		return websites;
+		return this.websites;
+	}
+	
+	public List<Email> getEmails() {
+		return this.emails;
 	}
 
 	public String getPassword() {
-		return password;
+		return this.password;
 	}
 
 	public String getPassword2() {
-		return password2;
+		return this.password2;
 	}
 	
 	public String getLogin() {
-		return login;
+		return this.login;
 	}
 	
 	public String getLastName() {
-		return lastName;
+		return this.lastName;
 	}
 	
 	public String getFirstName() {
-		return firstName;
+		return this.firstName;
 	}
 	public boolean getEnabled() {
-		return enabled;
+		return this.enabled;
 	}
 	public Integer getTokens() {
 		return this.tokens;
@@ -146,6 +153,16 @@ public class User {
 	public void deleteWebsite(int id) {
 		websites.removeIf(w -> w.getId() == id);
 	}
+	
+	public void addEmail(Email email) {
+		this.emails.add(email);
+	}
+	
+	public void deleteEmail(Email email) {
+		emails.removeIf(w -> w.getId() == id);
+	}
+	
+	
 	
 	public Role getRole() {
 		return role;

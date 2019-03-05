@@ -203,9 +203,7 @@ public class PageController {
     }
     
     
-    
-    
-    
+
     //Removes any excess '/' from end of URL
     private String removeSlashes(String s) {
             
