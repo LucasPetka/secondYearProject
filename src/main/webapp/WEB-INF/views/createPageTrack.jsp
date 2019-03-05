@@ -16,7 +16,7 @@
 <hr>
 <br>
   
-<form:form method="POST" modelAttribute="page" action="/addPage?id=${websiteId}">
+<form:form method="POST" modelAttribute="page" action="/editPageClicked?id=${page.id}&websiteid=${websiteId}">
   <div class="form-group">
   <table>
   <tr>
@@ -26,20 +26,6 @@
     <form:errors path="name"/>
   </td>
   </tr>
-  <tr>
-  <td>
-    <form:label path="url" for="formGroupExampleInput1">Page URL</form:label>
-	</td>
-	</tr>
-	<tr>
-	<td>
-	<!-- This field is used to pass the website owner Url into validation to check the complete url -->
-	<form:input path="ownerUrl" type="hidden" value="${websiteUrl}/"/>
-    <form:label path="url" type="text" class="form-control" id="formGroupExampleInput1">${websiteUrl}/</form:label>
-    <form:input path="url" type="text" class="form-control" id="formGroupExampleInput1" placeholder="Url"/>
-    <form:errors path="url"/>
- </td>
- </tr>
  <tr>
  <td>
    <form:label path="frequency" for="formGroupExampleInput1">Refresh every</form:label>

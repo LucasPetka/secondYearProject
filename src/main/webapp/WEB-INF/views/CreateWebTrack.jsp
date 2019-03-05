@@ -13,27 +13,29 @@
 
 
 
-<div class="mx-auto w-25 p-3" style=" background-color:#c5c5c5;  " ;  align="center">
+<div class="mx-auto w-25 p-3" style=" background-color:#c5c5c5;"  align="center">
 
 <h1 style="font-size:4vw;" class="display-4">Add Website</h1>
 <hr>
 
 <br>
-<form:form method="POST" modelAttribute="website" action="/addWebsite">
+<form  method="POST" modelAttribute="website" action="/editWebsiteClicked?id=${website.id}">
 <div class="form-group">
-<form:label path="name" for="formGroupExampleInput">Website Name</form:label>
+<label path="name" for="formGroupExampleInput">Website Name</label>
 
-        <form:input path="name" type="text" class="form-control" id="formGroupExampleInput" placeholder="Name"/>
-        <form:errors path="name"/>
-        
-		<form:label path="url" for="formGroupExampleInput2">Website URL</form:label>
-        <form:input path="url" type="text" class="form-control" id="formGroupExampleInput2" placeholder="URL"/>
-        <form:errors path="url"/>
+        <input name="name" type="text" class="form-control" id="formGroupExampleInput" placeholder="Name"/>
+        <errors name="name"/>
+       
                     
 		<input type="submit" value="Add" name="add" class="btn btn-primary"/>
         <input type="submit" value="Cancel" name="cancel" class="btn btn-primary"/>
+        
+        <input type="hidden"                        
+			name="${_csrf.parameterName}"
+			value="${_csrf.token}"/>
+	
 </div>
-</form:form>
+</form>
 </div>
         
 

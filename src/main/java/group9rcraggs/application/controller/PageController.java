@@ -163,27 +163,49 @@ public class PageController {
 		}
 		return "PageList";
     }
-    
-    ///* Deletes page from database*///
-    @RequestMapping(value = "deletePage", params = "id", method = RequestMethod.GET)
-	public String deleteWebsite(@RequestParam("id") int id, Principal principal) {
-		//Page p = pageRepo.findById(id);	
-		Website website = webRepo.findById(2);
-		website.deletePage(id);
-//		if (p != null) {
-//			// deleting the website will fail a foreign key constraint
-//			User user = userRepo.findByLogin(principal.getName());
-//			for (Website w2 : user.getWebsites()) {
-//				if(w2.getId() == id) {
-//					user.deleteWebsite(id);
-//				}
-//			}
-//			// delete website as orphan
-			webRepo.save(website);
-		
-		return "redirect:/pageList";
-}
+   
 
+    
+    
+    //Passes current website into model and will display the form to update website
+    @RequestMapping(value = "editPage", params = "id")
+ public String editWebsite(@ModelAttribute("page") Page  page , @RequestParam("id") int id, @RequestParam(name="websiteid") int websiteid , 
+		 Principal principal, BindingResult result, Model model) {
+    	
+    	User user = userRepo.findByLogin(principal.getName());
+
+    	page = pageRepo.findById(id);
+    	model.addAttribute("websiteId", websiteid);
+    	model.addAttribute("page", page);
+
+    	return "createPageTrack";
+    }
+    
+    
+    
+    
+    //temp until modal complete
+    @RequestMapping(value = "editPageClicked", method = RequestMethod.POST)
+    public String editWebsiteClicked(@ModelAttribute("page") Page p, Principal principal, BindingResult result, Model model
+    		, @RequestParam(name="id") int id, @RequestParam(name="websiteid") int websiteid) {
+    	
+    	//Errors need fixing
+    	if (result.hasErrors()) {
+    		return "createPageTrack";
+    	}
+    	else {
+    	Website website = webRepo.findById(websiteid);
+		p.setOwner(website);
+    	pageRepo.save(p);
+
+    	return "redirect:/pageList?id="+websiteid;
+    }
+    }
+    
+    
+    
+    
+    
     //Removes any excess '/' from end of URL
     private String removeSlashes(String s) {
             

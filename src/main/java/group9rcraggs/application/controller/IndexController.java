@@ -143,6 +143,63 @@ public class IndexController {
 		return "redirect:/websiteList";
 }
     
+    //Passes current website into model and will display the form to update website
+    @RequestMapping(value = "editWebsite", params = "id")
+ public String editWebsite(@ModelAttribute("website") Website  website , @RequestParam("id") int id, Principal principal, 
+		 BindingResult result, Model model) {
+    	
+    	User user = userRepo.findByLogin(principal.getName());
+
+    	website = websiteRepo.findById(id);
+    	
+    	model.addAttribute("website", website);
+
+    	return "CreateWebTrack";
+    }
+    
+    
+    
+    
+    //temp until modal complete
+    @RequestMapping(value = "editWebsiteClicked", method = RequestMethod.POST)
+    public String editWebsiteClicked(@ModelAttribute("website") Website w, Principal principal, BindingResult result, Model model) {
+    	
+    	//Errors need fixing
+    	if (result.hasErrors()) {
+    		return "CreateWebTrack";
+    	}
+    	else {
+    	User user = userRepo.findByLogin(principal.getName());
+    	
+		w.setOwner(user);
+		w.setTracking(true);
+    	websiteRepo.save(w);
+
+    	return "redirect:/websiteList"; 
+    }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     //Removes any excess '/' from end of URL
 private String removeSlashes(String s) {

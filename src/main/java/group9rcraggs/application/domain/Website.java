@@ -27,10 +27,11 @@ public class Website {
 	private User owner;
 	
 	
-	@Column
+
 	private String name;
-	private String url;
 	
+	@Column(updatable=false)
+	private String url;
 	private boolean tracking;
 	private int activePages;
 	
