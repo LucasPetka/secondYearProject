@@ -175,8 +175,8 @@ window.onclick = function(event) {
 				<div class="input-group-prepend">
 				  <span class="input-group-text" id="inputGroupPrepend">Email Address</span>
 				</div>
-			<input type="text" id="validationCustomUsername" class="form-control" name="name" placeholder="My blog" aria-describedby="inputGroupPrepend" required/>	
-			<form:errors path="name"/>
+			<input type="text" id="validationCustomUsername" class="form-control" name="address" placeholder="Example@example.com" aria-describedby="inputGroupPrepend" required/>	
+			<form:errors path="address"/>
 			  </div>
 			</div>
 	

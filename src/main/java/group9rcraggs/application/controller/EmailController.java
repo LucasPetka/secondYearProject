@@ -4,10 +4,16 @@ import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import group9rcraggs.application.domain.Email;
 import group9rcraggs.application.domain.User;
@@ -43,6 +49,56 @@ public class EmailController {
 		}
 		return "EmailList";
     }
+	
+	///* Adds website to database when add is clicked and calls addWebsite *///
+    @RequestMapping(value = "addEmail", params = "add", method = RequestMethod.POST)
+	public String addNewWebsite(@Valid @ModelAttribute("email") Email e, BindingResult result, Model model, Principal principal) {
+    	model.addAttribute("logfirstName", userRepo.findByLogin(principal.getName()).getFirstName());
+    	
+		if (result.hasErrors()) {
+			model.addAttribute("badlink", true);
+	    	User user = userRepo.findByLogin(principal.getName());
+	    	
+	    	List<Email> emails = new ArrayList<>();
+	    	//Creates list of emails for user
+	    	for (Email email : emailRepo.findAll()) {
+	    		if(email.getOwner().equals(user)) {
+				emails.add(email);
+	    		}
+			}
+	    	//if error & list empty
+			if (emails.isEmpty()) {
+				return "EmptyEmailList";
+				
+			} else {
+				
+				model.addAttribute("emails", emails);
+			}
+			return "EmailList";
+			//No errors
+		} else {
+			
+			User user = userRepo.findByLogin(principal.getName());
+			
+					e.setOwner(user);
+					user.addEmail(e);
+			emailRepo.save(e);
+			
+			return "redirect:/emailList";
+		}
+	}
+    
+    
+    ///* Deletes email from database*///
+    @RequestMapping(value = "deleteEmail", params = "id", method = RequestMethod.GET)
+	public String deleteWebsite(@RequestParam("id") int id, Principal principal) {
+    	Email e = emailRepo.findById(id);
+		emailRepo.delete(e);
+		
+		return "redirect:/emailList";
+}
+	
+	
 
 	
 	

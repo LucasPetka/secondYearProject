@@ -96,11 +96,6 @@ public class IndexController {
 		}
 	}
     
-    ///* When cancel is clicked calls addWebsite - nothing added/deleted to database *///
-    @RequestMapping(value = "addWebsite", params = "cancel", method = RequestMethod.POST)
-	public String cancelNewWebsite() {
-		return "redirect:/websiteList";
-	}
     
   ///* Returns list of websites *///
     @RequestMapping(value = "websiteList")
