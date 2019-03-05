@@ -42,12 +42,19 @@
               Profile 
             </a>
           </li>
+                                <li class="nav-item side_link">
+            <a class="nav-link" href="/emailList">
+              <span data-feather="home"></span>
+              My Email Addresses
+            </a>
+          </li>
           <li class="nav-item side_link">
             <a class="nav-link" href="/websiteList">
               <span data-feather="file"></span>
               My websites
             </a>
           </li>
+          
           <li class="nav-item side_link">
             <a class="nav-link" href="#">
               <span data-feather="shopping-cart"></span>
@@ -184,9 +191,6 @@
     </main>
   </div>
 </div>
-
-<a class="btn btn-primary btn_or red" href="websiteList" role="button"> Back </a>
-<a class="btn btn-primary btn_or" href="addPage?id=${websiteId}" role="button">Add new page</a>
 </body>
 </html>
 

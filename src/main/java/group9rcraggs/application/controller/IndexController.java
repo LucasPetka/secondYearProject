@@ -48,15 +48,6 @@ public class IndexController {
 	protected void initBinder(WebDataBinder binder) {
 		binder.addValidators(new WebsiteValidator());
 	}
-	
-
-//	///* Returns view CreateWebTrack *///
-//    @RequestMapping(value = "addWebsite", method = RequestMethod.GET)
-//    public String create(Model model) {
-//		model.addAttribute("website", new Website());
-//		return "CreateWebTrack";
-//
-//}
     
   ///* Adds website to database when add is clicked and calls addWebsite *///
     @RequestMapping(value = "addWebsite", params = "add", method = RequestMethod.POST)

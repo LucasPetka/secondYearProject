@@ -45,6 +45,12 @@
               Profile 
             </a>
           </li>
+                                <li class="nav-item side_link">
+            <a class="nav-link" href="/emailList">
+              <span data-feather="home"></span>
+              My Email Addresses
+            </a>
+          </li>
           <li id="open_webs" class="nav-item side_link">
             <a class="nav-link" href="/websiteList">
               <span data-feather="file"></span>
@@ -117,11 +123,30 @@
 				<div class="clearfix"></div>
 				
           </form>
-
+          
+          
+ 	<form method="POST" modelAttribute="email" action="/addEmail">
 		<div class="row mt-4">
-			<div class="col-md-9 p-0">
-				<button type="button" id="email_on" class="btn btn-link float-left">Choose the e-mails to which you want to get information about Websites updates</button>
-			</div>
+			<div class="col-md-6 p-1">
+			<div class="form-group">
+				<!--  <button type="button" id="email_on" class="btn btn-link float-left">Add emails</button> -->
+				 <label>Add Emails</label>
+		                     <input type="text" name="address" class="form-control" placeholder="Example@example.com">
+		                     
+		                  </div>
+		                  
+		                     
+		                     	
+	
+	        <input type="hidden"                        
+			name="${_csrf.parameterName}"
+			value="${_csrf.token}"/>
+	                            
+			    <button type="submit" class="btn btn-xs btn-primary pull-right">Add</button>
+
+</div>
+				</div>
+		<!--  	</div>
 		</div>
 
 		<div id="emails_l">
@@ -153,8 +178,8 @@
 			</div>
 		</div>
 		
-		</div>
-
+		</div>-->
+</form>
 
 		<script>
 			function ft_count(){

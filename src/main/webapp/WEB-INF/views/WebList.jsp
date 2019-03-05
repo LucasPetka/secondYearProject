@@ -80,11 +80,18 @@ window.onclick = function(event) {
               Profile 
             </a>
           </li>
+                                <li class="nav-item side_link">
+            <a class="nav-link" href="/emailList">
+              <span data-feather="home"></span>
+              My Email Addresses
+            </a>
+          </li>
           <li id="open_webs" class="nav-item side_link">
             <a class="nav-link" href="/websiteList">
               <span data-feather="file"></span>
               My websites
             </a>
+            
             
             	<div id="webs">
 					<ul class="side_w">

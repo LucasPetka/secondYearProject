@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
+import group9rcraggs.application.domain.Email;
 import group9rcraggs.application.domain.User;
-
+import group9rcraggs.application.repository.EmailRepository;
 import group9rcraggs.application.repository.UserRepository;
 import group9rcraggs.application.repository.WebsiteRepository;
 
@@ -32,30 +32,21 @@ public class ProfileController {
 	
 	@Autowired
 	UserRepository userRepo;
+	
+	@Autowired
+	EmailRepository emailRepo;
 
 
 ///* Returns view Index *///
 	@RequestMapping("profile")
 	public String profile_page(Model model, Principal principal) {
-		//model.addAttribute("logfirstName", userRepo.findByLogin(principal.getName()).getFirstName());
+
 		model.addAttribute("loglastName", userRepo.findByLogin(principal.getName()).getLastName());
 		model.addAttribute("loglogin", userRepo.findByLogin(principal.getName()).getLogin());
 		model.addAttribute("logfirstName", userRepo.findByLogin(principal.getName()).getFirstName());
     	model.addAttribute("websites", userRepo.findByLogin(principal.getName()).getWebsites());
     	model.addAttribute("tokens", userRepo.findByLogin(principal.getName()).getTokens());
-//		User user = userRepo.findByLogin(principal.getName());
-//    	List<Website> websites = new ArrayList<>();
-//    	for (Website w : websiteRepo.findAll()) {
-//    		if(w.getOwner().equals(user)) {
-//			websites.add(w);
-//    		}
-//		}
-//    	
-//		if (websites.isEmpty()) {
-//			return "EmptyWebList";
-//		} else {
-//			model.addAttribute("websites", websites);
-//		}
+    	
 		return "Profile";
     }
 	
@@ -67,10 +58,6 @@ public class ProfileController {
 			userToDb.setLastName(user.getLastName());
 			userRepo.save(userToDb);
 			
-		//	model.addAttribute("loglastName", userRepo.findByLogin(principal.getName()).getLastName());
-		//	model.addAttribute("loglogin", userRepo.findByLogin(principal.getName()).getLogin());
-		//	model.addAttribute("logfirstName", userRepo.findByLogin(principal.getName()).getFirstName());
-
 		return "redirect:/profile";
     }
 	
@@ -105,15 +92,28 @@ public class ProfileController {
 		return "redirect:/changePassword";
     }
 	
-	
-	
-	@RequestMapping("/changePassword")
+
+	@RequestMapping("changePassword")
 	public String changedPass(Model model, Principal principal) {
 		model.addAttribute("logfirstName", userRepo.findByLogin(principal.getName()).getFirstName());
     	model.addAttribute("websites", userRepo.findByLogin(principal.getName()).getWebsites());
 		
 		return "PassChange";
     }
+	
+	
+	@RequestMapping(value = "addEmail", method = RequestMethod.POST)
+	public String addEmail(@ModelAttribute("email") Email email, Model model, Principal principal) {
+		
+		User user = userRepo.findByLogin(principal.getName());
+		email.setOwner(user);
+		user.addEmail(email);
+		emailRepo.save(email);
+		
+		
+		return "redirect:/profile";
+	}
+	
 
 
 
