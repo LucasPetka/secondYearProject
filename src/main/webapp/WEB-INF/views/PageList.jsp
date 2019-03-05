@@ -193,7 +193,7 @@
         <table class="table table-striped table-sm">
           <thead>
             <tr>
-              <th>#</th>
+
 			  <th>Name</th>
 			  <th>Link</th>
 			  <th>Last Change</th>
@@ -204,7 +204,7 @@
           <tbody>
             <c:forEach items="${pages}" var="page">
 				<tr>
-					<td><c:out value="${page.id}"/></td>
+
 					<td><c:out value="${page.name}"/></td>
 					<td><c:out value="${page.url}"/></td>
 					<td><c:out value="${page.lastUpdated}"/></td>

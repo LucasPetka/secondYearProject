@@ -177,7 +177,7 @@
         <table class="table table-striped table-sm">
           <thead>
             <tr>
-              <th>#</th>
+            
 			  <th>Name</th>
 			  <th>Link</th>
 			  <th>Last Change</th>

@@ -26,7 +26,9 @@ public class Email {
 		this.owner = owner;
 	}
 	
-	
+	public Email() {
+		
+	}
 	
 	///* Setters *///
 	public void setId(int id) {

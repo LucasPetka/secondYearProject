@@ -212,7 +212,6 @@ window.onclick = function(event) {
         <table class="table table-striped table-sm">
           <thead>
             <tr>
-              <th>#</th>
 			  <th>Website name</th>
 			  <th>Link</th>
 			  <th>Active pages</th>
@@ -223,7 +222,6 @@ window.onclick = function(event) {
           <tbody>
             <c:forEach items="${websites}" var="website">
 				<tr>
-					<td><c:out value="${website.id}"/></td>
 					<td><c:out value="${website.name}"/></td>
 					<td><c:out value="${website.url}"/></td>
 					<td><c:out value="${website.activePages}"/></td>

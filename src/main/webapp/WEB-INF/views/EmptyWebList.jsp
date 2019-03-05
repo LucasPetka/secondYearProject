@@ -161,7 +161,6 @@
         <table class="table table-striped table-sm">
           <thead>
             <tr>
-              <th>#</th>
 			  <th>Website name</th>
 			  <th>Link</th>
 			  <th>Active pages</th>
