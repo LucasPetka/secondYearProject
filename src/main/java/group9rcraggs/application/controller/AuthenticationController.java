@@ -46,6 +46,12 @@ public class AuthenticationController {
 		}
 		return "log_reg";
 	}
+	
+	@RequestMapping("password_reset")
+	public String forgotPass(Model model, Principal principal) {
+		
+		return "forgotPass";
+	}
 
 	@RequestMapping(value = "/error-login", method = RequestMethod.GET)
 	public String invalidLogin(Model model) {

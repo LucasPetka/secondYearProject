@@ -110,10 +110,15 @@
 			<label for="username" class="sr-only">Email</label>
 			<input type="email" id="username" class="form-control mb-2" name="username" placeholder="Email" required/>	
 		</p>
-		<p>
+		
 			<label for="password" class="sr-only">Password</label>
-			<input type="password" id="password" name="password" maxlength="40" class="form-control mb-2" placeholder="Password" required/>	
-		</p>
+			<input type="password" id="password" name="password" maxlength="40" class="form-control" placeholder="Password" required/>	
+		
+		
+		<a href="/password_reset" class="btn btn-link float-right mb-3" role="button" aria-pressed="true">Forgot Password</a>
+		
+		
+		
 		<input type="hidden"                        
 			name="${_csrf.parameterName}"
 			value="${_csrf.token}"/>
