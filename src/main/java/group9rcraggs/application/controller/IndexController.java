@@ -22,6 +22,7 @@ import group9rcraggs.application.Tracking;
 import group9rcraggs.application.domain.Page;
 import group9rcraggs.application.domain.User;
 import group9rcraggs.application.domain.Website;
+import group9rcraggs.application.repository.PageRepository;
 import group9rcraggs.application.repository.UserRepository;
 import group9rcraggs.application.repository.WebsiteRepository;
 
@@ -35,6 +36,10 @@ public class IndexController {
 	
 	@Autowired
 	UserRepository userRepo;
+	
+	@Autowired
+	PageRepository pageRepo;
+	
 
 
 ///* Returns view Index *///
@@ -101,13 +106,33 @@ public class IndexController {
     @RequestMapping(value = "websiteList")
     public String websiteListPage(Model model, Principal principal) {
     	model.addAttribute("logfirstName", userRepo.findByLogin(principal.getName()).getFirstName());
+    	model.addAttribute("websites", userRepo.findByLogin(principal.getName()).getWebsites());
     	User user = userRepo.findByLogin(principal.getName());
+    	
     	List<Website> websites = new ArrayList<>();
+    	
+    	
     	for (Website w : websiteRepo.findAll()) {
     		if(w.getOwner().equals(user)) {
 			websites.add(w);
     		}
 		}
+    	
+    	List<Page> pages = new ArrayList<>();
+    	
+    	for (Page p : pageRepo.findAll()) {
+    		if (p.getOwner().getId() == user.getId()){
+			pages.add(p);
+    		}
+    	}
+    	
+    	int count_page = pages.size();
+    	model.addAttribute("page_count", count_page);
+    	
+    	int count_web = websites.size();
+    	model.addAttribute("web_count", count_web);
+    	
+    	
     	
 		if (websites.isEmpty()) {
 			return "EmptyWebList";
