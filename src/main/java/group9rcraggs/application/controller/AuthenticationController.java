@@ -1,9 +1,7 @@
 package group9rcraggs.application.controller;
 
-import java.nio.charset.Charset;
 import java.security.Principal;
 import java.security.SecureRandom;
-import java.util.Random;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
