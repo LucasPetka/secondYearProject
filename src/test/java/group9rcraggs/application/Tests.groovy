@@ -17,6 +17,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.dao.InvalidDataAccessApiUsageException
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.web.servlet.setup.MockMvcBuilders
 import org.springframework.web.context.WebApplicationContext
@@ -30,6 +31,8 @@ import org.springframework.test.web.servlet.ResultActions;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+import java.security.SecureRandom
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -476,6 +479,33 @@ public class Tests extends Specification {
 			pageRepo.save(t)
 		then:
 			thrown(DataIntegrityViolationException)
+	}
+	//=======================================================
+	//=========A user can reset their password===============
+	//=======================================================
+	
+	def "User requests password reset page"() {
+		given: "the context of the controller is setup"
+		
+			this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build()
+		when: "I perform a GET /password_reset"
+			result = this.mockMvc.perform(get("/password_reset"))
+		then: "the status of the HTTP response should be Ok (200)"
+			result.andExpect(status().is(200))
+	}
+	
+	def "User requests to reset password"() {
+		given: "the context of the controller is setup"
+			this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build()
+			BCryptPasswordEncoder pe = new BCryptPasswordEncoder();
+			User u = new User();
+			u.setLogin("netnag.t@gmail.com")
+			u.setPassword("123123123Aa")
+			userRepo.save(u)
+		when: "I perform a POST /password_reset with email"
+			result = this.mockMvc.perform(post("/password_reset").param("email", "netnag.t@gmail.com"))
+		then: "the status of the HTTP response should be Ok (200)"
+			result.andExpect(status().is(200))
 	}
 
 }
