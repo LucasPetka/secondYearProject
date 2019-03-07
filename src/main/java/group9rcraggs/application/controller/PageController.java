@@ -161,6 +161,8 @@ public class PageController {
 			return "EmptyPageList";
 		} else {
 			model.addAttribute("pages", pages);	
+	    	//number of pages tracked in this website
+	    	model.addAttribute("page_count", pages.size());
 		}
 		return "PageList";
     }

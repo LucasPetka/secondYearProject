@@ -251,7 +251,7 @@
                       <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Pages tracking</div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800">
                       
-                       ${web_count}
+                       ${page_count}
                       
                       </div>
                     </div>
@@ -272,7 +272,7 @@
                       <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Websites</div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800">
                       
-                      ${page_count}
+                      ${web_count}
                       
                       </div>
                     </div>

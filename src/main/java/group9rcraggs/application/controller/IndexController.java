@@ -121,7 +121,7 @@ public class IndexController {
     	List<Page> pages = new ArrayList<>();
     	
     	for (Page p : pageRepo.findAll()) {
-    		if (p.getOwner().getId() == user.getId()){
+    		if (p.getOwner().getOwner().getId() == user.getId()){
 			pages.add(p);
     		}
     	}
