@@ -10,6 +10,8 @@
     <title>NetNag</title>
 
     <!-- Bootstrap core CSS -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 <link href="css/creative.min.css" rel="stylesheet">
 
@@ -21,7 +23,11 @@
 	
 <div class="container mx-auto log-reg">
 
-	<img class="mb-4" src="logo.png" alt="" width="72" height="72"><br>
+<div class="text-center">
+	<img class="mb-4 mx-auto" src="/img/logo.png" alt="" width="72" height="72"><br>
+</div>
+
+	<button type="button" class="btn btn-light mb-4 rounded "> <i class="fas fa-chevron-left"></i> </button>
 	
 	<div class="text-center"><b>Forgot Your Password?</b><br>
 	<p>
