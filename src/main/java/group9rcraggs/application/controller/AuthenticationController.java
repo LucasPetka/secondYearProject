@@ -23,10 +23,6 @@ import group9rcraggs.application.domain.VerificationToken;
 import group9rcraggs.application.repository.UserRepository;
 import group9rcraggs.application.repository.VerificationTokenRepository;
 
-import javax.mail.internet.MimeMessage;
-import org.springframework.mail.javamail.MimeMessageHelper;
-
-
 @Controller
 public class AuthenticationController {
 
@@ -89,7 +85,8 @@ public class AuthenticationController {
 			String token = UUID.randomUUID().toString();
 			VerificationToken verify = new VerificationToken(user, token);
 			
-			String emaill = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\r\n" + 
+			String emaill = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" "
+					+ "\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\r\n" + 
 					"<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n" + 
 					"  \r\n" + 
 					"  <head>\r\n" + 
@@ -98,9 +95,12 @@ public class AuthenticationController {
 					"    <title>Revue</title>\r\n" + 
 					"    <style type=\"text/css\">\r\n" + 
 					"      #outlook a {padding:0;}\r\n" + 
-					"      body{width:100% !important; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; margin:0; padding:0;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;} \r\n" + 
+					"      body{width:100% !important; -webkit-text-size-adjust:100%; "
+					+ "-ms-text-size-adjust:100%; margin:0; padding:0;-webkit-font-smoothing: antialiased;"
+					+ "-moz-osx-font-smoothing: grayscale;} \r\n" + 
 					"      .ExternalClass {width:100%;}\r\n" + 
-					"      .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div, .ExternalClass blockquote {line-height: 100%;}\r\n" + 
+					"      .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, "
+					+ ".ExternalClass td, .ExternalClass div, .ExternalClass blockquote {line-height: 100%;}\r\n" + 
 					"      .ExternalClass p, .ExternalClass blockquote {margin-bottom: 0; margin: 0;}\r\n" + 
 					"      #backgroundTable {margin:0; padding:0; width:100% !important; line-height: 100% !important;}\r\n" + 
 					"      \r\n" + 
@@ -113,7 +113,8 @@ public class AuthenticationController {
 					"      h1, h2, h3, h4, h5, h6 {color: black !important;}\r\n" + 
 					"      h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {color: black;}\r\n" + 
 					"      h1 a:active, h2 a:active,  h3 a:active, h4 a:active, h5 a:active, h6 a:active {color: black;}\r\n" + 
-					"      h1 a:visited, h2 a:visited,  h3 a:visited, h4 a:visited, h5 a:visited, h6 a:visited {color: black;}\r\n" + 
+					"      h1 a:visited, h2 a:visited,  h3 a:visited, h4 a:visited, h5 a:visited,"
+					+ " h6 a:visited {color: black;}\r\n" + 
 					"  \r\n" + 
 					"      table td {border-collapse: collapse;}\r\n" + 
 					"      table { border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; }\r\n" + 
@@ -211,31 +212,47 @@ public class AuthenticationController {
 					"    <![endif]-->\r\n" + 
 					"  </head>\r\n" + 
 					"  \r\n" + 
-					"  <body style=\"width:100% !important;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;margin-top:0;margin-bottom:0;margin-right:0;margin-left:0;padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;\">\r\n" + 
-					"    <table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" id=\"backgroundTable\" style=\"margin:0; padding:0; width:100% !important; line-height: 100% !important; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;\"\r\n" + 
+					"  <body style=\"width:100% !important;-webkit-text-size-adjust:100%;"
+					+ "-ms-text-size-adjust:100%;margin-top:0;margin-bottom:0;margin-right:0;"
+					+ "margin-left:0;padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;\">\r\n" + 
+					"    <table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" "
+					+ "id=\"backgroundTable\" style=\"margin:0; padding:0; width:100% !important; "
+					+ "line-height: 100% !important; border-collapse:collapse; mso-table-lspace:0pt; "
+					+ "mso-table-rspace:0pt;\"\r\n" + 
 					"    width=\"100%\">\r\n" + 
 					"      <tr>\r\n" + 
 					"        <td width=\"10\" valign=\"top\">&nbsp;</td>\r\n" + 
 					"        <td valign=\"top\" align=\"center\">\r\n" + 
 					"          <!--[if (gte mso 9)|(IE)]>\r\n" + 
-					"            <table width=\"600\" align=\"center\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"background-color: #FFF; border-collapse:collapse;mso-table-lspace:0pt;mso-table-rspace:0pt;\">\r\n" + 
+					"            <table width=\"600\" align=\"center\" cellpadding=\"0\" "
+					+ "cellspacing=\"0\" border=\"0\" style=\"background-color: #FFF; "
+					+ "border-collapse:collapse;mso-table-lspace:0pt;mso-table-rspace:0pt;\">\r\n" + 
 					"              <tr>\r\n" + 
 					"                <td>\r\n" + 
 					"                <![endif]-->\r\n" + 
-					"                <table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" align=\"center\" style=\"width: 100%; max-width: 600px; background-color: #FFF; border-collapse:collapse;mso-table-lspace:0pt;mso-table-rspace:0pt;\"\r\n" + 
+					"                <table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" "
+					+ "align=\"center\" style=\"width: 100%; max-width: 600px; background-color: #FFF;"
+					+ " border-collapse:collapse;mso-table-lspace:0pt;mso-table-rspace:0pt;\"\r\n" + 
 					"                id=\"contentTable\">\r\n" + 
 					"                  <tr>\r\n" + 
-					"                    <td width=\"600\" valign=\"top\" align=\"center\" style=\"border-collapse:collapse;\">\r\n" + 
-					"                      <table align='center' border='0' cellpadding='0' cellspacing='0' style='border: 1px solid #E0E4E8;'\r\n" + 
+					"                    <td width=\"600\" valign=\"top\" align=\"center\" "
+					+ "style=\"border-collapse:collapse;\">\r\n" + 
+					"                      <table align='center' border='0' cellpadding='0' "
+					+ "cellspacing='0' style='border: 1px solid #E0E4E8;'\r\n" + 
 					"                      width='100%'>\r\n" + 
 					"                        <tr>\r\n" + 
-					"                          <td align='left' style='padding: 56px 56px 28px 56px;' valign='top'>\r\n" + 
-					"                            <div style='font-family: \"lato\", \"Helvetica Neue\", Helvetica, Arial, sans-serif; line-height: 28px;font-size: 18px; color: #333;font-weight:bold;'>Hey there!</div>\r\n" + 
+					"                          <td align='left' style='padding: 56px 56px 28px 56px;' "
+					+ "valign='top'>\r\n" + 
+					"                            <div style='font-family: \"lato\", \"Helvetica Neue\","
+					+ " Helvetica, Arial, sans-serif; line-height: 28px;font-size: 18px; color: #333;"
+					+ "font-weight:bold;'>Hey there!</div>\r\n" + 
 					"                          </td>\r\n" + 
 					"                        </tr>\r\n" + 
 					"                        <tr>\r\n" + 
 					"                          <td align='left' style='padding: 0 56px 28px 56px;' valign='top'>\r\n" + 
-					"                            <div style='font-family: \"lato\", \"Helvetica Neue\", Helvetica, Arial, sans-serif; line-height: 28px;font-size: 18px; color: #333;'>Please click the following link to confirm that <strong>"+ user.getLogin() +"</strong> is\r\n" + 
+					"                            <div style='font-family: \"lato\", \"Helvetica Neue\", "
+					+ "Helvetica, Arial, sans-serif; line-height: 28px;font-size: 18px; color: #333;'>"
+					+ "Please click the following link to confirm that <strong>"+ user.getLogin() +"</strong> is\r\n" + 
 					"                              your email address where you will receive replies to your issues:</div>\r\n" + 
 					"                          </td>\r\n" + 
 					"                        </tr>\r\n" + 
@@ -243,14 +260,20 @@ public class AuthenticationController {
 					"                          <td align='left' style='padding: 0 56px;' valign='top'>\r\n" + 
 					"                            <div>\r\n" + 
 					"                              <!--[if mso]>\r\n" + 
-					"                                <v:roundrect xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:w=\"urn:schemas-microsoft-com:office:word\"\r\n" + 
+					"                                <v:roundrect xmlns:v=\"urn:schemas-microsoft-com:vml\" "
+					+ "xmlns:w=\"urn:schemas-microsoft-com:office:word\"\r\n" + 
 					"                                href=\"#\"\r\n" + 
-					"                                style=\"height:44px;v-text-anchor:middle;width:250px;\" arcsize=\"114%\" stroke=\"f\"\r\n" + 
+					"                                style=\"height:44px;v-text-anchor:middle;width:250px;\" "
+					+ "arcsize=\"114%\" stroke=\"f\"\r\n" + 
 					"                                fillcolor=\"#E15718\">\r\n" + 
 					"                                  <w:anchorlock/>\r\n" + 
 					"                                <![endif]-->\r\n" + 
-					"                                <a style=\"background-color:#E15718;border-radius:50px;color:#ffffff;display:inline-block;font-family: &#39;lato&#39;, &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif;font-size:18px;line-height:44px;text-align:center;text-decoration:none;width:250px;-webkit-text-size-adjust:none;\"\r\n" + 
-					"                                href='https://localhost:8090/registrationConfirm?token="+token+"'>Confirm reply address</a>\r\n" + 
+					"                                <a style=\"background-color:#E15718;border-radius:50px;"
+					+ "color:#ffffff;display:inline-block;font-family: &#39;lato&#39;, &#39;Helvetica Neue&#39;, "
+					+ "Helvetica, Arial, sans-serif;font-size:18px;line-height:44px;text-align:center;text-decoration:none;"
+					+ "width:250px;-webkit-text-size-adjust:none;\"\r\n" + 
+					"                                href='https://localhost:8090/registrationConfirm?token="+token+"'>"
+							+ "Confirm reply address</a>\r\n" + 
 					"                                <!--[if mso]>\r\n" + 
 					"                                </v:roundrect>\r\n" + 
 					"                              <![endif]-->\r\n" + 
@@ -264,7 +287,10 @@ public class AuthenticationController {
 					"                      <table align='center' border='0' cellpadding='0' cellspacing='0' width='100%'>\r\n" + 
 					"                        <tr>\r\n" + 
 					"                          <td align='center' style='padding: 30px 56px 28px 56px;' valign='middle'>\r\n" + 
-					"<span style='font-family: \"lato\", \"Helvetica Neue\", Helvetica, Arial, sans-serif; line-height: 28px;font-size: 16px; color: #A7ADB5; vertical-align: middle;'>If this email doesn't make any sense, please <a href=\"mailto:support@getrevue.co\">let us know</a>!</span>\r\n" + 
+					"<span style='font-family: \"lato\", \"Helvetica Neue\", Helvetica, Arial, sans-serif;"
+					+ " line-height: 28px;font-size: 16px; color: #A7ADB5; vertical-align: middle;'>If this"
+					+ " email doesn't make any sense, please <a href=\"mailto:support@getrevue.co\">let us know"
+					+ "</a>!</span>\r\n" + 
 					"\r\n" + 
 					"                          </td>\r\n" + 
 					"                        </tr>\r\n" + 
@@ -296,7 +322,7 @@ public class AuthenticationController {
 			
 			userRepo.save(user);
 			verificationRepo.save(verify);
-			emailService.sendEmail(user.getLogin(),emaill,"NetNag Email Verification");
+			emailService.sendEmail(user.getLogin(), emaill, "NetNag Email Verification");
 			model.addAttribute("register", true);
 			return "log_reg";
 		}else {
