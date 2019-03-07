@@ -100,7 +100,7 @@ public class Page {
 	}
 	
 	public String getUrlWithParent() {
-		return this.getOwner().getUrl() + '/' + this.getUrl();
+		return this.getOwner().getUrl() + this.getUrl();
 	}
 	
 	//Used to validate website Url + page Url

@@ -64,9 +64,9 @@ public class PageController {
 				BindingResult result, Model model, Principal principal) {
 	    	model.addAttribute("logfirstName", userRepo.findByLogin(principal.getName()).getFirstName());
 	    	Website website = webRepo.findById(id);
-
+	    	
 	    	 //Removes any excess '/' from end of URL
-	    	p.setUrl(removeSlashes(p.getUrl()));
+	    	p.setUrl(removeFrontSlashes(removeSlashes(p.getUrl())));
 	    	
 			if (result.hasErrors()) {
 				model.addAttribute("websiteId", id);
@@ -222,6 +222,14 @@ public class PageController {
         			s = s.substring(0, s.length()-1);
         		}
         	}
+        	return s;
+        	
+        }
+    //Removes any excess '/' from end of URL
+    private String removeFrontSlashes(String s) {	
+        		if(s.charAt(0)=='/') {
+        			s = s.substring(1, s.length());
+        		}
         	return s;
         	
         }
