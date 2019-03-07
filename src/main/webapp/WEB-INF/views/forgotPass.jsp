@@ -27,7 +27,7 @@
 	<img class="mb-4 mx-auto" src="/img/logo.png" alt="" width="72" height="72"><br>
 </div>
 
-	<button type="button" class="btn btn-light mb-4 rounded "> <i class="fas fa-chevron-left"></i> </button>
+	<a href="/login_register" class="btn btn-light mb-4 rounded "> <i class="fas fa-chevron-left"></i> </a>
 	
 	<div class="text-center"><b>Forgot Your Password?</b><br>
 	<p>
