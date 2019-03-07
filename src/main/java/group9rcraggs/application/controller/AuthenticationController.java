@@ -1,6 +1,9 @@
 package group9rcraggs.application.controller;
 
+import java.nio.charset.Charset;
 import java.security.Principal;
+import java.security.SecureRandom;
+import java.util.Random;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,12 +48,6 @@ public class AuthenticationController {
 			return "redirect:/websiteList";
 		}
 		return "log_reg";
-	}
-	
-	@RequestMapping("password_reset")
-	public String forgotPass(Model model, Principal principal) {
-		
-		return "forgotPass";
 	}
 
 	@RequestMapping(value = "/error-login", method = RequestMethod.GET)
@@ -117,6 +114,37 @@ public class AuthenticationController {
 	    user.setEnabled(true);
 	    userRepo.save(user); 
 	    return "log_reg"; 
+	}
+	
+	//Password reset controllers
+	@RequestMapping(value = "password_reset", method = RequestMethod.GET)
+	public String forgotPass(Model model, Principal principal) {
+		
+		return "forgotPass";
+	}
+	
+	@RequestMapping(value = "password_reset", method = RequestMethod.POST)
+	public String sendEmailForPass(Model model, @RequestParam(name = "email") String email) {
+		if(userRepo.existsByLogin(email)) {
+			BCryptPasswordEncoder pe = new  BCryptPasswordEncoder();
+		    final String ALPHABET = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-_";
+		    final SecureRandom RANDOM = new SecureRandom();
+	        StringBuilder sb = new StringBuilder();
+	        for (int i = 0; i < 8; ++i) {
+	            sb.append(ALPHABET.charAt(RANDOM.nextInt(ALPHABET.length())));
+	        }
+	        String newPass = sb.toString();
+		String emailMsg = "Your new password: "+newPass+" we advise changing it after you log in,"
+				+ " you can do it in your profile";
+		User user = userRepo.findByLogin(email);
+		user.setPassword(pe.encode(newPass));
+		userRepo.save(user);
+		emailService.sendEmail(email, emailMsg, "NetNag password reset");
+		model.addAttribute("resetEmailSent", true);
+		}else {
+		model.addAttribute("noEmailMatch", true);
+		}
+		return "forgotPass";
 	}
 
 }

@@ -33,6 +33,7 @@ public class EmailController {
 	@RequestMapping(value = "emailList")
     public String websiteListPage(Model model, Principal principal) {
     	model.addAttribute("logfirstName", userRepo.findByLogin(principal.getName()).getFirstName());
+    	model.addAttribute("websites", userRepo.findByLogin(principal.getName()).getWebsites());
     	User user = userRepo.findByLogin(principal.getName());
     	
     	List<Email> emails = new ArrayList<>();

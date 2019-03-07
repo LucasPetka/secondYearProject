@@ -29,17 +29,29 @@
 	</p>
 	</div>
 <br>
-			
+			<c:if test="${resetEmailSent == true}">
+	<div class="alert alert-success">
+		Password reset email sent, please check your inbox and follow the instructions.
+	</div>
+</c:if>
+<c:if test="${noEmailMatch == true}">
+	<div class="alert alert-danger">
+		We can't find this email address in our databases! 
+	</div>
+</c:if>
 			<div id="log">
-			<form class="form-signin">
-			  
-			  <h1 class="h3 mb-3 font-weight-normal">Reset password</h1>
+			<h1 class="h3 mb-3 font-weight-normal">Reset password</h1>
+			<form class="form-signin" method="post" >
+			
 			  <label for="l_inputEmail" class="sr-only">Email address</label>
-			  <input type="email" id="l_inputEmail" class="form-control mb-2" placeholder="Email address" required autofocus>
+			  <input name="email" type="email" id="l_inputEmail" class="form-control mb-2" placeholder="Email address" required autofocus>
 			  
+			  		<input type="hidden"                        
+			name="${_csrf.parameterName}"
+			value="${_csrf.token}"/>
 			  <button class="btn btn-lg btn-primary btn-block" type="submit">Reset Password</button>
-			  <p class="mt-5 mb-3 text-muted">&copy; NetNag 2019</p>
 			</form>
+			 <p class="mt-5 mb-3 text-muted">&copy; NetNag 2019</p>
 			</div>
 			
 	</div>
