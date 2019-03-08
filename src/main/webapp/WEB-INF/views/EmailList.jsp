@@ -346,13 +346,13 @@
 		              <!-- Illustrations -->
 		              <div class="card shadow mb-4">
 		                <div class="card-header py-3">
-		                  <h6 class="m-0 font-weight-bold text-primary">Instructions</h6>
+		                  <h6 class="m-0 font-weight-bold text-primary">Tips</h6>
 		                </div>
 		                <div class="card-body">
 		                  <div class="text-center">
 		                    <img class="img-fluid px-3 px-sm-4 mt-1 mb-4" style="width: 25rem;" src="img/undraw_posting_photo.svg" alt="">
 		                  </div>
-		                  <p>some text about using this system........</p>
+		                  <p>This is where you add email addresses to recieve alerts for when your page hasn't been updated</p>
 		                  
 		                </div>
 		              </div>

@@ -262,7 +262,7 @@
 		
 		<div id="row">
 			<div class="col-md-8 mb-3">
-				There are no E-mails added at this moment. Add E-mails to get notifications about your tracked Web pages.
+				You haven't added any Emails yet. Add one to recieve alerts about your tracked pages.
 			</div>
 		</div>
 		

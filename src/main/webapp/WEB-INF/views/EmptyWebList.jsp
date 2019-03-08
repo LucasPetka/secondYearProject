@@ -262,7 +262,7 @@
 		
 		<div id="row">
 			<div class="col-md-8 mb-3">
-				There are no tracking's at this moment. Add a website.
+				To get started add your first website!
 			</div>
 		</div>
 		
