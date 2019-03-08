@@ -126,7 +126,7 @@
     </div>
   </section>
 
-  <!-- Portfolio Section 
+  <!-- Portfolio Section -->
   <section id="portfolio">
     <div class="container-fluid p-0">
       <div class="row no-gutters">
@@ -135,10 +135,13 @@
             <img class="img-fluid" src="img/portfolio/thumbnails/1.jpg" alt="">
             <div class="portfolio-box-caption">
               <div class="project-category text-white-50">
-                Category
+                Tier 3
               </div>
               <div class="project-name">
-                Project Name
+                - 20 Pages<br>
+                - Checks every 4 weeks<br>
+                - 24/7 Support<br>
+                  £9.99 / Month
               </div>
             </div>
           </a>
@@ -148,10 +151,12 @@
             <img class="img-fluid" src="img/portfolio/thumbnails/2.jpg" alt="">
             <div class="portfolio-box-caption">
               <div class="project-category text-white-50">
-                Category
+                Tier 2
               </div>
               <div class="project-name">
-                Project Name
+                - 50 Pages<br>
+                - Checks every 2 or 4 weeks<br>
+                £19.99 / Month<br>
               </div>
             </div>
           </a>
@@ -161,61 +166,24 @@
             <img class="img-fluid" src="img/portfolio/thumbnails/3.jpg" alt="">
             <div class="portfolio-box-caption">
               <div class="project-category text-white-50">
-                Category
+                Tier 1
               </div>
               <div class="project-name">
-                Project Name
+                - 100 Pages<br>
+                - Checks every 1,2 or 4 weeks<br>
+                - Provides changes made to pages<br>
+                - 24/7 Support<br>
+                £29.99 / Month
               </div>
             </div>
           </a>
         </div>
-        <div class="col-lg-4 col-sm-6">
-          <a class="portfolio-box" href="img/portfolio/fullsize/4.jpg">
-            <img class="img-fluid" src="img/portfolio/thumbnails/4.jpg" alt="">
-            <div class="portfolio-box-caption">
-              <div class="project-category text-white-50">
-                Category
-              </div>
-              <div class="project-name">
-                Project Name
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-lg-4 col-sm-6">
-          <a class="portfolio-box" href="img/portfolio/fullsize/5.jpg">
-            <img class="img-fluid" src="img/portfolio/thumbnails/5.jpg" alt="">
-            <div class="portfolio-box-caption">
-              <div class="project-category text-white-50">
-                Category
-              </div>
-              <div class="project-name">
-                Project Name
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-lg-4 col-sm-6">
-          <a class="portfolio-box" href="img/portfolio/fullsize/6.jpg">
-            <img class="img-fluid" src="img/portfolio/thumbnails/6.jpg" alt="">
-            <div class="portfolio-box-caption p-3">
-              <div class="project-category text-white-50">
-                Category
-              </div>
-              <div class="project-name">
-                Project Name
-              </div>
-            </div>
-          </a>
-        </div>
-      </div>
-    </div>
   </section>
--->
+  
   <!-- Call to Action Section -->
   <section class="page-section bg-dark text-white">
     <div class="container text-center">
-      <h2 class="mb-4">Sign up today for free!</h2>
+      <h2 class="mb-4">Get started</h2>
       <a class="btn btn-light btn-xl" href="/login_register">Sign up!</a>
     </div>
   </section>
