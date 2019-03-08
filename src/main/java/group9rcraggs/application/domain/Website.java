@@ -6,9 +6,11 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -34,6 +36,9 @@ public class Website {
 	private boolean tracking;
 	private int activePages;
 	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "plan_id")
+	private Plan plan;
 
 	public Website() {
 		pages = new ArrayList<>();
@@ -71,6 +76,9 @@ public class Website {
 	public boolean getTracking() {
 		return this.tracking;
 	}
+	public Plan getPlan() {
+		return this.plan;
+	}
 	
 	///* Setters *///
 	
@@ -96,6 +104,10 @@ public class Website {
 		
 	public void setTracking(boolean tracking) {
 		this.tracking = tracking;
+	}
+	
+	public void setPlan(Plan plan) {
+		this.plan = plan;
 	}
 
 	public List<Page> getPages() {
