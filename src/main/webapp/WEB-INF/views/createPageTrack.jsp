@@ -33,11 +33,10 @@
    </tr>
    <tr>
    <td>
-    <form:select path="frequency" class="form-control" id="exampleFormControlSelect1">
+    <form:select path="email" class="form-control" id="exampleFormControlSelect1">
     <form:options items="${emails}"/>	 
-	
     </form:select>
-    <form:errors path="frequency"/>
+    <form:errors path="email"/>
 	<td>
 	</tr>
 	</table>

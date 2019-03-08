@@ -13,16 +13,20 @@ import javax.persistence.ManyToOne;
 
 @Entity(name="pages")
 public class Page {
+	
 	@Id
+	@Column(updatable=false)
 	@GeneratedValue(strategy = GenerationType.TABLE)
 	private int id;
 	
 	@ManyToOne(optional=false)
 	private Website owner;
 	
+	@Column(updatable=false)
+	private String url;
+	
 	@Column(nullable=false)
 	private String name;
-	private String url;
 	private String lastUpdated;
 	private String frequency;
 	private String fileName;

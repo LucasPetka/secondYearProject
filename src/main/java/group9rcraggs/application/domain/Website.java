@@ -17,6 +17,7 @@ import javax.persistence.OneToMany;
 @Entity(name="websites")
 public class Website {
 	@Id
+	@Column(updatable=false)
 	@GeneratedValue(strategy=GenerationType.TABLE)
 	private int id;
 	
@@ -33,9 +34,7 @@ public class Website {
 	private boolean tracking;
 	private int activePages;
 	
-//	@Autowired
-//	PageRepository pageRepo;
-	
+
 	public Website() {
 		pages = new ArrayList<>();
 		Page p = new Page();

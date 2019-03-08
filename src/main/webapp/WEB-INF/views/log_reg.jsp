@@ -75,7 +75,7 @@
 </c:if>
 <c:if test="${nomatch == true}">
 	<div class="alert alert-danger">
-		Passwords dont match
+		Passwords do not match
 		<script>		$(document).ready(function(){	$("#reg").slideDown(0);
 		$("#log").slideUp(0);});</script>
 	</div>
