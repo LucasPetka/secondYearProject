@@ -413,7 +413,7 @@
 								
 								<td>
 								<a class="btn main_b" href="/pageList?id=${website.id}" role="button"> Check pages </a> 
-						        <a class="btn btn-dark" href="/editWebsite?id=${website.id}" role="button"> <i class="fas fa-wrench"></i> </a>
+						        <a class="btn btn-dark" href="/editWebsite?id=${website.id}" role="button" data-toggle="modal" data-target="#editModal"> <i class="fas fa-wrench"></i> </a>
 								<a class="btn btn-danger" href="/deleteWebsite?id=${website.id}" role="button"> <i class="fas fa-trash-alt"></i> </a>
 								</td>
 							</tr>
@@ -508,6 +508,69 @@
       </div>
     </div>
   </div>
+  
+  <!-- Edit Modal-->
+  <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Edit Website</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        
+        
+        <div class="modal-body">
+        
+	        <form  method="POST" id="formId" modelAttribute="website" action="#">
+			<div class="form-group">
+			<label path="name" class="mt-2" for="formGroupExampleInput">Website Name</label>
+	        <input name="name" type="text" class="form-control" id="formGroupExampleInput" placeholder="Name"/>
+	        </div>
+	        
+	        <div class="form-group">
+			    <label for="exampleFormControlSelect1">Email Address to be Nagged</label>
+			    <select class="form-control" id="exampleFormControlSelect1">
+			      <option>john@john.com</option>
+			      <option>john@john.com</option>
+			      <option>john@john.com</option>
+			      <option>john@john.com</option>
+			    </select>
+			  </div>
+	             
+	        <input type="hidden"                        
+				name="${_csrf.parameterName}"
+				value="${_csrf.token}"/>
+		
+		<script>
+		//$(document).on("click", "#ids", function () {
+		//	var href = $(this).attr('href');
+		//	$('#formId').attr('action', href);
+		    // As pointed out in comments, 
+		     // it is superfluous to have to manually call the modal.
+		     // $('#addBookDialog').modal('show');
+		//});
+		</script>
+			
+			
+
+        </div>
+        
+        <div class="modal-footer">
+        
+        	<input type="submit" value="Update" name="add" class="btn btn-primary"/>
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+         
+          
+          </form>
+          
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  
 
   <!-- Bootstrap core JavaScript-->
   <script src="vendor-dash/jquery/jquery.min.js"></script>
