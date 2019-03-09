@@ -546,7 +546,7 @@
         
         <div class="modal-body">
         
-	        <form  method="POST" id="formId" modelAttribute="page" action="#">
+	        <form:form method="POST" modelAttribute="page" action="/editPageClicked?id=${page.id}&websiteid=${websiteId}">
 			<div class="form-group">
 			<label path="name" class="mt-2" for="formGroupExampleInput">Page Name</label>
 	        <input name="name" type="text" class="form-control" id="formGroupExampleInput" placeholder="Name"/>
@@ -554,12 +554,12 @@
 	        
 	        <div class="form-group">
 			    <label for="exampleFormControlSelect1">Email Address to be Nagged</label>
-			    <select class="form-control" id="exampleFormControlSelect1">
-			      <option>john@john.com</option>
-			      <option>john@john.com</option>
-			      <option>john@john.com</option>
-			      <option>john@john.com</option>
-			    </select>
+			    
+			    <form:select path="email" class="form-control" id="exampleFormControlSelect1">
+			      <form:options items="${emails}"/>
+			    </form:select>
+			    
+    			<errors path="email"/>
 			  </div>
 	             
 	        <input type="hidden"                        
@@ -586,7 +586,7 @@
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
          
           
-          </form>
+          </form:form>
           
           
         </div>

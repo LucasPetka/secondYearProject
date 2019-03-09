@@ -124,14 +124,30 @@ public class PageController {
     	model.addAttribute("logfirstName", userRepo.findByLogin(principal.getName()).getFirstName());
     	model.addAttribute("websiteId", id);
     	model.addAttribute("websites", userRepo.findByLogin(principal.getName()).getWebsites());
+    	
+    	//Gets current user who is logged in
+    	User user = userRepo.findByLogin(principal.getName());
+    	
+    	//Adds email list as model attribute for editing website 
+    	List<Email> emails= user.getEmails();
+    	List<String> emailName = new ArrayList<String>();
+    	//Converts email object list into list of email strings
+    	for(Email email : emails) {
+    		emailName.add(email.getAddress());
+    	}
+    	//Adds new page to website for testing
+    	//Think We need to pass list of pages and select which one from the view using js
+    	model.addAttribute("emails", emailName);
+    	Page p2 = new Page();
+    	model.addAttribute("page", p2);
+    	
     	//Get website from id
     	Website website = webRepo.findById(id);
     	//Here the website url is added to controller to display before the page name input
     	model.addAttribute("websiteUrl", website.getUrl());
     	//
     	model.addAttribute("websiteplan", website.getPlan().getName());
-    	//Gets current user who is logged in
-    	User user = userRepo.findByLogin(principal.getName());
+
     	
     	//Checks if website id belongs to list of current users websites
     	if(user.getWebsites().stream().filter(x -> x.getId() == id)

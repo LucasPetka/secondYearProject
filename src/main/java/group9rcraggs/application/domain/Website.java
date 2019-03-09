@@ -36,6 +36,9 @@ public class Website {
 	private boolean tracking;
 	private int activePages;
 	
+	@Column(nullable=true)
+	private String email;
+	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "plan_id")
 	private Plan plan;
@@ -76,9 +79,15 @@ public class Website {
 	public boolean getTracking() {
 		return this.tracking;
 	}
+	
+	public String getEmail() {
+		return this.email;
+	}
+	
 	public Plan getPlan() {
 		return this.plan;
 	}
+	
 	
 	///* Setters *///
 	
@@ -114,6 +123,9 @@ public class Website {
 		return this.pages;
 }
 	
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	
 	///* Other methods *///
 	

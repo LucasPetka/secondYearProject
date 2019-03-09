@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import group9rcraggs.application.Tracking;
+import group9rcraggs.application.domain.Email;
 import group9rcraggs.application.domain.Page;
 import group9rcraggs.application.domain.User;
 import group9rcraggs.application.domain.Website;
@@ -62,6 +63,8 @@ public class IndexController {
     @RequestMapping(value = "addWebsite", params = "add", method = RequestMethod.POST)
 	public String addNewWebsite(@Valid @ModelAttribute("website") Website w, BindingResult result, Model model, Principal principal) {
     	model.addAttribute("logfirstName", userRepo.findByLogin(principal.getName()).getFirstName());
+    	
+    	
 		if (result.hasErrors()) {
 			model.addAttribute("badlink", true);
 	    	User user = userRepo.findByLogin(principal.getName());
@@ -114,6 +117,17 @@ public class IndexController {
     	model.addAttribute("websites", userRepo.findByLogin(principal.getName()).getWebsites());
     	User user = userRepo.findByLogin(principal.getName());
     	
+    	//Adds email list as model attribute for editing website 
+    	List<Email> emails= user.getEmails();
+    	List<String> emailName = new ArrayList<String>();
+    	//Converts email object list into list of email strings
+    	for(Email email : emails) {
+    		emailName.add(email.getAddress());
+    	}
+    	Website w3 = new Website();
+    	model.addAttribute("emails", emailName);
+    	model.addAttribute("website", w3);
+    	
     	List<Website> websites = new ArrayList<>();
     	
     	
@@ -159,26 +173,27 @@ public class IndexController {
 		return "redirect:/websiteList";
 }
     
-    //Passes current website into model and will display the form to update website
-    @RequestMapping(value = "editWebsite", params = "id")
- public String editWebsite(@ModelAttribute("website") Website  website , @RequestParam("id") int id, Principal principal, 
-		 BindingResult result, Model model) {
-    	
-    	User user = userRepo.findByLogin(principal.getName());
-
-    	website = websiteRepo.findById(id);
-    	
-    	model.addAttribute("website", website);
-
-    	return "CreateWebTrack";
-    }
+//    //Passes current website into model and will display the form to update website
+//    @RequestMapping(value = "editWebsite", params = "id")
+// public String editWebsite(@ModelAttribute("website") Website  website , @RequestParam("id") int id, Principal principal, 
+//		 BindingResult result, Model model) {
+//    	
+//    	User user = userRepo.findByLogin(principal.getName());
+//
+//    	website = websiteRepo.findById(id);
+//    	
+//    	model.addAttribute("website", website);
+//
+//    	return "CreateWebTrack";
+//    }
     
     
     
     
     //temp until modal complete
-    @RequestMapping(value = "editWebsiteClicked", method = RequestMethod.POST)
-    public String editWebsiteClicked(@ModelAttribute("website") Website w, Principal principal, BindingResult result, Model model) {
+    @RequestMapping(value = "editWebsite", method = RequestMethod.POST)
+    public String editWebsiteClicked(@RequestParam("id") int id, @ModelAttribute("website") Website w, Principal principal, 
+    		BindingResult result, Model model) {
     	
     	//Errors need fixing
     	if (result.hasErrors()) {
@@ -194,25 +209,6 @@ public class IndexController {
     	return "redirect:/websiteList"; 
     }
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
