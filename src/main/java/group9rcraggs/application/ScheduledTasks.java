@@ -3,6 +3,7 @@ package group9rcraggs.application;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import group9rcraggs.application.domain.Notifications;
 import group9rcraggs.application.domain.Page;
 import group9rcraggs.application.domain.Website;
 
@@ -20,6 +22,8 @@ public class ScheduledTasks {
 	private group9rcraggs.application.repository.PageRepository pageRepo;
 	@Autowired 
 	private group9rcraggs.application.repository.WebsiteRepository webRepo;
+	@Autowired 
+	private group9rcraggs.application.repository.NotificationsRepository alertRepo;
 	
 	Tracking track = new Tracking();
 	
@@ -51,14 +55,42 @@ public class ScheduledTasks {
  		 ///* Checks if file other than ignored lines changes *///
          if(!track.compareFilesIgnoreLines("pageDB/"+track.linkToFileFormat(ww.getUrl())+"_0", 
         		 "pageDB/"+track.linkToFileFormat(ww.getUrl())+"_1", arr)) {
-         	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
-         	LocalDateTime now = LocalDateTime.now(); 
+         	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+         	LocalDateTime now = LocalDateTime.now();
+         	
+
+         	Notifications alert = new Notifications();
+         	alert.setPage(ww);
+         	alert.setTitle(ww.getName() + " was updated");
+         	alert.setText(ww.getName() + " was updated at: " + dtf.format(now));
+         	alert.setOwner(ww.getOwner().getOwner());
+         	
+         	
+         	
+         	alertRepo.save(alert);
+         	
+         	
+         	
          	///* Updates last updated time to current time *///
          	ww.setLastUpdated(dtf.format(now));
          	///* Saves to database *///
          	ww.setChecked(false);
          	pageRepo.save(ww);
          }
+         else {
+        	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+          	LocalDateTime now = LocalDateTime.now();
+       
+	        Notifications alert = new Notifications();
+	        alert.setPage(ww);
+	      	alert.setTitle(ww.getName() + " was not updated");
+	      	alert.setText(ww.getName() + " was checked at: " + dtf.format(now));
+	      	alert.setOwner(ww.getOwner().getOwner());
+	      	
+	      	alertRepo.save(alert);
+         }
+         
+         
          }
      	}
 }

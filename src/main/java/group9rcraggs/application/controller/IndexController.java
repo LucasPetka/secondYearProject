@@ -20,9 +20,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import group9rcraggs.application.Tracking;
 import group9rcraggs.application.domain.Email;
+import group9rcraggs.application.domain.Notifications;
 import group9rcraggs.application.domain.Page;
 import group9rcraggs.application.domain.User;
 import group9rcraggs.application.domain.Website;
+import group9rcraggs.application.repository.NotificationsRepository;
 import group9rcraggs.application.repository.PageRepository;
 import group9rcraggs.application.repository.PlanRepository;
 import group9rcraggs.application.repository.UserRepository;
@@ -44,6 +46,9 @@ public class IndexController {
 	
 	@Autowired
 	PlanRepository planRepo;
+	
+	@Autowired
+	NotificationsRepository alertRepo;
 	
 
 
@@ -145,6 +150,16 @@ public class IndexController {
     		}
     	}
     	
+    	
+    	List<Notifications> alerts = new ArrayList<>();
+    	
+    	for (Notifications n : alertRepo.findAll()) {
+    		if (n.getOwner().getId() == user.getId()){
+			alerts.add(n);
+    		}
+    	}
+    	
+    	
     	int count_page = pages.size();
     	model.addAttribute("page_count", count_page);
     	
@@ -157,6 +172,7 @@ public class IndexController {
 			return "EmptyWebList";
 		} else {
 			model.addAttribute("websites", websites);
+			model.addAttribute("alerts", alerts);
 		}
 		return "WebList";
     }
