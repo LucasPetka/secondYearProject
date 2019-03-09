@@ -23,6 +23,7 @@ import group9rcraggs.application.domain.Page;
 import group9rcraggs.application.domain.User;
 import group9rcraggs.application.domain.Website;
 import group9rcraggs.application.repository.PageRepository;
+import group9rcraggs.application.repository.PlanRepository;
 import group9rcraggs.application.repository.UserRepository;
 import group9rcraggs.application.repository.WebsiteRepository;
 
@@ -39,6 +40,9 @@ public class IndexController {
 	
 	@Autowired
 	PageRepository pageRepo;
+	
+	@Autowired
+	PlanRepository planRepo;
 	
 
 
@@ -94,6 +98,7 @@ public class IndexController {
 			}
 					w.setOwner(user);
 					w.setTracking(true);
+					w.setPlan(planRepo.findById(0));
 					user.addWebsite(w);
 			websiteRepo.save(w);
 			

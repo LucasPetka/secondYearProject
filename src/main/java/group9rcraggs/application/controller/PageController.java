@@ -41,6 +41,9 @@ public class PageController {
 	@Autowired
 	UserRepository userRepo;
 	
+	@Autowired
+	UserRepository planRepo;
+	
 	@InitBinder
 	protected void initBinder(WebDataBinder binder) {
 		binder.addValidators(new PageValidator());
@@ -121,9 +124,13 @@ public class PageController {
     	model.addAttribute("logfirstName", userRepo.findByLogin(principal.getName()).getFirstName());
     	model.addAttribute("websiteId", id);
     	model.addAttribute("websites", userRepo.findByLogin(principal.getName()).getWebsites());
+    	//Get website from id
+    	Website website = webRepo.findById(id);
     	//Here the website url is added to controller to display before the page name input
-    	model.addAttribute("websiteUrl", webRepo.findById(id).getUrl());
-    	//Gets current users Id who is logged in
+    	model.addAttribute("websiteUrl", website.getUrl());
+    	//
+    	model.addAttribute("websiteplan", website.getPlan().getName());
+    	//Gets current user who is logged in
     	User user = userRepo.findByLogin(principal.getName());
     	
     	//Checks if website id belongs to list of current users websites
@@ -150,8 +157,7 @@ public class PageController {
     	
 
     	List<Page> pages = new ArrayList<>();
-    	String websitename = webRepo.findById(id).getName();
-    	model.addAttribute("websitename", websitename);
+    	model.addAttribute("websitename", website.getName());
     	for (Page p : pageRepo.findAll()) {
     		if (p.getOwner().getId() == id){
 			pages.add(p);

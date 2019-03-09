@@ -8,8 +8,12 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import group9rcraggs.application.domain.Plan;
 import group9rcraggs.application.domain.Role;
 import group9rcraggs.application.domain.User;
+import group9rcraggs.application.repository.PlanRepository;
+import group9rcraggs.application.repository.RoleRepository;
+import group9rcraggs.application.repository.UserRepository;
 
 
 
@@ -24,10 +28,13 @@ public class Application implements CommandLineRunner  {
         
     }
 	@Autowired 
-	private group9rcraggs.application.repository.UserRepository userRepo;
+	UserRepository userRepo;
 	
 	@Autowired 
-	private group9rcraggs.application.repository.RoleRepository roleRepo;
+	RoleRepository roleRepo;
+	
+	@Autowired 
+	PlanRepository planRepo;
 	
 	@Override
 	public void run(String... args) throws Exception {
@@ -65,9 +72,40 @@ public class Application implements CommandLineRunner  {
 		///* Saves to database *///
 		userRepo.save(adminUse);
 
-		///* Create demo website for user for testing*///
+		///* Create plans for websites*///
 		
-
+		Plan planbasic = new Plan();
+		Plan plan1 = new Plan();
+		Plan plan2 = new Plan();
+		Plan plan3 = new Plan();
+		
+		planbasic.setId(0);
+		plan1.setId(1);
+		plan2.setId(2);
+		plan3.setId(3);
+		
+		planbasic.setName("Basic");
+		plan1.setName("Tier 1");
+		plan2.setName("Tier 2");
+		plan3.setName("Tier 3");
+		
+		planbasic.setNumPages(1);
+		plan1.setNumPages(20);
+		plan2.setNumPages(50);
+		plan3.setNumPages(100);
+		
+		planbasic.setPrice(0);
+		plan1.setPrice(9.99);
+		plan2.setPrice(19.99);
+		plan3.setPrice(29.99);
+		
+		planRepo.save(planbasic);
+		planRepo.save(plan1);
+		planRepo.save(plan2);
+		planRepo.save(plan3);
+		
+		
+		
 	
 
 		
