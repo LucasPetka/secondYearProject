@@ -501,21 +501,26 @@
         </div>      
         <div class="modal-body">
         
-	        <form:form  method="POST" modelAttribute="website" action="/editWebsite?id=${website.id}">
+	        <form:form  method="POST" modelAttribute="website">
 	        
 			<div class="form-group">
 			<label path="name" class="mt-2" for="formGroupExampleInput"></label>
-	        <input name="name" type="text" class="form-control" id="formGroupExampleInput" placeholder="Name"/>
+	        <input name="name" type="text" id="name2" class="form-control" placeholder="Name"/>
 	        </div>
 	        
 	        <div class="form-group">
 			    <label for="exampleFormControlSelect1">Email Address to be Nagged</label>
 			    
-			    <form:select path="email" class="form-control" id="exampleFormControlSelect1">
+			    <form:select path="email" class="form-control" id="email">
 			      <form:options items="${emails}"/>
 			    </form:select>
 			    
-			    
+			    <c:if test="${emailsToNotify}">
+			    Emails that will be notified:
+			    <c:forEach items="${emailsToNotify}" var="website">
+				${emailsToNotify}<br>
+				</c:forEach>
+			    </c:if>
 			    
 			  </div>
 	             
@@ -527,16 +532,28 @@
         
         <div class="modal-footer">
         
-        	<input type="submit" value="Update" name="add" class="btn btn-primary"/>
+        	<input type="submit" value="Update" id="testid" name="add" class="btn btn-primary"/>
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
          
           
           </form:form>
           
 		<script>
+		var page_ID = 0;
+		
 		$(document).on("click", "#ids", function () {
-			var page_ID = $(this).attr('data-id');
-				      
+			page_ID = $(this).attr('data-id');
+		});
+		$(document).on("click", "#testid", function () {
+			var name = document.getElementById("name2").value;
+			var email = document.getElementById("email").value;
+	       $.ajax({
+	            url : 'ajaxSendEditWebsite',
+	            data: {page_ID: page_ID, name: name, email: email},
+	            success : function(data) {
+	                console.log("sucess");
+	            }
+	        });
 		});
 		</script>
 		

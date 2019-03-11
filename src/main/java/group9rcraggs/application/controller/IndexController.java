@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import group9rcraggs.application.Tracking;
 import group9rcraggs.application.domain.Email;
@@ -24,6 +25,7 @@ import group9rcraggs.application.domain.Notifications;
 import group9rcraggs.application.domain.Page;
 import group9rcraggs.application.domain.User;
 import group9rcraggs.application.domain.Website;
+import group9rcraggs.application.repository.EmailRepository;
 import group9rcraggs.application.repository.NotificationsRepository;
 import group9rcraggs.application.repository.PageRepository;
 import group9rcraggs.application.repository.PlanRepository;
@@ -50,6 +52,8 @@ public class IndexController {
 	@Autowired
 	NotificationsRepository alertRepo;
 	
+	@Autowired
+	EmailRepository emailRepo;
 
 
 ///* Returns view Index *///
@@ -203,7 +207,16 @@ public class IndexController {
 //    	return "CreateWebTrack";
 //    }
     
-    
+
+    @RequestMapping(value = "ajaxSendEditWebsite", method = RequestMethod.GET)
+    public @ResponseBody
+    String ajaxEditWebsite(@RequestParam("page_ID") int id, @RequestParam("name") String name, @RequestParam("email") String email) {
+    	Website web = websiteRepo.findById(id);
+    	web.setName(name);
+    	web.setEmail(email);
+    	websiteRepo.save(web);
+        return null;
+    }
     
     
     //temp until modal complete
