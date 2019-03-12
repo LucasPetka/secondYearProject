@@ -90,6 +90,13 @@ Select whos alerted     User tries to add email address when none have been adde
 Select whos alerted	Email address is deleted after assigning it to a page 							Email is deleted from the page		      Pass
 Select whos alerted	No email is assigned to page										Sign in email is chosen as default	      Pass
 
+Alert page not updated  Page isn't updated after predetermined time								Email is sent to assigned address             Pass
+Alert page not updated  Page is updated and then isn't updated after predetermined time                                         Email is sent to assigned address             Pass
+Alert page not updated  Page is updated before it reaches predetermined time                                                    Email is not sent to assigned address         Pass
+Alert page not updated  Page is updated after email is sent                                                                     Time resets                                   Pass
+Alert page not updated  Page isn't updated after predetermined time and is left for 5 days                                      One Email is sent to assigned address         Fail (Email sent every 10 seconds)
+Alert page not updated  Page isn't updated after predetermined time and is left for 10 days                                     Two Email is sent to assigned address         Fail (Email sent every 10 seconds)
+
 
 
 
