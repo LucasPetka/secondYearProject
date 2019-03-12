@@ -41,7 +41,7 @@ public class Page {
 	
 	private String ownerUrl;
 	
-	public Page(String name, String url, String lastUpdated, String frequency, String fileName, String linesIgnored,long alertAfter) {
+	public Page(String name, String url, String lastUpdated, String frequency, String fileName, String linesIgnored, long alertAfter) {
 
 		
 		this.name=name;
