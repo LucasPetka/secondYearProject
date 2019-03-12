@@ -46,11 +46,11 @@
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
 
-      <!-- Nav Item - Dashboard -->
+      <!-- Nav Item - Profile -->
       <li class="nav-item">
-        <a class="nav-link" href="/websiteList">
+        <a class="nav-link" href="/profile">
           <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span></a>
+          <span>Profile</span></a>
       </li>
 
       <!-- Divider -->
@@ -194,26 +194,7 @@
           <!-- Content Row -->
           <div class="row">
 
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Pages tracking</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">
-                      
-                       ${web_count}
-                      
-                      </div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+
 
             <!-- Earnings (Monthly) Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
@@ -224,7 +205,7 @@
                       <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Websites</div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800">
                       
-                      ${page_count}
+                      ${web_count}
                       
                       </div>
                     </div>
@@ -236,7 +217,26 @@
               </div>
             </div>
 
-            
+                        <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Pages tracking</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">
+                      ${page_count}
+                       
+                      
+                      </div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
             <!-- Pending Requests Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
@@ -396,9 +396,7 @@
                   <h6 class="m-0 font-weight-bold text-primary">Tips</h6>
                 </div>
                 <div class="card-body">
-                  <div class="text-center">
-                    <img class="img-fluid px-3 px-sm-4 mt-1 mb-4" style="width: 25rem;" src="img/undraw_posting_photo.svg" alt="">
-                  </div>
+
                   <p>To view and add pages to be tracked click the check pages button. <br>
                   To change your website name you can click the edit icon next to your website. <br>
                   	 To delete your website from NetNag click the trash icon.</p>

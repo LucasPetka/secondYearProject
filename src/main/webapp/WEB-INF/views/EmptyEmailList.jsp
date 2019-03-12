@@ -46,13 +46,12 @@
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
 
-      <!-- Nav Item - Dashboard -->
+      <!-- Nav Item - Profile -->
       <li class="nav-item">
-        <a class="nav-link" href="/websiteList">
+        <a class="nav-link" href="/profile">
           <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span></a>
+          <span>Profile</span></a>
       </li>
-
       <!-- Divider -->
       <hr class="sidebar-divider">
 

@@ -46,13 +46,12 @@
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
 
-      <!-- Nav Item - Dashboard -->
-      <li class="nav-item active">
+      <!-- Nav Item - Profile -->
+      <li class="nav-item">
         <a class="nav-link" href="/profile">
           <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span></a>
+          <span>Profile</span></a>
       </li>
-
       <!-- Divider -->
       <hr class="sidebar-divider">
 
@@ -93,8 +92,7 @@
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Membership:</h6>
-            <a class="collapse-item" href="utilities-color.html">Buy Membership</a>
-            <a class="collapse-item" href="utilities-border.html">Create Debit</a>
+            <a class="collapse-item" href="/payment">Buy Membership</a>
           </div>
         </div>
       </li>
@@ -187,10 +185,28 @@
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">${logfirstName}'s Dashboard</h1>
+            <h1 class="h3 mb-0 text-gray-800">${logfirstName}'s Profile</h1>
            
           </div>
+          
+          
+		<div class="col-xl-8 col-lg-7">
+          <div class="card">
+           <div class="card-header">
+               <h4 class="card-title">Profile info</h4>
+           </div>
+           
+           <div class="card-body">
+           Membership type: ${membershiptype}
 
+          
+          
+		
+         </div>
+       </div>
+       </div>
+       <br>
+       
 		<div class="col-xl-8 col-lg-7">
           <div class="card">
            <div class="card-header">

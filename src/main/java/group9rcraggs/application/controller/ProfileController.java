@@ -40,13 +40,13 @@ public class ProfileController {
 ///* Returns view Index *///
 	@RequestMapping("profile")
 	public String profile_page(Model model, Principal principal) {
-
-		model.addAttribute("loglastName", userRepo.findByLogin(principal.getName()).getLastName());
-		model.addAttribute("loglogin", userRepo.findByLogin(principal.getName()).getLogin());
-		model.addAttribute("logfirstName", userRepo.findByLogin(principal.getName()).getFirstName());
-    	model.addAttribute("websites", userRepo.findByLogin(principal.getName()).getWebsites());
-    	model.addAttribute("tokens", userRepo.findByLogin(principal.getName()).getTokens());
-    	
+		User user = userRepo.findByLogin(principal.getName());
+		model.addAttribute("loglastName", user.getLastName());
+		model.addAttribute("loglogin", user.getLogin());
+		model.addAttribute("logfirstName", user.getFirstName());
+    	model.addAttribute("websites", user.getWebsites());
+    	model.addAttribute("tokens", user.getTokens());
+    	model.addAttribute("membershiptype", user.getTier());
 		return "Profile";
     }
 	
