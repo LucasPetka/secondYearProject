@@ -81,6 +81,15 @@ Reset password		Press reset password with "<script>alert(document.cookie);</scri
 Reset password          Press reset password with signed up user whilst it's logged in						Password is reset & email sent		      Pass
 Reset password		Press reset password with signed up user before the email is verified					Password is reset & email needs validation    Pass
 
+Select whos alerted	Add an email address "test"										Error is shown - Email address invalid	      Pass
+Select whos alerted     Add an email address "test@test.c.c.c."                                                                 Error is shown - Email address invalid        Pass
+Select whos alerted     Add an email address ""<script>alert(document.cookie);</script>"                                        Error is shown - Email address invalid-No XSS Pass
+Select whos alerted     Add an email address "<script>alert(document.cookie);</script>@gmail.com"                               Error is shown - Email address invalid-No XSS Pass
+Select whos alerted     Add a valid email e.g "test@test.com"									Email address is added to account	      Pass
+Select whos alerted     User tries to add email address when none have been added to account					No email address show - cannot add one	      Pass
+Select whos alerted	Email address is deleted after assigning it to a page 							Email is deleted from the page		      Pass
+Select whos alerted	No email is assigned to page										Sign in email is chosen as default	      Pass
+
 
 
 
