@@ -128,10 +128,10 @@ public class ScheduledTasks {
      void alertUser(Page p) {
     	
     	//gets user who owns page
-    	//String email = p.getEmail();
+    	String email = p.getEmail();
     	
     	
-    	emailService.sendEmail(p.getOwner().getOwner().getLogin(), "TEST", "SUB");
+    	emailService.sendEmail(p.getEmail(), "TEST", "SUB");
     }
     
 }

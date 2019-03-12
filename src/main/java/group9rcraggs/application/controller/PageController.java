@@ -95,6 +95,7 @@ public class PageController {
 				p.setLinesIgnored("[]");
 				p.setLastUpdated("Checking/Not Yet Tracked");
 				p.setTracking(true);
+				p.setEmail(website.getOwner().getLogin());
 				pageRepo.save(p);
 				
 				
