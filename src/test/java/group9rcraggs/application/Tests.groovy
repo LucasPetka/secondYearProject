@@ -4,6 +4,7 @@ import static org.junit.Assert.*
 
 import group9rcraggs.application.*;
 import group9rcraggs.application.domain.*;
+import group9rcraggs.application.repository.NotificationsRepository
 import group9rcraggs.application.repository.PageRepository;
 import group9rcraggs.application.repository.UserRepository;
 import group9rcraggs.application.repository.WebsiteRepository;
@@ -57,6 +58,10 @@ public class Tests extends Specification {
 	
 	@Autowired
 	PageRepository pageRepo;
+	
+	@Autowired
+	NotificationsRepository alertRepo;
+	
 	
 	@Autowired
 	private WebApplicationContext wac;
@@ -507,5 +512,77 @@ public class Tests extends Specification {
 		then: "the status of the HTTP response should be Ok (200)"
 			result.andExpect(status().is(200))
 	}
+	//=======================================================
+	//=========A user can reset their password=====END=======
+	//=======================================================
+	
+	def "Notifications gets added"() {
+		given: "the context of the controller is setup"
+			userRepo.deleteAll()
+			pageRepo.deleteAll()
+			websiteRepo.deleteAll()
+			alertRepo.deleteAll()
+			
+			Website o = new Website()
+			User u = new User();
+			u.setLogin("asd")
+			u.setPassword("asd")
+			userRepo.save(u)
+			o.setOwner(u)
+			websiteRepo.save(o)
+			Page t = new Page()
+			t.setName("123")
+			t.setOwner(o)
+			pageRepo.save(t)
+			Notifications n = new Notifications();
+			n.setTitle("Title11");
+			n.setText("Text11");
+			n.setOwner(u);
+			n.setPage(t);
+			
+			
+		when: "Notification added to database"
+			alertRepo.save(n);
+		then: "Notification is found by its name"
+			assertFalse(alertRepo.findByTitle("Title11").isEmpty())
+			
+	}
+	
+	
+	def "Notifications title null throws exception"() {
+		given: "the context of the controller is setup with empty title"
+			userRepo.deleteAll()
+			pageRepo.deleteAll()
+			websiteRepo.deleteAll()
+			alertRepo.deleteAll()
+			
+			Website o = new Website()
+			User u = new User();
+			u.setLogin("asd")
+			u.setPassword("asd")
+			userRepo.save(u)
+			o.setOwner(u)
+			websiteRepo.save(o)
+			Page t = new Page()
+			t.setName("123")
+			t.setOwner(o)
+			pageRepo.save(t)
+			Notifications n = new Notifications();
+			n.setTitle(null);
+			n.setText("Text11");
+			n.setOwner(u);
+			n.setPage(t);
+			
+			
+		when: "Notification added to database"
+			alertRepo.save(n);
+		then: "Throws Data Integrity Violation Exception"
+			thrown(DataIntegrityViolationException)
+	}
+	
+	
+	
+	
+	
 
 }
