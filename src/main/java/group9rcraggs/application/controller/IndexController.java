@@ -102,6 +102,7 @@ public class IndexController {
 				p.setTracking(true);
 				p.setFrequency("0");
 				p.setEmail(user.getLogin());
+				p.setAlertAfter(3);
 				break;
 			}
 					w.setOwner(user);
