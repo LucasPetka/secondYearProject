@@ -12,4 +12,5 @@ public interface PageRepository extends CrudRepository<Page, Integer> {
 	List<Page> findByOwner(int id);
 	List<Page> findByName(String name);
 	List<Page> findByFrequency(String frequency);
+	List<Page> findByOwnerUrl(String ownerUrl);
 }

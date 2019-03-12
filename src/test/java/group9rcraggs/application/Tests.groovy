@@ -621,5 +621,35 @@ public class Tests extends Specification {
 	//=======================================================
 	
 	
+	//=======================================================
+	//===============Who gets alert about update=============
+	//=======================================================
+	def "A user can set who is alerted wehn page gets updated" () {
+		given: "User, website and page created with page name"
+			userRepo.deleteAll()
+			pageRepo.deleteAll()
+			websiteRepo.deleteAll()
+			Website o = new Website()
+			User u = new User();
+			u.setLogin("asd")
+			u.setPassword("asd")
+			userRepo.save(u)
+			o.setOwner(u)
+			websiteRepo.save(o)
+			Page t = new Page()
+			t.setName("123")
+			t.setOwner(o)
+			t.setOwnerUrl("john@test.com");
+			
+			
+		when: "Page is added to database"
+			pageRepo.save(t)
+		then: "Page is found by its Owner URL"
+			assertFalse(pageRepo.findByOwnerUrl("john@test.com").isEmpty())
+	}
+	//=======================================================
+	//===============Who gets alert about update=======END===
+	//=======================================================
+	
 
 }
