@@ -31,6 +31,7 @@ public class Page {
 	private String frequency;
 	private String fileName;
 	private long alertAfter;
+	private boolean warning;
 	private boolean tracking;
 	@Column(length=1000)
 	private String linesIgnored;
@@ -41,7 +42,8 @@ public class Page {
 	
 	private String ownerUrl;
 	
-	public Page(String name, String url, String lastUpdated, String frequency, String fileName, String linesIgnored, long alertAfter) {
+	public Page(String name, String url, String lastUpdated, String frequency, String fileName, String linesIgnored, long alertAfter,
+			boolean warning) {
 
 		
 		this.name=name;
@@ -52,6 +54,7 @@ public class Page {
 		this.linesIgnored=linesIgnored;
     	this.tracking = false;
     	this.alertAfter = alertAfter;
+    	this.warning = warning;
 
     	
 	}
@@ -119,6 +122,10 @@ public class Page {
 		return this.alertAfter;
 	}
 	
+	public boolean getWarning() {
+		return this.warning;
+	}
+	
 	
 	///* Setters *///
 	
@@ -166,6 +173,10 @@ public class Page {
 	
 	public void setAlertAfter(long alertAfter) {
 		this.alertAfter = alertAfter;
+	}
+	
+	public void setWarning(boolean warning) {
+		this.warning = warning;
 	}
 	
 	//Used to validate website Url + page Url 
