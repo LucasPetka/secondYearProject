@@ -72,3 +72,50 @@ Change password         Press update password with correct old password and new 
 Change password         Press update password with correct old password and new passwords "Password"                            Error is shown - Password not changed         Pass
 Change password         Press update password with correct old password and new passwords "Password1"                           Password is changed and page refreshed        Pass
 Change password         Press update password with correct old password and new passwords match criteria and 100000 digits long Error is shown - Password not changed         (FIXED) Fail (Password is changed)
+
+Reset password		Press reset password with "test" as email address							Error is shown - Password not reset	      Pass
+Reset password          Press reset password with "test@test..c.c.c" as email address						Error is shown - Password not reset           Pass
+Reset password          Press reset password with "test@test.com" as email address (Non signed up user)				Error is shown - Password not reset           Pass
+Reset password          Press reset password with signed up email address as email address					Password is reset & email sent		      Pass
+Reset password		Press reset password with "<script>alert(document.cookie);</script>" as email address			Error is shown - No XSS			      Pass
+Reset password          Press reset password with signed up user whilst it's logged in						Password is reset & email sent		      Pass
+Reset password		Press reset password with signed up user before the email is verified					Password is reset & email needs validation    Pass
+
+Select whos alerted	Add an email address "test"										Error is shown - Email address invalid	      Pass
+Select whos alerted     Add an email address "test@test.c.c.c."                                                                 Error is shown - Email address invalid        Pass
+Select whos alerted     Add an email address ""<script>alert(document.cookie);</script>"                                        Error is shown - Email address invalid-No XSS Pass
+Select whos alerted     Add an email address "<script>alert(document.cookie);</script>@gmail.com"                               Error is shown - Email address invalid-No XSS Pass
+Select whos alerted     Add a valid email e.g "test@test.com"									Email address is added to account	      Pass
+Select whos alerted     User tries to add email address when none have been added to account					No email address show - cannot add one	      Pass
+Select whos alerted	Email address is deleted after assigning it to a page 							Email is deleted from the page		      Pass
+Select whos alerted	No email is assigned to page										Sign in email is chosen as default	      Pass
+
+Alert page not updated  Page isn't updated after predetermined time								Email is sent to assigned address             Pass
+Alert page not updated  Page is updated and then isn't updated after predetermined time                                         Email is sent to assigned address             Pass
+Alert page not updated  Page is updated before it reaches predetermined time                                                    Email is not sent to assigned address         Pass
+Alert page not updated  Page is updated after email is sent                                                                     Time resets                                   Pass
+Alert page not updated  Page isn't updated after predetermined time and is left for 5 days                                      One Email is sent to assigned address         Fail (Email sent every 10 seconds)
+Alert page not updated  Page isn't updated after predetermined time and is left for 10 days                                     Two Email is sent to assigned address         Fail (Email sent every 10 seconds)
+
+
+Alert page updated	Tracked page is updated											Email is sent to assigned address	      Pass
+Alert page updated      Tracked page is updated in a different country                                                          Email is sent to assigned address             Pass
+Alert page updated      Tracked page is updated in incognito browser                                                            Email is sent to assigned address             Pass
+Alert page updated      Tracked page is updated and user logs out                                                               Email is sent to assigned address             Pass
+
+
+Use many devices	System is accessed from android phone using wifi							System is compatible 			      Pass
+Use many devices        System is accessed from android phone on incognito browser                                             System is accessible                          Pass
+Use many devices        System is accessed from android phone using 4G                                                          System is accessible                          Pass 
+Use many devices	System is accessed from iPhone using wifi          							System is compatible			      Pass
+Use many devices	System is accessed from iPhone on incognito browser							System is accessible 			      Pass
+Use many devices        System is accessed from iPhone using 4G                                                                 System is accessible                          Pass
+Use many devices        System is accessed from iPad                                   		                                System is accessible                          Pass
+Use many devices        System is accessed from android tablet                                                                  System is accessible                          Pass
+
+
+
+
+
+
+

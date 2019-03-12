@@ -103,6 +103,7 @@ public class IndexController {
 				p.setFrequency("0");
 				p.setEmail(user.getLogin());
 				p.setAlertAfter(3);
+				p.setWarning(false);
 				break;
 			}
 					w.setOwner(user);
