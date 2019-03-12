@@ -418,7 +418,7 @@
 					
 					<td>
 					<a class="btn main_b" href="/view_changes?id=${page.id}" role="button"> Check changes </a> 
-					<a class="btn btn-dark" href="/editPage?id=${page.id}&websiteid=${websiteId}" role="button" data-toggle="modal" data-target="#editModal"> <i class="fas fa-wrench"></i> </a>
+					<a class="btn btn-dark" id = "ids" data-id="${page.id}" href="/editPage?id=${page.id}&websiteid=${websiteId}" role="button" data-toggle="modal" data-target="#editModal"> <i class="fas fa-wrench"></i> </a>
 					<a class="btn btn-danger" href="/removePage?id=${page.id}&websiteid=${websiteId}" role="button"> <i class="fas fa-trash-alt"></i> </a>
 					</td>
 				</tr>
@@ -529,35 +529,33 @@
         
         <div class="modal-body">
         
-	        <form:form method="POST" modelAttribute="page" action="/editPageClicked?id=${page.id}&websiteid=${websiteId}">
+	        <form:form method="POST" modelAttribute="page">
 			<div class="form-group">
 			<label path="name" class="mt-2" for="formGroupExampleInput">Page Name</label>
-	        <input name="name" type="text" class="form-control" id="formGroupExampleInput" placeholder="Name"/>
+	        <input name="name" type="text" class="form-control" id="name2" placeholder="Name"/>
 	        </div>
 	        
 	        <div class="form-group">
 			    <label for="exampleFormControlSelect1">Email Address to be Nagged</label>
 			    
-			    <form:select path="email" class="form-control" id="exampleFormControlSelect1">
+			    <form:select path="email" class="form-control" id="email">
 			      <form:options items="${emails}"/>
 			    </form:select>
 			    
-    			<errors path="email"/>
+			    
+			   		    <c:if test="${emailsToNotify}">
+			    Emails that will be notified:
+			    <c:forEach items="${emailsToNotify}" var="page">
+				${emailsToNotify}<br>
+				</c:forEach>
+			    </c:if>
+			    
 			  </div>
 	             
 	        <input type="hidden"                        
 				name="${_csrf.parameterName}"
 				value="${_csrf.token}"/>
-		
-		<script>
-		//$(document).on("click", "#ids", function () {
-		//	var href = $(this).attr('href');
-		//	$('#formId').attr('action', href);
-		    // As pointed out in comments, 
-		     // it is superfluous to have to manually call the modal.
-		     // $('#addBookDialog').modal('show');
-		//});
-		</script>
+	
 			
 			
 
@@ -565,11 +563,30 @@
         
         <div class="modal-footer">
         
-        	<input type="submit" value="Update" name="add" class="btn btn-primary"/>
+        	<input type="submit" value="Update" id="testid" name="add" class="btn btn-primary"/>
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
          
           
           </form:form>
+          
+          <script>
+		var page_ID = 0;
+		
+		$(document).on("click", "#ids", function () {
+			page_ID = $(this).attr('data-id');
+		});
+		$(document).on("click", "#testid", function () {
+			var name = document.getElementById("name2").value;
+			var email = document.getElementById("email").value;
+	       $.ajax({
+	            url : 'ajaxSendEditPage',
+	            data: {page_ID: page_ID, name: name, email: email},
+	            success : function(data) {
+	                console.log("sucess");
+	            }
+	        });
+		});
+		</script>
           
           
         </div>

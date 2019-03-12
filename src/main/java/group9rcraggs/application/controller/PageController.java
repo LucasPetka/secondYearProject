@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import group9rcraggs.application.Tracking;
 import group9rcraggs.application.domain.Email;
@@ -202,47 +202,53 @@ public class PageController {
 		return "PageList";
     }
    
-
-    
-    
-    //Passes current website into model and will display the form to update website
-    @RequestMapping(value = "editPage", params = "id")
- public String editWebsite(@ModelAttribute("page") Page  page , @RequestParam("id") int id, @RequestParam(name="websiteid") int websiteid , 
-		 Principal principal, BindingResult result, Model model) {
-    	
-    	User user = userRepo.findByLogin(principal.getName());
-    	List<Email> emails= user.getEmails();
-    	List<String> emailName = new ArrayList<String>();
-    	//Converts email object list into list of email strings
-    	for(Email email : emails) {
-    		emailName.add(email.getAddress());
-    	}
-
-    	page = pageRepo.findById(id);
-    	model.addAttribute("websiteId", websiteid);
-    	model.addAttribute("page", page);
-    	model.addAttribute("emails", emailName);
-
-    	return "createPageTrack";
+    @RequestMapping(value = "ajaxSendEditPage", method = RequestMethod.GET)
+    public @ResponseBody
+    String ajaxEditPage(@RequestParam("page_ID") int id, @RequestParam("name") String name, @RequestParam("email") String email) {
+    	Page page = pageRepo.findById(id);
+    	page.setName(name);
+    	page.setEmail(email);
+    	pageRepo.save(page);
+        return null;
     }
+    
+    
+//    //Passes current website into model and will display the form to update website
+//    @RequestMapping(value = "editPage", params = "id")
+// public String editWebsite(@ModelAttribute("page") Page  page , @RequestParam("id") int id, @RequestParam(name="websiteid") int websiteid , 
+//		 Principal principal, BindingResult result, Model model) {
+//    	
+//    	User user = userRepo.findByLogin(principal.getName());
+//    	List<Email> emails= user.getEmails();
+//    	List<String> emailName = new ArrayList<String>();
+//    	//Converts email object list into list of email strings
+//    	for(Email email : emails) {
+//    		emailName.add(email.getAddress());
+//    	}
+//
+//    	model.addAttribute("websiteId", websiteid);
+//    	model.addAttribute("page", page);
+//    	model.addAttribute("emails", emailName);
+//
+//    	return "createPageTrack";
+//    }
     
     
     
     
     //temp until modal complete
-    @RequestMapping(value = "editPageClicked", method = RequestMethod.POST)
-    public String editWebsiteClicked(@ModelAttribute("page") Page p, Principal principal, BindingResult result, Model model
-    		, @RequestParam(name="id") int id, @RequestParam(name="websiteid") int websiteid) {
+    @RequestMapping(value = "editPage", method = RequestMethod.POST)
+    public String editWebsiteClicked(@ModelAttribute("page") Page p, Principal principal, BindingResult result, Model model) {
+    	
     	//Errors need fixing
     	if (result.hasErrors()) {
     		return "createPageTrack";
     	}
     	else {
-    	Website website = webRepo.findById(websiteid);
-		p.setOwner(website);
+		//p.setOwner(website);
     	pageRepo.save(p);
 
-    	return "redirect:/pageList?id="+websiteid;
+    	return "redirect:/"; 
     }
     }
     

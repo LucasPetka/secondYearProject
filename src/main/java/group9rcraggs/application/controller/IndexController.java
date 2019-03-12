@@ -221,7 +221,7 @@ public class IndexController {
     
     //temp until modal complete
     @RequestMapping(value = "editWebsite", method = RequestMethod.POST)
-    public String editWebsiteClicked(@RequestParam("id") int id, @ModelAttribute("website") Website w, Principal principal, 
+    public String editWebsiteClicked(@ModelAttribute("website") Website w, Principal principal, 
     		BindingResult result, Model model) {
     	
     	//Errors need fixing
@@ -229,13 +229,10 @@ public class IndexController {
     		return "CreateWebTrack";
     	}
     	else {
-    	User user = userRepo.findByLogin(principal.getName());
-    	
-		w.setOwner(user);
-		w.setTracking(true);
+    		
     	websiteRepo.save(w);
 
-    	return "redirect:/websiteList"; 
+    	return "redirect:/"; 
     }
     }
     
