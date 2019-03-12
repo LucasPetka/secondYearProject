@@ -35,9 +35,6 @@
 			});	
 		});
 	</script>
-	<center>
-	<h1>NetNag</h1>
-	</center>
 <div class="container mx-auto log-reg">
 
 <p>

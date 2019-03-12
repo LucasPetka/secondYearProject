@@ -45,6 +45,9 @@
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#services">Services</a>
           </li>
+                    <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#pricing">Pricing</a>
+          </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
           </li>
@@ -127,73 +130,74 @@
   </section>
 
   <!-- Portfolio Section -->
-  <section id="portfolio">
-    <div class="container-fluid p-0">
-      <div class="row no-gutters">
-        <div class="col-lg-4 col-sm-6">
-          <a class="portfolio-box" href="img/portfolio/fullsize/1.jpg">
-            <img class="img-fluid" src="img/portfolio/thumbnails/1.jpg" alt="">
-            <div class="portfolio-box-caption">
-              <div class="project-category text-white-50">
-                Tier 3
-              </div>
-              <div class="project-name">
-                - 20 Pages<br>
-                - Checks for updates every 24 hours<br>
-                - Alerted every 3, 6, 9 or 12 months<br>
-                - Alerted when page needs updating<br>
-                - 24/7 Support<br>
-                - £9.99 / Month
-              </div>
-            </div>
-          </a>
+  <section id="pricing">
+
+        <div class="container">
+          <div class="col-lg-12 text-center">
+   <h2 class="mb-4">Pricing plans</h2>
+         <hr class="divider my-4">
+   </div>
+      <div class="card-deck mb-3 text-center">
+      
+        <div class="card mb-4 box-shadow">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Tier 1</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">£9.99 <small class="text-muted">/ mo</small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+                <li> 20 Pages</li>
+                 <li> Checks for updates every 24 hours</li>
+                 <li> Alerted every 3, 6, 9 or 12 months</li>
+                 <li> Alerted when page needs updating</li>
+                 <li> 24/7 Support</li>
+                 <li> £9.99 / Month</li><br><br>
+            </ul>
+            
+          </div>
         </div>
-        <div class="col-lg-4 col-sm-6">
-          <a class="portfolio-box" href="img/portfolio/fullsize/2.jpg">
-            <img class="img-fluid" src="img/portfolio/thumbnails/2.jpg" alt="">
-            <div class="portfolio-box-caption">
-              <div class="project-category text-white-50">
-                Tier 2
-              </div>
-              <div class="project-name">
-                - 50 Pages<br>
-                - Checks for updates every 6 hours<br>
-                - Alerted every 1 to 12 months<br>
-                - Alerted when page is updated and needs updating<br>
-                - 24/7 Support<br>
-                - £19.99 / Month<br>
-              </div>
-            </div>
-          </a>
+        <div class="card mb-4 box-shadow">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Tier 2</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">£19.99 <small class="text-muted">/ mo</small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+                <li> 50 Pages</li>
+                <li> Checks for updates every 6 hours</li>
+                <li> Alerted every 1 to 12 months</li>
+                <li> Alerted when page is updated and needs updating</li>
+                <li> 24/7 Support</li>
+                <li> £19.99 / Month</li><br>
+            </ul>
+           
+          </div>
         </div>
-        <div class="col-lg-4 col-sm-6">
-          <a class="portfolio-box" href="img/portfolio/fullsize/3.jpg">
-            <img class="img-fluid" src="img/portfolio/thumbnails/3.jpg" alt="">
-            <div class="portfolio-box-caption">
-              <div class="project-category text-white-50">
-                Tier 1
-              </div>
-              <div class="project-name">
-                - 100 Pages<br>
-                - Checks for updates every hour<br>
-                - Alerted every week to 12 months<br>
-                - Alerted when page is updated and needs updating<br>
-                - Provides changes made to pages<br>
-                - 24/7 Support<br>
-                - £29.99 / Month
-              </div>
-            </div>
-          </a>
+        <div class="card mb-4 box-shadow">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Tier 3</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">£29.99 <small class="text-muted">/ mo</small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+                <li> 100 Pages</li>
+                <li> Checks for updates every hour</li>
+                <li> Alerted every week to 12 months</li>
+                <li> Alerted when page is updated and needs updating</li>
+                <li> Provides changes made to pages</li>
+                <li> 24/7 Support</li>
+                <li> £29.99 / Month</li>
+            </ul>
+            
+          </div>
         </div>
+ 
+      </div>
+             <div class="col-lg-12 text-center">
+          <a class="btn btn-primary btn-xl btn-xl" href="/login_register">Sign up!</a>
+          </div>
   </section>
   
-  <!-- Call to Action Section -->
-  <section class="page-section bg-dark text-white">
-    <div class="container text-center">
-      <h2 class="mb-4">Get started</h2>
-      <a class="btn btn-light btn-xl" href="/login_register">Sign up!</a>
-    </div>
-  </section>
 
   <!-- Contact Section -->
   <section class="page-section" id="contact">

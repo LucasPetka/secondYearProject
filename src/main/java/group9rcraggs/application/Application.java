@@ -59,7 +59,7 @@ public class Application implements CommandLineRunner  {
 		adminUser.setRole(adminr);
 		adminUser.setfirstName("John");
 		adminUser.setLastName("Balden");
-		adminUser.setLogin("admin@gmail.com");
+		adminUser.setLogin("netnag.t@gmail.com");
 		adminUser.setPassword(pe.encode("password"));
 		adminUser.setEnabled(true);
 		///* Saves to database *///
