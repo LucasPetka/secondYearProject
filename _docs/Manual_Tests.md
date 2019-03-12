@@ -72,3 +72,20 @@ Change password         Press update password with correct old password and new 
 Change password         Press update password with correct old password and new passwords "Password"                            Error is shown - Password not changed         Pass
 Change password         Press update password with correct old password and new passwords "Password1"                           Password is changed and page refreshed        Pass
 Change password         Press update password with correct old password and new passwords match criteria and 100000 digits long Error is shown - Password not changed         (FIXED) Fail (Password is changed)
+
+Reset password		Press reset password with "test" as email address							Error is shown - Password not reset	      Pass
+Reset password          Press reset password with "test@test..c.c.c" as email address						Error is shown - Password not reset           Pass
+Reset password          Press reset password with "test@test.com" as email address (Non signed up user)				Error is shown - Password not reset           Pass
+Reset password          Press reset password with signed up email address as email address					Password is reset & email sent		      Pass
+Reset password		Press reset password with "<script>alert(document.cookie);</script>" as email address			Error is shown - No XSS			      Pass
+Reset password          Press reset password with signed up user whilst it's logged in						Password is reset & email sent		      Pass
+Reset password		Press reset password with signed up user before the email is verified					Password is reset & email needs validation    Pass
+
+
+
+
+
+
+
+
+
