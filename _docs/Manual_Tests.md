@@ -98,6 +98,14 @@ Alert page not updated  Page isn't updated after predetermined time and is left 
 Alert page not updated  Page isn't updated after predetermined time and is left for 10 days                                     Two Email is sent to assigned address         Fail (Email sent every 10 seconds)
 
 
+Alert page updated	Tracked page is updated											Email is sent to assigned address	      Pass
+Alert page updated      Tracked page is updated in a different country                                                          Email is sent to assigned address             Pass
+Alert page updated      Tracked page is updated in incognito browser                                                            Email is sent to assigned address             Pass
+Alert page updated      Tracked page is updated and user logs out                                                               Email is sent to assigned address             Pass
+
+
+
+
 
 
 
