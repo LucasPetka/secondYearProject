@@ -2,9 +2,11 @@ package group9rcraggs.application;
 
 
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,14 +36,18 @@ public class ScheduledTasks {
     @Scheduled(fixedDelay = 10000)
     public void scanForChanges() {
     	
-    	///* Downloads source code to file *///
+
+    	
+    	
     	List<Page> pages = (List<Page>) pageRepo.findAll();
     	pages.parallelStream().forEach((ww) -> {
-     //	for (Page ww : pageRepo.findAll()) {
+    		
     		String ignore="";
      		if(ww.getChecked() == false) {
              	scanIfNotChecked(ww);
      		}
+     		
+        	///* Downloads source code to file to compare to original*///
      		if(ww.getChecked() == true && ww.getTracking() == true) {
      		track.sourceCodeToFile(ww.getUrl(), track.linkToFileFormat(ww.getUrl())+"_1");
             ignore = ww.getLinesIgnored();
@@ -52,18 +58,22 @@ public class ScheduledTasks {
  		    String[] integerStrings = ignore.split(", "); 
  		    int[] integers = new int[integerStrings.length]; 
  		    
- 		    
+ 		    try {
  		    for (int i = 0; i < integers.length; i++){
- 		    	try { arr.add(Integer.parseInt(integerStrings[i]));  } catch (Exception nfe) { }
-
+ 		     arr.add(Integer.parseInt(integerStrings[i]));  
  		        
  		    }
-     		
+ 		    }
+ 		    catch(Exception e) {
+ 		    	
+ 		    }
+ 		   DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+ 		   SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+ 		  LocalDateTime now = LocalDateTime.now();
  		 ///* Checks if file other than ignored lines changes *///
          if(!track.compareFilesIgnoreLines("pageDB/"+track.linkToFileFormat(ww.getUrl())+"_0", 
         		 "pageDB/"+track.linkToFileFormat(ww.getUrl())+"_1", arr)) {
-         	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-         	LocalDateTime now = LocalDateTime.now();
+        	
          	
          	
         	//Emails user that page changed
@@ -71,11 +81,18 @@ public class ScheduledTasks {
 
          	
          	///* Updates last updated time to current time *///
-         	ww.setLastUpdated(dtf.format(now));
+         	ww.setLastUpdated(dtf.format(now).toString());
          	///* Saves to database *///
          	ww.setChecked(false);
          	pageRepo.save(ww);
          	scanIfNotChecked(ww);
+         }
+         //Checks if it's time to nag user
+         else {
+        	 if(!ww.getLastUpdated().equals("Not Yet Tracked/Changed")) {
+        	 checkElapsedTime(ww, ww.getLastUpdated(), 
+        			 dtf.format(now));
+        	 }
          }
          
          
@@ -133,8 +150,46 @@ public class ScheduledTasks {
     	String email = p.getEmail();
     	
     	
-    	emailService.sendEmail(p.getEmail(), "TEST", "SUB");
+    	emailService.sendEmail(email, "Your website " + p.getName() + " has been updated!", "Your website has been updated");
     }
-    
+     
+     void checkElapsedTime(Page p, String lastUpdated, String now) {
+    	 
+    	 String currentDate = now.toString();
+    	 String lastUpdatedd = lastUpdated.toString();
+    	 long lastUpdatedLong = convertDateToLong(lastUpdatedd);
+    	 long currentTime = convertDateToLong(currentDate);
+    	 
+    	 if((currentTime - lastUpdatedLong) > p.getAlertAfter()) {
+    		 
+    		 emailService.sendEmail(p.getEmail(), "Your website " + p.getName() + " needs updating!", "Your website needs updating!");
+    		 
+    	 
+     }
+     }
+    	 
+    	
+     long convertDateToLong(String stringDate) {
+    	 
+    	 long result=0;
+    	 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+  		try {
+  			//Converts String back into date
+  			Date date = simpleDateFormat.parse(stringDate);
+  	        simpleDateFormat = new SimpleDateFormat("ddMMyyyyHHmm");
+  	        //Converts date back into string with new format
+  	        String value = simpleDateFormat.format(date);
+  	        //Parse String to long
+  	        result = Long.parseLong(value);
+  	       
+      }
+  		catch(Exception e) {
+  			
+  		}
+     
+  		 return result;
+     
+ 
+     
+     }
 }
-    

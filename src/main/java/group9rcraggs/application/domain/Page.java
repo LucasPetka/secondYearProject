@@ -30,6 +30,7 @@ public class Page {
 	private String lastUpdated;
 	private String frequency;
 	private String fileName;
+	private long alertAfter;
 	private boolean tracking;
 	@Column(length=1000)
 	private String linesIgnored;
@@ -40,7 +41,7 @@ public class Page {
 	
 	private String ownerUrl;
 	
-	public Page(String name, String url, String lastUpdated, String frequency, String fileName, String linesIgnored) {
+	public Page(String name, String url, String lastUpdated, String frequency, String fileName, String linesIgnored,long alertAfter) {
 
 		
 		this.name=name;
@@ -50,6 +51,8 @@ public class Page {
 		this.fileName=fileName;
 		this.linesIgnored=linesIgnored;
     	this.tracking = false;
+    	this.alertAfter = alertAfter;
+
     	
 	}
 	
@@ -109,7 +112,11 @@ public class Page {
 	
 	//Used to validate website Url + page Url
 	public String getOwnerUrl() {
-		return ownerUrl;
+		return this.ownerUrl;
+	}
+	
+	public long getAlertAfter() {
+		return this.alertAfter;
 	}
 	
 	
@@ -155,6 +162,10 @@ public class Page {
 	}
 	public void setFileName(String fileName) {
 		this.fileName=fileName;
+	}
+	
+	public void setAlertAfter(long alertAfter) {
+		this.alertAfter = alertAfter;
 	}
 	
 	//Used to validate website Url + page Url 

@@ -284,30 +284,6 @@
           </form>
           
           
- 	<form method="POST" modelAttribute="email" action="/addEmail">
-		<div class="row mt-4">
-			<div class="col-md-6 pl-3">
-			<div class="form-group">
-				<!--  <button type="button" id="email_on" class="btn btn-link float-left">Add emails</button> -->
-				 <label>Add Emails</label>
-		                     <input type="text" name="address" class="form-control" placeholder="Example@example.com">
-		                     
-		                  </div>
-		                  
-		                     
-		                     	
-	
-	        <input type="hidden"                        
-			name="${_csrf.parameterName}"
-			value="${_csrf.token}"/>
-	                            
-			    <button type="submit" class="btn btn-xs btn-primary pull-right">Add</button>
-
-			</div>
-			</div>	
-			</form>
-
-		
 		
          </div>
        </div>
