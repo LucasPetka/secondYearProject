@@ -34,10 +34,11 @@ public class ScheduledTasks {
     @Scheduled(fixedDelay = 10000)
     public void scanForChanges() {
     	
-    	String ignore="";
     	///* Downloads source code to file *///
-    	 
-     	for (Page ww : pageRepo.findAll()) {
+    	List<Page> pages = (List<Page>) pageRepo.findAll();
+    	pages.parallelStream().forEach((ww) -> {
+     //	for (Page ww : pageRepo.findAll()) {
+    		String ignore="";
      		if(ww.getChecked() == false) {
              	scanIfNotChecked(ww);
      		}
@@ -79,8 +80,9 @@ public class ScheduledTasks {
          
          
          }
-     	}
-}
+    	
+});
+    }
     public void scanIfNotChecked(Page ww) {
 
     		if(ww.getTracking() == true) {

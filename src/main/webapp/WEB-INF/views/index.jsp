@@ -139,9 +139,11 @@
               </div>
               <div class="project-name">
                 - 20 Pages<br>
-                - Checks every 4 weeks<br>
+                - Checks for updates every 24 hours<br>
+                - Alerted every 3, 6, 9 or 12 months<br>
+                - Alerted when page needs updating<br>
                 - 24/7 Support<br>
-                  £9.99 / Month
+                - £9.99 / Month
               </div>
             </div>
           </a>
@@ -155,8 +157,11 @@
               </div>
               <div class="project-name">
                 - 50 Pages<br>
-                - Checks every 2 or 4 weeks<br>
-                £19.99 / Month<br>
+                - Checks for updates every 6 hours<br>
+                - Alerted every 1 to 12 months<br>
+                - Alerted when page is updated and needs updating<br>
+                - 24/7 Support<br>
+                - £19.99 / Month<br>
               </div>
             </div>
           </a>
@@ -170,10 +175,12 @@
               </div>
               <div class="project-name">
                 - 100 Pages<br>
-                - Checks every 1,2 or 4 weeks<br>
+                - Checks for updates every hour<br>
+                - Alerted every week to 12 months<br>
+                - Alerted when page is updated and needs updating<br>
                 - Provides changes made to pages<br>
                 - 24/7 Support<br>
-                £29.99 / Month
+                - £29.99 / Month
               </div>
             </div>
           </a>
