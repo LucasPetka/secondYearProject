@@ -20,11 +20,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import group9rcraggs.application.Tracking;
 import group9rcraggs.application.domain.Email;
-import group9rcraggs.application.domain.Notifications;
 import group9rcraggs.application.domain.Page;
 import group9rcraggs.application.domain.User;
 import group9rcraggs.application.domain.Website;
-import group9rcraggs.application.repository.NotificationsRepository;
 import group9rcraggs.application.repository.PageRepository;
 import group9rcraggs.application.repository.UserRepository;
 import group9rcraggs.application.repository.WebsiteRepository;
@@ -45,9 +43,7 @@ public class PageController {
 	
 	@Autowired
 	UserRepository planRepo;
-	
-	@Autowired
-	NotificationsRepository alertRepo;
+
 	
 	@InitBinder
 	protected void initBinder(WebDataBinder binder) {
@@ -101,6 +97,7 @@ public class PageController {
 				p.setTracking(true);
 				pageRepo.save(p);
 				
+				
 				return "redirect:/pageList?id="+website.getId();
 			}
 		}
@@ -132,14 +129,6 @@ public class PageController {
     	
     	//Gets current user who is logged in
     	User user = userRepo.findByLogin(principal.getName());
-    	
-    	List<Notifications> alerts = new ArrayList<>();
-    	
-    	for (Notifications n : alertRepo.findAll()) {
-    		if (n.getOwner().getId() == user.getId()){
-			alerts.add(n);
-    		}
-    	}
     	
     	//Adds email list as model attribute for editing website 
     	List<Email> emails= user.getEmails();
