@@ -239,7 +239,8 @@
            
           </div>
 
-          <div class="card w-75">
+		<div class="col-xl-8 col-lg-7">
+          <div class="card">
            <div class="card-header">
                <h4 class="card-title">Edit Profile</h4>
            </div>
@@ -263,7 +264,7 @@
 		                 </div>
 	            	</div>
 	            	
-	                <div class="col-md-6 pl-1">
+	                <div class="col-md-6 pl-3">
 	                    <div class="form-group">
 	                        <label>Last Name</label>
 	                        <input type="text" name="lastName" class="form-control" placeholder="Last Name" value="${loglastName}">
@@ -276,8 +277,8 @@
 			name="${_csrf.parameterName}"
 			value="${_csrf.token}"/>
 	                            
-			    <button type="submit" class="btn btn-xs btn-primary pull-right">Update Profile</button>
-				<a href="/changePassword" class="btn btn-xs btn-outline-primary float-right" role="button" aria-pressed="true">Change Password</a>
+			    <button type="submit" class="btn btn-xs btn-primary float-left mb-2 mr-2">Update Profile</button>
+				<a href="/changePassword" class="btn btn-xs btn-outline-primary float-left " role="button" aria-pressed="true">Change Password</a>
 				<div class="clearfix"></div>
 				
           </form>
@@ -309,6 +310,7 @@
 		
 		
          </div>
+       </div>
        </div>
 
             

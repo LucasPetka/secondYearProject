@@ -304,7 +304,7 @@
           <div class="row">
 
             <!-- Area Chart -->
-            <div class="col-xl-11 col-lg-7">
+            <div class="col-xl-10 col-lg-7">
               <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -315,7 +315,7 @@
                   
                   
                   <div class="row">
-               <div class="col-5 mb-4">
+               <div class="col-md mb-2">
 				<div class="table-responsive">
 					<table class="table table-hover">
 					  <thead>
@@ -339,19 +339,17 @@
 				  </div>
 				  </div>
 
-				<div class="col-1 mb-4">
+				<div class="col-1 mb-2">
 				</div>
 				  
-				  <div class="col-5 mb-4">
+				  <div class="col-md mb-4">
 		              <!-- Illustrations -->
 		              <div class="card shadow mb-4">
 		                <div class="card-header py-3">
 		                  <h6 class="m-0 font-weight-bold text-primary">Tips</h6>
 		                </div>
 		                <div class="card-body">
-		                  <div class="text-center">
-		                    <img class="img-fluid px-3 px-sm-4 mt-1 mb-4" style="width: 25rem;" src="img/undraw_posting_photo.svg" alt="">
-		                  </div>
+		                  
 		                  <p>This is where you add email addresses to recieve alerts for when your page hasn't been updated</p>
 		                  
 		                </div>
