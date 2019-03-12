@@ -31,7 +31,7 @@
 	
 	<div class="text-center"><b>Forgot Your Password?</b><br>
 	<p>
-	We get it, stuff happens. Just enter your email address below and we'll send you a link to reset your password!
+	Enter your email address below and we'll send you a link to reset your password
 	</p>
 	</div>
 <br>
@@ -42,7 +42,7 @@
 </c:if>
 <c:if test="${noEmailMatch == true}">
 	<div class="alert alert-danger">
-		We can't find this email address in our databases! 
+		We can't find this email address.
 	</div>
 </c:if>
 			<div id="log">

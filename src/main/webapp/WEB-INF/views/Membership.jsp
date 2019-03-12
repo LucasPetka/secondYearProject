@@ -1,7 +1,8 @@
-
-
-<html lang="en">
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<html>
 <head>
 
   <meta charset="utf-8">
@@ -86,13 +87,12 @@
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
           <i class="fas fa-fw fa-wrench"></i>
-          <span>Tokens</span>
+          <span>Membership</span>
         </a>
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Tokens:</h6>
-            <a class="collapse-item" href="utilities-color.html">Buy Tokens</a>
-            <a class="collapse-item" href="utilities-border.html">Create Debit</a>
+            <h6 class="collapse-header">Membership:</h6>
+            <a class="collapse-item" href="/payment">Buy Membership</a>
           </div>
         </div>
       </li>
@@ -146,55 +146,7 @@
               </div>
             </li>
 
-            <!-- Nav Item - Alerts -->
-            <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-bell fa-fw"></i>
-                <!-- Counter - Alerts -->
-                <span class="badge badge-danger badge-counter">3+</span>
-              </a>
-              <!-- Dropdown - Alerts -->
-              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
-                <h6 class="dropdown-header">
-                  Alerts Center
-                </h6>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-primary">
-                      <i class="fas fa-file-alt text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">December 12, 2019</div>
-                    <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-success">
-                      <i class="fas fa-donate text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">December 7, 2019</div>
-                    $290.29 has been deposited into your account!
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-warning">
-                      <i class="fas fa-exclamation-triangle text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">December 2, 2019</div>
-                    Spending Alert: We've noticed unusually high spending for your account.
-                  </div>
-                </a>
-                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-              </div>
-            </li>
-
+            
          
 
             <div class="topbar-divider d-none d-sm-block"></div>
@@ -203,7 +155,7 @@
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">${logfirstName}</span>
-                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+                
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -230,14 +182,23 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-
+<c:if test="${sucessPayment == true}">
+	<div class="alert alert-success">
+		Your payment has been processed
+	</div>
+</c:if>
+<c:if test="${failedPayment == true}">
+	<div class="alert alert-danger">
+		Payment has been canceled, please contact support if this persists
+	</div>
+</c:if>
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">${logfirstName}'s Dashboard</h1>
            
           </div>
 
-		<div class="col-xl-11 col-lg-7">
+		<div class="col-xl-12 col-lg-7">
           <div class="card">
            <div class="card-header">
                <h4 class="card-title">Buy Membership</h4>
@@ -245,14 +206,14 @@
            
            <div class="card-body justify-content-between">
            
-           <form method="POST" modelAttribute="user" action="/updateUser">
+           <form method="POST" action="/pay">
 
 		   <div class="row mx-auto">
 				<div class="col-md">
 					<div class="card p-2 text-center" style="width: 19rem;">
 					  <img class="card-img-top img-fluid w-50 mx-auto" src="/img/bronze.png" alt="Card image cap" >
 					  <div class="card-body">
-						<h5 class="card-title">Tier 1</h5>
+						<h5 class="card-title">Standard</h5>
 						<p class="card-text">
 						<ul class="list-unstyled mt-3 mb-4">
 							<li> 20 Pages</li>
@@ -265,7 +226,7 @@
 						
 						</p>
 						
-						<input class="form-check-input position-static" type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
+						<input class="form-check-input position-static" type="radio" name="tier" id="blankRadio1" value="tier1" aria-label="...">
 						
 					  </div>
 					</div>
@@ -275,7 +236,7 @@
 					<div class="card p-2 text-center" style="width: 19rem;">
 					  <img class="card-img-top img-fluid w-50 mx-auto" src="/img/silver.png" alt="Card image cap" >
 					  <div class="card-body">
-						<h5 class="card-title">Tier 2</h5>
+						<h5 class="card-title">Pro</h5>
 						<p class="card-text">
 						
 						<ul class="list-unstyled mt-3 mb-4">
@@ -289,7 +250,7 @@
 						
 						</p>
 						
-						<input class="form-check-input position-static" type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
+						<input class="form-check-input position-static" type="radio" name="tier" id="blankRadio1" value="tier2" aria-label="...">
 						
 					  </div>
 					</div>
@@ -299,7 +260,7 @@
 					<div class="card p-2 text-center" style="width: 19rem;">
 					  <img class="card-img-top img-fluid w-50 mx-auto" src="/img/gold.png" alt="Card image cap">
 					  <div class="card-body">
-						<h5 class="card-title">Tier3</h5>
+						<h5 class="card-title">Enterprise</h5>
 						<p class="card-text">
 						<ul class="list-unstyled mt-3 mb-4">
 							<li> 100 Pages</li>
@@ -313,7 +274,7 @@
 						
 						</p>
 						
-						  <input class="form-check-input position-static" type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="...">
+						  <input class="form-check-input position-static" type="radio" name="tier" id="blankRadio1" value="tier3" aria-label="...">
 						
 					  </div>
 					</div>
@@ -322,9 +283,11 @@
 			</div>
 				
 				
-				
+						<input type="hidden"                        
+			name="${_csrf.parameterName}"
+			value="${_csrf.token}"/>
 			<div class="w-100 text-center">
-				<button type="submit" class="btn btn-lg btn-primary pull-right mt-4 mx-auto">Buy</button>
+				<button type="submit" class="btn btn-lg btn-primary pull-right mt-4 mx-auto"><img src="/img/paypal-button.png" height="60" width="300"></button>
 			</div>
 				
 				
@@ -372,7 +335,7 @@
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
           <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
+            <span aria-hidden="true">x</span>
           </button>
         </div>
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>

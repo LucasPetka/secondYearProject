@@ -33,6 +33,10 @@ public class User {
 	@Column(unique = true, nullable = false)
 	String password;
 	
+	String tier;
+	
+	String tierValidUntil;
+	
 	@Column(nullable = false)
 	String firstName;
 	
@@ -51,6 +55,7 @@ public class User {
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Role role;
+	
 	
 	@OneToMany(mappedBy="owner", cascade=CascadeType.ALL, orphanRemoval = true)
 	private List<Website> websites = new ArrayList<Website>();
@@ -97,7 +102,12 @@ public class User {
 	public String getLastName() {
 		return this.lastName;
 	}
-	
+	public String getTier() {
+		return this.tier;
+	}
+	public String getTierValidUntil() {
+		return this.tierValidUntil;
+	}
 	public String getFirstName() {
 		return this.firstName;
 	}
@@ -142,6 +152,12 @@ public class User {
 	public void setId(int id) {
 		this.id = id;
 	}
+	public void setTier(String tier) {
+		this.tier=tier;
+	}
+	public void setTierValidUntil(String tierValidUntil) {
+		this.tierValidUntil=tierValidUntil;
+	}
 	
 	///* Other methods *///
 
@@ -161,6 +177,7 @@ public class User {
 	public void deleteEmail(Email email) {
 		emails.removeIf(w -> w.getId() == id);
 	}
+	
 	
 	
 	

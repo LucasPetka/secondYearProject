@@ -224,7 +224,21 @@ public class IndexController {
     	return "redirect:/"; 
     }
     }
-    
+    @RequestMapping(value = "/payment", method = RequestMethod.GET)
+    public String test(Principal principal, Model model) {
+    	User user = userRepo.findByLogin(principal.getName());
+    	List<Website> websites = new ArrayList<>();
+    	
+    	
+    	for (Website w : websiteRepo.findAll()) {
+    		if(w.getOwner().equals(user)) {
+			websites.add(w);
+    		}
+		}
+    	model.addAttribute("logfirstName", userRepo.findByLogin(principal.getName()).getFirstName());
+    	model.addAttribute("websites", websites);
+    	return "Membership";
+    }
     
     
     

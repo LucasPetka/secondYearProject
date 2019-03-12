@@ -75,6 +75,11 @@ dependencies {
 	// security
 	compile("org.springframework.boot:spring-boot-starter-security:${springBootVersion}")
 	
+	//paypal
+	compile("com.paypal.sdk:rest-api-sdk:1.4.2")
+
+	
+	
 	// Spring
 	testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
 	// Groovy
