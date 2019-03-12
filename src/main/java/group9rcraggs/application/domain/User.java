@@ -71,6 +71,8 @@ public class User {
 		this.lastName="";
 		this.tokens=0;
 		this.enabled=false;
+		this.tier="Free";
+		this.tierValidUntil="";
 	}
 
 	
