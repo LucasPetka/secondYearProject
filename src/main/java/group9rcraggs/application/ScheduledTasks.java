@@ -160,12 +160,15 @@ public class ScheduledTasks {
     	 long lastUpdatedLong = convertDateToLong(lastUpdatedd);
     	 long currentTime = convertDateToLong(currentDate);
     	 
-    	 if((currentTime - lastUpdatedLong) > p.getAlertAfter()) {
+    	 if((currentTime - lastUpdatedLong) > p.getAlertAfter() &&  !p.getWarning()) {
     		 
     		 emailService.sendEmail(p.getEmail(), "Your website " + p.getName() + " needs updating!", "Your website needs updating!");
-    		 
+    		  p.setWarning(true);
     	 
      }
+    	 if((currentTime - lastUpdatedLong - 100) > p.getAlertAfter() && p.getWarning()) {
+    		 emailService.sendEmail(p.getEmail(), "Your website " + p.getName() + " needs updating!", "Your website needs updating! - Reminder!");
+    	 }
      }
     	 
     	
