@@ -45,7 +45,6 @@ public class ProfileController {
 		model.addAttribute("loglogin", user.getLogin());
 		model.addAttribute("logfirstName", user.getFirstName());
     	model.addAttribute("websites", user.getWebsites());
-    	model.addAttribute("tokens", user.getTokens());
     	model.addAttribute("membershiptype", user.getTier());
 		return "Profile";
     }
@@ -68,10 +67,10 @@ public class ProfileController {
 			Model model, Principal principal, 
 			@RequestParam("password") String newPassword,
 			@RequestParam("old_pass") String oldPassword) {
-		
-		model.addAttribute("loglastName", userRepo.findByLogin(principal.getName()).getLastName());
-		model.addAttribute("loglogin", userRepo.findByLogin(principal.getName()).getLogin());
-		model.addAttribute("logfirstName", userRepo.findByLogin(principal.getName()).getFirstName());
+		User user2 = userRepo.findByLogin(principal.getName());
+		model.addAttribute("loglastName", user2.getLastName());
+		model.addAttribute("loglogin", user2.getLogin());
+		model.addAttribute("logfirstName", user2.getFirstName());
 
 		User userr = userRepo.findByLogin(principal.getName());
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();

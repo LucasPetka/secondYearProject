@@ -1,9 +1,9 @@
 package group9rcraggs.application.controller;
 
 import java.security.Principal;
-import java.text.SimpleDateFormat;
+
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -54,11 +54,11 @@ public class PaymentController {
 		String cancelUrl = URLUtils.getBaseURl(request) + "/" + PAYPAL_CANCEL_URL;
 		String successUrl = URLUtils.getBaseURl(request) + "/" + PAYPAL_SUCCESS_URL;
 		double price = 0.00;
-		if(tier == "tier1") {
+		if(tier.equals("Basic")) {
 			price = 9.99;
-		}else if(tier == "tier2") {
+		}else if(tier.equals("Pro")) {
 			price = 19.99;
-		}else {
+		}else if(tier.equals("Enterprise")){
 			price = 29.99;
 		}
 		try {
@@ -70,6 +70,9 @@ public class PaymentController {
 					tier+ " purchase", 
 					cancelUrl, 
 					successUrl);
+			User user = userRepo.findByLogin(principal.getName());
+			user.setTier2(tier);
+			userRepo.save(user);
 			for(Links links : payment.getLinks()){
 				if(links.getRel().equals("approval_url")){
 					return "redirect:" + links.getHref();
@@ -94,10 +97,9 @@ public class PaymentController {
 			Payment payment = paypalService.executePayment(paymentId, payerId);
 			if(payment.getState().equals("approved")){
 				User user = userRepo.findByLogin(principal.getName());
-				user.setTier("Standard");
-		 		   DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-		 		   SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-		 		  LocalDateTime now = LocalDateTime.now();
+				user.setTier(user.getTier2());
+				user.setTier2("");
+		 		LocalDateTime now = LocalDateTime.now();
 				user.setTierValidUntil(now.toString());
 				userRepo.save(user);
 				redirectAttrs.addFlashAttribute("sucessPayment", true);

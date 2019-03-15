@@ -226,7 +226,7 @@
 						
 						</p>
 						
-						<input class="form-check-input position-static" type="radio" name="tier" id="blankRadio1" value="tier1" aria-label="...">
+						<input class="form-check-input position-static" type="radio" name="tier" id="blankRadio1" value="Basic" aria-label="...">
 						
 					  </div>
 					</div>
@@ -250,7 +250,7 @@
 						
 						</p>
 						
-						<input class="form-check-input position-static" type="radio" name="tier" id="blankRadio1" value="tier2" aria-label="...">
+						<input class="form-check-input position-static" type="radio" name="tier" id="blankRadio1" value="Pro" aria-label="...">
 						
 					  </div>
 					</div>
@@ -274,7 +274,7 @@
 						
 						</p>
 						
-						  <input class="form-check-input position-static" type="radio" name="tier" id="blankRadio1" value="tier3" aria-label="...">
+						  <input class="form-check-input position-static" type="radio" name="tier" id="blankRadio1" value="Enterprise" aria-label="...">
 						
 					  </div>
 					</div>

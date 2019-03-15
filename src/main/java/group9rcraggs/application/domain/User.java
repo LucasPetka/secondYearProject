@@ -34,6 +34,7 @@ public class User {
 	String password;
 	
 	String tier;
+	String tier2;
 	
 	String tierValidUntil;
 	
@@ -42,9 +43,6 @@ public class User {
 	
 	@Column(nullable = false)
 	String lastName;
-	
-	@Column(nullable = false)
-	Integer tokens;
 	
 	@Transient
 	String password2;
@@ -69,9 +67,9 @@ public class User {
 		this.password="";
 		this.firstName="";
 		this.lastName="";
-		this.tokens=0;
 		this.enabled=false;
 		this.tier="Free";
+		this.tier2="";
 		this.tierValidUntil="";
 	}
 
@@ -104,26 +102,29 @@ public class User {
 	public String getLastName() {
 		return this.lastName;
 	}
+	
 	public String getTier() {
 		return this.tier;
 	}
+	
+	public String getTier2() {
+		return this.tier2;
+	}
+	
 	public String getTierValidUntil() {
 		return this.tierValidUntil;
 	}
+	
 	public String getFirstName() {
 		return this.firstName;
 	}
+	
 	public boolean getEnabled() {
 		return this.enabled;
 	}
-	public Integer getTokens() {
-		return this.tokens;
-	}
+
 
 	///* Setters *///
-	public void setTokens(Integer tokens) {
-		this.tokens=tokens;
-	}
 	
 	public void setEnabled(boolean enabled) {
 		this.enabled=enabled;
@@ -156,6 +157,9 @@ public class User {
 	}
 	public void setTier(String tier) {
 		this.tier=tier;
+	}
+	public void setTier2(String tier2) {
+		this.tier2=tier2;
 	}
 	public void setTierValidUntil(String tierValidUntil) {
 		this.tierValidUntil=tierValidUntil;
