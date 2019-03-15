@@ -164,6 +164,7 @@ public class ScheduledTasks {
     		 
     		 emailService.sendEmail(p.getEmail(), "Your website " + p.getName() + " needs updating!", "Your website needs updating!");
     		  p.setWarning(true);
+    		  pageRepo.save(p);
     	 
      }
     	 if((currentTime - lastUpdatedLong - 100) > p.getAlertAfter() && p.getWarning()) {
