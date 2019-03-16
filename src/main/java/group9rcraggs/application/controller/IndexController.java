@@ -68,10 +68,16 @@ public class IndexController {
 	public String addNewWebsite(@Valid @ModelAttribute("website") Website w, BindingResult result, Model model, Principal principal) {
     	model.addAttribute("logfirstName", userRepo.findByLogin(principal.getName()).getFirstName());
     	
+    	User user = userRepo.findByLogin(principal.getName());
+    	
+    	//Checks if number of pages has been equaled or exceeded compared to  their plan
+    	if(user.getWebsites().size() >= user.getPlan().getNumPages()) {
+    		return "redirect:/websiteList";
+    	}
     	
 		if (result.hasErrors()) {
 			model.addAttribute("badlink", true);
-	    	User user = userRepo.findByLogin(principal.getName());
+	    	
 	    	
 	    	List<Website> websites = new ArrayList<>();
 	    	for (Website ww : websiteRepo.findAll()) {
@@ -88,7 +94,7 @@ public class IndexController {
 			return "WebList";
 		} else {
 			
-			User user = userRepo.findByLogin(principal.getName());
+			user = userRepo.findByLogin(principal.getName());
 			
 			//Removes extra '/' at the end of URL and adds one 
 				w.setUrl(removeSlashes(w.getUrl()) + '/');
@@ -108,7 +114,6 @@ public class IndexController {
 			}
 					w.setOwner(user);
 					w.setTracking(true);
-					w.setPlan(planRepo.findById(0));
 					user.addWebsite(w);
 			websiteRepo.save(w);
 			
@@ -136,6 +141,7 @@ public class IndexController {
     	model.addAttribute("website", w3);
     	
     	List<Website> websites = new ArrayList<>();
+    	
     	
     	
     	for (Website w : websiteRepo.findAll()) {

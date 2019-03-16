@@ -45,7 +45,7 @@ public class ProfileController {
 		model.addAttribute("loglogin", user.getLogin());
 		model.addAttribute("logfirstName", user.getFirstName());
     	model.addAttribute("websites", user.getWebsites());
-    	model.addAttribute("membershiptype", user.getTier());
+    	model.addAttribute("membershiptype", user.getPlan().getTier());
 		return "Profile";
     }
 	

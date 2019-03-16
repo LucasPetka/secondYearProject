@@ -151,7 +151,7 @@ public class PageController {
     	//Here the website url is added to controller to display before the page name input
     	model.addAttribute("websiteUrl", website.getUrl());
     	//
-    	model.addAttribute("websiteplan", website.getPlan().getName());
+    	model.addAttribute("websiteplan", "test");
 
     	
     	//Checks if website id belongs to list of current users websites

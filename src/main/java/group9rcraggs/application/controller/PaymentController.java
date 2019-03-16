@@ -20,7 +20,9 @@ import group9rcraggs.application.PaypalPaymentIntent;
 import group9rcraggs.application.PaypalPaymentMethod;
 import group9rcraggs.application.PaypalService;
 import group9rcraggs.application.URLUtils;
+import group9rcraggs.application.domain.Plan;
 import group9rcraggs.application.domain.User;
+import group9rcraggs.application.repository.PlanRepository;
 import group9rcraggs.application.repository.UserRepository;
 
 import com.paypal.api.payments.Links;
@@ -35,6 +37,9 @@ public class PaymentController {
 	
 	@Autowired
 	UserRepository userRepo;
+	
+	@Autowired
+	PlanRepository planRepo;
 	
 	public static final String PAYPAL_SUCCESS_URL = "pay/success";
 	public static final String PAYPAL_CANCEL_URL = "pay/cancel";
@@ -53,17 +58,12 @@ public class PaymentController {
 	public String pay(HttpServletRequest request, Principal principal, @RequestParam("tier") String tier){
 		String cancelUrl = URLUtils.getBaseURl(request) + "/" + PAYPAL_CANCEL_URL;
 		String successUrl = URLUtils.getBaseURl(request) + "/" + PAYPAL_SUCCESS_URL;
-		double price = 0.00;
-		if(tier.equals("Basic")) {
-			price = 9.99;
-		}else if(tier.equals("Pro")) {
-			price = 19.99;
-		}else if(tier.equals("Enterprise")){
-			price = 29.99;
-		}
+
+		Plan plan = new Plan(tier);
+		
 		try {
 			Payment payment = paypalService.createPayment(
-					price, 
+					plan.getPrice(), 
 					"GBP", 
 					PaypalPaymentMethod.paypal, 
 					PaypalPaymentIntent.order,
@@ -71,7 +71,7 @@ public class PaymentController {
 					cancelUrl, 
 					successUrl);
 			User user = userRepo.findByLogin(principal.getName());
-			user.setTier2(tier);
+			user.setTier(tier);
 			userRepo.save(user);
 			for(Links links : payment.getLinks()){
 				if(links.getRel().equals("approval_url")){
@@ -97,8 +97,19 @@ public class PaymentController {
 			Payment payment = paypalService.executePayment(paymentId, payerId);
 			if(payment.getState().equals("approved")){
 				User user = userRepo.findByLogin(principal.getName());
-				user.setTier(user.getTier2());
-				user.setTier2("");
+				
+				Plan plan;
+				if(user.getTier().equals("Basic")) {
+					plan = planRepo.findById(1);
+				}else if(user.getTier().equals("Pro")) {
+					plan = planRepo.findById(2);
+				}else {
+					plan = planRepo.findById(3);
+				}
+				user.setPlan(plan);
+				
+				user.setTier("");
+
 		 		LocalDateTime now = LocalDateTime.now();
 				user.setTierValidUntil(now.toString());
 				userRepo.save(user);

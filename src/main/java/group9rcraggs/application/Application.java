@@ -39,6 +39,25 @@ public class Application implements CommandLineRunner  {
 	@Override
 	public void run(String... args) throws Exception {
 		
+		///* Create plans for users*///
+		
+		Plan planbasic = new Plan("Free");
+		Plan plan1 = new Plan("Standard");
+		Plan plan2 = new Plan("Pro");
+		Plan plan3 = new Plan("Enterprise");
+		
+		planbasic.setId(0);
+		plan1.setId(1);
+		plan2.setId(2);
+		plan3.setId(3);
+		
+	
+		planRepo.save(planbasic);
+		planRepo.save(plan1);
+		planRepo.save(plan2);
+		planRepo.save(plan3);
+		
+		
 		//Create admin and user roles
 		
 		Role adminr = new Role();
@@ -62,6 +81,7 @@ public class Application implements CommandLineRunner  {
 		adminUser.setLogin("netnag.t@gmail.com");
 		adminUser.setPassword(pe.encode("password"));
 		adminUser.setEnabled(true);
+		adminUser.setPlan(planbasic);
 		///* Saves to database *///
 		userRepo.save(adminUser);
 		
@@ -69,41 +89,11 @@ public class Application implements CommandLineRunner  {
 		adminUse.setRole(adminr);
 		adminUse.setLogin("admin2@gmail.com");
 		adminUse.setPassword(pe.encode("password"));
+		adminUse.setPlan(plan1);
 		///* Saves to database *///
 		userRepo.save(adminUse);
 
-		///* Create plans for websites*///
-		
-		Plan planbasic = new Plan();
-		Plan plan1 = new Plan();
-		Plan plan2 = new Plan();
-		Plan plan3 = new Plan();
-		
-		planbasic.setId(0);
-		plan1.setId(1);
-		plan2.setId(2);
-		plan3.setId(3);
-		
-		planbasic.setName("Basic");
-		plan1.setName("Tier 1");
-		plan2.setName("Tier 2");
-		plan3.setName("Tier 3");
-		
-		planbasic.setNumPages(1);
-		plan1.setNumPages(20);
-		plan2.setNumPages(50);
-		plan3.setNumPages(100);
-		
-		planbasic.setPrice(0);
-		plan1.setPrice(9.99);
-		plan2.setPrice(19.99);
-		plan3.setPrice(29.99);
-		
-		planRepo.save(planbasic);
-		planRepo.save(plan1);
-		planRepo.save(plan2);
-		planRepo.save(plan3);
-		
+
 		
 		
 	

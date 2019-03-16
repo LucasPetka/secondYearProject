@@ -14,12 +14,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
 
-/**
- * TODO Put here a description of what this class does.
- *
- * @author tyler.
- *         Created 30 Jan 2019.
- */
 @Entity(name = "users")
 public class User {
 	
@@ -33,8 +27,10 @@ public class User {
 	@Column(unique = true, nullable = false)
 	String password;
 	
+	@ManyToOne(fetch = FetchType.EAGER)
+	Plan plan;
+
 	String tier;
-	String tier2;
 	
 	String tierValidUntil;
 	
@@ -63,13 +59,13 @@ public class User {
 	
 	//Default constructor just whilst login form hasn't been created
 	public User() {
+		this.plan = new Plan("Free");
 		this.login="";
 		this.password="";
 		this.firstName="";
 		this.lastName="";
 		this.enabled=false;
 		this.tier="Free";
-		this.tier2="";
 		this.tierValidUntil="";
 	}
 
@@ -107,9 +103,6 @@ public class User {
 		return this.tier;
 	}
 	
-	public String getTier2() {
-		return this.tier2;
-	}
 	
 	public String getTierValidUntil() {
 		return this.tierValidUntil;
@@ -121,6 +114,10 @@ public class User {
 	
 	public boolean getEnabled() {
 		return this.enabled;
+	}
+	
+	public Plan getPlan() {
+		return this.plan;
 	}
 
 
@@ -155,14 +152,18 @@ public class User {
 	public void setId(int id) {
 		this.id = id;
 	}
+	
 	public void setTier(String tier) {
 		this.tier=tier;
 	}
-	public void setTier2(String tier2) {
-		this.tier2=tier2;
-	}
+	
+	
 	public void setTierValidUntil(String tierValidUntil) {
 		this.tierValidUntil=tierValidUntil;
+	}
+	
+	public void setPlan(Plan plan) {
+		this.plan = plan;
 	}
 	
 	///* Other methods *///
@@ -183,9 +184,7 @@ public class User {
 	public void deleteEmail(Email email) {
 		emails.removeIf(w -> w.getId() == id);
 	}
-	
-	
-	
+
 	
 	public Role getRole() {
 		return role;
@@ -194,6 +193,7 @@ public class User {
 	public void setRole(Role role) {
 		this.role = role;
 	}
+	
 	
 	
 
