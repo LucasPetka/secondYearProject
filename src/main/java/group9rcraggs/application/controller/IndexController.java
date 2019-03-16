@@ -71,20 +71,20 @@ public class IndexController {
     	User user = userRepo.findByLogin(principal.getName());
     	
     	//Checks if number of pages has been equaled or exceeded compared to  their plan
-    	if(user.getWebsites().size() >= user.getPlan().getNumPages()) {
+    	int pages = 0;
+    	for(Website ww : user.getWebsites()) {
+    		pages += ww.getPages().size();
+    	}
+    	
+    	
+    	if(pages >= user.getPlan().getNumPages()) {
     		return "redirect:/websiteList";
     	}
     	
 		if (result.hasErrors()) {
 			model.addAttribute("badlink", true);
 	    	
-	    	
-	    	List<Website> websites = new ArrayList<>();
-	    	for (Website ww : websiteRepo.findAll()) {
-	    		if(ww.getOwner().equals(user)) {
-				websites.add(ww);
-	    		}
-			}
+	    	List<Website> websites = user.getWebsites();
 	    	
 			if (websites.isEmpty()) {
 				return "EmptyWebList";

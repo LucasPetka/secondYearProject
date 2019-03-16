@@ -68,9 +68,23 @@ public class PageController {
 				BindingResult result, Model model, Principal principal) {
 	    	model.addAttribute("logfirstName", userRepo.findByLogin(principal.getName()).getFirstName());
 	    	Website website = webRepo.findById(id);
-	    	
+
 	    	 //Removes any excess '/' from end of URL
 	    	p.setUrl(removeFrontSlashes(removeSlashes(p.getUrl())));
+	    	
+	    	
+	    	User user = userRepo.findByLogin(principal.getName());
+	    	
+	    	//Checks if number of pages has been equaled or exceeded compared to  their plan
+	    	int pages = 0;
+	    	for(Website ww : user.getWebsites()) {
+	    		pages += ww.getPages().size();
+	    	}
+	    	if(pages >= user.getPlan().getNumPages()) {
+	    		
+	    		return "redirect:/pageList?id="+website.getId();
+	    	}
+	    	
 	    	
 			if (result.hasErrors()) {
 				model.addAttribute("websiteId", id);
@@ -151,7 +165,7 @@ public class PageController {
     	//Here the website url is added to controller to display before the page name input
     	model.addAttribute("websiteUrl", website.getUrl());
     	//
-    	model.addAttribute("websiteplan", "test");
+    	model.addAttribute("websiteplan", user.getPlan().getTier());
 
     	
     	//Checks if website id belongs to list of current users websites
