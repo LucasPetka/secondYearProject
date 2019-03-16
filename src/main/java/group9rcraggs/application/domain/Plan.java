@@ -1,8 +1,15 @@
 package group9rcraggs.application.domain;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.MapKeyColumn;
 
 @Entity(name="plan")
 public class Plan {
@@ -12,10 +19,20 @@ public class Plan {
 	@Id
 	@Column(updatable=false)
 	private int id;
+	//price of monthly subscription
 	private double price;
+	//max number of pages tracked at one time
 	private int numPages;
-	private String [] alertedEvery;
+	//used for verifying purchase
 	private String tier;
+	
+	
+	//map containing alert after choices
+    @ElementCollection
+    @MapKeyColumn(name="name")
+    @Column(name="value")
+    @CollectionTable(name="example_attributes", joinColumns=@JoinColumn(name="page_id"))
+	Map<Long, String> alertAfterList = new HashMap<Long, String>();
 	
 
 	public Plan() {
@@ -30,25 +47,53 @@ public class Plan {
 		if(this.tier.equals("Free")) {
 			this.numPages = 1;
 			this.price = 0;
-			this.alertedEvery = new String[] {"12 Months"};
+			this.alertAfterList.put(new Long(483840), "12 Months");
+		
 		}
 		if(this.tier.equals("Standard")) {
 			this.numPages = 20;
 			this.price = 9.99;
-			this.alertedEvery = new String[] {"3 Months", "6 Months", "9 Months", "12 Months"};
+			this.alertAfterList.put(new Long(120960), "3 Months");
+			this.alertAfterList.put(new Long(241920), "6 Months");
+			this.alertAfterList.put(new Long(362880), "9 Months");
+			this.alertAfterList.put(new Long(483840), "12 Months");
+			
 		}
 		else if(this.tier.equals("Pro")) {
 			this.numPages = 50;
 			this.price = 19.99;
-			this.alertedEvery = new String[] {"1 Month", "2 Months",  "3 Months",  "4 Months",  "5 Months", 
-					 "6 Months",  "7 Months",  "8 Months",  "9 Months",  "10 Months",  "11 Months",  "12 Months", };
-			}
+			this.alertAfterList.put(new Long(40320), "1 Month");
+			this.alertAfterList.put(new Long(80640), "2 Months");
+			this.alertAfterList.put(new Long(120960), "3 Months");
+			this.alertAfterList.put(new Long(161280), "4 Months");
+			this.alertAfterList.put(new Long(201600), "5 Months");
+			this.alertAfterList.put(new Long(241920), "6 Months");
+			this.alertAfterList.put(new Long(282240), "7 Months");
+			this.alertAfterList.put(new Long(322560), "8 Months");
+			this.alertAfterList.put(new Long(362880), "9 Months");
+			this.alertAfterList.put(new Long(403200), "10 Months");
+			this.alertAfterList.put(new Long(443520), "11 Months");
+			this.alertAfterList.put(new Long(483840), "12 Months");
+		}
 		else if(this.tier.equals("Enterprise")) {
 			this.numPages = 100;
 			this.price = 29.99;
-			this.alertedEvery = new String[] {"1 Week", "2 Weeks", "3 Weeks", "1 Month", "2 Months",  "3 Months",  "4 Months", 
-					"5 Months", "6 Months",  "7 Months",  "8 Months",  "9 Months",  "10 Months",  "11 Months",  "12 Months", };
-			}
+			this.alertAfterList.put(new Long(10080), "1 Week");
+			this.alertAfterList.put(new Long(20160), "2 Weeks");
+			this.alertAfterList.put(new Long(30240), "3 Weeks");
+			this.alertAfterList.put(new Long(40320), "1 Month");
+			this.alertAfterList.put(new Long(80640), "2 Months");
+			this.alertAfterList.put(new Long(120960), "3 Months");
+			this.alertAfterList.put(new Long(161280), "4 Months");
+			this.alertAfterList.put(new Long(201600), "5 Months");
+			this.alertAfterList.put(new Long(241920), "6 Months");
+			this.alertAfterList.put(new Long(282240), "7 Months");
+			this.alertAfterList.put(new Long(322560), "8 Months");
+			this.alertAfterList.put(new Long(362880), "9 Months");
+			this.alertAfterList.put(new Long(403200), "10 Months");
+			this.alertAfterList.put(new Long(443520), "11 Months");
+			this.alertAfterList.put(new Long(483840), "12 Months");
+				}
 	}
 	
 	
@@ -69,8 +114,8 @@ public class Plan {
 		return this.numPages;
 	}
 	
-	public String [] getAlertedEvery() {
-		return this.alertedEvery;
+	public Map<Long, String> getAlertedAfter() {
+		return this.alertAfterList;
 	}
 	
 	///* Setters *///

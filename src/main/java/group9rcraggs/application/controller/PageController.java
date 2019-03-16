@@ -111,7 +111,6 @@ public class PageController {
 				p.setTracking(true);
 				p.setEmail(website.getOwner().getLogin());
 				p.setWarning(false);
-				p.setAlertAfter(3);
 				pageRepo.save(p);
 				
 				
@@ -157,6 +156,10 @@ public class PageController {
     	//Adds new page to website for testing
     	//Think We need to pass list of pages and select which one from the view using js
     	model.addAttribute("emails", emailName);
+    	
+    	//Used to set alert after options when adding website - changes depending on plan
+    	model.addAttribute("alertAfterList", user.getPlan().getAlertedAfter());
+    	
     	Page p2 = new Page();
     	model.addAttribute("page", p2);
     	
