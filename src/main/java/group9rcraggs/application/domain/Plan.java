@@ -25,6 +25,8 @@ public class Plan {
 	private int numPages;
 	//used for verifying purchase
 	private String tier;
+	//how often to check changes
+	private long frequency;
 	
 	
 	//map containing alert after choices
@@ -48,20 +50,24 @@ public class Plan {
 			this.numPages = 1;
 			this.price = 0;
 			this.alertAfterList.put(new Long(483840), "12 Months");
+			this.frequency = 2880; //48 hours
 		
 		}
 		if(this.tier.equals("Standard")) {
 			this.numPages = 20;
 			this.price = 9.99;
+			this.frequency = 1440; //24 hours
 			this.alertAfterList.put(new Long(120960), "3 Months");
 			this.alertAfterList.put(new Long(241920), "6 Months");
 			this.alertAfterList.put(new Long(362880), "9 Months");
 			this.alertAfterList.put(new Long(483840), "12 Months");
 			
+			
 		}
 		else if(this.tier.equals("Pro")) {
 			this.numPages = 50;
 			this.price = 19.99;
+			this.frequency = 360; //6 hours
 			this.alertAfterList.put(new Long(40320), "1 Month");
 			this.alertAfterList.put(new Long(80640), "2 Months");
 			this.alertAfterList.put(new Long(120960), "3 Months");
@@ -78,6 +84,7 @@ public class Plan {
 		else if(this.tier.equals("Enterprise")) {
 			this.numPages = 100;
 			this.price = 29.99;
+			this.frequency = 60; //1 hour
 			this.alertAfterList.put(new Long(10080), "1 Week");
 			this.alertAfterList.put(new Long(20160), "2 Weeks");
 			this.alertAfterList.put(new Long(30240), "3 Weeks");
@@ -118,6 +125,10 @@ public class Plan {
 		return this.alertAfterList;
 	}
 	
+	public long getFrequency() {
+		return this.frequency;
+	}
+	
 	///* Setters *///
 	
 	public void setId(int id) {
@@ -133,6 +144,10 @@ public class Plan {
 	
 	public void setNumPages(int numPages) {
 		this.numPages = numPages;
+	}
+	
+	public void setFrequency(long frequency) {
+		this.frequency = frequency;
 	}
 	
 }

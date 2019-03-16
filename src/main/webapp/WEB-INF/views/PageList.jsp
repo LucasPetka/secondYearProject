@@ -361,10 +361,11 @@
 					<td><c:out value="${page.name}"/></td>
 					<td><c:out value="${page.url}"/></td>
 					<td><c:out value="${page.lastUpdated}"/></td>
-					<td><c:out value="${page.frequency}"/></td>
+					<td><c:out value="${page.alertAfter}"/></td>
 					
 					<td>
-					<a class="btn main_b" href="/view_changes?id=${page.id}" role="button"> Check changes </a> 
+					<a class="btn main_b" href="/view_changes?id=${page.id}" role="button"> <i class="fas fa-eye"></i> </a> 
+			        <a class="btn btn-success" href="/changeTracking?id=${page.id}&websiteid=${websiteId}"> <i class="fas fa-toggle-on"></i> </a>
 					<a class="btn btn-dark" id = "ids" data-id="${page.id}" href="/editPage?id=${page.id}&websiteid=${websiteId}" role="button" data-toggle="modal" data-target="#editModal"> <i class="fas fa-wrench"></i> </a>
 					<a class="btn btn-danger" href="/removePage?id=${page.id}&websiteid=${websiteId}" role="button"> <i class="fas fa-trash-alt"></i> </a>
 					</td>

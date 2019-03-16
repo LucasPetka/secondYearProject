@@ -87,6 +87,7 @@
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+         
           <i class="fas fa-fw fa-wrench"></i>
           <span>Membership</span>
         </a>
@@ -279,7 +280,7 @@
 		
 		<div id="upload_on">
 			<div class="col-md-2 mb-3">
-				<button class="btn btn-success" id="add_on" type="submit"><i class="fas fa-plus"></i> Add Website</button>
+				<button class="btn btn-success" id="add_on" type="submit"><i class="fas fa-plus"></i> Website</button>
 			</div>
 		</div>
 		
@@ -349,9 +350,9 @@
 			          <thead>
 			            <tr>
 						  <th>Website name</th>
-						  <th>Link</th>
+						  <th>URL</th>
 						  <th>Active pages</th>
-						  <th>Tracking</th>
+						  <th>Email Address</th>
 						  <th></th>
 			            </tr>
 			          </thead>
@@ -361,10 +362,11 @@
 								<td><c:out value="${website.name}"/></td>
 								<td><c:out value="${website.url}"/></td>
 								<td><c:out value="${website.activePages}"/></td>
-								<td><c:out value="${website.tracking}"/></td>
+								<td><c:out value="${website.email}"/></td>
 								
 								<td>
-								<a class="btn main_b" href="/pageList?id=${website.id}" role="button"> Check pages </a> 
+								<a class="btn main_b" href="/pageList?id=${website.id}" role="button"><i class="fas fa-plus"></i> Page</a> 
+					            <a class="btn btn-success" href="/changeTracking?websiteid=${websiteId}"> <i class="fas fa-toggle-on"></i> </a>
 						        <a class="btn btn-dark" id="ids"  data-id="${website.id}" href="/editWebsite?id=${website.id}" role="button" data-toggle="modal" data-target="#editModal"> <i class="fas fa-wrench"></i> </a>
 						        <a class="btn btn-danger" href="/deleteWebsite?id=${website.id}" role="button"> <i class="fas fa-trash-alt"></i> </a>
 								</td>

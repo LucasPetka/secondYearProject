@@ -28,7 +28,7 @@ public class Page {
 	@Column(nullable=false)
 	private String name;
 	private String lastUpdated;
-	private String frequency;
+	private long frequency;
 	private String fileName;
 	private long alertAfter;
 	private boolean warning;
@@ -43,7 +43,7 @@ public class Page {
 	private String ownerUrl;
 	
 
-	public Page(String name, String url, String lastUpdated, String frequency, String fileName, String linesIgnored, long alertAfter,
+	public Page(String name, String url, String lastUpdated, long frequency, String fileName, String linesIgnored, long alertAfter,
 			boolean warning) {
 
 		
@@ -95,7 +95,7 @@ public class Page {
 		return this.lastUpdated;
 	}
 	
-	public String getFrequency() {
+	public long getFrequency() {
 		return this.frequency;
 	}
 	
@@ -158,7 +158,7 @@ public class Page {
 		this.lastUpdated = lastUpdated;
 	}
 	
-	public void setFrequency(String frequency) {
+	public void setFrequency(long frequency) {
 		this.frequency = frequency;
 	}
 	
