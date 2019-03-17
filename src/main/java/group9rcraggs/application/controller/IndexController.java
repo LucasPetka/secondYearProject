@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import group9rcraggs.application.domain.Email;
 import group9rcraggs.application.domain.Page;
@@ -64,11 +65,12 @@ public class IndexController {
     
   ///* Adds website to database when add is clicked and calls addWebsite *///
     @RequestMapping(value = "addWebsite", params = "add", method = RequestMethod.POST)
-	public String addNewWebsite(@Valid @ModelAttribute("website") Website w, BindingResult result, Model model, Principal principal) {
+	public String addNewWebsite(@Valid @ModelAttribute("website") Website w, BindingResult result, Model model, Principal principal
+			, RedirectAttributes redirectAttrs) {
     	model.addAttribute("logfirstName", userRepo.findByLogin(principal.getName()).getFirstName());
     	
     	User user = userRepo.findByLogin(principal.getName());
-    	
+    	List<Website> websites = user.getWebsites();
     	//Checks if number of pages has been equaled or exceeded compared to  their plan
     	int pages = 0;
     	for(Website ww : user.getWebsites()) {
@@ -80,25 +82,30 @@ public class IndexController {
     		return "redirect:/websiteList";
     	}
     	
+    	
 		if (result.hasErrors()) {
-			model.addAttribute("badlink", true);
+			redirectAttrs.addFlashAttribute("badlink", true);
 	    	
-	    	List<Website> websites = user.getWebsites();
-	    	
-			if (websites.isEmpty()) {
-				return "EmptyWebList";
-			} else {
+	   
+			if (!websites.isEmpty()) {
 				model.addAttribute("websites", websites);
 			}
-			return "WebList";
+			return "redirect:/websiteList";
 		} else {
 			
-			user = userRepo.findByLogin(principal.getName());
 			
 			//Removes extra '/' at the end of URL and adds one 
 				w.setUrl(removeSlashes(w.getUrl()) + '/');
 				
-				
+				//checks if website already exists in users website list
+				for(Website ww : user.getWebsites()) {
+					if(w.getUrl().equals(ww.getUrl())) {
+						redirectAttrs.addFlashAttribute("duplicatewebsite", true);
+						redirectAttrs.addFlashAttribute("websites", websites);
+						return "redirect:/websiteList";
+		    		}
+		    	}
+						
 			//Gets auto added page and sets url to website url (Home page)
 		/*	for(Page p : w.getPages()) {
 				Tracking track = new Tracking();

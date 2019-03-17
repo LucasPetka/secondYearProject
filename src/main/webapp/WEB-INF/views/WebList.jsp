@@ -292,6 +292,14 @@
 			</div>
 		</c:if>
 		
+		<c:if test="${duplicatewebsite == true}">
+			<div class="alert alert-danger">
+				Cannot add duplicate website
+				<script>$(document).ready(function(){$("#upload_on" ).hide();
+				$("#upload").toggle(0);});</script>
+			</div>
+		</c:if>
+		
 		<div id="upload">
 			<form:form  method="POST" modelAttribute="website" action="/addWebsite">
 				  <div class="row justify-content-center">
@@ -313,7 +321,7 @@
 					  <span class="input-group-text" id="inputGroupPrepend">Website URL</span>
 					</div>
 					
-					<input type="text" id="validationCustomUsername" class="form-control" name="url" placeholder="https://example.com" aria-describedby="inputGroupPrepend" required/>	
+					<input type="text" id="validationCustomUsername" class="form-control" name="url" placeholder="https://www.example.com" aria-describedby="inputGroupPrepend" required/>	
 					<form:errors path="url"/>
 							
 				</div>
