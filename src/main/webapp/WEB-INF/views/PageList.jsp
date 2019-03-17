@@ -367,7 +367,7 @@
 					<a class="btn main_b" href="/view_changes?id=${page.id}" role="button"> <i class="fas fa-eye"></i> </a> 
 			        <a class="btn btn-success" href="/changeTracking?id=${page.id}&websiteid=${websiteId}"> <i class="fas fa-toggle-on"></i> </a>
 					<a class="btn btn-dark" id = "ids" data-id="${page.id}" href="/editPage?id=${page.id}&websiteid=${websiteId}" role="button" data-toggle="modal" data-target="#editModal"> <i class="fas fa-wrench"></i> </a>
-					<a class="btn btn-danger" href="/removePage?id=${page.id}&websiteid=${websiteId}" role="button"> <i class="fas fa-trash-alt"></i> </a>
+					<a class="btn btn-danger" id="delete_h" href="/removePage?id=${page.id}&websiteid=${websiteId}" role="button"  data-toggle="modal" data-target="#deleteModal"> <i class="fas fa-trash-alt"></i> </a>
 					</td>
 				</tr>
 			</c:forEach>
@@ -462,6 +462,25 @@
     </div>
   </div>
   
+  <!-- Delete Modal-->
+  <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Delete?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Are you sure you want to delete this page?</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" id="delete_modal_h" href="#">Yes</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
   
   <!-- Edit Modal-->
   <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -523,6 +542,12 @@
 		$(document).on("click", "#ids", function () {
 			page_ID = $(this).attr('data-id');
 		});
+
+		$(document).on("click", "#delete_h", function () {	
+			var hreff = $(this).attr('href');
+			document.getElementById("delete_modal_h").href=hreff; 	
+		});
+		
 		$(document).on("click", "#testid", function () {
 			var name = document.getElementById("name2").value;
 			var email = document.getElementById("email").value;

@@ -281,7 +281,7 @@
 							<tr>
 								<td><c:out value="${email.address}"/></td>
 								<td>
-								<a class="btn btn-danger" href="/deleteEmail?id=${email.id}" role="button"> <i class="fas fa-trash-alt"></i> </a>
+								<a class="btn btn-danger" id="delete_h" href="/deleteEmail?id=${email.id}" role="button"  data-toggle="modal" data-target="#deleteModal"> <i class="fas fa-trash-alt"></i> </a>
 								</td>
 							</tr>
 						</c:forEach>
@@ -364,6 +364,36 @@
       </div>
     </div>
   </div>
+  
+ 
+   <!-- Delete Modal-->
+  <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Delete?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Are you sure you want to delete this e-mail?</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" id="delete_modal_h" href="#">Yes</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  		<script>
+
+		$(document).on("click", "#delete_h", function () {	
+			var hreff = $(this).attr('href');
+			document.getElementById("delete_modal_h").href=hreff; 	
+		});
+
+		</script>
 
   <!-- Bootstrap core JavaScript-->
   <script src="vendor-dash/jquery/jquery.min.js"></script>
