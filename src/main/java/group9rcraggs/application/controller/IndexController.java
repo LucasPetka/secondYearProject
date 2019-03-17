@@ -99,8 +99,7 @@ public class IndexController {
 			//Removes extra '/' at the end of URL and adds one 
 				w.setUrl(removeSlashes(w.getUrl()) + '/');
 				
-				//Auto sets email address to users
-				w.setEmail(w.getOwner().getLogin());
+				
 			//Gets auto added page and sets url to website url (Home page)
 			for(Page p : w.getPages()) {
 				Tracking track = new Tracking();
@@ -116,6 +115,10 @@ public class IndexController {
 				break;
 			}
 					w.setOwner(user);
+					
+					//Auto sets email address to users
+					w.setEmail(w.getOwner().getLogin());
+					
 					w.setTracking(true);
 					user.addWebsite(w);
 			websiteRepo.save(w);
