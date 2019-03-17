@@ -79,10 +79,10 @@ public class IndexController {
     	
     	
     	if(pages >= user.getPlan().getNumPages()) {
+			redirectAttrs.addFlashAttribute("exceedPageLimit", true);
     		return "redirect:/websiteList";
     	}
-    	
-    	
+    	   	
 		if (result.hasErrors()) {
 			redirectAttrs.addFlashAttribute("badlink", true);
 	    	

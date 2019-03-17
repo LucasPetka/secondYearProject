@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import group9rcraggs.application.Tracking;
 import group9rcraggs.application.domain.Email;
@@ -54,13 +55,12 @@ public class PageController {
 	  ///* Adds page to database when add is clicked and calls addPage *///
 	    @RequestMapping(value = "addPage", params = "add", method = RequestMethod.POST)
 		public String addNewPage(@RequestParam(name="id") int id, @Valid @ModelAttribute("page") Page p, 
-				BindingResult result, Model model, Principal principal) {
+				BindingResult result, Model model, Principal principal, RedirectAttributes redirectAttrs) {
 	    	model.addAttribute("logfirstName", userRepo.findByLogin(principal.getName()).getFirstName());
 	    	Website website = webRepo.findById(id);
 
 	    	 //Removes any excess '/' from end of URL
 	    	p.setUrl(removeFrontSlashes(removeSlashes(p.getUrl())));
-	    	
 	    	
 	    	User user = userRepo.findByLogin(principal.getName());
 	    	
@@ -69,30 +69,43 @@ public class PageController {
 	    	for(Website ww : user.getWebsites()) {
 	    		pages += ww.getPages().size();
 	    	}
+	    	//Checks if number of pages is greater than given in plan
 	    	if(pages >= user.getPlan().getNumPages()) {
-	    		
+	    		redirectAttrs.addFlashAttribute("exceedPageLimit", true);
 	    		return "redirect:/pageList?id="+website.getId();
 	    	}
 	    	
 	    	
+	    	
+	    	
+			
+	    	//If website doesn't exist
 			if (result.hasErrors()) {
-				model.addAttribute("websiteId", id);
-				model.addAttribute("websiteUrl", webRepo.findById(id).getUrl());
-				model.addAttribute("badlink", true);
+				redirectAttrs.addFlashAttribute("websiteId", id);
+				redirectAttrs.addFlashAttribute("websiteUrl", webRepo.findById(id).getUrl());
+				redirectAttrs.addFlashAttribute("badlink", true);
 				
-				if(website.getPages().isEmpty()) {
-					return "EmptyPageList";
-				} else {
-					
+				if(!website.getPages().isEmpty()) {
 					model.addAttribute("pages", website.getPages());
-					return "PageList";
 				}
+				return "redirect:/pageList?id="+website.getId();			
+				
 			} else {
 				Tracking track = new Tracking();
 				p.setOwner(website);
 				
 				//Sets url to parent URL + page URL 
 				p.setUrl(p.getUrlWithParent());
+				
+				
+				//checks if page already exists in users page list
+				for(Page pp : website.getPages()) {
+					if(pp.getUrl().equals(p.getUrl())) {
+						redirectAttrs.addFlashAttribute("duplicatewebsite", true);
+						return "redirect:/pageList?id="+website.getId();
+		    		}
+		    	}
+				
 				
 				p.setFileName(track.linkToFileFormat(p.getUrl())+"_0");
 				p.setLinesIgnored("[]");

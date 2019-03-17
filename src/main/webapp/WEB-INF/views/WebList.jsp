@@ -249,7 +249,7 @@
                       <div class="h5 mb-0 font-weight-bold text-gray-800">12min ago</div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-comments fa-2x text-gray-300"></i>
+                      <i class="far fa-clock fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>
@@ -299,6 +299,17 @@
 				$("#upload").toggle(0);});</script>
 			</div>
 		</c:if>
+		
+		<c:if test="${exceedPageLimit == true}">
+			<div class="alert alert-danger">
+				You have reached your page limit.
+				<script>$(document).ready(function(){$("#upload_on" ).hide();
+				$("#upload").toggle(0);});</script>
+			</div>
+		</c:if>
+		
+		
+		
 		
 		<div id="upload">
 			<form:form  method="POST" modelAttribute="website" action="/addWebsite">
