@@ -51,17 +51,6 @@ public class PageController {
 	}
 	
 
-//	///* Returns view createPageTrack *///
-//	 @RequestMapping(value = "addPage", method = RequestMethod.GET)
-//	public String createPage(@RequestParam(name="id") int id, Model model) {
-//		 Website website = webRepo.findById(id);
-//		 model.addAttribute("websiteUrl", website.getUrl());
-//		 model.addAttribute("websiteId", id);
-//			model.addAttribute("page", new Page());
-//			return "createPageTrack";
-//
-//	}
-	 
 	  ///* Adds page to database when add is clicked and calls addPage *///
 	    @RequestMapping(value = "addPage", params = "add", method = RequestMethod.POST)
 		public String addNewPage(@RequestParam(name="id") int id, @Valid @ModelAttribute("page") Page p, 
@@ -176,23 +165,6 @@ public class PageController {
     								  .count() == 0) {
     		return "redirect:/websiteList";
     	}
-    	
-    	
-    	
-    	List<Website> websites = new ArrayList<>();
-    	for (Website w : webRepo.findAll()) {
-    		if(w.getOwner().equals(user)) {
-			websites.add(w);
-    		}
-		}
-    	
-		if (websites.isEmpty()) {
-			return "EmptyWebList";
-		} else {
-			model.addAttribute("websites", websites);
-		}
-    	
-    	
 
     	List<Page> pages = new ArrayList<>();
     	model.addAttribute("websitename", website.getName());
@@ -222,26 +194,6 @@ public class PageController {
     }
     
     
-//    //Passes current website into model and will display the form to update website
-//    @RequestMapping(value = "editPage", params = "id")
-// public String editWebsite(@ModelAttribute("page") Page  page , @RequestParam("id") int id, @RequestParam(name="websiteid") int websiteid , 
-//		 Principal principal, BindingResult result, Model model) {
-//    	
-//    	User user = userRepo.findByLogin(principal.getName());
-//    	List<Email> emails= user.getEmails();
-//    	List<String> emailName = new ArrayList<String>();
-//    	//Converts email object list into list of email strings
-//    	for(Email email : emails) {
-//    		emailName.add(email.getAddress());
-//    	}
-//
-//    	model.addAttribute("websiteId", websiteid);
-//    	model.addAttribute("page", page);
-//    	model.addAttribute("emails", emailName);
-//
-//    	return "createPageTrack";
-//    }
-    
     
     
     
@@ -249,17 +201,14 @@ public class PageController {
     @RequestMapping(value = "editPage", method = RequestMethod.POST)
     public String editWebsiteClicked(@ModelAttribute("page") Page p, Principal principal, BindingResult result, Model model) {
     	
-    	//Errors need fixing
-    	if (result.hasErrors()) {
-    		return "createPageTrack";
-    	}
-    	else {
+    	//todo add errors
+
 		//p.setOwner(website);
     	pageRepo.save(p);
 
     	return "redirect:/"; 
     }
-    }
+    
     
     
 

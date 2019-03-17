@@ -1,6 +1,5 @@
 package group9rcraggs.application.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -33,20 +32,17 @@ public class Website {
 	private String url;
 	private boolean tracking;
 	private int activePages;
-	
-	@Column(nullable=true)
 	private String email;
 	
 
 	public Website() {
-		pages = new ArrayList<>();
+	/*	pages = new ArrayList<>();
 		Page p = new Page();
 		p.setName("Home");
 		p.setTracking(false);
 		p.setOwner(this);
-		pages.add(p);
-		
-
+		pages.add(p);*/
+	
 }
 	
 	///* Getters *///
@@ -78,8 +74,6 @@ public class Website {
 	public String getEmail() {
 		return this.email;
 	}
-	
-	
 	
 	///* Setters *///
 	

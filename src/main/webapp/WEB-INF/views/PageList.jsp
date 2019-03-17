@@ -259,7 +259,7 @@
 		
 		<div id="upload_on">
 			<div class="col-md-2 mb-3">
-				<button class="btn btn-success" id="add_on" type="submit"><i class="fas fa-plus"></i> Add Page</button>
+				<button class="btn btn-success" id="add_on" type="submit"><i class="fas fa-plus"></i> Page</button>
 			</div>
 	  </div>
 	  <c:if test="${badlink == true}">
@@ -273,7 +273,7 @@
 	  <div id="upload">
 		<form:form  method="POST" modelAttribute="page" action="/addPage?id=${websiteId}">
 			  <div class="row justify-content-center">
-			  <div class="col-md-3 mb-3">
+			  <div class="col-md-4 mb-3">
 			  <div class="input-group">
 				<div class="input-group-prepend">
 				  <span class="input-group-text" id="inputGroupPrepend">Page Name</span>
@@ -284,7 +284,7 @@
 			</div>
 				<!-- This field is used to pass the website owner Url into validation to check the complete url -->
 	       <input type="hidden" name="ownerUrl" value="${websiteUrl}"/> 
-			<div class="col-md-3 mb-3">
+			<div class="col-md-4 mb-3">
 			  <div class="input-group">
 				<div class="input-group-prepend">
 				  <span class="input-group-text" id="inputGroupPrepend">${websiteUrl}</span>
@@ -296,7 +296,7 @@
 			  </div>
 			</div>
 			
-			<div class="col-md-3 mb-3">
+			<div class="col-md-4 mb-3">
 			<div class="input-group">
 			  <div class="input-group-prepend">
 				<label class="input-group-text" for="inputGroupSelect01">Alerted after</label>
@@ -474,8 +474,9 @@
         </div>
         <div class="modal-body">Are you sure you want to delete this page?</div>
         <div class="modal-footer">
+                  <a class="btn btn-primary" id="delete_modal_h" href="#">Yes</a>
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" id="delete_modal_h" href="#">Yes</a>
+
         </div>
       </div>
     </div>

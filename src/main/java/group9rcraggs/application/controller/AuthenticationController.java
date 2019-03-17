@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import group9rcraggs.application.EmailService;
+import group9rcraggs.application.domain.Email;
 import group9rcraggs.application.domain.Role;
 import group9rcraggs.application.domain.User;
 import group9rcraggs.application.domain.VerificationToken;
@@ -340,6 +341,7 @@ public class AuthenticationController {
 	    User user = verificationRepo.findByToken(token).getUser();
 	    model.addAttribute("successreg", true);
 	    user.setEnabled(true);
+	    user.getEmails().add(new Email(user.getLogin(), user));
 	    userRepo.save(user); 
 	    return "log_reg"; 
 	}

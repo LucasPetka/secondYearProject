@@ -222,7 +222,7 @@
 		
 		<div id="upload_on">
 			<div class="col-md-2 mb-3">
-				<button class="btn btn-success" id="add_on" type="submit"><i class="fas fa-plus"></i> Add Website</button>
+				<button class="btn btn-success" id="add_on" type="submit"><i class="fas fa-plus"></i> Website</button>
 			</div>
 		</div>
 		
@@ -239,7 +239,7 @@
 		
 		
 		<div id="upload">
-			<form  method="POST" modelAttribute="website" action="/addWebsite">
+			<form:form  method="POST" modelAttribute="website" action="/addWebsite">
 				  <div class="row justify-content-center">
 				  <div class="col-md-4 mb-3">
 				  <div class="input-group">
@@ -261,6 +261,19 @@
 					<form:errors path="url"/>
 				  </div>
 				</div>
+				
+				                 <div class="col-md-4 mb-3">
+				  <div class="input-group">	
+					<div class="input-group-prepend">
+					  <span class="input-group-text" id="inputGroupPrepend">Email alerts</span>
+					</div>			
+					
+		
+				     <form:select path="email" class="form-control">
+			     	 <form:options items="${emails}"/>
+			   		 </form:select>
+			   		 </div>
+			   		 </div>
 						<input type="hidden"                        
 				name="${_csrf.parameterName}"
 				value="${_csrf.token}"/>
@@ -275,7 +288,7 @@
 				
 				
 				</div>
-			</form>
+			</form:form>
 		</div>
 		
 		

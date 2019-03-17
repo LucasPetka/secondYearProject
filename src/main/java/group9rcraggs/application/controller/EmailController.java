@@ -36,12 +36,11 @@ public class EmailController {
     	model.addAttribute("websites", userRepo.findByLogin(principal.getName()).getWebsites());
     	User user = userRepo.findByLogin(principal.getName());
     	
-    	List<Email> emails = new ArrayList<>();
-    	for (Email email : emailRepo.findAll()) {
-    		if(email.getOwner().equals(user)) {
-			emails.add(email);
-    		}
-		}
+    	//Gets list of emails for user
+    	List<Email> emails = user.getEmails();
+    	//Removes first (their sign up email) so they cannot delete it
+    	emails.remove(0);
+    	
     	
 		if (emails.isEmpty()) {
 			return "EmptyEmailList";

@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import group9rcraggs.application.Tracking;
 import group9rcraggs.application.domain.Email;
 import group9rcraggs.application.domain.Page;
 import group9rcraggs.application.domain.User;
@@ -101,7 +100,7 @@ public class IndexController {
 				
 				
 			//Gets auto added page and sets url to website url (Home page)
-			for(Page p : w.getPages()) {
+		/*	for(Page p : w.getPages()) {
 				Tracking track = new Tracking();
 				p.setUrl(w.getUrl());
 				p.setFileName(track.linkToFileFormat(p.getUrl())+"_0");
@@ -113,12 +112,8 @@ public class IndexController {
 				p.setAlertAfter(3);
 				p.setWarning(false);
 				break;
-			}
-					w.setOwner(user);
-					
-					//Auto sets email address to users
-					w.setEmail(w.getOwner().getLogin());
-					
+			}*/
+					w.setOwner(user);			
 					w.setTracking(true);
 					user.addWebsite(w);
 			websiteRepo.save(w);
@@ -134,6 +129,10 @@ public class IndexController {
     	model.addAttribute("logfirstName", userRepo.findByLogin(principal.getName()).getFirstName());
     	model.addAttribute("websites", userRepo.findByLogin(principal.getName()).getWebsites());
     	User user = userRepo.findByLogin(principal.getName());
+    	
+    	//Adds emails for website addition
+    	
+    	model.addAttribute("emails", user.getEmails());
     	
     	//Adds email list as model attribute for editing website 
     	List<Email> emails= user.getEmails();
@@ -195,20 +194,6 @@ public class IndexController {
 		return "redirect:/websiteList";
 }
     
-//    //Passes current website into model and will display the form to update website
-//    @RequestMapping(value = "editWebsite", params = "id")
-// public String editWebsite(@ModelAttribute("website") Website  website , @RequestParam("id") int id, Principal principal, 
-//		 BindingResult result, Model model) {
-//    	
-//    	User user = userRepo.findByLogin(principal.getName());
-//
-//    	website = websiteRepo.findById(id);
-//    	
-//    	model.addAttribute("website", website);
-//
-//    	return "CreateWebTrack";
-//    }
-    
 
     @RequestMapping(value = "ajaxSendEditWebsite", method = RequestMethod.GET)
     public @ResponseBody
@@ -226,17 +211,13 @@ public class IndexController {
     public String editWebsiteClicked(@ModelAttribute("website") Website w, Principal principal, 
     		BindingResult result, Model model) {
     	
-    	//Errors need fixing
-    	if (result.hasErrors()) {
-    		return "CreateWebTrack";
-    	}
-    	else {
-    		
+    	//todo Errors need fixing
+
     	websiteRepo.save(w);
 
     	return "redirect:/"; 
     }
-    }
+    
     @RequestMapping(value = "/payment", method = RequestMethod.GET)
     public String test(Principal principal, Model model) {
     	User user = userRepo.findByLogin(principal.getName());

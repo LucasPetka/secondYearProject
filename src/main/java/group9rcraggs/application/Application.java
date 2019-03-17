@@ -8,6 +8,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import group9rcraggs.application.domain.Email;
 import group9rcraggs.application.domain.Plan;
 import group9rcraggs.application.domain.Role;
 import group9rcraggs.application.domain.User;
@@ -82,6 +83,7 @@ public class Application implements CommandLineRunner  {
 		adminUser.setPassword(pe.encode("password"));
 		adminUser.setEnabled(true);
 		adminUser.setPlan(planbasic);
+		adminUser.getEmails().add(new Email(adminUser.getLogin(), adminUser));
 		///* Saves to database *///
 		userRepo.save(adminUser);
 		
@@ -91,6 +93,8 @@ public class Application implements CommandLineRunner  {
 		adminUse.setPassword(pe.encode("password"));
 		adminUse.setEnabled(true);
 		adminUse.setPlan(plan1);
+		adminUse.getEmails().add(new Email(adminUse.getLogin(), adminUse));
+
 		///* Saves to database *///
 		userRepo.save(adminUse);
 

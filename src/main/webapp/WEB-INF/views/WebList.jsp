@@ -293,13 +293,14 @@
 		</c:if>
 		
 		<div id="upload">
-			<form  method="POST" modelAttribute="website" action="/addWebsite">
+			<form:form  method="POST" modelAttribute="website" action="/addWebsite">
 				  <div class="row justify-content-center">
 				  <div class="col-md-4 mb-3">
 				  <div class="input-group">
 					<div class="input-group-prepend">
 					  <span class="input-group-text" id="inputGroupPrepend">Website Name</span>
 					</div>
+					
 				<input type="text" id="validationCustomUsername" class="form-control" name="name" placeholder="My blog" aria-describedby="inputGroupPrepend" required/>	
 				<form:errors path="name"/>
 				  </div>
@@ -307,12 +308,28 @@
 				
 				<div class="col-md-4 mb-3">
 				  <div class="input-group">
+				  
 					<div class="input-group-prepend">
 					  <span class="input-group-text" id="inputGroupPrepend">Website URL</span>
 					</div>
 					
-					<input type="text" id="validationCustomUsername" class="form-control" name="url" placeholder="https://www.example.com" aria-describedby="inputGroupPrepend" required/>	
+					<input type="text" id="validationCustomUsername" class="form-control" name="url" placeholder="https://example.com" aria-describedby="inputGroupPrepend" required/>	
 					<form:errors path="url"/>
+							
+				</div>
+			  </div>
+                 <div class="col-md-4 mb-3">
+				  <div class="input-group">	
+					<div class="input-group-prepend">
+					  <span class="input-group-text" id="inputGroupPrepend">Email alerts</span>
+					</div>			
+					
+		
+				     <form:select path="email" class="form-control">
+			     	 <form:options items="${emails}"/>
+			   		 </form:select>
+					
+					
 				  </div>
 				</div>
 						<input type="hidden"                        
@@ -329,7 +346,7 @@
 				
 				
 				</div>
-			</form>
+			</form:form>
 		</div>
 		
 
@@ -470,8 +487,9 @@
         </div>
         <div class="modal-body">Are you sure you want to delete this website?</div>
         <div class="modal-footer">
+                  <a class="btn btn-primary" id="delete_modal_h" href="#">Yes</a>
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" id="delete_modal_h" href="#">Yes</a>
+
         </div>
       </div>
     </div>

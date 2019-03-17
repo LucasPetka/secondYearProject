@@ -270,7 +270,7 @@
 		
 		<div id="upload_on">
 			<div class="col-md-2 mb-3">
-				<button class="btn btn-success" id="add_on" type="submit"><i class="fas fa-plus"></i> Add Page</button>
+				<button class="btn btn-success" id="add_on" type="submit"><i class="fas fa-plus"></i> Page</button>
 			</div>
 	  </div>
 	  <c:if test="${badlink == true}">
@@ -282,9 +282,9 @@
 </c:if>
 
 	  <div id="upload">
-		<form  method="POST" modelAttribute="page" action=/addPage?id=${websiteId}>
+		<form:form  method="POST" modelAttribute="page" action="/addPage?id=${websiteId}">
 			  <div class="row justify-content-center">
-			  <div class="col-md-3 mb-3">
+			  <div class="col-md-4 mb-3">
 			  <div class="input-group">
 				<div class="input-group-prepend">
 				  <span class="input-group-text" id="inputGroupPrepend">Page Name</span>
@@ -295,7 +295,7 @@
 			</div>
 				<!-- This field is used to pass the website owner Url into validation to check the complete url -->
 	       <input type="hidden" name="ownerUrl" value="${websiteUrl}"/> 
-			<div class="col-md-3 mb-3">
+			<div class="col-md-4 mb-3">
 			  <div class="input-group">
 				<div class="input-group-prepend">
 				  <span class="input-group-text" id="inputGroupPrepend">${websiteUrl}</span>
@@ -307,19 +307,16 @@
 			  </div>
 			</div>
 			
-			<div class="col-md-3 mb-3">
+						<div class="col-md-4 mb-3">
 			<div class="input-group">
 			  <div class="input-group-prepend">
-				<label class="input-group-text" for="inputGroupSelect01">Check every</label>
+				<label class="input-group-text" for="inputGroupSelect01">Alerted after</label>
 			  </div>
-			  <select class="custom-select" id="inputGroupSelect01" name="frequency" required/>
-				<option value="2"> 2 min </option>
-				<option value="5"> 5 min </option>
-				<option value="15"> 15 min </option>
-				<option value="60">60 min </option>
-				<option value="3"> 3 hours</option>
-			  </select>
-			      <form:errors path="frequency"/>
+			  
+			  <form:select path="alertAfter" class="form-control" id="alertAfter">
+			      <form:options items="${alertAfterList}"/>
+			    </form:select>
+
 			</div>
 			</div>
 			
@@ -332,13 +329,13 @@
 			<input type="submit" value="Add" name="add" class="btn btn-success"/>
 			</div>
 			
-			<div class="col-md-1 mb-1">
+			<div class="col-md-2 mb-3">
 			<button type="button" id="add_off" class="btn btn-outline-danger"><i class="fas fa-times"></i></button>
 			</div>
 			
 			
 			</div>
-		</form>
+		</form:form>
 	</div>
 		
 
