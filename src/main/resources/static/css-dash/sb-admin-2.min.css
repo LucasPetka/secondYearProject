@@ -106,3 +106,28 @@ tr.detail div {
 {
 	display: none;
 }
+
+.big {
+    display:block;
+    margin-right:19px;
+    margin-left:19px;
+    cursor:pointer;
+}
+
+#card_back:hover{
+	background-color:#f9f8f8;
+	
+}
+
+#paypal{
+	background: none;
+	color: inherit;
+	border: none;
+	margin-top:10px;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;	
+}
+
+
+

@@ -198,7 +198,7 @@
            
           </div>
 
-		<div class="col-xl-12 col-lg-7">
+		<div class="col-xl-9 col-lg-7">
           <div class="card">
            <div class="card-header">
                <h4 class="card-title">Buy Membership</h4>
@@ -209,8 +209,9 @@
            <form method="POST" action="/pay">
 
 		   <div class="row mx-auto">
+		   <label class="big">
 				<div class="col-md">
-					<div class="card p-2 text-center" style="width: 19rem;">
+					<div class="card p-2 text-center" id="card_back" style="width: 19rem;">
 					  <img class="card-img-top img-fluid w-50 mx-auto" src="/img/bronze.png" alt="Card image cap" >
 					  <div class="card-body">
 						<h5 class="card-title">Standard</h5>
@@ -231,9 +232,11 @@
 					  </div>
 					</div>
 				</div>
-				
+			</label>	
+			
+			<label class="big">	
 				<div class="col-md">
-					<div class="card p-2 text-center" style="width: 19rem;">
+					<div class="card p-2 text-center" id="card_back" style="width: 19rem;">
 					  <img class="card-img-top img-fluid w-50 mx-auto" src="/img/silver.png" alt="Card image cap" >
 					  <div class="card-body">
 						<h5 class="card-title">Pro</h5>
@@ -255,9 +258,11 @@
 					  </div>
 					</div>
 				</div>
-				
+			</label>
+			
+			<label class="big">
 				<div class="col-md">
-					<div class="card p-2 text-center" style="width: 19rem;">
+					<div class="card p-2 text-center" id="card_back" style="width: 19rem;">
 					  <img class="card-img-top img-fluid w-50 mx-auto" src="/img/gold.png" alt="Card image cap">
 					  <div class="card-body">
 						<h5 class="card-title">Enterprise</h5>
@@ -279,6 +284,7 @@
 					  </div>
 					</div>
 				</div>
+			</label>	
 				
 			</div>
 				
@@ -286,8 +292,12 @@
 						<input type="hidden"                        
 			name="${_csrf.parameterName}"
 			value="${_csrf.token}"/>
+			
 			<div class="w-100 text-center">
-				<button type="submit" class="btn btn-lg btn-primary pull-right mt-4 mx-auto"><img src="/img/paypal-button.png" height="60" width="300"></button>
+			
+				<button type="submit" id="paypal" class="mt-4 mx-auto"><img src="/img/paypal-button.png" height="60" width="300"></button>
+				<a id="sum"></a>
+				
 			</div>
 				
 				
@@ -297,9 +307,7 @@
          </div>
        </div>
        </div>
-
-            
-
+       
 
         </div>
         <!-- /.container-fluid -->
