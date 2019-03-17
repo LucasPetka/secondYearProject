@@ -233,7 +233,19 @@
 		
 	 <div id="upload">
 		<form  method="POST" modelAttribute="email" action="/addEmail">
-			  <div class="row justify-content-center">
+		
+		<div class="row justify-content-center">
+		
+				<div class="col-md-4 mb-3">
+			  <div class="input-group">
+				<div class="input-group-prepend">
+				  <span class="input-group-text" id="inputGroupPrepend">Name</span>
+				</div>
+			<input type="text" id="validationCustomUsername" class="form-control" name="name" placeholder="Joe Bloggs" aria-describedby="inputGroupPrepend" required/>	
+			  </div>
+			</div>
+		
+			  
 			  <div class="col-md-4 mb-3">
 			  <div class="input-group">
 				<div class="input-group-prepend">

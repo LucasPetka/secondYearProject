@@ -16,6 +16,7 @@ public class Email {
 	
 	@Column(nullable = false)
 	String address;
+	String name;
 	
 	@ManyToOne(optional=false)
 	private User owner;
@@ -43,6 +44,10 @@ public class Email {
 		this.owner = owner;
 	}
 	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
 	///* Getters *///
 	public int getId() {
 		return this.id;
@@ -53,6 +58,10 @@ public class Email {
 	
 	public User getOwner() {
 		return this.owner;
+	}
+	
+	public String getName() {
+		return this.name;
 	}
 
 	

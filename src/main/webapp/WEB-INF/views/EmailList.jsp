@@ -224,6 +224,16 @@
 	 <div id="upload">
 		<form  method="POST" modelAttribute="email" action="/addEmail">
 			  <div class="row justify-content-center">
+			  
+			  <div class="col-md-4 mb-3">
+			  <div class="input-group">
+				<div class="input-group-prepend">
+				  <span class="input-group-text" id="inputGroupPrepend">Name</span>
+				</div>
+			<input type="text" id="validationCustomUsername" class="form-control" name="name" placeholder="Joe Bloggs" aria-describedby="inputGroupPrepend" required/>	
+			  </div>
+			</div>
+			
 			  <div class="col-md-4 mb-3">
 			  <div class="input-group">
 				<div class="input-group-prepend">
@@ -271,6 +281,7 @@
 					<table class="table table-hover">
 					  <thead>
 						<tr>
+						 <th>Name</th>
 						  <th>Email Address</th>
 						  <th></th>
 						  
@@ -279,6 +290,7 @@
 					  <tbody>
 						<c:forEach items="${emails}" var="email">
 							<tr>
+							    <td><c:out value="${email.name}"/></td>
 								<td><c:out value="${email.address}"/></td>
 								<td>
 								<a class="btn btn-danger" id="delete_h" href="/deleteEmail?id=${email.id}" role="button"  data-toggle="modal" data-target="#deleteModal"> <i class="fas fa-trash-alt"></i> </a>
@@ -378,8 +390,8 @@
         </div>
         <div class="modal-body">Are you sure you want to delete this e-mail?</div>
         <div class="modal-footer">
+                  <a class="btn btn-primary" id="delete_modal_h" href="#">Yes</a>
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" id="delete_modal_h" href="#">Yes</a>
         </div>
       </div>
     </div>
