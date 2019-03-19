@@ -2,6 +2,7 @@ package group9rcraggs.application;
 
 
 
+
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -36,14 +37,12 @@ public class ScheduledTasks {
     @Scheduled(fixedDelay = 10000)
     public void scanForChanges() {
     	
-
-    	
     	
     	List<Page> pages = (List<Page>) pageRepo.findAll();
     	pages.parallelStream().forEach((ww) -> {
     		
     		String ignore="";
-     		if(ww.getChecked() == false) {
+     		if(!ww.getChecked()) {
              	scanIfNotChecked(ww);
      		}
      		
@@ -68,14 +67,11 @@ public class ScheduledTasks {
  		    	
  		    }
  		   DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
- 		   SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
  		  LocalDateTime now = LocalDateTime.now();
  		 ///* Checks if file other than ignored lines changes *///
          if(!track.compareFilesIgnoreLines("pageDB/"+track.linkToFileFormat(ww.getUrl())+"_0", 
         		 "pageDB/"+track.linkToFileFormat(ww.getUrl())+"_1", arr)) {
-        	
-         	
-         	
+
         	//Emails user that page changed
          	alertUser(ww);
 
@@ -100,29 +96,54 @@ public class ScheduledTasks {
     	
 });
     }
-    public void scanIfNotChecked(Page ww) {
+    
+    public void scanIfNotChecked(Page p) {
 
-    		if(ww.getTracking() == true) {
+    	//Checks if tracking is turned on - i.e user wants to track page
+    		if(p.getTracking() == true) {
+    		ArrayList<Integer> linesToBeIgnored = new ArrayList<Integer>();
     		Tracking track = new Tracking();
- 			track.sourceCodeToFile(ww.getUrl(), track.linkToFileFormat(ww.getUrl())+"_0");
+ 			track.sourceCodeToFile(p.getUrl(), track.linkToFileFormat(p.getUrl())+"_0");
+ 			p.setFileName(track.linkToFileFormat(p.getUrl())+"_0");
+ 			//Updates page file name
+ 			pageRepo.save(p);
+ 			
  			try {
- 				Thread.sleep(70000);
+ 				//60 seconds
+ 				Thread.sleep(30000);
+ 				createLinesIgnored(p, track, linesToBeIgnored, 1);
+ 				//1 hour
+ 				Thread.sleep(0);
+ 				createLinesIgnored(p, track, linesToBeIgnored, 2);
+ 				//23 hours
+ 				Thread.sleep(30000);
+ 				createLinesIgnored(p, track, linesToBeIgnored, 3);
  			} catch (InterruptedException e) {
  				
  				e.printStackTrace();
  			}
- 			track.sourceCodeToFile(ww.getUrl(), track.linkToFileFormat(ww.getUrl())+"_1");
-
- 			ww.setFileName(track.linkToFileFormat(ww.getUrl())+"_0");
-
- 	    	ArrayList<Integer> linesToBeIgnored = track.compareFiles("pageDB/"+track.linkToFileFormat(ww.getUrl())+"_0",
- 	    			"pageDB/"+track.linkToFileFormat(ww.getUrl())+"_1");
- 			ww.setLinesIgnored(linesToBeIgnored.toString());
- 			ww.setChecked(true);
- 			pageRepo.save(ww);
+ 			
+ 			p.setChecked(true);
+ 			pageRepo.save(p);
     		}
     		
         }
+    
+    public void createLinesIgnored(Page p, Tracking track, ArrayList<Integer> linesToBeIgnored, int version) {
+    	
+    	//Downloads HTML to new file 
+    	track.sourceCodeToFile(p.getUrl(), track.linkToFileFormat(p.getUrl())+"_" + version);
+    	
+    	//Checks if the two files are different - if so adds lines to linesToBeIgnored
+    	linesToBeIgnored.addAll(track.compareFiles("pageDB/"+track.linkToFileFormat(p.getUrl())+"_0",
+	    			"pageDB/"+track.linkToFileFormat(p.getUrl())+"_" + version));
+    	
+    	//Updates lines ignored
+    	p.setLinesIgnored(linesToBeIgnored.toString());
+    	pageRepo.save(p);
+    	
+    	
+    }
 
      
     @Scheduled(fixedDelay = 60000)

@@ -63,7 +63,7 @@ String sourceCode="";
 	///* Returns array of line numbers that are different *///
 	public ArrayList<Integer> compareFiles(String filename1, String filename2) {
  
-		ArrayList<Integer> array = new ArrayList();
+		ArrayList<Integer> array = new ArrayList<Integer>();
  
 			try {
 				///* Takes two different files and calls diff on each line *///
@@ -106,6 +106,8 @@ return array;
 			int i=1;  
 				while ((line1 = reader1.readLine()) != null && ((line2 = reader2.readLine()) != null)) {
 					if(!diff(line1, line2) && !array.contains(i)) {
+						reader1.close();
+						reader2.close();
 						return false;
 					}
 					i++;
