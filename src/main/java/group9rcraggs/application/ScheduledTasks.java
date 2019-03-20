@@ -192,11 +192,16 @@ public class ScheduledTasks {
     			"  <title>Revue</title>\n" + 
     			"  <style type=\"text/css\">\n" + 
     			"    #outlook a {padding:0;}\n" + 
-    			"    body{width:100% !important; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; margin:0; padding:0;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;} \n" + 
+    			"    body{width:100% !important; -webkit-text-size-adjust:100%; "
+    			+ "-ms-text-size-adjust:100%; margin:0; padding:0;-webkit-font-"
+    			+ "smoothing: antialiased;-moz-osx-font-smoothing: grayscale;} \n" + 
     			"    .ExternalClass {width:100%;}\n" + 
-    			"    .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div, .ExternalClass blockquote {line-height: 100%;}\n" + 
+    			"    .ExternalClass, .ExternalClass p, .ExternalClass span, "
+    			+ ".ExternalClass font, .ExternalClass td, .ExternalClass div, ."
+    			+ "ExternalClass blockquote {line-height: 100%;}\n" + 
     			"    .ExternalClass p, .ExternalClass blockquote {margin-bottom: 0; margin: 0;}\n" + 
-    			"    #backgroundTable {margin:0; padding:0; width:100% !important; line-height: 100% !important;}\n" + 
+    			"    #backgroundTable {margin:0; padding:0; width:100% "
+    			+ "!important; line-height: 100% !important;}\n" + 
     			"    \n" + 
     			"    img {outline:none; text-decoration:none; -ms-interpolation-mode: bicubic;} \n" + 
     			"    a img {border:none;} \n" + 
@@ -206,8 +211,10 @@ public class ScheduledTasks {
     			"\n" + 
     			"    h1, h2, h3, h4, h5, h6 {color: black !important;}\n" + 
     			"    h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {color: black;}\n" + 
-    			"    h1 a:active, h2 a:active,  h3 a:active, h4 a:active, h5 a:active, h6 a:active {color: black;}\n" + 
-    			"    h1 a:visited, h2 a:visited,  h3 a:visited, h4 a:visited, h5 a:visited, h6 a:visited {color: black;}\n" + 
+    			"    h1 a:active, h2 a:active,  h3 a:active, h4 a:active, h5 "
+    			+ "a:active, h6 a:active {color: black;}\n" + 
+    			"    h1 a:visited, h2 a:visited,  h3 a:visited, h4 a:visited, "
+    			+ "h5 a:visited, h6 a:visited {color: black;}\n" + 
     			"\n" + 
     			"    table td {border-collapse: collapse;}\n" + 
     			"    table { border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; }\n" + 
@@ -318,44 +325,76 @@ public class ScheduledTasks {
     			"    </style>\n" + 
     			"  <![endif]-->\n" + 
     			"</head>\n" + 
-    			"<body style=\"width:100% !important;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;margin-top:0;margin-bottom:0;margin-right:0;margin-left:0;padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;\">\n" + 
-    			"<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" id=\"backgroundTable\" style=\"margin:0; padding:0; width:100% !important; line-height: 100% !important; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;background-color: #F9FAFB;\" width=\"100%\">\n" + 
+    			"<body style=\"width:100% !important;-webkit-text-size-adjust:100%;-ms-te"
+    			+ "xt-size-adjust:100%;margin-top:0;margin-bottom:0;margin-right:0;marg"
+    			+ "in-left:0;padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;\">\n" + 
+    			"<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" id=\"backgrou"
+    			+ "ndTable\" style=\"margin:0; padding:0; width:100% !important; line-he"
+    			+ "ight: 100% !important; border-collapse:collapse; mso-table-lspace:0pt; mso"
+    			+ "-table-rspace:0pt;background-color: #F9FAFB;\" width=\"100%\">\n" + 
     			"  <tbody><tr>\n" + 
     			"    <td width=\"10\" valign=\"top\">&nbsp;</td>\n" + 
     			"    <td valign=\"top\" align=\"center\">\n" + 
     			"      <!--[if (gte mso 9)|(IE)]>\n" + 
-    			"      <table width=\"600\" align=\"center\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"background-color: #FFF; border-collapse:collapse;mso-table-lspace:0pt;mso-table-rspace:0pt;\">\n" + 
+    			"      <table width=\"600\" align=\"center\" cellpadding=\"0\" cellspac"
+    			+ "ing=\"0\" border=\"0\" style=\"background-color: #FFF; border-collapse:coll"
+    			+ "apse;mso-table-lspace:0pt;mso-table-rspace:0pt;\">\n" + 
     			"        <tr>\n" + 
     			"          <td>\n" + 
     			"      <![endif]-->\n" + 
-    			"      <table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" align=\"center\" style=\"width: 100%; max-width: 600px; background-color: #FFF; border-collapse:collapse;mso-table-lspace:0pt;mso-table-rspace:0pt;\" id=\"contentTable\">\n" + 
+    			"      <table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" align=\"center\" "
+    			+ "style=\"width: 100%; max-width: 600px; background-color: #FFF; border"
+    			+ "-collapse:collapse;mso-table-lspace:0pt;mso-table-rspace:0pt;\" id=\"contentTable\">\n" + 
     			"        <tbody><tr>\n" + 
-    			"          <td width=\"600\" valign=\"top\" align=\"center\" style=\"border-collapse:collapse;\">\n" + 
-    			"            <table align=\"center\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"background: #F9FAFB;\" width=\"100%\">\n" + 
+    			"          <td width=\"600\" valign=\"top\" align=\"center\" "
+    			+ "style=\"border-collapse:collapse;\">\n" + 
+    			"            <table align=\"center\" border=\"0\" cellpadding=\"0\" "
+    			+ "cellspacing=\"0\" style=\"background: #F9FAFB;\" width=\"100%\">\n" + 
     			"<tbody><tr>\n" + 
     			"<td align=\"center\" valign=\"top\">\n" + 
-    			"<div style=\"font-family: &quot;lato&quot;, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; line-height: 28px;\">&nbsp;</div>\n" + 
+    			"<div style=\"font-family: &quot;lato&quot;, &quot;Helvetica Neue&quot;, "
+    			+ "Helvetica, Arial, sans-serif; line-height: 28px;\">&nbsp;</div>\n" + 
     			"</td>\n" + 
     			"</tr>\n" + 
     			"</tbody></table>\n" + 
-    			"<table align=\"center\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"border: 1px solid #E0E4E8;\" width=\"100%\">\n" + 
+    			"<table align=\"center\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" "
+    			+ "style=\"border: 1px solid #E0E4E8;\" width=\"100%\">\n" + 
     			"<tbody><tr>\n" + 
     			"<td align=\"center\" style=\"padding: 56px 56px 28px 56px;\" valign=\"top\">\n" + 
-    			"<a style=\"color: #3498DB; text-decoration: none;\" href=\"https://www.getrevue.co/profile/brightonsmith?utm_campaign=Subscription+confirmation&amp;utm_content=profile-image&amp;utm_medium=email&amp;utm_source=confirmation\" target=\"_blank\"><img style=\"width: 56px; height: 56px; border: 0;\" alt=\"NetNag Logo\" src=\"https://localhost:8090/img/logo.png\">\n" + 
+    			"<a style=\"color: #3498DB; text-decoration: none;\" href=\"\" target=\"_blank\">"
+    			+ "<img style=\"width: 56px; height: 56px; border: 0;\" alt=\"NetNag Logo\" src=\"https:"
+    			+ "//localhost:8090/img/logo.png\">\n" + 
     			"</a></td>\n" + 
     			"</tr>\n" + 
     			"<tr>\n" + 
     			"<td align=\"center\" style=\"padding: 0 56px 28px 56px;\" valign=\"top\">\n" + 
-    			"<div style=\"font-family: &quot;lato&quot;, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; line-height: 28px;font-size: 20px; color: #333;\"><strong> "+ p.getName()  +" from " + p.getOwnerUrl() + "</strong> was updated take a look at changes and confirm or decline them.</div>\n" + 
+    			"<div style=\"font-family: &quot;lato&quot;, &quot;Helvetica Neue&quot;,"
+    			+ " Helvetica, Arial, sans-serif; line-height: 28px;font-size: 20px; "
+    			+ "color: #333;\"><strong> "+ p.getName()  +" from " + p.getOwnerUrl() + "</st"
+    					+ "rong> was updated take a look at changes and confirm or decline them.</div>\n" + 
     			"</td>\n" + 
     			"</tr>\n" + 
     			"<tr>\n" + 
     			"<td align=\"center\" style=\"padding: 0 56px; padding-bottom: 56px;\" valign=\"top\">\n" + 
     			"<div>\n" + 
-    			"      <a href=\"#\" style=\"background-color:#E15718;border-radius:50px;color:#ffffff;display:inline-block;font-family: 'lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:18px;font-weight: bold;line-height:40px;text-align:center;text-decoration:none;width:270px;-webkit-text-size-adjust:none;\" target=\"_blank\">Confirm subscription now</a><br>\n" + 
+    			"      <a href=\"#\" style=\"background-color:#E15718;border-radius:50px;"
+    			+ "color:#ffffff;display:inline-block;font-family: 'lato', 'Helvetica Neue'"
+    			+ ", Helvetica, Arial, sans-serif;font-size:18px;font-weight: bold;line-height"
+    			+ ":40px;text-align:center;text-decoration:none;width:270px;-webkit-text-size-"
+    			+ "adjust:none;\" target=\"_blank\">Confirm subscription now</a><br>\n" + 
     			"\n" + 
-    			"      <a href=\"#\" style=\"background-color:#00D687; margin-top:20px; border-radius:50px;color:#ffffff;display:inline-block;font-family: 'lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:18px;font-weight: bold;line-height:40px;text-align:center;text-decoration:none;width:200px; float:left; margin-right: 80px; -webkit-text-size-adjust:none;\" target=\"_blank\">Accept changes</a>\n" + 
-    			"      <a href=\"#\" style=\"background-color:#F22733; margin-top:20px; border-radius:50px;color:#ffffff;display:inline-block; float:left; font-family: 'lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:18px;font-weight: bold;line-height:40px;text-align:center;text-decoration:none;width:200px;-webkit-text-size-adjust:none;\" target=\"_blank\">Decline changes</a>\n" + 
+    			"      <a href=\"#\" style=\"background-color:#00D687; margin-top:20px; "
+    			+ "border-radius:50px;color:#ffffff;display:inline-block;font-family: "
+    			+ "'lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:18px;"
+    			+ "font-weight: bold;line-height:40px;text-align:center;text-decoration:"
+    			+ "none;width:200px; float:left; margin-right: 80px; -webkit-text-size-adjust"
+    			+ ":none;\" target=\"_blank\">Accept changes</a>\n" + 
+    			"      <a href=\"#\" style=\"background-color:#F22733; margin-top:20px; "
+    			+ "border-radius:50px;color:#ffffff;display:inline-block; float:left; "
+    			+ "font-family: 'lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;font-"
+    			+ "size:18px;font-weight: bold;line-height:40px;text-align:center;text-decoration"
+    			+ ":none;width:200px;-webkit-text-size-adjust:none;\" target=\"_blank\">Decline "
+    			+ "changes</a>\n" + 
     			"</div>\n" + 
     			"\n" + 
     			"</td>\n" + 
@@ -417,9 +456,12 @@ public class ScheduledTasks {
     	 		"  <title>Revue</title>\n" + 
     	 		"  <style type=\"text/css\">\n" + 
     	 		"    #outlook a {padding:0;}\n" + 
-    	 		"    body{width:100% !important; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; margin:0; padding:0;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;} \n" + 
+    	 		"    body{width:100% !important; -webkit-text-size-adjust:100%; -ms"
+    	 		+ "-text-size-adjust:100%; margin:0; padding:0;-webkit-font-smoothing: "
+    	 		+ "antialiased;-moz-osx-font-smoothing: grayscale;} \n" + 
     	 		"    .ExternalClass {width:100%;}\n" + 
-    	 		"    .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div, .ExternalClass blockquote {line-height: 100%;}\n" + 
+    	 		"    .ExternalClass, .ExternalClass p, .ExternalClass span, .External"
+    	 		+ "Class font, .ExternalClass td, .ExternalClass div, .ExternalClass blockquote {line-height: 100%;}\n" + 
     	 		"    .ExternalClass p, .ExternalClass blockquote {margin-bottom: 0; margin: 0;}\n" + 
     	 		"    #backgroundTable {margin:0; padding:0; width:100% !important; line-height: 100% !important;}\n" + 
     	 		"    \n" + 
@@ -537,54 +579,80 @@ public class ScheduledTasks {
     	 		"    </style>\n" + 
     	 		"  <![endif]-->\n" + 
     	 		"</head>\n" + 
-    	 		"<body style=\"width:100% !important;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;margin-top:0;margin-bottom:0;margin-right:0;margin-left:0;padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;\">\n" + 
-    	 		"<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" id=\"backgroundTable\" style=\"margin:0; padding:0; width:100% !important; line-height: 100% !important; border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;background-color: #F9FAFB;\" width=\"100%\">\n" + 
+    	 		"<body style=\"width:100% !important;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;"
+    	 		+ "margin-top:0;margin-bottom:0;margin-right:0;margin-left:0;padding-top:0;padding-bottom:0;"
+    	 		+ "padding-right:0;padding-left:0;\">\n" + 
+    	 		"<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" id=\"backgroundTable\" "
+    	 		+ "style=\"margin:0; padding:0; width:100% !important; line-height: 100% !important; "
+    	 		+ "border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;background-color:"
+    	 		+ " #F9FAFB;\" width=\"100%\">\n" + 
     	 		"  <tbody><tr>\n" + 
     	 		"    <td width=\"10\" valign=\"top\">&nbsp;</td>\n" + 
     	 		"    <td valign=\"top\" align=\"center\">\n" + 
     	 		"      <!--[if (gte mso 9)|(IE)]>\n" + 
-    	 		"      <table width=\"600\" align=\"center\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"background-color: #FFF; border-collapse:collapse;mso-table-lspace:0pt;mso-table-rspace:0pt;\">\n" + 
+    	 		"      <table width=\"600\" align=\"center\" cellpadding=\"0\" cellspacing=\"0\" "
+    	 		+ "border=\"0\" style=\"background-color: #FFF; border-collapse:collapse;mso-table-"
+    	 		+ "lspace:0pt;mso-table-rspace:0pt;\">\n" + 
     	 		"        <tr>\n" + 
     	 		"          <td>\n" + 
     	 		"      <![endif]-->\n" + 
-    	 		"      <table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" align=\"center\" style=\"width: 100%; max-width: 600px; background-color: #FFF; border-collapse:collapse;mso-table-lspace:0pt;mso-table-rspace:0pt;\" id=\"contentTable\">\n" + 
+    	 		"      <table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" align=\"center\" "
+    	 		+ "style=\"width: 100%; max-width: 600px; background-color: #FFF; border-collapse:"
+    	 		+ "collapse;mso-table-lspace:0pt;mso-table-rspace:0pt;\" id=\"contentTable\">\n" + 
     	 		"        <tbody><tr>\n" + 
-    	 		"          <td width=\"600\" valign=\"top\" align=\"center\" style=\"border-collapse:collapse;\">\n" + 
-    	 		"            <table align=\"center\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"background: #F9FAFB;\" width=\"100%\">\n" + 
+    	 		"          <td width=\"600\" valign=\"top\" align=\"center\" style=\"border-coll"
+    	 		+ "apse:collapse;\">\n" + 
+    	 		"            <table align=\"center\" border=\"0\" cellpadding=\"0\" "
+    	 		+ "cellspacing=\"0\" style=\"background: #F9FAFB;\" width=\"100%\">\n" + 
     	 		"<tbody><tr>\n" + 
     	 		"<td align=\"center\" valign=\"top\">\n" + 
-    	 		"<div style=\"font-family: &quot;lato&quot;, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; line-height: 28px;\">&nbsp;</div>\n" + 
+    	 		"<div style=\"font-family: &quot;lato&quot;, &quot;Helvetica Neue&quot;, "
+    	 		+ "Helvetica, Arial, sans-serif; line-height: 28px;\">&nbsp;</div>\n" + 
     	 		"</td>\n" + 
     	 		"</tr>\n" + 
     	 		"</tbody></table>\n" + 
-    	 		"<table align=\"center\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"border: 1px solid #E0E4E8;\" width=\"100%\">\n" + 
+    	 		"<table align=\"center\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" "
+    	 		+ "style=\"border: 1px solid #E0E4E8;\" width=\"100%\">\n" + 
     	 		"<tbody><tr>\n" + 
     	 		"<td align=\"center\" style=\"padding: 56px 56px 28px 56px;\" valign=\"top\">\n" +
     	 		"</a></td>\n" + 
     	 		"</tr>\n" + 
     	 		"<tr>\n" + 
     	 		"<td align=\"center\" style=\"padding: 0 56px 28px 56px;\" valign=\"top\">\n" + 
-    	 		"<div style=\"font-family: &quot;lato&quot;, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; line-height: 28px;font-size: 20px; color: #333;\"><strong> "+ p.getName()  +" from " + p.getOwnerUrl() + "</strong> was not updated and needs updating!</div>\n" + 
+    	 		"<div style=\"font-family: &quot;lato&quot;, &quot;Helvetica Neue&quot;, "
+    	 		+ "Helvetica, Arial, sans-serif; line-height: 28px;font-size: 20px; color: "
+    	 		+ "#333;\"><strong> "+ p.getName()  +" from " + p.getOwnerUrl() + "</strong> was "
+    	 				+ "not updated and needs updating!</div>\n" + 
     	 		"</td>\n" + 
     	 		"</tr>\n" + 
     	 		"<tr>\n" + 
-    	 		"<td align=\"center\" style=\"padding: 0 56px; padding-bottom: 56px;\" valign=\"top\">\n" + 
+    	 		"<td align=\"center\" style=\"padding: 0 56px; padding-bottom: 56px;\" "
+    	 		+ "valign=\"top\">\n" + 
     	 		"<div>\n" + 
-    	 		"      <a href=\"#\" style=\"background-color:#E15718;border-radius:50px;color:#ffffff;display:inline-block;font-family: 'lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:18px;font-weight: bold;line-height:40px;text-align:center;text-decoration:none;width:270px;-webkit-text-size-adjust:none;\" target=\"_blank\">Check your page</a>\n" + 
+    	 		"      <a href=\"#\" style=\"background-color:#E15718;border-radius:50px;"
+    	 		+ "color:#ffffff;display:inline-block;font-family: 'lato', 'Helvetica Neue', "
+    	 		+ "Helvetica, Arial, sans-serif;font-size:18px;font-weight: bold;line-height:"
+    	 		+ "40px;text-align:center;text-decoration:none;width:270px;-webkit-text-size-"
+    	 		+ "adjust:none;\" target=\"_blank\">Check your page</a>\n" + 
     	 		"</div>\n" + 
     	 		"\n" + 
     	 		"</td>\n" + 
     	 		"</tr>\n" + 
     	 		"\n" + 
     	 		"</tbody></table>\n" + 
-    	 		"<table align=\"center\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"background: #F9FAFB;\" width=\"100%\">\n" + 
+    	 		"<table align=\"center\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" "
+    	 		+ "style=\"background: #F9FAFB;\" width=\"100%\">\n" + 
     	 		"<tbody>\n" + 
     	 		"\n" + 
     	 		"<tr>\n" + 
     	 		"<td align=\"center\" style=\"padding: 20px 56px 28px 56px;\" valign=\"middle\">\n" + 
-    	 		"<span style=\"font-family: &quot;lato&quot;, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; line-height: 28px;font-size: 16px; color: #A7ADB5; vertical-align: middle;\">Powered by</span>\n" + 
+    	 		"<span style=\"font-family: &quot;lato&quot;, &quot;Helvetica Neue&quot;, "
+    	 		+ "Helvetica, Arial, sans-serif; line-height: 28px;font-size: 16px; color: "
+    	 		+ "#A7ADB5; vertical-align: middle;\">Powered by</span>\n" + 
     	 		"&nbsp;\n" + 
-    	 		"<a style=\"border: 0;\" href=\"https://localhost:8090/\"><img alt=\"NetNag\" width=\"70\" height=\"28\" style=\"vertical-align: middle;\" src=\"https://localhost:8090/img/logo.png\">\n" + 
+    	 		"<a style=\"border: 0;\" href=\"https://localhost:8090/\"><img alt=\"NetNag\" "
+    	 		+ "width=\"70\" height=\"28\" style=\"vertical-align: middle;\" "
+    	 		+ "src=\"https://localhost:8090/img/logo.png\">\n" + 
     	 		"</a></td>\n" + 
     	 		"</tr>\n" + 
     	 		"</tbody></table>\n" + 
