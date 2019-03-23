@@ -41,7 +41,7 @@ public class PaypalService {
 		Transaction transaction = new Transaction();
 		transaction.setDescription(description);
 		transaction.setAmount(amount);
-
+	
 		List<Transaction> transactions = new ArrayList<>();
 		transactions.add(transaction);
 
@@ -56,7 +56,7 @@ public class PaypalService {
 		redirectUrls.setCancelUrl(cancelUrl);
 		redirectUrls.setReturnUrl(successUrl);
 		payment.setRedirectUrls(redirectUrls);
-
+		apiContext.setMaskRequestId(true);
 		return payment.create(apiContext);
 	}
 	
@@ -65,6 +65,7 @@ public class PaypalService {
 		payment.setId(paymentId);
 		PaymentExecution paymentExecute = new PaymentExecution();
 		paymentExecute.setPayerId(payerId);
+		apiContext.setMaskRequestId(true);
 		return payment.execute(apiContext, paymentExecute);
 	}
 }

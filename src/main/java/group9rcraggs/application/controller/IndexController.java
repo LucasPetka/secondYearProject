@@ -236,8 +236,9 @@ public class IndexController {
 			websites.add(w);
     		}
 		}
-    	model.addAttribute("logfirstName", userRepo.findByLogin(principal.getName()).getFirstName());
+    	model.addAttribute("logfirstName", user.getFirstName());
     	model.addAttribute("websites", websites);
+    	model.addAttribute("membershiptype", user.getPlan().getTier());
     	return "Membership";
     }
     

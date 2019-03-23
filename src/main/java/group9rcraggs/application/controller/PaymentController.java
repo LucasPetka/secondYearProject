@@ -70,6 +70,7 @@ public class PaymentController {
 					tier+ " purchase", 
 					cancelUrl, 
 					successUrl);
+			
 			User user = userRepo.findByLogin(principal.getName());
 			user.setTier(tier);
 			userRepo.save(user);
@@ -99,7 +100,7 @@ public class PaymentController {
 				User user = userRepo.findByLogin(principal.getName());
 				
 				Plan plan;
-				if(user.getTier().equals("Basic")) {
+				if(user.getTier().equals("Standard")) {
 					plan = planRepo.findById(1);
 				}else if(user.getTier().equals("Pro")) {
 					plan = planRepo.findById(2);
@@ -110,8 +111,8 @@ public class PaymentController {
 				
 				user.setTier("");
 
-		 		LocalDateTime now = LocalDateTime.now();
-				user.setTierValidUntil(now.toString());
+		 		LocalDateTime nowPlusMonth = LocalDateTime.now().plusMonths(1);
+				user.setTierValidUntil(nowPlusMonth.toString());
 				userRepo.save(user);
 				redirectAttrs.addFlashAttribute("sucessPayment", true);
 				return "redirect:/payment";
