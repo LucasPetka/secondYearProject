@@ -135,7 +135,7 @@ public class PaymentController {
 				
 				user.setTempTier("");
 
-		 		LocalDateTime nowPlusMonth = LocalDateTime.now().plusMinutes(3);
+		 		LocalDateTime nowPlusMonth = LocalDateTime.now().plusMonths(1);
 		 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
 				user.setPlanValidUntil(dtf.format(nowPlusMonth));
 				userRepo.save(user);
