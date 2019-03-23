@@ -204,6 +204,9 @@
                <h4 class="card-title">Buy Membership</h4>
            </div>
            Current membership type: ${membershiptype}
+           <c:if test="${paidMembership == true}"><br>
+           Membership valid until: ${membershipValidUntil}<br>
+           </c:if>
            <div class="card-body justify-content-between">
            
            <form method="POST" action="/pay">

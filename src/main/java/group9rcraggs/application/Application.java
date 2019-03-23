@@ -95,7 +95,7 @@ public class Application implements CommandLineRunner  {
 		adminUse.setLogin("admin2@gmail.com");
 		adminUse.setPassword(pe.encode("password"));
 		adminUse.setEnabled(true);
-		adminUse.setPlan(plan1);
+		adminUse.setPlan(planbasic);
 		adminUse.getEmails().add(new Email(adminUse.getLogin(), adminUse));
 
 		///* Saves to database *///
