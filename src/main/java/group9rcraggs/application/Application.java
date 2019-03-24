@@ -49,8 +49,11 @@ public class Application implements CommandLineRunner  {
 		
 		planbasic.setId(0);
 		plan1.setId(1);
+		plan1.setPrice(9.99);
 		plan2.setId(2);
+		plan2.setPrice(19.99);
 		plan3.setId(3);
+		plan3.setPrice(29.99);
 		
 	
 		planRepo.save(planbasic);
@@ -92,7 +95,7 @@ public class Application implements CommandLineRunner  {
 		adminUse.setLogin("admin2@gmail.com");
 		adminUse.setPassword(pe.encode("password"));
 		adminUse.setEnabled(true);
-		adminUse.setPlan(plan1);
+		adminUse.setPlan(planbasic);
 		adminUse.getEmails().add(new Email(adminUse.getLogin(), adminUse));
 
 		///* Saves to database *///

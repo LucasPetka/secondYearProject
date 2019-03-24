@@ -16,7 +16,10 @@ import org.springframework.stereotype.Component;
 
 
 import group9rcraggs.application.domain.Page;
+import group9rcraggs.application.domain.User;
 import group9rcraggs.application.domain.Website;
+import group9rcraggs.application.repository.PlanRepository;
+import group9rcraggs.application.repository.UserRepository;
 import group9rcraggs.application.EmailService;
 
 @Component
@@ -26,12 +29,34 @@ public class ScheduledTasks {
 	private group9rcraggs.application.repository.PageRepository pageRepo;
 	@Autowired 
 	private group9rcraggs.application.repository.WebsiteRepository webRepo;
-
 	@Autowired
     private EmailService emailService;
+	@Autowired
+	private UserRepository userRepo;
+	@Autowired
+	private PlanRepository planRepo;
 	
 	Tracking track = new Tracking();
 	
+	//reset memberships after they end(checking every 10 mins)
+	@Scheduled(fixedRate = 600000)
+	public void resetMemberships() {
+		LocalDateTime now = LocalDateTime.now();
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
+		Long dateNowLong = convertDateToLong(dtf.format(now));
+		
+		List<User> users = (List<User>) userRepo.findAll();
+		for(User u : users) {
+			if(!u.getPlan().getTier().equals("Free")) {
+				if(dateNowLong>=convertDateToLong(u.getPlanValidUntil())) {
+					u.setPlan(planRepo.findById(0));
+					userRepo.save(u);
+				}
+						
+			
+			}
+		}
+	}
 	
 	///* This method runs automatically every 30 seconds to check for page differences *///
     @Scheduled(fixedDelay = 10000)

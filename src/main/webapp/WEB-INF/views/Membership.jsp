@@ -11,7 +11,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>NetNag Dashoard</title>
+  <title>NetNag</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor-dash/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -194,7 +194,7 @@
 </c:if>
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">${logfirstName}'s Dashboard</h1>
+            <h1 class="h3 mb-0 text-gray-800">Membership</h1>
            
           </div>
 
@@ -203,7 +203,10 @@
            <div class="card-header">
                <h4 class="card-title">Buy Membership</h4>
            </div>
-           
+           Current membership type: ${membershiptype}
+           <c:if test="${paidMembership == true}"><br>
+           Membership valid until: ${membershipValidUntil}<br>
+           </c:if>
            <div class="card-body justify-content-between">
            
            <form method="POST" action="/pay">
@@ -227,7 +230,7 @@
 						
 						</p>
 						
-						<input class="form-check-input position-static" type="radio" name="tier" id="blankRadio1" value="Basic" aria-label="...">
+						<input class="form-check-input position-static" type="radio" name="tier" id="blankRadio1" value="Standard" aria-label="...">
 						
 					  </div>
 					</div>

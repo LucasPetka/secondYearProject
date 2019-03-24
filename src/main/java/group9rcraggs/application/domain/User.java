@@ -30,9 +30,9 @@ public class User {
 	@ManyToOne(fetch = FetchType.EAGER)
 	Plan plan;
 
-	String tier;
+	String tempTier;
 	
-	String tierValidUntil;
+	String planValidUntil;
 	
 	@Column(nullable = false)
 	String firstName;
@@ -65,8 +65,8 @@ public class User {
 		this.firstName="";
 		this.lastName="";
 		this.enabled=false;
-		this.tier="Free";
-		this.tierValidUntil="";
+		this.tempTier="Free";
+		this.planValidUntil="";
 	}
 
 	
@@ -99,13 +99,13 @@ public class User {
 		return this.lastName;
 	}
 	
-	public String getTier() {
-		return this.tier;
+	public String getTempTier() {
+		return this.tempTier;
 	}
 	
 	
-	public String getTierValidUntil() {
-		return this.tierValidUntil;
+	public String getPlanValidUntil() {
+		return this.planValidUntil;
 	}
 	
 	public String getFirstName() {
@@ -153,13 +153,13 @@ public class User {
 		this.id = id;
 	}
 	
-	public void setTier(String tier) {
-		this.tier=tier;
+	public void setTempTier(String temptier) {
+		this.tempTier=temptier;
 	}
 	
 	
-	public void setTierValidUntil(String tierValidUntil) {
-		this.tierValidUntil=tierValidUntil;
+	public void setPlanValidUntil(String tierValidUntil) {
+		this.planValidUntil=tierValidUntil;
 	}
 	
 	public void setPlan(Plan plan) {
