@@ -203,11 +203,14 @@
            <div class="card-header">
                <h4 class="card-title">Buy Membership</h4>
            </div>
-           Current membership type: ${membershiptype}
-           <c:if test="${paidMembership == true}"><br>
-           Membership valid until: ${membershipValidUntil}<br>
-           </c:if>
            <div class="card-body justify-content-between">
+           
+           <div class="mb-4 pl-5 mt-4">
+           	<h4>Current membership type: <span class="badge badge-secondary">${membershiptype}</span></h4><br>
+           <c:if test="${paidMembership == true}"><br>
+           	<h4>Membership valid until: <span class="badge badge-secondary">${membershipValidUntil}</span></h4>
+           </c:if>
+           </div>
            
            <form method="POST" action="/pay">
 
@@ -290,13 +293,31 @@
 			</label>	
 				
 			</div>
+			
+			
+			<div class="row">
+			<div class="col-md-5 mx-auto">
+					<div class="input-group mb-3 mt-4">
+					  <div class="input-group-prepend">
+					    <label class="input-group-text" for="inputGroupSelect01">Subscription length</label>
+					  </div>
+					  <select class="custom-select" id="inputGroupSelect01">
+					    <option selected>Choose...</option>
+					    <option value="1">1 Month</option>
+					    <option value="2">3 Months</option>
+					    <option value="6">6 Months</option>
+					    <option value="12">1 Year</option>
+					  </select>
+					</div>
+				</div>
+			</div>
 				
 				
 						<input type="hidden"                        
 			name="${_csrf.parameterName}"
 			value="${_csrf.token}"/>
 			
-			<div class="w-100 text-center">
+			<div class="w-100 text-center mb-3">
 			
 				<button type="submit" id="paypal" class="mt-4 mx-auto"><img src="/img/paypal-button.png" height="60" width="300"></button>
 				<a id="sum"></a>
