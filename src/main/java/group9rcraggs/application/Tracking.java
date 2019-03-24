@@ -100,6 +100,7 @@ return array;
 	///* Creates two temporary files for comparing *///
 		public void createcomparedFile(String filename1, String filename2) {
 	
+			
 			String sourceCode = "";
 				try {
 					
@@ -168,6 +169,7 @@ return array;
 				public void showDiffs(String filename1, String filename2) {
 			 
 					
+					
 			}	
 	
 		
@@ -181,7 +183,8 @@ return array;
  
 	///* Returns false if files aren't the same, ignores lines*///
 	public boolean compareFilesIgnoreLines(String filename1, String filename2, ArrayList<Integer> array) {
- 
+		
+		
 
 		try {
 			File file1 = new File(filename1);

@@ -100,6 +100,7 @@ public class ScheduledTasks {
         	 
         	 track.createcomparedFile("pageDB/"+track.linkToFileFormat(ww.getUrl())+"_0", "pageDB/"+track.linkToFileFormat(ww.getUrl())+"_1");
         	 
+        	 
 
         	//Emails user that page changed
          	alertUser(ww);

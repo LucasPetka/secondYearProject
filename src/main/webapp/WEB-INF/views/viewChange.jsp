@@ -13,6 +13,7 @@
   <meta name="author" content="">
 
   <title>NetNag Dashoard</title>
+  
 
   <!-- Custom fonts for this template-->
   <link href="vendor-dash/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
