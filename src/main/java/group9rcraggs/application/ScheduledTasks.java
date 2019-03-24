@@ -71,6 +71,10 @@ public class ScheduledTasks {
  		 ///* Checks if file other than ignored lines changes *///
          if(!track.compareFilesIgnoreLines("pageDB/"+track.linkToFileFormat(ww.getUrl())+"_0", 
         		 "pageDB/"+track.linkToFileFormat(ww.getUrl())+"_1", arr)) {
+        	 
+        	 
+        	 track.createcomparedFile("pageDB/"+track.linkToFileFormat(ww.getUrl())+"_0", "pageDB/"+track.linkToFileFormat(ww.getUrl())+"_1");
+        	 
 
         	//Emails user that page changed
          	alertUser(ww);
@@ -140,10 +144,11 @@ public class ScheduledTasks {
     	
     	//Updates lines ignored
     	p.setLinesIgnored(linesToBeIgnored.toString());
-    	pageRepo.save(p);
-    	
-    	
+    	pageRepo.save(p);	
     }
+    
+    
+    
 
      
     @Scheduled(fixedDelay = 60000)

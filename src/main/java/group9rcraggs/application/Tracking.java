@@ -90,7 +90,94 @@ String sourceCode="";
     }
 return array;
 }
+	
+	
+	
+	
+	
+	
  
+	///* Creates two temporary files for comparing *///
+		public void createcomparedFile(String filename1, String filename2) {
+	
+			String sourceCode = "";
+				try {
+					
+					FileOutputStream output1 = new FileOutputStream("pageDB/temp1.txt");
+					FileOutputStream output2 = new FileOutputStream("pageDB/temp2.txt");
+			        PrintWriter printer1 = new PrintWriter(output1);
+			        PrintWriter printer2 = new PrintWriter(output2);		
+					
+					///* Takes two different files and calls diff on each line *///
+					File file1 = new File(filename1);
+					File file2 = new File(filename2);
+					BufferedReader reader1 = new BufferedReader(new FileReader(file1));
+					BufferedReader reader2 = new BufferedReader(new FileReader(file2));
+					String line1;
+					String line2; 
+					
+					
+					// First file making temporary- deleting empty lines, spaces and tabs
+					 while ((line1 = reader1.readLine()) != null) {
+						 if (!line1.trim().isEmpty()) {
+				          sourceCode += line1.trim().replaceAll(" +", " ") +"\n";
+						 }
+						 else {
+					      sourceCode += line1.trim()+"";
+						 }
+				     }
+					///* writes to file *///
+			          printer1.write(sourceCode);
+			        ///* Closes PrintWriter *///
+			          printer1.close();
+			          
+			          
+			          
+			          
+			       // Second file making temporary- deleting empty lines, spaces and tabs
+			          while ((line2 = reader2.readLine()) != null) {
+							 if (!line2.trim().isEmpty()) {
+					          sourceCode += line2.trim().replaceAll(" +", " ") +"\n";
+							 }
+							 else {
+							      sourceCode += line2.trim()+"";
+								 }
+					     }
+						///* writes to file *///
+				          printer2.write(sourceCode);
+				        ///* Closes PrintWriter *///
+				          printer2.close();
+				          
+				          
+				          
+				          
+				          
+				          
+
+						reader1.close();
+						reader2.close();
+				}
+	    catch(IOException io) {
+	    
+	    }
+	}
+	
+		
+		
+		///* Creates two temporary files for comparing *///
+				public void showDiffs(String filename1, String filename2) {
+			 
+					
+			}	
+	
+		
+		
+		
+		
+	
+	
+	
+	
  
 	///* Returns false if files aren't the same, ignores lines*///
 	public boolean compareFilesIgnoreLines(String filename1, String filename2, ArrayList<Integer> array) {
