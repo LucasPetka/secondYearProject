@@ -32,6 +32,8 @@ public class User {
 
 	String tempTier;
 	
+	int tempLength;
+	
 	String planValidUntil;
 	
 	@Column(nullable = false)
@@ -119,6 +121,9 @@ public class User {
 	public Plan getPlan() {
 		return this.plan;
 	}
+	public int getTempLength() {
+		return this.tempLength;
+	}
 
 
 	///* Setters *///
@@ -164,6 +169,9 @@ public class User {
 	
 	public void setPlan(Plan plan) {
 		this.plan = plan;
+	}
+	public void setTempLength(int length) {
+		this.tempLength=length;
 	}
 	
 	///* Other methods *///

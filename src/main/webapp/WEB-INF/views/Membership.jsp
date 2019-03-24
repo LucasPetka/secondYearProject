@@ -301,10 +301,12 @@
 					  <div class="input-group-prepend">
 					    <label class="input-group-text" for="inputGroupSelect01">Subscription length</label>
 					  </div>
-					  <select class="custom-select" id="inputGroupSelect01">
-					    <option selected>Choose...</option>
-					    <option value="1">1 Month</option>
-					    <option value="2">3 Months</option>
+					  <select class="custom-select" id="inputGroupSelect01" name="length" required>
+					    <option selected value="1">1 Month</option>
+					    <option value="2">2 Months</option>
+					    <option value="3">3 Months</option>
+					    <option value="4">4 Months</option>
+					    <option value="5">5 Months</option>
 					    <option value="6">6 Months</option>
 					    <option value="12">1 Year</option>
 					  </select>

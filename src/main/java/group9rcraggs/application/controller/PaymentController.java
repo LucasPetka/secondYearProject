@@ -79,15 +79,19 @@ public class PaymentController {
     }
 	
 	@RequestMapping(method = RequestMethod.POST, value = "pay")
-	public String pay(HttpServletRequest request, Principal principal, @RequestParam("tier") String tier){
+	public String pay(HttpServletRequest request, Principal principal, @RequestParam("tier") String tier, @RequestParam("length") int length,
+			RedirectAttributes redirectAttrs){
 		String cancelUrl = URLUtils.getBaseURl(request) + "/" + PAYPAL_CANCEL_URL;
 		String successUrl = URLUtils.getBaseURl(request) + "/" + PAYPAL_SUCCESS_URL;
 
 		Plan plan = new Plan(tier);
-		
+		if(length < 1) {
+			redirectAttrs.addFlashAttribute("failedPayment", true);
+			return "redirect:/payment";
+		}
 		try {
 			Payment payment = paypalService.createPayment(
-					plan.getPrice(), 
+					plan.getPrice()*length, 
 					"GBP", 
 					PaypalPaymentMethod.paypal, 
 					PaypalPaymentIntent.order,
@@ -97,6 +101,7 @@ public class PaymentController {
 			
 			User user = userRepo.findByLogin(principal.getName());
 			user.setTempTier(tier);
+			user.setTempLength(length);
 			userRepo.save(user);
 			for(Links links : payment.getLinks()){
 				if(links.getRel().equals("approval_url")){
@@ -132,12 +137,12 @@ public class PaymentController {
 					plan = planRepo.findById(3);
 				}
 				user.setPlan(plan);
-				
-				user.setTempTier("");
-
-		 		LocalDateTime nowPlusMonth = LocalDateTime.now().plusMonths(1);
+		 		LocalDateTime nowPlusMonth = LocalDateTime.now().plusMonths(user.getTempLength());
 		 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
 				user.setPlanValidUntil(dtf.format(nowPlusMonth));
+				//Resetting user temp values after successful payment
+				user.setTempTier("");
+				user.setTempLength(0);
 				userRepo.save(user);
 				redirectAttrs.addFlashAttribute("sucessPayment", true);
 				return "redirect:/payment";

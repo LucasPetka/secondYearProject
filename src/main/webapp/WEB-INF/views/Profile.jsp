@@ -197,7 +197,9 @@
            </div>
            
            <div class="card-body">
-           Membership type: ${membershiptype}
+              
+           	<h4>Current membership type: <span class="badge badge-secondary">${membershiptype}</span></h4><br>
+      
 
           
           
