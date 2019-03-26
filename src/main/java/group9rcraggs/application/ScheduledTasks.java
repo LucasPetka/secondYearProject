@@ -99,7 +99,10 @@ public class ScheduledTasks {
         	 
         	 
         	 track.createcomparedFile("pageDB/"+track.linkToFileFormat(ww.getUrl())+"_0", "pageDB/"+track.linkToFileFormat(ww.getUrl())+"_1");
-        	 
+        	 track.createArray("pageDB/"+track.linkToFileFormat(ww.getUrl())+"_0_temp1", 
+        			 "pageDB/"+track.linkToFileFormat(ww.getUrl())+"_1_temp2", 
+        			 track.linkToFileFormat(ww.getUrl())+"_changes");
+        	 track.deleteTemp("pageDB/"+track.linkToFileFormat(ww.getUrl())+"_0_temp1", "pageDB/"+track.linkToFileFormat(ww.getUrl())+"_1_temp2");
         	 
 
         	//Emails user that page changed
