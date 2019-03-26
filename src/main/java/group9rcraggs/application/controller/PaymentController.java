@@ -84,7 +84,7 @@ public class PaymentController {
 		String cancelUrl = URLUtils.getBaseURl(request) + "/" + PAYPAL_CANCEL_URL;
 		String successUrl = URLUtils.getBaseURl(request) + "/" + PAYPAL_SUCCESS_URL;
 
-		Plan plan = new Plan(tier);
+		Plan plan = planRepo.findByTier(tier);
 		if(length < 1) {
 			redirectAttrs.addFlashAttribute("failedPayment", true);
 			return "redirect:/payment";

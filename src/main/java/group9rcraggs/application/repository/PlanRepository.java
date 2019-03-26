@@ -7,4 +7,5 @@ import group9rcraggs.application.domain.Plan;
 
 public interface PlanRepository extends CrudRepository<Plan, Integer> {
 	Plan findById(int id);
+	Plan findByTier(String name);
 }
