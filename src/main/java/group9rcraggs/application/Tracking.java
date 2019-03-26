@@ -101,7 +101,6 @@ return array;
  
 	///* Creates two temporary files for comparing *///
 		public void createcomparedFile(String filename1, String filename2) {
-	
 			
 			String sourceCode1 = "";
 			String sourceCode2 = "";
@@ -275,7 +274,11 @@ return array;
 	public void maakRij(int x, int y, char type, String rij, String filename) throws IOException{
 		
 		
+		
+		
+		
 	    BufferedWriter writer = new BufferedWriter(new FileWriter("pageDB/"+ filename, true));
+	    
 	    
 	    if(type == '+' || type == '-') {
 	    	writer.append("" + type + "@@@" + rij);
