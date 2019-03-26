@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 
 <html lang="en">
 
@@ -264,7 +265,7 @@
 	  </div>
 	  <c:if test="${badlink == true}">
 	<div class="alert alert-danger">
-		Website Does not exist
+		Page does not exist
 		<script>$(document).ready(function(){$("#upload_on" ).hide();
 		$("#upload").toggle(0);});</script>
 	</div>
@@ -321,7 +322,12 @@
 			  </div>
 			  
 			  <form:select path="alertAfter" class="form-control" id="alertAfter">
-			      <form:options items="${alertAfterList}"/>
+			      
+						   <c:forEach items="${alertAfterList}" var="databaseValue">
+    			<option value="${databaseValue.alertAfter}">
+     	 			  ${databaseValue.name}
+  			 	 </option>
+ 				</c:forEach>
 			    </form:select>
 
 			</div>
@@ -368,7 +374,7 @@
 			  <th>Name</th>
 			  <th>Link</th>
 			  <th>Last Change</th>
-			  <th>Checking every</th>
+			  <th>Alert after</th>
 			  <th></th>
             </tr>
           </thead>
@@ -379,7 +385,12 @@
 					<td><c:out value="${page.name}"/></td>
 					<td><c:out value="${page.url}"/></td>
 					<td><c:out value="${page.lastUpdated}"/></td>
-					<td><c:out value="${page.alertAfter}"/></td>
+				<c:if test="${page.alertAfter>30240}">
+					<td><fmt:parseNumber var = "i" integerOnly = "true" type = "number" value = "${page.alertAfter/60/24/7/4}" /> <c:out value = "${i}" /> Months</td>
+			    </c:if>
+				<c:if test="${page.alertAfter<30241}">
+					<td><fmt:parseNumber var = "i" integerOnly = "true" type = "number" value = "${page.alertAfter/60/24/7}" /> <c:out value = "${i}" /> Days</td>
+			    </c:if>
 					
 					<td>
 					<a class="btn main_b" href="/view_changes?id=${page.id}" role="button"> <i class="fas fa-eye"></i> </a> 

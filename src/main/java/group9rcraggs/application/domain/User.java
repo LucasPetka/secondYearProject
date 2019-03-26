@@ -61,7 +61,7 @@ public class User {
 	
 	//Default constructor just whilst login form hasn't been created
 	public User() {
-		this.plan = new Plan("Free");
+		this.plan = new Plan();
 		this.login="";
 		this.password="";
 		this.firstName="";

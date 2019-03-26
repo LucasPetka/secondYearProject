@@ -193,11 +193,31 @@
 	</div>
 </c:if>
           <!-- Page Heading -->
+
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Membership</h1>
            
           </div>
+          		<div class="col-xl-9 col-lg-7">
+          <div class="card">
+           <div class="card-header">
+               <h4 class="card-title">Membership info</h4>
+           </div>
+           
+           <div class="card-body">
+              
+           	<h4>Current membership type: <span class="badge badge-secondary">${membershiptype}</span></h4>
+           <c:if test="${paidMembership == true}"><br>
+           	<h4>Membership valid until: <span class="badge badge-secondary">${membershipValidUntil}</span></h4>
+           </c:if>
+      
 
+          
+          
+		
+         </div>
+       </div>
+       </div><br>
 		<div class="col-xl-9 col-lg-7">
           <div class="card">
            <div class="card-header">
@@ -205,12 +225,7 @@
            </div>
            <div class="card-body justify-content-between">
            
-           <div class="mb-4 pl-5 mt-4">
-           	<h4>Current membership type: <span class="badge badge-secondary">${membershiptype}</span></h4><br>
-           <c:if test="${paidMembership == true}"><br>
-           	<h4>Membership valid until: <span class="badge badge-secondary">${membershipValidUntil}</span></h4>
-           </c:if>
-           </div>
+
            
            <form method="POST" action="/pay">
 

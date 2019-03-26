@@ -198,7 +198,10 @@
            
            <div class="card-body">
               
-           	<h4>Current membership type: <span class="badge badge-secondary">${membershiptype}</span></h4><br>
+           	<h4>Current membership type: <span class="badge badge-secondary">${membershiptype}</span></h4>
+           <c:if test="${paidMembership == true}"><br>
+           	<h4>Membership valid until: <span class="badge badge-secondary">${membershipValidUntil}</span></h4>
+           </c:if>
       
 
           

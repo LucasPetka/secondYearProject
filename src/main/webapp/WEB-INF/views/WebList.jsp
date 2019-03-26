@@ -224,9 +224,11 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Pages tracking</div>
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Pages</div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800">
-                      ${page_count}
+                      Now tracking: ${page_count}<br>
+                      Plan's limit: ${page_limit}
+                      
                        
                       
                       </div>

@@ -45,7 +45,13 @@ public class ProfileController {
 		model.addAttribute("loglogin", user.getLogin());
 		model.addAttribute("logfirstName", user.getFirstName());
     	model.addAttribute("websites", user.getWebsites());
+    	
+    	//membership details model
     	model.addAttribute("membershiptype", user.getPlan().getTier());
+    	if(!user.getPlan().getTier().equals("Free")) {
+    	model.addAttribute("paidMembership", true);
+    	model.addAttribute("membershipValidUntil", user.getPlanValidUntil());
+    	}
 		return "Profile";
     }
 	

@@ -71,7 +71,7 @@ public class PaymentController {
     	model.addAttribute("logfirstName", user.getFirstName());
     	model.addAttribute("websites", websites);
     	model.addAttribute("membershiptype", user.getPlan().getTier());
-    	if(user.getPlan().getTier().equals("Standard") || user.getPlan().getTier().equals("Pro") || user.getPlan().getTier().equals("Enterprise")) {
+    	if(!user.getPlan().getTier().equals("Free")) {
     	model.addAttribute("paidMembership", true);
     	model.addAttribute("membershipValidUntil", user.getPlanValidUntil());
     	}
@@ -84,7 +84,7 @@ public class PaymentController {
 		String cancelUrl = URLUtils.getBaseURl(request) + "/" + PAYPAL_CANCEL_URL;
 		String successUrl = URLUtils.getBaseURl(request) + "/" + PAYPAL_SUCCESS_URL;
 
-		Plan plan = new Plan(tier);
+		Plan plan = planRepo.findByTier(tier);
 		if(length < 1) {
 			redirectAttrs.addFlashAttribute("failedPayment", true);
 			return "redirect:/payment";

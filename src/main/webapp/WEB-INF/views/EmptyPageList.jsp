@@ -314,7 +314,12 @@
 			  </div>
 			  
 			  <form:select path="alertAfter" class="form-control" id="alertAfter">
-			      <form:options items="${alertAfterList}"/>
+			      
+			   <c:forEach items="${alertAfterList}" var="databaseValue">
+    			<option value="${databaseValue.alertAfter}">
+     	 			  ${databaseValue.name}
+  			 	 </option>
+ 				</c:forEach>
 			    </form:select>
 
 			</div>
