@@ -209,9 +209,9 @@ return array;
 							int y1 = 0;
 							int [][]matrix = new int [first.length+1] [second.length+1];
 							
-							for(var y=0; y<matrix.length; y++){
+							for(int y=0; y<matrix.length; y++){
 
-								for(var x=0; x<matrix[y].length; x++){
+								for(int x=0; x<matrix[y].length; x++){
 									matrix[y][x] = 0;
 									
 								}
@@ -219,8 +219,8 @@ return array;
 							
 							
 							
-							for(var y=1; y<matrix.length; y++){
-								for(var x=1; x<matrix[y].length; x++){
+							for(int y=1; y<matrix.length; y++){
+								for(int x=1; x<matrix[y].length; x++){
 									if(first[y-1].equals(second[x-1])){
 										matrix[y][x] = 1 + matrix[y-1][x-1];
 									} else {
