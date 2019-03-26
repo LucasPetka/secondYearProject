@@ -144,11 +144,11 @@ public class PageController {
 	    
 	  
 		@RequestMapping(value = "view_changes")
-		public String checkChanges(@RequestParam(name="id") int id, Model model, Principal principal, HttpServletRequest request) throws IOException {
+		public String checkChanges(@RequestParam(name="id") int id, Model model,
+				Principal principal, HttpServletRequest request) throws IOException {
 			model.addAttribute("logfirstName", userRepo.findByLogin(principal.getName()).getFirstName());
-			Website website = webRepo.findById(id);
 			Page w = pageRepo.findById(id);
-			model.addAttribute("pageName",w.getName());
+			model.addAttribute("pageName", w.getName());
 			model.addAttribute("websites", userRepo.findByLogin(principal.getName()).getWebsites());
 			
 			try {
