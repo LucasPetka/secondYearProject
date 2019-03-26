@@ -1,5 +1,8 @@
 package group9rcraggs.application.controller;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
@@ -135,6 +138,44 @@ public class PageController {
 			pageRepo.delete(w);
 			return "redirect:/pageList?id="+webRepo.findById(websiteid).getId()+"";
 		}
+	    
+	    
+	  
+		@RequestMapping(value = "view_changes")
+		public String checkChanges(@RequestParam(name="id") int id, Model model) throws IOException {
+	    	Page w = pageRepo.findById(id);	
+	    	Tracking track = new Tracking();
+	    	String file  = track.linkToFileFormat(w.getUrl() + "_changes");
+	    	
+	    	BufferedReader reader1 = new BufferedReader(new FileReader("pageDB/"+file));
+			String line1;
+			
+			
+	
+			ArrayList<ArrayList<String> > a1 = new ArrayList<ArrayList<String> >(); 
+
+			int i = 0;
+			
+			while ((line1 = reader1.readLine()) != null) {
+				
+				String[] line = line1.split("@@@");
+
+				a1.add(new ArrayList<String>());
+				
+				a1.get(i).add(line[0]);
+				a1.get(i).add(line[1]);
+				
+				i++;
+					
+			}
+
+			reader1.close();
+
+			model.addAttribute("line", a1);
+			
+			return "viewChange";
+		}
+
 	    
 	    
 	 

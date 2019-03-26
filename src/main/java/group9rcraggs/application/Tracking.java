@@ -277,7 +277,13 @@ return array;
 		
 	    BufferedWriter writer = new BufferedWriter(new FileWriter("pageDB/"+ filename, true));
 	    
-	    writer.append("T: " + type + "  " + rij);
+	    if(type == '+' || type == '-') {
+	    	writer.append("" + type + "@@@" + rij);
+	    }
+	    else {
+	    	writer.append("8" + "@@@" + rij);
+	    }
+	    
 	    writer.append('\n');
 	     
 	    writer.close();

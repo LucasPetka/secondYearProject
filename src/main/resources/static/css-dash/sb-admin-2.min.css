@@ -129,5 +129,12 @@ tr.detail div {
 	outline: inherit;	
 }
 
+#tablecode td{
+	padding-top:0;
+	padding-bottom:0;
+}
 
+
+td:nth-child(1) { background-color: #ECECEC; }
+xmp { white-space: pre-wrap }
 
