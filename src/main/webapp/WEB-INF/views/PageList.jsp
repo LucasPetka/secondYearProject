@@ -264,7 +264,7 @@
 	  </div>
 	  <c:if test="${badlink == true}">
 	<div class="alert alert-danger">
-		Website Does not exist
+		Page does not exist
 		<script>$(document).ready(function(){$("#upload_on" ).hide();
 		$("#upload").toggle(0);});</script>
 	</div>

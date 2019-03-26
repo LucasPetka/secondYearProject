@@ -179,7 +179,7 @@ public class IndexController {
     	int count_web = websites.size();
     	model.addAttribute("web_count", count_web);
     	
-    	
+    	model.addAttribute("page_limit", user.getPlan().getNumPages());
     	
 		if (websites.isEmpty()) {
 			return "EmptyWebList";
