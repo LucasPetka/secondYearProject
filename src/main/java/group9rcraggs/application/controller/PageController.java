@@ -230,7 +230,7 @@ public class PageController {
     	//
     	model.addAttribute("websiteplan", user.getPlan().getTier());
     	
-
+    	model.addAttribute("page_limit", user.getPlan().getNumPages());
     	
     	//Checks if website id belongs to list of current users websites
     	if(user.getWebsites().stream().filter(x -> x.getId() == id)
@@ -289,15 +289,16 @@ public class PageController {
             
         	for(int i=s.length(); i >=  0; i--) {
         		
-        		if(s.endsWith("/")) {
+        		if(s.endsWith("/") && !s.equals("/")) {
         			s = s.substring(0, s.length()-1);
         		}
         	}
         	return s;
         	
         }
-    //Removes any excess '/' from end of URL
+    //Removes any excess '/' from front of URL
     private String removeFrontSlashes(String s) {	
+    	if(s.equals("/")) return s;
         		if(s.charAt(0)=='/') {
         			s = s.substring(1, s.length());
         		}
