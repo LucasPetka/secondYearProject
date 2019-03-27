@@ -193,6 +193,9 @@
            
           </div>
 
+		<button class="btn btn-outline-secondary mb-4 mr-5" onClick="history.back()" role="button"> <i class="fas fa-chevron-left"></i> Back </button>
+		
+		<a class="btn btn-outline-success mb-4 ml-5" href="#jump_code" role="button">Jump to changes <i class="fas fa-angle-double-down"></i> </a>
 		
           <div class="row">
 
@@ -229,12 +232,12 @@
 								    
 								    
 								    <c:if test="${lines.get(0)=='+'}">
-								   		<td style="background-color:#c2ffc2; color:black;"><xmp>${lines.get(0)}</xmp></td>
-								   		<td style="background-color:#c2ffc2;"><xmp>${lines.get(1)}</xmp></td>
+								   		<td style="background-color:#c2ffc2; color:black;" id="jump_code"><xmp>${lines.get(0)}</xmp></td>
+								   		<td style="background-color:#c2ffc2;" id="jump_code"><xmp>${lines.get(1)}</xmp></td>
 								    </c:if>
 								     <c:if test="${lines.get(0)=='-'}">
-								   		<td style="background-color:#ffb3b3; color:black;"><xmp>${lines.get(0)}</xmp></td>
-								   		<td style="background-color:#ffb3b3;"><xmp>${lines.get(1)}</xmp></td>
+								   		<td style="background-color:#ffb3b3; color:black;" id="jump_code"><xmp>${lines.get(0)}</xmp></td>
+								   		<td style="background-color:#ffb3b3;" id="jump_code"><xmp>${lines.get(1)}</xmp></td>
 								    </c:if>
 								        
 								        
