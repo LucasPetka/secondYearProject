@@ -3,6 +3,8 @@ package group9rcraggs.application;
 
 
 
+import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -94,14 +96,33 @@ public class ScheduledTasks {
  		   DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
  		  LocalDateTime now = LocalDateTime.now();
  		 ///* Checks if file other than ignored lines changes *///
+ 		  
+ 		
+ 		  
          if(!track.compareFilesIgnoreLines("pageDB/"+track.linkToFileFormat(ww.getUrl())+"_0", 
         		 "pageDB/"+track.linkToFileFormat(ww.getUrl())+"_1", arr)) {
+        	 
+        	 File file = new File("pageDB/"+track.linkToFileFormat(ww.getUrl())+"_changes");
+        	 
+        	 if (file.exists() && file.isFile())
+        	  {
+        	  file.delete();
+        	  }
+        	try {
+				file.createNewFile();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         	 
         	 
         	 track.createcomparedFile("pageDB/"+track.linkToFileFormat(ww.getUrl())+"_0", "pageDB/"+track.linkToFileFormat(ww.getUrl())+"_1");
         	 track.createArray("pageDB/"+track.linkToFileFormat(ww.getUrl())+"_0_temp1", 
         			 "pageDB/"+track.linkToFileFormat(ww.getUrl())+"_1_temp2", 
         			 track.linkToFileFormat(ww.getUrl())+"_changes");
+        	 
+        	
+        	 
         	 track.deleteTemp("pageDB/"+track.linkToFileFormat(ww.getUrl())+"_0_temp1", "pageDB/"+track.linkToFileFormat(ww.getUrl())+"_1_temp2");
         	 
 
@@ -415,7 +436,7 @@ public class ScheduledTasks {
     			+ "color:#ffffff;display:inline-block;font-family: 'lato', 'Helvetica Neue'"
     			+ ", Helvetica, Arial, sans-serif;font-size:18px;font-weight: bold;line-height"
     			+ ":40px;text-align:center;text-decoration:none;width:270px;-webkit-text-size-"
-    			+ "adjust:none;\" target=\"_blank\">Confirm subscription now</a><br>\n" + 
+    			+ "adjust:none;\" target=\"_blank\">Check changes now</a><br>\n" + 
     			"\n" + 
     			"      <a href=\"#\" style=\"background-color:#00D687; margin-top:20px; "
     			+ "border-radius:50px;color:#ffffff;display:inline-block;font-family: "

@@ -24,6 +24,7 @@
   
     <script src="//code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script type="text/javascript" src="js/diff.js"> </script>
   
 
 </head>
@@ -78,8 +79,8 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header"><a href="/websiteList"> Websites </a> </h6>
-				<c:forEach items="" var="website">
-				<a class="collapse-item" href="/pageList?id="><c:out value=""/></a>
+				<c:forEach items="${websites}" var="website">
+				<a class="collapse-item" href="/pageList?id=${website.id}"><c:out value="${website.name}"/></a>
 				</c:forEach>
           </div>
         </div>
@@ -157,7 +158,7 @@
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">${logfirstName}</span>
                 
               </a>
               <!-- Dropdown - User Information -->
@@ -188,164 +189,13 @@
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800"> pages</h1>
+            <h1 class="h3 mb-0 text-gray-800">"${pageName}" page - code changes</h1>
            
           </div>
 
-          <!-- Content Row -->
-          <div class="row">
-
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Pages tracking</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">
-                      
-                      
-                      
-                      </div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-
-            
-
-            <!-- Pending Requests Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-warning shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Last update</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">12min ago</div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="far fa-clock fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Content Row -->
-		  
-		  <script>
-		$(document).ready(function(){
-			$("#add_on").click(function(){
-			$("#upload_on" ).hide();
-			$("#upload").toggle( "slide" );
-			});
-			
-			$("#add_off").click(function(){
-			$("#upload_on" ).toggle( "slide" );
-			$("#upload").hide();
-			});	
-			
-			$("#open_webs").hover(function(){
-			$("#webs").finish().slideToggle();
-			});
-
-		});
-		</script>
+		<button class="btn btn-outline-secondary mb-4 mr-5" onClick="history.back()" role="button"> <i class="fas fa-chevron-left"></i> Back </button>
 		
-		<div id="upload_on">
-			<div class="col-md-2 mb-3">
-				<button class="btn btn-success" id="add_on" type="submit"><i class="fas fa-plus"></i> Page</button>
-			</div>
-	  </div>
-	  <c:if test="${badlink == true}">
-	<div class="alert alert-danger">
-		Website Does not exist
-		<script>$(document).ready(function(){$("#upload_on" ).hide();
-		$("#upload").toggle(0);});</script>
-	</div>
-</c:if>
-
-
-		<c:if test="${duplicatewebsite == true}">
-			<div class="alert alert-danger">
-				Cannot add duplicate page
-				<script>$(document).ready(function(){$("#upload_on" ).hide();
-				$("#upload").toggle(0);});</script>
-			</div>
-		</c:if>
-
-		
-		<c:if test="${exceedPageLimit == true}">
-			<div class="alert alert-danger">
-				You have reached your page limit.
-				<script>$(document).ready(function(){$("#upload_on" ).hide();
-				$("#upload").toggle(0);});</script>
-			</div>
-		</c:if>
-
-	  <div id="upload">
-		<form:form  method="POST" modelAttribute="page" action="/addPage?id=">
-			  <div class="row justify-content-center">
-			  <div class="col-md-4 mb-3">
-			  <div class="input-group">
-				<div class="input-group-prepend">
-				  <span class="input-group-text" id="inputGroupPrepend">Page Name</span>
-				</div>
-				<input type="text" class="form-control" id="validationCustomUsername" name="name" placeholder="Contact Page" aria-describedby="inputGroupPrepend" required/>
-				<form:errors path="name"/>
-			  </div>
-			</div>
-				<!-- This field is used to pass the website owner Url into validation to check the complete url -->
-	       <input type="hidden" name="ownerUrl" value=""/> 
-			<div class="col-md-4 mb-3">
-			  <div class="input-group">
-				<div class="input-group-prepend">
-				  <span class="input-group-text" id="inputGroupPrepend"></span>
-				</div>
-				
-				<input type="text" class="form-control" id="validationCustomUsername" name="url" placeholder="contact" aria-describedby="inputGroupPrepend" required/>
-				<label value=""></label>
-				<form:errors path="url"/>
-			  </div>
-			</div>
-			
-			<div class="col-md-4 mb-3">
-			<div class="input-group">
-			  <div class="input-group-prepend">
-				<label class="input-group-text" for="inputGroupSelect01">Alerted after</label>
-			  </div>
-			  
-			  
-
-			</div>
-			</div>
-			
-			<input type="hidden"                        
-			name=""
-			value=""/>
-			
-			
-			<div class="col-md-2 mb-3">
-			<input type="submit" value="Add" name="add" class="btn btn-success"/>
-			</div>
-			
-			<div class="col-md-1 mb-1">
-			<button type="button" id="add_off" class="btn btn-outline-danger"><i class="fas fa-times"></i></button>
-			</div>
-			
-			
-			</div>
-		</form:form>
-	</div>
-		
-
-		
+		<a class="btn btn-outline-success mb-4 ml-5" href="#jump_code" role="button">Jump to changes <i class="fas fa-angle-double-down"></i> </a>
 		
           <div class="row">
 
@@ -354,37 +204,62 @@
               <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Pages</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Code with changes</h6>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                  
-				<div class="table-responsive">
-        <table class="table table-striped table-sm">
-          <thead>
-            <tr>
-				<th>Line</th>
-			  <th>Changes</th>
-			  
-            </tr>
-          </thead>
-          <tbody>
-            <c:forEach var="listValue" items="${code}">
-				<tr>
-				<td>1</td>
-				<td>${listValue}</td>
-				</tr>
-			</c:forEach>
-          </tbody>
-        </table>
-      </div>
-				  
-				  
-				  
-				  
-				  
-				  
-				  
+
+				  <div class="table-responsive" id="tablecode-div">
+					<table class="table table-hover" id="tablecode">
+					  <thead>
+						<tr>
+						 <th>#</th>
+						  <th></th>
+						  <th>Code</th>
+						</tr>
+					  </thead>
+					  <tbody>
+						<c:forEach var="lines" items="${line}" varStatus="loop">
+							<tr>
+							    <td>${loop.index}</td>
+							    
+							    <c:choose>
+								    <c:when test="${lines.get(0)=='8'}">
+								        <td></td>
+								   		<td><xmp>${lines.get(1)}</xmp></td>
+								    </c:when>    
+								    <c:otherwise>
+								    
+								    
+								    <c:if test="${lines.get(0)=='+'}">
+								   		<td style="background-color:#c2ffc2; color:black;" id="jump_code"><xmp>${lines.get(0)}</xmp></td>
+								   		<td style="background-color:#c2ffc2;" id="jump_code"><xmp>${lines.get(1)}</xmp></td>
+								    </c:if>
+								     <c:if test="${lines.get(0)=='-'}">
+								   		<td style="background-color:#ffb3b3; color:black;" id="jump_code"><xmp>${lines.get(0)}</xmp></td>
+								   		<td style="background-color:#ffb3b3;" id="jump_code"><xmp>${lines.get(1)}</xmp></td>
+								    </c:if>
+								        
+								        
+								    </c:otherwise>
+								</c:choose>
+								
+								
+										
+								
+								
+								
+								
+								
+								
+							</tr>
+						</c:forEach>
+					  </tbody>
+					</table>
+				  </div>
+
+
+				
                 </div>
               </div>
             </div>

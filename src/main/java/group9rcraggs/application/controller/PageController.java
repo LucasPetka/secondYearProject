@@ -1,9 +1,14 @@
 package group9rcraggs.application.controller;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -137,6 +142,59 @@ public class PageController {
 		}
 	    
 	    
+	  
+		@RequestMapping(value = "view_changes")
+		public String checkChanges(@RequestParam(name="id") int id, Model model,
+				Principal principal, HttpServletRequest request) throws IOException {
+			model.addAttribute("logfirstName", userRepo.findByLogin(principal.getName()).getFirstName());
+			Page w = pageRepo.findById(id);
+			model.addAttribute("pageName", w.getName());
+			model.addAttribute("websites", userRepo.findByLogin(principal.getName()).getWebsites());
+			
+			try {
+	    	Tracking track = new Tracking();
+	    	String file  = track.linkToFileFormat(w.getUrl() + "_changes");
+	    	
+	    	BufferedReader reader1 = new BufferedReader(new FileReader("pageDB/"+file));
+			String line1;
+			
+			
+	
+			ArrayList<ArrayList<String> > a1 = new ArrayList<ArrayList<String> >(); 
+
+			int i = 0;
+			
+			while ((line1 = reader1.readLine()) != null) {
+				
+				String[] line = line1.split("@@@");
+
+				a1.add(new ArrayList<String>());
+				
+				a1.get(i).add(line[0]);
+				a1.get(i).add(line[1]);
+				
+				i++;
+					
+			}
+
+			reader1.close();
+
+			model.addAttribute("line", a1);
+			
+			
+				return "viewChange";
+				
+			}catch(FileNotFoundException e) {
+				
+				
+				String referer = request.getHeader("Referer");
+			    return "redirect:"+ referer;
+				
+			}
+		}
+
+	    
+	    
 	 
 	    ///* Returns list of pages *///
     @RequestMapping(value = "pageList")
@@ -171,7 +229,8 @@ public class PageController {
     	model.addAttribute("websiteUrl", website.getUrl());
     	//
     	model.addAttribute("websiteplan", user.getPlan().getTier());
-
+    	
+    	model.addAttribute("page_limit", user.getPlan().getNumPages());
     	
     	//Checks if website id belongs to list of current users websites
     	if(user.getWebsites().stream().filter(x -> x.getId() == id)
@@ -230,15 +289,16 @@ public class PageController {
             
         	for(int i=s.length(); i >=  0; i--) {
         		
-        		if(s.endsWith("/")) {
+        		if(s.endsWith("/") && !s.equals("/")) {
         			s = s.substring(0, s.length()-1);
         		}
         	}
         	return s;
         	
         }
-    //Removes any excess '/' from end of URL
+    //Removes any excess '/' from front of URL
     private String removeFrontSlashes(String s) {	
+    	if(s.equals("/")) return s;
         		if(s.charAt(0)=='/') {
         			s = s.substring(1, s.length());
         		}

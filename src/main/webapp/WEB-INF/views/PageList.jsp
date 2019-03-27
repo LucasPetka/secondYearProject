@@ -204,7 +204,7 @@
                       <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Pages tracking</div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800">
                       
-                       ${page_count}
+                       Tracking ${page_count} pages
                       
                       </div>
                     </div>
@@ -225,8 +225,8 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Last update</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">12min ago</div>
+                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Plan</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">Page limit: ${page_limit}</div>
                     </div>
                     <div class="col-auto">
                       <i class="far fa-clock fa-2x text-gray-300"></i>
@@ -393,7 +393,8 @@
 			    </c:if>
 					
 					<td>
-					<a class="btn main_b" href="/view_changes?id=${page.id}" role="button"> <i class="fas fa-eye"></i> </a> 
+					
+					<a class="btn main_b" href="/view_changes?id=${page.id}" role="button"> <i class="fas fa-eye"></i> </a>
 			        <a class="btn btn-success" href="/changeTracking?id=${page.id}&websiteid=${websiteId}"> <i class="fas fa-toggle-on"></i> </a>
 					<a class="btn btn-dark" id = "ids" data-id="${page.id}" href="/editPage?id=${page.id}&websiteid=${websiteId}" role="button" data-toggle="modal" data-target="#editModal"> <i class="fas fa-wrench"></i> </a>
 					<a class="btn btn-danger" id="delete_h" href="/removePage?id=${page.id}&websiteid=${websiteId}" role="button"  data-toggle="modal" data-target="#deleteModal"> <i class="fas fa-trash-alt"></i> </a>
