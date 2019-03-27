@@ -105,7 +105,7 @@ Alert page updated      Tracked page is updated and user logs out               
 
 
 Use many devices	System is accessed from android phone using wifi							System is compatible 			      Pass
-Use many devices        System is accessed from android phone on incognito browser                                             System is accessible                          Pass
+Use many devices        System is accessed from android phone on incognito browser                                              System is accessible                          Pass
 Use many devices        System is accessed from android phone using 4G                                                          System is accessible                          Pass 
 Use many devices	System is accessed from iPhone using wifi          							System is compatible			      Pass
 Use many devices	System is accessed from iPhone on incognito browser							System is accessible 			      Pass
@@ -113,7 +113,12 @@ Use many devices        System is accessed from iPhone using 4G                 
 Use many devices        System is accessed from iPad                                   		                                System is accessible                          Pass
 Use many devices        System is accessed from android tablet                                                                  System is accessible                          Pass
 
-
+Change membership	User selects Enterprise for x months and uses valid paypal credentials to pay 				Membership changed to Enterprise for x months Pass
+Change membership	User selects Pro for x months and uses valid paypal credentials to pay 			         	Membership changed to Pro for x months 	      Pass
+Change membership	User selects Standard for x months and uses valid paypal credentials to pay 				Membership changed to Standard for x months   Pass
+Change membership	User selects Enterprise for x months and uses invalid paypal credentials to pay 			Payment declined - Membership unchanged       Pass
+Change membership	User selects Pro for x months and uses invalid paypal credentials to pay 				Payment declined - Membership unchanged       Pass
+Change membership	User selects Standard for x months and uses invalid paypal credentials to pay 				Payment declined - Membership unchanged       Pass
 
 
 
