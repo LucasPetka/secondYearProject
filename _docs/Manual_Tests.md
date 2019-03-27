@@ -120,6 +120,11 @@ Change membership	User selects Enterprise for x months and uses invalid paypal c
 Change membership	User selects Pro for x months and uses invalid paypal credentials to pay 				Payment declined - Membership unchanged       Pass
 Change membership	User selects Standard for x months and uses invalid paypal credentials to pay 				Payment declined - Membership unchanged       Pass
 
+Check changes		User tries to open changes view when nothing changed 							Gets redirected back to pageList    	      Pass
+Check changes		User open changes view when when changes was made 							Gets redirected to ChangesView    	      Pass
+Check changes		User pressButton to get to the first changes 							        Automatically scrolls to changed lines 	      Pass
+Check changes		User pressButton to get to the back 							        	Gets redirected back to pageList 	      Pass
+
 
 
 
