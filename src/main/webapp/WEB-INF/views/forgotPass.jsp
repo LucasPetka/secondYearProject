@@ -35,14 +35,14 @@
 	</p>
 	</div>
 <br>
-			<c:if test="${resetEmailSent == true}">
-	<div class="alert alert-success">
-		Password reset email sent, please check your inbox and follow the instructions.
-	</div>
-</c:if>
 <c:if test="${noEmailMatch == true}">
 	<div class="alert alert-danger">
 		We can't find this email address.
+	</div>
+</c:if>
+<c:if test="${resetPasswordConfirmationSent == true}">
+	<div class="alert alert-success">
+		Password reset email sent, please check your inbox and follow instructions.
 	</div>
 </c:if>
 			<div id="log">

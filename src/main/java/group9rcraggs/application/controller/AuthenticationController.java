@@ -18,9 +18,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import group9rcraggs.application.EmailService;
 import group9rcraggs.application.domain.Email;
+import group9rcraggs.application.domain.PasswordResetToken;
 import group9rcraggs.application.domain.Role;
 import group9rcraggs.application.domain.User;
 import group9rcraggs.application.domain.VerificationToken;
+import group9rcraggs.application.repository.PasswordResetTokenRepository;
+import group9rcraggs.application.repository.RoleRepository;
 import group9rcraggs.application.repository.UserRepository;
 import group9rcraggs.application.repository.VerificationTokenRepository;
 
@@ -31,8 +34,10 @@ public class AuthenticationController {
 	UserRepository userRepo;
 	@Autowired
 	VerificationTokenRepository verificationRepo;
+	@Autowired
+	PasswordResetTokenRepository passwordResetTokenRepo;
 	@Autowired 
-	private group9rcraggs.application.repository.RoleRepository roleRepo;
+	RoleRepository roleRepo;
     @Autowired
     private EmailService emailService;
 	
@@ -354,27 +359,52 @@ public class AuthenticationController {
 	}
 	
 	@RequestMapping(value = "password_reset", method = RequestMethod.POST)
-	public String sendEmailForPass(Model model, @RequestParam(name = "email") String email) {
+	public String sendEmailPasswordChangeConfirmation(Model model, @RequestParam(name = "email") String email) {
 		if(userRepo.existsByLogin(email)) {
-			BCryptPasswordEncoder pe = new  BCryptPasswordEncoder();
 		    final String ALPHABET = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-_";
 		    final SecureRandom RANDOM = new SecureRandom();
 	        StringBuilder sb = new StringBuilder();
-	        for (int i = 0; i < 8; ++i) {
+	        for (int i = 0; i < 20; ++i) {
 	            sb.append(ALPHABET.charAt(RANDOM.nextInt(ALPHABET.length())));
 	        }
-	        String newPass = sb.toString();
-		String emailMsg = "Your new password: "+newPass+" we advise changing it after you log in,"
-				+ " you can do it in your profile";
-		User user = userRepo.findByLogin(email);
-		user.setPassword(pe.encode(newPass));
-		userRepo.save(user);
-		emailService.sendEmail(email, emailMsg, "NetNag password reset");
-		model.addAttribute("resetEmailSent", true);
+	        String token = sb.toString();
+		String emailMsg = "Please confirm your password change https://localhost:8090/confirmPasswordRequest?psswdtoken="+token+""
+				+ " you will recieve another email with new password";
+		PasswordResetToken tok = new PasswordResetToken(userRepo.findByLogin(email), token);
+		passwordResetTokenRepo.save(tok);
+		emailService.sendEmail(email, emailMsg, "NetNag password reset confirmation");
+		model.addAttribute("resetPasswordConfirmationSent", true);
 		}else {
 		model.addAttribute("noEmailMatch", true);
 		}
 		return "forgotPass";
+	}
+	
+	@RequestMapping(value="confirmPasswordRequest", method = RequestMethod.GET)
+	public String sendNewPassword(Model model, @RequestParam(name = "psswdtoken") String token) {
+		if(passwordResetTokenRepo.existsByToken(token)) {
+			BCryptPasswordEncoder pe = new  BCryptPasswordEncoder();
+		    final String ALPHABET = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-_";
+		    final SecureRandom RANDOM = new SecureRandom();
+	        StringBuilder sb = new StringBuilder();
+	        for (int i = 0; i < 10; ++i) {
+	            sb.append(ALPHABET.charAt(RANDOM.nextInt(ALPHABET.length())));
+	        }
+	        String newPass = sb.toString();
+	        
+			String emailMsg = "Your new pasword: "+newPass+" we advise chainging it,"
+					+ " you can do it in your profile settings";
+			User user = passwordResetTokenRepo.findByToken(token).getUser();
+			user.setPassword(pe.encode(newPass));
+			userRepo.save(user);
+			passwordResetTokenRepo.delete(passwordResetTokenRepo.findByToken(token));
+			emailService.sendEmail(user.getLogin(), emailMsg, "Your new NetNag password");
+			model.addAttribute("resetEmailSent", true);
+		}else {
+			model.addAttribute("noTokenMatch", true);
+		}
+		
+		return "log_reg";
 	}
 
 }

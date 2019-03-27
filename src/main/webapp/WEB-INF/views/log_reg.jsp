@@ -53,6 +53,16 @@
 		You have successfully registered, please check your email address for confirmation.
 	</div>
 </c:if>
+<c:if test="${resetEmailSent == true}">
+	<div class="alert alert-success">
+		You confirmed password reset request, please check your inbox for your new password
+	</div>
+</c:if>
+<c:if test="${noTokenMatch == true}">
+	<div class="alert alert-danger">
+		Wrong password reset token
+	</div>
+</c:if>
 <c:if test="${successreg == true}">
 	<div class="alert alert-success">
 		You have successfully verified your account, you can log in now.
